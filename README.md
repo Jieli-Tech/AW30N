@@ -1,10 +1,10 @@
-# fw-AW306N
+# fw-AW30N
 About Firmware for Generic MCU SDK（AW30N series）, Support AW30N
 
 [tag download]:https://github.com/Jieli-Tech/fw-AW30N/tags
 [tag_badgen]:https://img.shields.io/github/v/tag/Jieli-Tech/fw-AW30N?style=plastic&labelColor=ffffff&color=informational&label=Tag&
 
-# fw-AD16N_SDK   [![tag][tag_badgen]][tag download]
+# fw-AW30N_SDK   [![tag][tag_badgen]][tag download]
 
 中文 | [EN](./README-en.md)
 
