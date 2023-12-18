@@ -1,0 +1,201 @@
+#ifndef __AUDAC_H__
+#define __AUDAC_H__
+
+#include "typedef.h"
+
+#define AUDAC_CHANNEL_TOTAL   3
+
+/********* define for DAC_CON0**********************************/
+#define A0DAC_PND          BIT(7)
+#define A0DAC_CLR_PND      BIT(6)
+#define A0DAC_IE           BIT(5)
+#define A0DAC_EN           BIT(4)
+#define A0DAC_DFIFOR       BIT(8)
+
+#define A0DAC_SRN_EN       BIT(9)
+#define A0DAC_DEM_EN       BIT(10)
+#define A0DAC_SP_24B       BIT(11)
+#define A0DAC_CH_EN        BIT(16)
+#define A0DAC_DFIFOR_SYNC  BIT(22)
+
+
+#define A0DAC_ACDIT_1_1    (0<<14)
+#define A0DAC_ACDIT_1_2    (1<<14)
+#define A0DAC_ACDIT_1_4    (2<<14)
+#define A0DAC_ACDIT_1_8    (3<<14)
+
+#define A0DAC_ACDIT_AQUW      (1<<13)   //0:为正弦波；1:为方波;
+#define A0DAC_DSM_ACDIT_EN    (1<<12)
+//iir滤波器系数选择
+#define A0DAC_IIR_PAR(n)        (n<<23)
+
+//dac 输出采样率
+#define DAC_SR8000         (0b1110<<0)
+#define DAC_SR11025        (0b1101<<0)
+#define DAC_SR12000        (0b1100<<0)
+#define DAC_SR16000        (0b1010<<0)
+#define DAC_SR22050        (0b1001<<0)
+#define DAC_SR24000        (0b1000<<0)
+#define DAC_SR32000        (0b0110<<0)
+#define DAC_SR44100        (0b0101<<0)
+#define DAC_SR48000        (0b0100<<0)
+#define DAC_SR64000        (0b0010<<0)
+#define DAC_SR88200        (0b0001<<0)
+#define DAC_SR96000        (0b0000<<0)
+#define DAC_SRBITS         (0b1111<<0)
+
+
+/********* define for DAC_CON1**********************************/
+//dac 去直流滤波器配置
+#define A1DAC_CHPSET_14      (14 << 12)
+#define A1DAC_PND            BIT(21)
+#define A1DAC_CLR_PND        BIT(20)
+#define A1DAC_IE             BIT(19)
+#define A1DAC_FADE_FLAG      BIT(9)
+#define A1DAC_FADE_EN        BIT(8)
+#define A1DAC_FADE_SLOW(n)   ((n & 0xf) << 4)      // 0~15
+#define A1DAC_FADE_STEP(n)   ((n & 0xf) << 0)      // 0~15
+#define AUDAC_FADE_START    ( JL_AUDIO->DAC_CON1 |=  A1DAC_FADE_EN)
+#define AUDAC_FADE_STOP     ( JL_AUDIO->DAC_CON1 &= ~A1DAC_FADE_EN)
+#define AUDAC_FADING_FLAG   ( JL_AUDIO->DAC_CON1 & BIT(9)         )
+
+// #ifdef D_IS_FLASH_SYSTEM
+#define AUDAC_SHIFT_BITS   0
+#define __AUDAC_SR_TYPE      u32
+// #else
+// #define AUDAC_SHIFT_BITS   2
+// #define __AUDAC_SR_TYPE      u16
+// #endif
+
+
+
+
+#define DAC_CON0_DEFAULT        ( \
+        (3 << 23) | \
+        (1 << 19) | \
+        (2 << 17) | \
+        A0DAC_ACDIT_1_2 | \
+        A0DAC_SRN_EN    | \
+        A0DAC_DFIFOR_SYNC       | \
+        A0DAC_CLR_PND           | \
+        A0DAC_DEM_EN            | \
+        A0DAC_IE                | \
+        A0DAC_CH_EN             | \
+        A0DAC_DFIFOR            )
+
+#define DAC_CON1_DEFAULT        ( \
+        (1 << 19) | \
+        (14 << 12))
+
+
+/************************************************************************/
+
+
+typedef struct _DAC_CTRL_HDL {
+    void *buf;
+    u32  con;
+    u32  con1;
+    u32  pns;     //dac中断门槛
+    u16  sp_total;
+    u16  sp_max_free;//填充数据后允许的最大Free空间，不够填零
+    u8   sp_size;
+} DAC_CTRL_HDL;
+
+#define AUDAC_BIT_WIDE          16
+#define AUDAC_TRACK_NUMBER      1
+
+void audac_init(u32 sr, u32 delay_flag);
+void audac_mode_init(void);
+void audac_sr_api(u32 sr);
+
+
+void dac_resource_init(const DAC_CTRL_HDL *ops);
+
+
+
+
+#if 1
+
+typedef enum __AUDIO_DAC_ANA_VOL {
+    AUDAC_M12db13 = 0,
+    AUDAC_M10db13 = 1,
+    AUDAC_M8db13 = 2,
+    AUDAC_M6db13 = 3,
+    AUDAC_M4db13 = 4,
+    AUDAC_M2db13 = 5,
+    AUDAC_M0db13 = 6,
+    AUDAC_1db87 = 7,
+} AUDIO_DAC_ANA_VOL;
+
+typedef enum __AUDIO_DAC_AUMUX_VOL {
+    AUAMUX_M6DB = 0,
+    AUAMUX_M4DB = 1,
+    AUAMUX_M2DB = 2,
+    AUAMUX_0DB = 3,
+    AUAMUX_2DB = 4,
+    AUAMUX_4DB = 5,
+    AUAMUX_6DB = 6,
+    AUAMUX_8DB = 7,
+} AUDIO_DAC_AUMX_VOL;
+
+extern AUDIO_DAC_ANA_VOL const audio_dac_analog_vol_l;
+extern AUDIO_DAC_ANA_VOL const audio_dac_analog_vol_r;
+
+void audio_dac_isr(void);
+u32 dac_sr_read(void);
+
+//模拟通道函数
+void amux1_analog_open(void);
+void audac_analog_open(u32 delay_flag);
+//模拟增益函数
+void audio_dac_analog_vol(AUDIO_DAC_ANA_VOL vol_l, AUDIO_DAC_ANA_VOL vol_r);
+void audio_dac_get_analog_vol(AUDIO_DAC_ANA_VOL *vol_l, AUDIO_DAC_ANA_VOL *vol_r);
+void audio_amux_analog_vol(AUDIO_DAC_AUMX_VOL vol_l, AUDIO_DAC_AUMX_VOL vol_r);
+
+void audac_analog_off_first_step(u32 delay_flag);
+void audac_analog_off_last_step(void);
+
+void audac_analog_variate_init(void);
+
+typedef enum __AUDIO_VCMO_VOLTAGE {
+    AUDAC_VCMO_0v6 = 0,
+    AUDAC_VCMO_0v8 = 1,
+    AUDAC_VCMO_1v0 = 2,
+    AUDAC_VCMO_1v2 = 3,
+} AUDIO_VCMO_VOLTAGE;
+
+extern bool const audio_dac_vcmo0_enable;
+extern bool const audio_dac_vcmo1_enable;
+extern AUDIO_VCMO_VOLTAGE const audio_dac_vcmo0_voltage;
+extern AUDIO_VCMO_VOLTAGE const audio_dac_vcmo1_voltage;
+
+void set_audio_dac_vcom0(bool enable, AUDIO_VCMO_VOLTAGE voltage);
+void set_audio_dac_vcom1(bool enable, AUDIO_VCMO_VOLTAGE voltage);
+
+void audio_dac_lpf(bool mute, bool mute_pa);//1-mute 0-unmute, 当mute=1时 mute_pa表示要不要关闭DAC输出
+void audio_dac_hplpa(bool enable);//1-输出打开 0-输出关闭
+
+typedef enum __AUDIO_DAC_PNS {
+    AUDAC_PNS_CLOSE = 0,
+    AUDAC_PNS_10K   = 1,
+    AUDAC_PNS_100K  = 2,
+    AUDAC_PNS_1OONA = 4,
+} AUDIO_DAC_PNS;
+void audio_dac_pns(AUDIO_DAC_PNS pns);
+
+typedef enum __AUDIO_VCMO_PNS {
+    AUVCMO_PNS_CLOSE = 0,
+    AUVCMO_PNS_10K   = 1,
+    AUVCMO_PNS_100K  = 2,
+    AUVCMO_PNS_100NA = 4,
+} AUDIO_VCMO_PNS;
+void audio_vcmo_pns(AUDIO_VCMO_PNS pns);
+
+extern bool const audio_dac_lpf_lenable;
+extern bool const audio_dac_lpf_renable;
+extern bool const audio_dac_lpf_lmute;
+extern bool const audio_dac_lpf_rmute;
+extern u32 fifo_dac_fill(u8 *buf, u32 len, AUDIO_TYPE type);
+#endif
+#endif
+
