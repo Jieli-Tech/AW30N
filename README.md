@@ -2,7 +2,7 @@
 About Firmware for Generic MCU SDK（AW30N series）, Support AW30N
 
 [tag download]:https://github.com/Jieli-Tech/AW30N/tags
-[tag_badgen]:https://img.shields.io/github/v/tag/Jieli-Tech/fw-AD16N?style=plastic&labelColor=ffffff&color=informational&label=Tag&
+[tag_badgen]:https://img.shields.io/github/v/tag/Jieli-Tech/AW30N?style=plastic&logo=bluetooth&label=tag&labelColor=ffffff&color=informational
 
 # fw-AW30N_SDK   [![tag][tag_badgen]][tag download]
 
