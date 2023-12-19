@@ -43,7 +43,7 @@ Documentation
 
 * SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.0.pdf)
 
-* SDK Online documentation : [SDK Online documentation](https://doc.zh-jieli.com/AD14/zh-cn/master/index.html)
+* SDK Online documentation : [SDK Online documentation](https://doc.zh-jieli.com/AW30/zh-cn/master/index.html)
 
 * SDK architure : [SDK module architure ](./doc/)
 

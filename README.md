@@ -42,7 +42,7 @@ AW30N 系列通用MCU SDK 固件程序
 
 * SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.0.pdf)
 
-* SDK 在线文档 : [SDK 在线文档](https://doc.zh-jieli.com/AD14/zh-cn/master/index.html)
+* SDK 在线文档 : [SDK 在线文档](https://doc.zh-jieli.com/AW30/zh-cn/master/index.html)
 
 * SDK 结构文档 : [SDK 模块结构](./doc/)
 
