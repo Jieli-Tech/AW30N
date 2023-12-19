@@ -31,6 +31,14 @@ AW30N 系列通用MCU SDK 固件程序
 
 * USB 升级工具 : 在开发完成后，需要使用杰理烧写工具将对应的`hex`文件烧录到目标板，进行开发调试, 关于如何获取工具请进入申请 [链接](https://item.taobao.com/item.htm?spm=a1z10.1-c-s.w4004-22883854875.5.504d246bXKwyeH&id=620295020803) 并详细阅读对应的[文档](doc/stuff/usb%20updater.pdf)，以及相关下载脚本[配置](doc/stuff/ISD_CONFIG.INI配置文件说明.pdf)
 
+* 杰理科技BLE Profile制作工具： [链接](https://gitee.com/Jieli-Tech/fw-AC63_BT_SDK/tree/master/sdk_tools/BLE%20Profile%E5%B7%A5%E5%85%B7)
+
+* 杰理科技BLE OTA升级工具（暂未支持）： [链接](https://gitee.com/Jieli-Tech/fw-AC63_BT_SDK/tree/master/sdk_tools/BLE%20OTA%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7)
+
+* 杰理科技BLE Dongle OTA升级工具（暂未支持）： [链接](https://gitee.com/Jieli-Tech/fw-AC63_BT_SDK/tree/master/sdk_tools/USB%20Dongle%20OTA%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7)
+
+
+
 介绍文档
 ------------
 
@@ -40,7 +48,7 @@ AW30N 系列通用MCU SDK 固件程序
 
 * SDK 版本信息 : [SDK 历史版本](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.0.pdf)
+* SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.1.pdf)
 
 * SDK 在线文档 : [SDK 在线文档](https://doc.zh-jieli.com/AW30/zh-cn/master/index.html)
 

@@ -31,17 +31,22 @@ How to get the `JL Toolchain` and setup the build enviroment,see below
 
 * USB updater : program flash tool to download the `hex` file to the target board, please accquire the tool form the [link](https://item.taobao.com/item.htm?spm=a1z10.1-c-s.w4004-22883854875.5.504d246bXKwyeH&id=620295020803) and check the related configuration and [document](.doc/stuff/ISD_CONFIG.INI配置文件说明.pdf)
 
+* Jieli BLE Profile production tool: [Link](https://gitee.com/Jieli-Tech/fw-AC63_BT_SDK/tree/master/sdk_tools/BLE%20Profile%E5%B7%A5%E5%85%B7 )
+
+* Jieli BLE OTA upgrade tool (not supported yet): [Link](https://gitee.com/Jieli-Tech/fw-AC63_BT_SDK/tree/master/sdk_tools/BLE%20OTA%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7)
+
+* Jieli BLE Dongle OTA upgrade tool (not supported yet): [Link](https://gitee.com/Jieli-Tech/fw-AC63_BT_SDK/tree/master/sdk_tools/USB%20Dongle%20OTA%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7)
 
 Documentation
 ------------
 
 * Chipset brief : [SoC datasheet](./doc)
 
-* Product Select Guide : [SoC Select Guide.pdf](./doc/杰理科技AD14_AD15_AD16_AD17_AD18系列语音MCU选型表.pdf)
+* Product Select Guide : [SoC Select Guide.pdf](doc/杰理科技AW30N系列芯片选型表_v1.0.pdf)
 
 * SDK Version: [SDK History](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.0.pdf)
+* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.1.pdf)
 
 * SDK Online documentation : [SDK Online documentation](https://doc.zh-jieli.com/AW30/zh-cn/master/index.html)
 
