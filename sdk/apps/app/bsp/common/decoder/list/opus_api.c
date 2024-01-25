@@ -26,7 +26,7 @@
 dec_obj dec_opus_hld;
 cbuffer_t cbuf_opus                     AT(.opus_dec_data);
 u16 obuf_opus[OPUS_DEC_OBUF_SIZE / 2]   AT(.opus_dec_data);
-u32 opus_decode_buff[0x10d0 / 4]        AT(.opus_dec_data);
+u32 opus_decode_buff[0x10d8 / 4]        AT(.opus_dec_data);
 #define OPUS_CAL_BUF ((void *)&opus_decode_buff[0])
 
 /* static u32(*opus_mp_input_cb)(void *, u32, void *, int, u8) = NULL; */
@@ -88,6 +88,7 @@ u32 opus_decode_api(void *strm, void **p_dec, void *p_dp_buf)
     dec_opus_hld.dec_ops      = ops;
     dec_opus_hld.event_tab    = (u8 *)&opus_evt[0];
     dec_opus_hld.p_dp_buf     = p_dp_buf;
+    dec_opus_hld.sr     = p_strm->sr;
     //dac reg
     // dec_opus_hld.dac.obuf = &cbuf_opus;
     // dec_opus_hld.dac.vol = 255;
@@ -147,7 +148,7 @@ u32 opus_buff_api(dec_buf *p_dec_buf)
 void set_opus_input_goon_cb(int (*opus_goon_cb)(void *))
 {
     GoOn_DEC_CallBack gocio = {0};
-    gocio.priv = NULL;
+    gocio.priv = &dec_opus_hld;
     gocio.callback = opus_goon_cb;
     decoder_ops_t *ops = get_opusdec_ops();
     ops->dec_confing(OPUS_CAL_BUF, CMD_SET_GOON_CALLBACK, &gocio);

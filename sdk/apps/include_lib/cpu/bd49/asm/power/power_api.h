@@ -78,6 +78,9 @@ enum VDDIO_KEEP_TYPE {
     VDDIO_KEEP_TYPE_PG,             //保持vddiom不关闭
 };
 
+enum BTOSC_TO_PMU_TYPE {
+    PD_EXIT_KEEP_BTOSC_TO_PMU = 1, //退出pdown保持btosc
+};
 
 #include "power_manage.h"
 
@@ -116,6 +119,7 @@ enum PCONTROL_PHW_CMD {
     PCONTROL_PD_VDDIO_KEEP,					//pdown vddio切换流程(使用enum VDDIO_KEEP_TYPE配置)
     PCONTROL_PD_WDVDD_LEV,					//pdown wvdd挡位
     PCONTROL_PD_KEEP_LPCTMU,				//pdown 触摸是否保持 0：不保持 1：保持
+    PCONTROL_PD_KEEP_BTOSC,                 //pdown 退出后保持btosc
 
     //*****************************************************
     /* soff

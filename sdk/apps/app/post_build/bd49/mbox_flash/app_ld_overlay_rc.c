@@ -32,6 +32,22 @@
             *(.enc_opus_data)
             enc_opus_data_end = .;
         }
+        .d_enc_speex {
+            . = rec_data_end;
+            *(.enc_speex_data)
+            enc_speex_data_end = .;
+        }
+        .d_enc_ima {
+            . = rec_data_end;
+            *(.enc_ima_data)
+            enc_ima_data_end = .;
+        }
+        .d_enc_sbc {
+            . = rec_data_end;
+            *(.enc_sbc_data)
+            enc_sbc_data_end = .;
+        }
+
         .update_tmp_buf {
             /* . = norflash_cache_buf_end; */
             . = ALIGN(4);

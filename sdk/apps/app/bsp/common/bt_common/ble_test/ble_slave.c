@@ -1,7 +1,10 @@
 #include "bt_ble.h"
 #include "test_app_config.h"
 #include "clock.h"
+#include "ll_config.h"
+#if RCSP_BTMATE_EN
 #include "rcsp_bluetooth.h"
+#endif
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[ble_s]"
@@ -18,7 +21,7 @@
 #define TEST_AUDIO_DATA_UPLOAD       0 //测试文件上传
 
 
-#if 0
+#if 1
 #define log_info(x, ...)  printf("[LE_TRANS]" x " ", ## __VA_ARGS__)
 #define log_info_hexdump(...)
 #define puts(...)
@@ -28,11 +31,17 @@
 #define puts(...)
 #endif
 
-
+#if CONFIG_BT_LITTLE_BUFFER_MODE
+#define ATT_LOCAL_MTU_SIZE        (247)
+//ATT缓存的buffer支持缓存数据包个数
+#define ATT_PACKET_NUMS_MAX       (2)
+#define ATT_SEND_CBUF_SIZE        (ATT_PACKET_NUMS_MAX * (ATT_PACKET_HEAD_SIZE + ATT_LOCAL_MTU_SIZE))
+#else
 //ATT发送的包长,    note: 20 <=need >= MTU
 #define ATT_LOCAL_MTU_SIZE        (300)/*(251)*/
 //ATT缓存的buffer大小,  note: need >= 20,可修改
 #define ATT_SEND_CBUF_SIZE        (1024)
+#endif
 
 //共配置的RAM
 #define ATT_RAM_BUFSIZE           (ATT_CTRL_BLOCK_SIZE + ATT_LOCAL_MTU_SIZE + ATT_SEND_CBUF_SIZE)                   //note:
@@ -71,7 +80,7 @@ static volatile hci_con_handle_t con_handle;
 
 //连接参数更新请求设置
 //是否使能参数请求更新,0--disable, 1--enable
-static const uint8_t connection_update_enable = 1; ///0--disable, 1--enable
+static const uint8_t connection_update_enable = 0; ///0--disable, 1--enable
 //当前请求的参数表index
 static uint8_t connection_update_cnt = 0; //
 
@@ -79,7 +88,7 @@ static uint8_t connection_update_cnt = 0; //
 static struct conn_update_param_t slv_conn_param;
 static const struct conn_update_param_t connection_param_table[] = {
     /* {2, 2, 0, 600},//11 */
-    {8, 8, 0, 400},//3.7
+    {4, 4, 0, 100},//3.7
     {8,  20, 10, 600},
     {12, 28, 4, 600},//3.7
     {12, 24, 30, 600},//3.05
@@ -115,7 +124,8 @@ static u8 adv_ctrl_en;             //广播控制
 static u8 test_read_write_buf[4];
 
 static int (*update_recieve_callback)(void *priv, u8 *buf, u16 len) = NULL;
-static int (*app_recieve_callback)(u8 *buf, u16 len) = NULL;
+static void *app_recieve_priv = NULL;
+static int (*app_recieve_callback)(void *priv, u8 *buf, u16 len) = NULL;
 static void (*app_ble_state_callback)(void *priv, ble_state_e state) = NULL;
 static void (*ble_resume_send_wakeup)(void) = NULL;
 static u32 channel_priv;
@@ -143,10 +153,6 @@ extern void sys_auto_shut_down_enable(void);
 extern u8 get_total_connect_dev(void);
 void bt_ble_slave_adv_enable(u8 enable);
 
-const char *bt_get_local_name()
-{
-    return "bd49_test";
-}
 
 //------------------------------------------------------
 #if TEST_AUDIO_DATA_UPLOAD
@@ -627,7 +633,7 @@ static int att_write_callback(hci_con_handle_t connection_handle, uint16_t att_h
     u16 tmp16;
 
     u16 handle = att_handle;
-    log_info("write_callback,handle:%04x, att handle= 0x%04x,size = %d\n", connection_handle, handle, buffer_size);
+    /* log_info("write_callback,handle:%04x, att handle= 0x%04x,size = %d\n", connection_handle, handle, buffer_size); */
 
     switch (handle) {
 
@@ -681,7 +687,7 @@ static int att_write_callback(hci_con_handle_t connection_handle, uint16_t att_h
         /* app_ble_recv_data_api(buffer, buffer_size); */
 
         if (app_recieve_callback) {
-            app_recieve_callback(buffer, buffer_size);
+            app_recieve_callback(app_recieve_priv, buffer, buffer_size);
         }
 #if 0
         //收发测试，自动发送收到的数据;for test
@@ -1125,18 +1131,12 @@ void bt_ble_slave_init(void)
     gap_device_name_len += ext_name_len;
     gap_device_name[gap_device_name_len] = 0;//结束符
     log_info("ble name(%d): %s \n", gap_device_name_len, gap_device_name);
-    uint8_t tmp_addr[6];
-    const uint8_t *edr_addr = bt_get_mac_addr();
-    le_controller_get_mac(tmp_addr);
-    do {
-        tmp_addr[3] = (uint8_t)rand32();
-        tmp_addr[4] = (uint8_t)rand32();
-        tmp_addr[5] = (uint8_t)rand32();
-    } while (memcmp((void *)edr_addr, tmp_addr, 6) == 0);
-
+    uint8_t tmp_ble_addr[6];
+    //生成edr对应唯一地址
+    bt_make_ble_address(tmp_ble_addr, (void *)bt_get_mac_addr());
     printf("ble_addr:");
-    put_buf(tmp_addr, 6);
-    le_controller_set_mac(tmp_addr);
+    put_buf(tmp_ble_addr, 6);
+    le_controller_set_mac(tmp_ble_addr);
 
 #if ATT_DATA_RECIEVT_FLOW
     log_info("att_server_flow_enable\n");
@@ -1206,8 +1206,9 @@ int bt_ble_slave_send_api(u8 *data, u16 len)
     /* } */
     return app_send_user_data(ATT_CHARACTERISTIC_ae02_01_VALUE_HANDLE, data, len, ATT_OP_AUTO_READ_CCC);
 }
-void bt_ble_slave_recv_register(int (*callback_func)(u8 *buf, u16 len))
+void bt_ble_slave_recv_register(void *priv, int (*callback_func)(void *priv, u8 *buf, u16 len))
 {
+    app_recieve_priv = priv;
     app_recieve_callback = callback_func;
     /* extern u32 rf_receiver_deal(u8 * rf_packet, u32 packet_len); */
     /* rf_receiver_deal(data, len); */
@@ -1229,7 +1230,12 @@ u32 bt_ble_slave_update_conn_parm(u16 interval)
              param->interval_min, param->interval_max, param->latency, param->timeout);
     u32 ret = ble_op_conn_param_request(con_handle, param);
     if (0 == ret) {
-        u32 timeout = last_interval * 1250 * get_sys_us_cnt() * 6;//预留6次重试时间
+        u32 timeout;
+        if (last_interval > PRIV_CONN_INTERVAL_STE) {
+            timeout = last_interval * get_sys_us_cnt() * 6;//预留6次重试时间
+        } else {
+            timeout = last_interval * 1250 * get_sys_us_cnt() * 6;//预留6次重试时间
+        }
         conn_parm_update_flag |= SLV_UPDATE_WAITING;
         while ((conn_parm_update_flag & SLV_UPDATE_WAITING) && (0 != timeout)) {
             timeout--;

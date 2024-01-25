@@ -80,7 +80,6 @@ CFLAGS := \
 	-Oz \
 	-flto \
 	-integrated-as \
-	-fno-builtin \
 	-g \
 	-O0 \
 	-flto \
@@ -107,6 +106,7 @@ DEFINES := \
 	-D__FPGA=0 \
 	-DCONFIG_CPU_BD49=1 \
 	-DAPP_BT_BLE=1 \
+	-DSUPPORT_MS_EXTENSIONS \
 	-DD_MASKROM_CODE=0 \
 	-DD_IS_FLASH_SYSTEM \
 	-DD_SFC_DEVICE_EN \
@@ -118,14 +118,20 @@ DEFINES := \
 	-DHAS_MAX_F1A_NUMBER=2 \
 	-DHAS_UMP3_DECODER \
 	-DHAS_A_DECODER \
+	-DHAS_IMA_DECODER \
 	-DHAS_MIDI_DECODER \
 	-DHAS_MIDI_KEYBOARD_DECODER \
 	-DHAS_OPUS_DECODER \
+	-DHAS_SPEEX_DECODER \
+	-DHAS_SBC_DECODER \
 	-DHAS_MP3_ENCODER \
 	-DMP3_ENCODER_SUPPORT_CH=1 \
 	-DHAS_UMP3_ENCODER \
 	-DHAS_A_ENCODER \
 	-DHAS_OPUS_ENCODER \
+	-DHAS_SPEEX_ENCODER \
+	-DHAS_IMA_ENCODER \
+	-DHAS_SBC_ENCODER \
 	-DHAS_SPEED_EFFECT \
 	-DHAS_SONG_SPEED_EFFECT \
 	-DHAS_HOWLING_EFFECT \
@@ -146,6 +152,7 @@ DEFINES := \
 	-DHAS_UPDATE_V2_EN=1 \
 	-DHAS_SD_UPDATE_EN=1 \
 	-DHAS_UDISK_UPDATE_EN=1 \
+	-DHAS_TESTBOX_BT_UPDATE_EN=1 \
 	-DHAS_TESTBOX_UART_UPDATE_EN=1 \
 	-DHAS_CONFIG_APP_OTA_EN=1 \
 	-DHAS_LINEIN_MODE \
@@ -154,6 +161,7 @@ DEFINES := \
 	-DHAS_MUSIC_MODE \
 	-DHAS_USB_SLAVE_MODE \
 	-DHAS_LOUDSPEAKER_MODE \
+	-DHAS_RTC_MODE \
 	-DHAS_RF_RADIO_MODE \
 	-DHAS_RF_REMOTECONTROL_MODE \
 	-DHAS_VM_EN \
@@ -244,6 +252,7 @@ INCLUDES := \
 	-Iapps/include_lib/bt_include/third_party/rcsp \
 	-Iapps/app/bsp/common/third_party_profile/jieli/gatt_common \
 	-Iapps/app/bsp/common/bt_common/ble_test \
+	-Iapps/include_lib/bt_controller_include/ble \
 	-Iapps/include_lib/bt_controller_include/adapter/include/common \
 	-Iapps/app/bsp/common/bt_common/hid \
 	-Iapps/app/bsp/common/bt_common/hid/include \
@@ -258,9 +267,11 @@ c_SRC_FILES := \
 	apps/app/bsp/common/audio/audio_adc_api.c \
 	apps/app/bsp/common/audio/audio_dac_fade.c \
 	apps/app/bsp/common/audio/fill_audac.c \
+	apps/app/bsp/common/audio/sound_kick.c \
 	apps/app/bsp/common/audio_rf_trans/audio2rf_send.c \
 	apps/app/bsp/common/audio_rf_trans/audio_rf_mge.c \
 	apps/app/bsp/common/audio_rf_trans/rf2audio_recv.c \
+	apps/app/bsp/common/audio_rf_trans/rf_send_queue.c \
 	apps/app/bsp/common/audio_rf_trans/trans_packet.c \
 	apps/app/bsp/common/audio_rf_trans/trans_unpacket.c \
 	apps/app/bsp/common/bt_common/ble_test/ble_master.c \
@@ -300,25 +311,34 @@ c_SRC_FILES := \
 	apps/app/bsp/common/bt_common/spp_and_le/version.c \
 	apps/app/bsp/common/bt_common/vble_complete.c \
 	apps/app/bsp/common/bt_common/vble_simple.c \
+	apps/app/bsp/common/decoder/audio_codec_format.c \
 	apps/app/bsp/common/decoder/decoder_api.c \
 	apps/app/bsp/common/decoder/decoder_msg_tab.c \
 	apps/app/bsp/common/decoder/decoder_point.c \
 	apps/app/bsp/common/decoder/list/a_api.c \
 	apps/app/bsp/common/decoder/list/f1a_api.c \
 	apps/app/bsp/common/decoder/list/f1x_parsing.c \
+	apps/app/bsp/common/decoder/list/ima_api.c \
 	apps/app/bsp/common/decoder/list/midi_api.c \
 	apps/app/bsp/common/decoder/list/midi_ctrl_api.c \
 	apps/app/bsp/common/decoder/list/mp3_standard_api.c \
 	apps/app/bsp/common/decoder/list/opus_api.c \
+	apps/app/bsp/common/decoder/list/sbc_api.c \
+	apps/app/bsp/common/decoder/list/speex_api.c \
 	apps/app/bsp/common/decoder/list/ump3_api.c \
 	apps/app/bsp/common/decoder/list/wav_api.c \
 	apps/app/bsp/common/decoder/mio/mio_api.c \
 	apps/app/bsp/common/decoder/mio/mio_phy.c \
 	apps/app/bsp/common/decoder/mp_io.c \
 	apps/app/bsp/common/encoder/encoder_api.c \
+	apps/app/bsp/common/encoder/encoder_file.c \
+	apps/app/bsp/common/encoder/encoder_stream.c \
 	apps/app/bsp/common/encoder/list/a_encoder.c \
+	apps/app/bsp/common/encoder/list/ima_encoder.c \
 	apps/app/bsp/common/encoder/list/mp3_encoder.c \
 	apps/app/bsp/common/encoder/list/opus_encoder.c \
+	apps/app/bsp/common/encoder/list/sbc_encoder.c \
+	apps/app/bsp/common/encoder/list/speex_encoder.c \
 	apps/app/bsp/common/encoder/list/ump3_encoder.c \
 	apps/app/bsp/common/fs/fat/fat_resource.c \
 	apps/app/bsp/common/fs/nor_fs/nor_fs_resource.c \
@@ -326,6 +346,8 @@ c_SRC_FILES := \
 	apps/app/bsp/common/fs/vfs.c \
 	apps/app/bsp/common/fs/vfs_fat.c \
 	apps/app/bsp/common/fs/vfs_resource.c \
+	apps/app/bsp/common/ir/ir_decoder.c \
+	apps/app/bsp/common/ir/ir_encoder.c \
 	apps/app/bsp/common/key/key.c \
 	apps/app/bsp/common/key/key_drv_ad.c \
 	apps/app/bsp/common/key/key_drv_io.c \
@@ -333,6 +355,7 @@ c_SRC_FILES := \
 	apps/app/bsp/common/key/key_ir.c \
 	apps/app/bsp/common/key/key_lptouch.c \
 	apps/app/bsp/common/key/key_touch.c \
+	apps/app/bsp/common/msg/custom_event.c \
 	apps/app/bsp/common/msg/msg.c \
 	apps/app/bsp/common/my_malloc.c \
 	apps/app/bsp/common/norflash/norflash.c \
@@ -380,6 +403,7 @@ c_SRC_FILES := \
 	apps/app/bsp/common/usb/host/usb_storage.c \
 	apps/app/bsp/common/usb/usb_test.c \
 	apps/app/bsp/common/usb/usr/auadc_2_usbmic.c \
+	apps/app/bsp/common/usb/usr/source_pcm.c \
 	apps/app/bsp/common/usb/usr/uac_sync.c \
 	apps/app/bsp/common/usb/usr/usb_audio_interface.c \
 	apps/app/bsp/common/usb/usr/usb_mic_interface.c \
@@ -397,13 +421,10 @@ c_SRC_FILES := \
 	apps/app/bsp/cpu/bd49/hw_timer_pwm.c \
 	apps/app/bsp/cpu/bd49/iic_api.c \
 	apps/app/bsp/cpu/bd49/iic_soft.c \
-	apps/app/bsp/cpu/bd49/ir_decoder.c \
-	apps/app/bsp/cpu/bd49/ir_encoder.c \
 	apps/app/bsp/cpu/bd49/lpctmu.c \
 	apps/app/bsp/cpu/bd49/mcpwm.c \
 	apps/app/bsp/cpu/bd49/my_print.c \
 	apps/app/bsp/cpu/bd49/pl_cnt.c \
-	apps/app/bsp/cpu/bd49/port_wkup.c \
 	apps/app/bsp/cpu/bd49/power/gpio_config.c \
 	apps/app/bsp/cpu/bd49/power/power_app.c \
 	apps/app/bsp/cpu/bd49/power/power_config.c \
@@ -453,6 +474,10 @@ c_SRC_FILES := \
 	apps/app/src/mbox_flash/remotecontrol/rc_key.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_app.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_key.c \
+	apps/app/src/mbox_flash/rf_radio/rf_radio_receive.c \
+	apps/app/src/mbox_flash/rf_radio/rf_radio_send.c \
+	apps/app/src/mbox_flash/rtc/rtc_mode.c \
+	apps/app/src/mbox_flash/rtc/rtc_mode_key.c \
 	apps/app/src/mbox_flash/simple_decode/simple_decode.c \
 	apps/app/src/mbox_flash/simple_decode/simple_decode_key.c \
 	apps/app/src/mbox_flash/softoff_app/softoff_mode.c \
@@ -493,14 +518,20 @@ LFLAGS := \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_wav_decoder.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_f1a_decode.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_a_decode.a \
+	apps/include_lib/liba/ARCH/pi32_lto/lib_ima_stream_decode.a \
 	apps/include_lib/liba/ARCH/pi32_lto/ump3_dec_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/opus_dec_lib.a \
+	apps/include_lib/liba/ARCH/pi32_lto/lib_speex_decode_encode.a \
+	apps/include_lib/liba/ARCH/pi32_lto/sbc_stddec_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_midi_decode.a \
 	apps/include_lib/liba/bd49/mbox_flash/encoder_mge_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_mp2_code.a \
 	apps/include_lib/liba/ARCH/pi32_lto/ump2_enc_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_a_code.a \
 	apps/include_lib/liba/ARCH/pi32_lto/opus_enc_lib.a \
+	apps/include_lib/liba/ARCH/pi32_lto/lib_speex_decode_encode.a  \
+	apps/include_lib/liba/ARCH/pi32_lto/lib_ima_stream_enc.a \
+	apps/include_lib/liba/ARCH/pi32_lto/sbc_stdenc_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_speed_pitch.a \
 	apps/include_lib/liba/ARCH/pi32_lto/ps_song_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/howling.a \
@@ -524,8 +555,9 @@ LFLAGS := \
 	apps/include_lib/liba/bd49/mbox_flash/new_vm_lib.a \
 	apps/include_lib/liba/bd49/mbox_flash/printf_lib.a \
 	apps/include_lib/liba/bd49/mbox_flash/dev_mg_lib.a \
-	apps/include_lib/liba/bd49/mbox_flash/update_lib.a \
+	apps/include_lib/liba/bd49/mbox_flash/iir_lib.a \
 	apps/include_lib/liba/bd49/mbox_flash/agreement.a \
+	apps/include_lib/liba/bd49/mbox_flash/update_lib.a \
 	apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a \
 	apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a \
 	--end-group \

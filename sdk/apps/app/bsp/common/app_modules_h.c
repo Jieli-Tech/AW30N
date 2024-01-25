@@ -28,6 +28,13 @@ define DECODER_A_EN  1
 define DECODER_A_EN  0
 #endif
 
+-
+** ADPCM-IMA格式解码
+#ifdef HAS_IMA_DECODER
+define DECODER_IMA_EN  1
+#else
+define DECODER_IMA_EN  0
+#endif
 
 -
 ** 标准MP3格式解码
@@ -83,7 +90,27 @@ define DECODER_MIDI_KEYBOARD_EN 0
 
 -
 ** OPUS格式解码
-define DECODER_OPUS_EN 0
+#ifdef HAS_OPUS_DECODER
+define DECODER_OPUS_EN  0
+#else
+define DECODER_OPUS_EN  0
+#endif
+
+-
+** SPEEX格式解码
+#ifdef HAS_SPEEX_DECODER
+define DECODER_SPEEX_EN  1
+#else
+define DECODER_SPEEX_EN  0
+#endif
+
+-
+** SBC格式解码
+#ifdef HAS_SBC_DECODER
+define DECODER_SBC_EN  1
+#else
+define DECODER_SBC_EN  0
+#endif
 
 -
 ** mp3格式压缩
@@ -117,7 +144,36 @@ define ENCODER_A_EN  0
 
 -
 ** opus格式压缩
+#ifdef HAS_OPUS_ENCODER
 define ENCODER_OPUS_EN  0
+#else
+define ENCODER_OPUS_EN  0
+#endif
+
+-
+** SPEEX格式压缩
+#ifdef HAS_SPEEX_ENCODER
+define ENCODER_SPEEX_EN  1
+#else
+define ENCODER_SPEEX_EN  0
+#endif
+
+-
+** adpcm-ima格式压缩
+#ifdef HAS_IMA_ENCODER
+define ENCODER_IMA_EN  1
+#else
+define ENCODER_IMA_EN  0
+#endif
+
+-
+** SBC格式压缩
+#ifdef HAS_SBC_ENCODER
+define ENCODER_SBC_EN  1
+#else
+define ENCODER_SBC_EN  0
+#endif
+
 -
 ** MIO功能使能
 #ifdef HAS_MIO_PLAYER
@@ -199,6 +255,20 @@ define DECODE_SR_IS_NEED_JUDIGMENT 0
 endif
 
 -
+** 文件系统
+#ifdef HAS_FATFS_EN
+define FATFS_EN 1
+#else
+define FATFS_EN 0
+#endif
+
+#ifdef HAS_NORFS_EN
+define NORFS_EN 1
+#else
+define NORFS_EN 0
+#endif
+
+-
 ** 手机APP应用升级
 define CONFIG_APP_OTA_EN 0
 
@@ -275,6 +345,8 @@ define VO_CHANGER_EN  0
 define ECHO_EN   0
 define PCM_SW_EQ_EN		0
 define DECODE_SR_IS_NEED_JUDIGMENT 0
+define FATFS_EN 0
+define NORFS_EN 0
 
 -
 ** opus格式压缩
@@ -285,11 +357,59 @@ define ENCODER_OPUS_EN  0
 #endif
 
 -
+** ADPCM-IMA格式解码
+#ifdef HAS_IMA_DECODER
+define DECODER_IMA_EN  1
+#else
+define DECODER_IMA_EN  0
+#endif
+
+-
+** SPEEX格式解码
+#ifdef HAS_SPEEX_DECODER
+define DECODER_SPEEX_EN  1
+#else
+define DECODER_SPEEX_EN  0
+#endif
+
+-
+** SBC格式解码
+#ifdef HAS_SBC_DECODER
+define DECODER_SBC_EN  1
+#else
+define DECODER_SBC_EN  0
+#endif
+
+-
 ** OPUS格式解码
 #ifdef HAS_OPUS_DECODER
 define DECODER_OPUS_EN 1
 #else
 define DECODER_OPUS_EN 0
+#endif
+
+-
+** SPEEX格式压缩
+#ifdef HAS_SPEEX_ENCODER
+define ENCODER_SPEEX_EN  1
+#else
+define ENCODER_SPEEX_EN  0
+#endif
+
+-
+** ADPCM-IMA格式压缩
+#ifdef HAS_IMA_ENCODER
+define ENCODER_IMA_EN  1
+#else
+define ENCODER_IMA_EN  0
+#endif
+
+-
+** SBC格式压缩
+#ifdef HAS_SBC_ENCODER
+define ENCODER_SBC_EN  1
+#else
+define ENCODER_SBC_EN  0
 #endif
 
 -
@@ -355,6 +475,14 @@ define UPDATE_V2_EN 0
 define TESTBOX_UART_UPDATE_EN 0
 #else
 define TESTBOX_UART_UPDATE_EN 0
+#endif
+
+-
+** 测试盒蓝牙升级
+#ifdef HAS_TESTBOX_BT_UPDATE_EN
+define TESTBOX_BT_UPDATE_EN 1
+#else
+define TESTBOX_BT_UPDATE_EN 0
 #endif
 
 -

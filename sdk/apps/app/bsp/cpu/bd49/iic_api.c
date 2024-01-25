@@ -197,12 +197,21 @@ int hw_i2c_master_write_nbytes_to_device_reg(hw_iic_dev iic,
         }
     }
 
+#if 0
     for (res = 0; res < write_len; res++) {
+#if defined CONFIG_CPU_UC03//最后1byte前设置stop
+        if (res == write_len - 1) {
+            hw_iic_stop(iic);
+        }
+#endif
         if (0 == hw_iic_tx_byte(iic, write_buf[res])) {
             log_error("write data no ack!");
             goto _write_exit1;
         }
     }
+#else
+    res = hw_iic_write_buf(iic, write_buf, write_len);
+#endif
 _write_exit1:
     hw_iic_stop(iic);
 _write_exit2:

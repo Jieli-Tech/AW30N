@@ -33,7 +33,7 @@
 #include "cbuf.h"
 
 #if (RCSP_BTMATE_EN && TCFG_PC_ENABLE && (USB_DEVICE_CLASS_CONFIG & HID_CLASS) && TRANS_DATA_SPPLE_EN)
-#if CONFIG_APP_DONGLE
+#if (CONFIG_APP_DONGLE && TCFG_USER_BLE_ENABLE)
 
 #if 1
 #define log_info(x, ...)  printf("[BLE_DG_OTA]" x " ", ## __VA_ARGS__)

@@ -35,9 +35,9 @@
 
 /* #include "le_common.h" */
 #include "standard_hid.h"
-#include "custom_cfg.h"
 
 #if RCSP_BTMATE_EN
+#include "custom_cfg.h"
 #include "rcsp_bluetooth.h"
 #include "JL_rcsp_api.h"
 #include "code_v2/update_loader_download.h"

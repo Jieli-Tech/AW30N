@@ -10,13 +10,14 @@
 #include "sine_play.h"
 #include "circular_buf.h"
 #include "app_modules.h"
+#include "sound_kick.h"
 
 #if HAS_MIO_EN
 #include "mio_api.h"
 #endif
 
-/* #define LOG_TAG_CONST       NORM */
-#define LOG_TAG_CONST       OFF
+#define LOG_TAG_CONST       NORM
+/* #define LOG_TAG_CONST       OFF */
 #define LOG_TAG             "[audio_dac_api]"
 #include "log.h"
 
@@ -26,33 +27,6 @@ void fifo_dac_fill_kick(u32 i, u32 dac_packet_num)
 #if HAS_MIO_EN
     d_mio_kick(dac_mge.sound[i]->mio, dac_packet_num/*DAC_PACKET_SIZE*/);
 #endif
-}
-
-AT(.audio_isr_text)
-__attribute__((weak))
-int dac_kick_api(void *sound_hld, void *pkick)
-{
-    return -1;
-}
-
-AT(.audio_isr_text)
-void dac_kick(void *sound_hld, void *pkick)
-{
-    sound_out_obj *psound = sound_hld;
-    if (psound->enable & B_DEC_RUN_EN) {
-        if (0 == (psound->enable & B_DEC_PAUSE)) {
-            /* debug_putchar('K'); */
-            /* if_kick_decoder(psound, pkick); */
-            dac_kick_api(psound, pkick);
-        }
-    } else {
-        if (0 == cbuf_get_data_size(psound->p_obuf)) {
-            /* log_char('L'); */
-            psound->enable &= ~B_DEC_OBUF_EN;
-        } else {
-            /* log_char('M'); */
-        }
-    }
 }
 
 AT(.audio_isr_text)
@@ -180,7 +154,7 @@ u32 fill_dac_fill_phy(u8 *buf, u32 len)
         if (0 != rptr[i]) {
             cbuf_read_updata(dac_mge.sound[i]->p_obuf, p_cnt[i] * 2);
         }
-        dac_kick(dac_mge.sound[i], dac_mge.kick[i]);
+        sound_kick(dac_mge.sound[i], dac_mge.kick[i]);
     }
 
 #if TCFG_AUDIO_AUTO_MUTE_ENABLE
@@ -208,7 +182,7 @@ u32 fill_dac_only_one(u8 *buf, u32 len)
         rlen = cbuf_read(dac_mge.sound[i]->p_obuf, buf, len);
         fifo_dac_fill_kick(i, len / 2 / DAC_TRACK_NUMBER);//mio依赖单声道数据量
 
-        dac_kick(dac_mge.sound[i], dac_mge.kick[i]);
+        sound_kick(dac_mge.sound[i], dac_mge.kick[i]);
     }
 #if TCFG_AUDIO_AUTO_MUTE_ENABLE
     audio_energy_detect_run((s16 *)buf, len);

@@ -29,7 +29,6 @@
 #define TCFG_SD0_PORT_CMD SDMMC_CMD_IO
 #define TCFG_SD0_PORT_DA0 SDMMC_DAT_IO
 
-const int CONFIG_UPDATE_STORAGE_DEV_EN = 1;
 ////////////////////////////////////////////
 
 
@@ -364,6 +363,10 @@ u16 dev_update_check(char *logo)
     /* if ((update_success_boot_check() == true) || !CONFIG_UPDATE_STORAGE_DEV_EN) { */
     /*     return UPDATA_NON; */
     /* } */
+
+    if (!CONFIG_UPDATE_STORAGE_DEV_EN) {
+        return UPDATA_NON;
+    }
 
     log_info(">>>[test]:----------------dev_update_check----logo = %s------------\n", logo);
     void force_set_sd_online(char *sdx);

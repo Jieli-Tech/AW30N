@@ -160,6 +160,8 @@ extern const int config_btctler_le_afh_en;
 
 #define LE_AFH_IS_SUPPORT_OPTIMIZE(x)     if (LE_AFH_IS_SUPPORT() == 0x0)   return
 
+#define PRIV_CONN_INTERVAL_STE  600  //最小支持600us间隔连接
+
 /*
  *-------------------LE PARAM CHECK
  *  brief : 运行时优化（LTO）下，代码空间优化；

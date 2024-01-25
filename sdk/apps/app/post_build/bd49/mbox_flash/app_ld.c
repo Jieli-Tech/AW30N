@@ -49,6 +49,9 @@ SECTIONS
         . = (. + 3) / 4 * 4 ;
         cache_Lx_code_text_end = .;
 
+        #include "bt_include/btstack_lib_data.ld"
+        #include "bt_controller_include/btctler_lib_data.ld"
+
     } > ram0
 
 	.debug_data ALIGN(4):
@@ -72,7 +75,7 @@ SECTIONS
         . = ALIGN(32);
 #if RUN_APP_DONGLE
         . += 0xc00;
-#endif      
+#endif
         *(.stack)
         . = ALIGN(32);
 		*(.stack_magic0);
@@ -86,6 +89,10 @@ SECTIONS
         *(.non_volatile_ram)
         *(.msd.keep_ram)
         *(.usb_hid.keep_ram)
+
+        #include "bt_include/btstack_lib_bss.ld"
+        #include "bt_controller_include/btctler_lib_bss.ld"
+
         _system_data_end = .;
     } > ram0
 
@@ -200,6 +207,10 @@ SECTIONS
 		phw_end = .;
 
 
+		. = ALIGN(4);
+        #include "bt_include/btstack_lib_text.ld"
+		. = ALIGN(4);
+        #include "bt_controller_include/btctler_lib_text.ld"
 
         . = ALIGN(32);
         /* . = LENGTH(app_code) - SIZEOF(.data); */

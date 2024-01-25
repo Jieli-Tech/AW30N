@@ -374,7 +374,7 @@ void lpctmu_init(const struct lpctmu_platform_data *pdata)
 
     if (__this->ctl_mode) {          //硬件自动轮询模式
         SFR(JL_LPCTM0->ANA1, 3, 1, 0);
-        SFR(JL_LPCTM0->CHEN, 0, 7, __this->ch_en.val);
+        SFR(JL_LPCTM0->CHEN, 0, 8, __this->ch_en.val);
         if (__this->ctl_mode == HW_UDMA_POLL_MODE) {
             lpctmu_udma_init();
         } else {

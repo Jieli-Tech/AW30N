@@ -116,13 +116,21 @@ extern int printf(const char *format, ...);
 
 #define CPU_CRITICAL_EXIT()  local_irq_enable()
 
-
+extern const u8 config_asser;
 #define ASSERT(a,...)   \
 		do { \
             if(!(a)){ \
-                printf("file:%s, line:%d", __FILE__, __LINE__); \
-                printf("ASSERT-FAILD: "#a" "__VA_ARGS__); \
-                system_reset(ASSERT_FLAG); \
+                if(config_asser){\
+                    if(!(a)){ \
+                        printf("file:%s, line:%d", __FILE__, __LINE__); \
+                        printf("ASSERT-FAILD: "#a" "__VA_ARGS__); \
+                        system_reset(ASSERT_FLAG); \
+                    } \
+                }else{\
+                    if(!(a)){ \
+                        system_reset(ASSERT_FLAG); \
+                    }\
+                }\
             } \
 		}while(0);
 

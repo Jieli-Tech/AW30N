@@ -70,6 +70,9 @@ enum {
     MSG_MIDICTRL_PITCH_BEND_DOWN,
     //rf_radio
     MSG_SENDER_START,
+    MSG_SENDER_WAITING_START_ACK,
+    MSG_SENDER_START_ACK_SUCC,
+    MSG_SENDER_START_ACK_FAIL,
     MSG_SENDER_STOP,
     MSG_SENDER_STOP_NOW,
     MSG_RECEIVER_START,
@@ -193,6 +196,10 @@ enum {
     MSG_UP_KEY_LIFT,
     MSG_DOWN_KEY_LIFT,
 
+    MSG_DEC_OTHER_FORMAT_END,
+    MSG_DEC_OTHER_FORMAT_ERR,
+    MSG_DEC_OTHER_FORMAT_LOOP,
+
     //系统相关消息，库会使用到，不能更改
     MSG_F1A1_FILE_END = 0x800,
     MSG_F1A1_FILE_ERR,
@@ -214,6 +221,15 @@ enum {
     MSG_OPUS_FILE_END,
     MSG_OPUS_FILE_ERR,
     MSG_OPUS_LOOP,
+    MSG_IMA_FILE_END,
+    MSG_IMA_FILE_ERR,
+    MSG_IMA_LOOP,
+    MSG_SPEEX_FILE_END,
+    MSG_SPEEX_FILE_ERR,
+    MSG_SPEEX_LOOP,
+    MSG_SBC_FILE_END,
+    MSG_SBC_FILE_ERR,
+    MSG_SBC_LOOP,
     MSG_WFILE_FULL,
 
     MSG_OTG_IN,
@@ -249,6 +265,23 @@ enum {
     MSG_CBUF_ERROR = -5,
 };
 
+// 除去f1a,f2a,a,mp3,midi,wav其他解码格式结束，错误，循环统归为一个
+#define EVENT_OPUS_END       EVENT_DEC_OTHER_FORMAT_END
+#define EVENT_OPUS_ERR       EVENT_DEC_OTHER_FORMAT_ERR
+#define EVENT_OPUS_LOOP      EVENT_DEC_OTHER_FORMAT_LOOP
+
+#define EVENT_IMA_END      	 EVENT_DEC_OTHER_FORMAT_END
+#define EVENT_IMA_ERR      	 EVENT_DEC_OTHER_FORMAT_ERR
+#define EVENT_IMA_LOOP     	 EVENT_DEC_OTHER_FORMAT_LOOP
+
+#define EVENT_SPEEX_END      EVENT_DEC_OTHER_FORMAT_END
+#define EVENT_SPEEX_ERR      EVENT_DEC_OTHER_FORMAT_ERR
+#define EVENT_SPEEX_LOOP     EVENT_DEC_OTHER_FORMAT_LOOP
+
+#define EVENT_SBC_END      	 EVENT_DEC_OTHER_FORMAT_END
+#define EVENT_SBC_ERR      	 EVENT_DEC_OTHER_FORMAT_ERR
+#define EVENT_SBC_LOOP    	 EVENT_DEC_OTHER_FORMAT_LOOP
+
 //DEV_ONLINE
 
 #define MSG_HEADER_BYTE_LEN     2
@@ -271,45 +304,46 @@ enum {
 
 #define EVENT_MIDI_END      6
 #define EVENT_MIDI_ERR      7
-//                        --8
-#define EVENT_A_END         9
-#define EVENT_A_ERR         10
-#define EVENT_A_LOOP        11
 
-#define EVENT_MP3_END       12
-#define EVENT_MP3_ERR       13
-#define EVENT_MP3_LOOP      14
+#define EVENT_A_END         8
+#define EVENT_A_ERR        	9
+#define EVENT_A_LOOP        10
 
-#define EVENT_WAV_END       15
-#define EVENT_WAV_ERR       16
-#define EVENT_WAV_LOOP      17
+#define EVENT_MP3_END       11
+#define EVENT_MP3_ERR       12
+#define EVENT_MP3_LOOP      13
 
-#define EVENT_OPUS_END      18
-#define EVENT_OPUS_ERR      19
-#define EVENT_OPUS_LOOP     20
+#define EVENT_WAV_END       14
+#define EVENT_WAV_ERR       15
+#define EVENT_WAV_LOOP      16
 
-#define EVENT_APP_SW_ACTIVE 21
-#define EVENT_WFILE_FULL    22
+#define EVENT_DEC_OTHER_FORMAT_END        17
+#define EVENT_DEC_OTHER_FORMAT_ERR        18
+#define EVENT_DEC_OTHER_FORMAT_LOOP       19
 
-#define EVENT_OTG_IN        23
-#define EVENT_OTG_OUT       24
-#define EVENT_UDISK_IN      25
-#define EVENT_UDISK_OUT     26
-#define EVENT_PC_IN         27
-#define EVENT_PC_OUT        28
-#define EVENT_PC_SPK        29
-#define EVENT_PC_MIC        30
-#define EVENT_SD0_IN        31
-#define EVENT_SD0_OUT       32
-#define EVENT_AUX_IN        33
-#define EVENT_AUX_OUT       34
-#define EVENT_EXTFLSH_IN    35
+#define EVENT_APP_SW_ACTIVE 20
+#define EVENT_WFILE_FULL   	21
 
-#define EVENT_OTA_UPDATE            36
-#define EVENT_TEXTBOX_BLUE_UPDATE   37
-#define EVENT_TEXTBOX_UART_UPDATE   38
+#define EVENT_OTG_IN        22
+#define EVENT_OTG_OUT       23
+#define EVENT_UDISK_IN      24
+#define EVENT_UDISK_OUT     25
+#define EVENT_PC_IN         26
+#define EVENT_PC_OUT        27
+#define EVENT_PC_SPK        28
+#define EVENT_PC_MIC        29
+#define EVENT_SD0_IN        30
+#define EVENT_SD0_OUT       31
+#define EVENT_AUX_IN        32
+#define EVENT_AUX_OUT       33
+#define EVENT_EXTFLSH_IN    34
 
-#define EVENT_HALF_SECOND   39
+#define EVENT_OTA_UPDATE            35
+#define EVENT_TEXTBOX_BLUE_UPDATE   36
+#define EVENT_TEXTBOX_UART_UPDATE   37
+
+#define EVENT_HALF_SECOND   38
+
 
 
 bool get_event_status(u32 event);

@@ -9,10 +9,11 @@ const int IRQ_IRTMR_IP   = 6;
 const int IRQ_AUDIO_IP   = 5;
 const int IRQ_DECODER_IP = 1;
 const int IRQ_WFILE_IP   = 1;
+const int IRQ_RF_QUEUE_IP   = 1;
 const int IRQ_ADC_IP     = 3;
 const int IRQ_ENCODER_IP = 0;
 const int IRQ_TICKTMR_IP = 3;
-const int IRQ_USB_IP	 = 3;
+const int IRQ_USB_IP	 = 4;
 const int IRQ_SD_IP		 = 3;
 const int IRQ_CTMU_IP	 = 2;
 const int IRQ_STREAM_IP  = 4;
@@ -64,6 +65,15 @@ const bool config_usbslave_ctl_mic = 1;
 /*************docoder mge aechite****************************************/
 bool const config_decoder_auto_mutex = 1;
 
+
+////////////////////////////update control///////////////////////////////////////////
+const int CONFIG_UPDATE_STORAGE_DEV_EN = 1;
+const int CONFIG_UPDATE_TESTBOX_UART_EN = 1;
+const int CONFIG_UPDATE_APP_OTA_EN = 1;
+const int CONFIG_UPDATE_TESTBOX_BLE_EN = 1;
+
+/////////////////////////////////////////////////////////////////////////////////////
+
 /**
  * @brief Bluetooth Controller Log
  */
@@ -107,6 +117,15 @@ const char log_tag_const_e_PMU AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
 const char log_tag_const_i_WKUP AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
 const char log_tag_const_d_WKUP AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
 const char log_tag_const_e_WKUP AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
+
+const char log_tag_const_i_RTC AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
+const char log_tag_const_d_RTC AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
+const char log_tag_const_e_RTC AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
+
+
+const char log_tag_const_i_EXTI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
+const char log_tag_const_d_EXTI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
+const char log_tag_const_e_EXTI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
 
 /* const char log_tag_const_i_SOFI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0); */
 /* const char log_tag_const_d_SOFI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0); */

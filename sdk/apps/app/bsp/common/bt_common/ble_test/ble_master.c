@@ -1,6 +1,7 @@
 #include "bt_ble.h"
 #include "test_app_config.h"
 #include "clock.h"
+#include "ll_config.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[ble_m]"
@@ -13,7 +14,7 @@
 #define SHOW_RX_DATA_RATE           0
 #define EXT_ADV_MODE_EN             0
 
-#if 0
+#if 1
 /* #define log_info            printf */
 #define log_info(x, ...)    printf("[LE_CLIENT]" x " ", ## __VA_ARGS__)
 #define log_info_hexdump    put_buf
@@ -23,8 +24,16 @@
 #endif
 
 //------
+#if CONFIG_BT_LITTLE_BUFFER_MODE
+#define ATT_LOCAL_MTU_SIZE        (247)
+//ATT缓存的buffer支持缓存数据包个数
+#define ATT_PACKET_NUMS_MAX       (2)
+#define ATT_SEND_CBUF_SIZE        (ATT_PACKET_NUMS_MAX * (ATT_PACKET_HEAD_SIZE + ATT_LOCAL_MTU_SIZE))
+#else
 #define ATT_LOCAL_MTU_SIZE        (512)/*(64*2)*/                    //note: need >= 20
 #define ATT_SEND_CBUF_SIZE        (1024)/*(512)*/                   //note: need >= 20,缓存大小，可修改
+#endif
+
 #define ATT_RAM_BUFSIZE           (ATT_CTRL_BLOCK_SIZE + ATT_LOCAL_MTU_SIZE + ATT_SEND_CBUF_SIZE)                   //note:
 static u8 att_ram_buffer[ATT_RAM_BUFSIZE] __attribute__((aligned(4)));
 
@@ -40,22 +49,27 @@ static u8 search_ram_buffer[SEARCH_PROFILE_BUFSIZE] __attribute__((aligned(4)));
 #define SET_SCAN_WINDOW     15 //(unit:0.625ms)
 
 //连接周期
-#define SET_CONN_INTERVAL   8 //(unit:1.25ms)
+//interval >= 3000配置为私有连接参数,interval=3000,实际连接间隔为3000us
+//interval <  600 配置为标准连接参数,interval=30,实际连接间隔为30*1.25ms=37.5ms
+#define SET_CONN_INTERVAL   50000//(unit:1.25ms)
 //连接latency
 #define SET_CONN_LATENCY    0  //(unit:conn_interval)
 //连接超时
-#define SET_CONN_TIMEOUT    400 //(unit:10ms)
+#define SET_CONN_TIMEOUT    100 //(unit:10ms)
 //创建连接的过程超时时间
 #define INIT_CONN_TIMEOUT    2000 //(unit:ms)
 
 //----------------------------------------------------------------------------
 static u8 scan_ctrl_en;
 static u8 ble_work_state = 0;
-static int (*app_recieve_callback)(u8 *buf, u16 len) = NULL;
+static void *app_recieve_priv = NULL;
+static int (*app_recieve_callback)(void *priv, u8 *buf, u16 len) = NULL;
 static void (*app_ble_state_callback)(void *priv, ble_state_e state) = NULL;
 static void (*ble_resume_send_wakeup)(void) = NULL;
 static u32 channel_priv;
 
+static char gap_device_name[BT_NAME_LEN_MAX] = "jl_kkk_test";
+static u8 gap_device_name_len = 0; //名字长度，不包含结束符
 static hci_con_handle_t con_handle;
 
 #define BLE_VM_HEAD_TAG           (0xB95C)
@@ -96,6 +110,8 @@ static int client_write_send(void *priv, u8 *data, u16 len);
 static int client_operation_send(u16 handle, u8 *data, u16 len, u8 att_op_type);
 static void reset_passkey_cb(u32 *key);
 extern int get_buffer_vaild_len(void *priv);
+extern const char *bt_get_mac_addr();
+extern const char *bt_get_local_name();
 //---------------------------------------------------------------------------
 #if 1//default
 //指定搜索uuid
@@ -165,7 +181,7 @@ static void default_report_data_deal(att_data_report_t *report_data, target_uuid
     }
 }
 
-static const u8 test_remoter_name1[] = "bd49_test(BLE)";//
+static const u8 test_remoter_name1[] = "BD49_BLE(BLE)";//
 /* static const u8 test_remoter_name2[] = "AC630N_HID567(BLE)";// */
 static u16 default_client_write_handle;
 static u16 test_client_timer = 0;
@@ -615,7 +631,7 @@ void user_client_report_data_callback(att_data_report_t *report_data)
     /* log_info_hexdump(report_data->blob,report_data->blob_length); */
 
     if (app_recieve_callback) {
-        app_recieve_callback(report_data->blob, report_data->blob_length);
+        app_recieve_callback(app_recieve_priv, report_data->blob, report_data->blob_length);
     }
     /* extern void app_ble_recv_data_api(u8 * data, u32 len); */
     /* app_ble_recv_data_api(report_data->blob, report_data->blob_length); */
@@ -1315,7 +1331,7 @@ static int client_regiest_wakeup_send(void *priv, void *cbk)
 
 static int client_regiest_recieve_cbk(void *priv, void *cbk)
 {
-    channel_priv = (u32)priv;
+    app_recieve_priv = priv;
     app_recieve_callback = cbk;
     return APP_BLE_NO_ERROR;
 }
@@ -1523,6 +1539,8 @@ static void device_bonding_init(void)
 
 void ble_master_module_enable(u8 en);
 
+
+static const char ble_ext_name[] = "(BLE)";
 void bt_ble_master_init(void)
 {
     log_info("***** ble_init******\n");
@@ -1531,6 +1549,30 @@ void bt_ble_master_init(void)
     /* conn_pair_vm_do(&conn_pair_info, 0); */
     device_bonding_init();
     ble_master_module_enable(1);
+
+    char *name_p;
+
+    u8 ext_name_len = sizeof(ble_ext_name) - 1;
+
+    name_p = bt_get_local_name();
+    gap_device_name_len = strlen(name_p);
+    if (gap_device_name_len > BT_NAME_LEN_MAX - ext_name_len) {
+        gap_device_name_len = BT_NAME_LEN_MAX - ext_name_len;
+    }
+
+    memcpy(gap_device_name, name_p, gap_device_name_len);
+
+    //增加后缀，区分名字
+    memcpy(&gap_device_name[gap_device_name_len], "(BLE)", ext_name_len);
+    gap_device_name_len += ext_name_len;
+    gap_device_name[gap_device_name_len] = 0;//结束符
+    log_info("ble name(%d): %s \n", gap_device_name_len, gap_device_name);
+    uint8_t tmp_ble_addr[6];
+    //生成edr对应唯一地址
+    bt_make_ble_address(tmp_ble_addr, (void *)bt_get_mac_addr());
+    printf("ble_addr:");
+    put_buf(tmp_ble_addr, 6);
+    le_controller_set_mac(tmp_ble_addr);
 
 #if SHOW_RX_DATA_RATE
     client_timer_start();
@@ -1581,9 +1623,9 @@ int bt_ble_master_send_api(u8 *data, u16 len)
     /* } */
     return client_operation_send(default_client_write_handle, data, len, ATT_OP_WRITE_WITHOUT_RESPOND);
 }
-void bt_ble_master_recv_register(int (*callback_func)(u8 *buf, u16 len))
+void bt_ble_master_recv_register(void *priv, int (*callback_func)(void *priv, u8 *buf, u16 len))
 {
-    client_regiest_recieve_cbk(NULL, (void *)callback_func);
+    client_regiest_recieve_cbk(priv, (void *)callback_func);
     /* extern u32 rf_receiver_deal(u8 * rf_packet, u32 packet_len); */
     /* rf_receiver_deal(data, len); */
 }
@@ -1603,7 +1645,12 @@ u32 bt_ble_master_update_conn_parm(u16 interval)
              param->interval_min, param->interval_max, param->latency, param->timeout);
     u32 ret = ble_op_conn_param_update(con_handle, param);
     if (0 == ret) {
-        u32 timeout = last_interval * 1250 * get_sys_us_cnt() * 6;//预留6次重试时间
+        u32 timeout;
+        if (last_interval > PRIV_CONN_INTERVAL_STE) {
+            timeout = last_interval * get_sys_us_cnt() * 6;//预留6次重试时间
+        } else {
+            timeout = last_interval * 1250 * get_sys_us_cnt() * 6;//预留6次重试时间
+        }
         conn_parm_update_flag |= MSTR_UPDATE_WAITING;
         while ((conn_parm_update_flag & MSTR_UPDATE_WAITING) && (0 != timeout)) {
             timeout--;

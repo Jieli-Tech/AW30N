@@ -27,6 +27,21 @@ const u8 a_evt[10] = {
 };
 #endif
 
+#if DECODER_IMA_EN
+const u8 ima_evt[10] = {
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+};
+#endif
+
 #if DECODER_F1A_EN
 const u8 f1a_evt[MAX_F1A_CHANNEL][10] = {
     {
@@ -120,17 +135,46 @@ const u8 wav_evt[10] = {
 
 #if DECODER_OPUS_EN
 const u8 opus_evt[10] = {
-    EVENT_OPUS_END,
-    0xff,
-    0xff,
-    EVENT_OPUS_ERR,
-    EVENT_OPUS_END,
     0xff,
     0xff,
     0xff,
-    EVENT_OPUS_END,
-    EVENT_OPUS_LOOP,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
 };
 #endif
 
+#if DECODER_SPEEX_EN
+const u8 speex_evt[10] = {
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+};
+#endif
+
+#if DECODER_SBC_EN
+const u8 sbc_evt[10] = {
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+};
+#endif
 

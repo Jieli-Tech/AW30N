@@ -75,6 +75,7 @@ u32 mp3_encode_api(void *p_file, void *input_func, void *output_func)
         return 0;
     }
 
+    memset(&enc_mp3_hdl, 0, sizeof(enc_obj));
     memset(&mp3_encode_buff[0], 0x00, sizeof(mp3_encode_buff));
     /******************************************/
     cbuf_init(&cbuf_emp3_o, &obuf_emp3_o[0], sizeof(obuf_emp3_o));

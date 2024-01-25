@@ -27,6 +27,12 @@ void set_radio_status(RADIO_STATUS status)
     local_irq_enable();
 }
 
+const u16 trans_event2msg[TRANS_EVENT_MAX] = {
+    MSG_RECEIVER_START,
+    MSG_RECEIVER_STOP,
+    MSG_SENDER_START_ACK_SUCC,
+    MSG_SENDER_START_ACK_FAIL,
+};
 /*----------------------------------------------------------------------------*/
 /**@brief   音频传输模块变量初始化
    @param
@@ -35,8 +41,8 @@ void set_radio_status(RADIO_STATUS status)
    @note    音频传输模块部分变量已overlay复用，使用前需要清空内存
 */
 /*----------------------------------------------------------------------------*/
-extern const u32 ar_trans_data_start[];
-extern const u32 ar_trans_data_end[];
+extern u32 ar_trans_data_start[];
+extern u32 ar_trans_data_end[];
 void audio_rf_clr_buf(void)
 {
     u32 buf_len = (u32)&ar_trans_data_end[0] - (u32)&ar_trans_data_start[0];

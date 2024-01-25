@@ -89,7 +89,7 @@ int _norflash_eraser(u8 eraser, u32 addr);
 #define spi_dma_read(x, y)          spi_dma_recv(_norflash.spi_num, x, y)
 #define spi_dma_write(x, y)         spi_dma_send(_norflash.spi_num, x, y)
 #define spi_set_width(x)            spi_set_bit_mode(_norflash.spi_num, x)
-#define spi_init()                  spi_open(_norflash.spi_num, &spix_p_data_cache[TFG_SPI_HW_NUM])
+#define spi_init()                  spi_open(_norflash.spi_num, get_hw_spi_config(TFG_SPI_HW_NUM))
 #define spi_closed()                spi_close(_norflash.spi_num)
 #define spi_suspend()               spi_close(_norflash.spi_num)
 #define spi_resume()                spi_resume(_norflash.spi_num)

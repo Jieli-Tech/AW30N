@@ -36,6 +36,7 @@
 #define CONFIG_BT_GATT_SERVER_NUM          1 //配置从机server个数
 #define CONFIG_BT_GATT_CONNECTION_NUM      (CONFIG_BT_GATT_SERVER_NUM + CONFIG_BT_GATT_CLIENT_NUM) //配置连接个数
 #define CONFIG_BLE_HIGH_SPEED              1 //BLE提速模式: 使能DLE+2M, payload要匹配pdu的包长
+#define CONFIG_BLE_CONNECT_SLOT            0 //BLE高回报率设置, 支持私有协议
 #define TCFG_HID_AUTO_SHUTDOWN_TIME       (0 * 60)      //HID无操作自动关机(单位：秒)
 #endif
 

@@ -8,6 +8,7 @@ extern const int IRQ_IRTMR_IP;
 extern const int IRQ_AUDIO_IP;
 extern const int IRQ_DECODER_IP;
 extern const int IRQ_WFILE_IP;
+extern const int IRQ_RF_QUEUE_IP;
 extern const int IRQ_ADC_IP;
 extern const int IRQ_ENCODER_IP;
 extern const int IRQ_TICKTMR_IP;

@@ -64,7 +64,7 @@ void start_encode(void)
     mdelay(10);
     START_ADC_RUN;
 }
-void stop_encode_phy(ENC_STOP_WAIT wait, u8 has_file_write)
+void stop_encode_phy(ENC_STOP_WAIT wait)
 {
     enc_obj *obj = enc_hdl;
     u32 err;
@@ -88,66 +88,86 @@ void stop_encode_phy(ENC_STOP_WAIT wait, u8 has_file_write)
             delay(100);
             i--;
         }
-        if (has_file_write) {
-            log_info("stop encode C\n");
-            u32 i = 0x10000;
-            while (0 != cbuf_get_data_size(obj->p_obuf) && (0 != i)) {
-                if (obj->enable & B_ENC_FULL) {
-                    break;
-                }
-                kick_wfile_isr();
-                delay(100);
-                i--;
-            }
+        obj->enable &= ~B_ENC_ENABLE;
+        HWI_Uninstall(IRQ_SOFT1_IDX);
+        if (NULL != obj->wait_output_empty) {
+            obj->wait_output_empty(obj);
         }
     }
 
-    log_info("stop encode D\n");
-    obj->enable &= ~B_ENC_ENABLE;
-    HWI_Uninstall(IRQ_SOFT1_IDX);
-    if (has_file_write) {
-        HWI_Uninstall(IRQ_SOFT2_IDX);
-    }
     rec_phy_suspend();
     enc_hdl = 0;
 }
 void stop_encode(void *pfile, u32 dlen)
 {
-    stop_encode_phy(ENC_NEED_WAIT, 1);
+    stop_encode_phy(ENC_NEED_WAIT);
     u32 flen = dlen;
     vfs_ioctl(pfile, FS_IOCTL_FILE_SYNC, (int)&flen);
 }
 
-/* static u32 recfil_index; */
-void encoder_io(u32(*fun)(void *, void *, void *), void *pfile)
+extern void enc_soft1_isr(void);
+enc_obj *encoder_io(u32(*fun)(void *, void *, void *), void *input_func, void *output_func, void *pfile)
 {
     s32 err;
     rec_phy_init();
-
-    enc_hdl = (void *)fun(pfile, enc_input, enc_output);
+    if (NULL == fun) {
+        return NULL;
+    }
+    enc_hdl = (void *)fun(pfile, input_func, output_func);
     if (0 != enc_hdl) {
-        enc_phy_init();
-        enc_hdl->enable = B_ENC_ENABLE;
-        start_encode();//adc_enable();
+        HWI_Install(IRQ_SOFT1_IDX, (u32)enc_soft1_isr,  IRQ_ENCODER_IP) ;
+        /* enc_hdl->enable = B_ENC_ENABLE; */
+        /* start_encode();//adc_enable(); */
         log_info("encode succ: \n");
+        return enc_hdl;
     } else {
         log_info("encode fail \n");
+        return NULL;
     }
     //while(1)clear_wdt();
 }
 
-#if 0
-/*----------------------------------------------------------------------------*/
-/**@brief   encode写中断hook函数
-   @param   *hdl  : 录音设备句柄
-   @return
-   @author  chenzhuohao
-   @note    若设备写入速度较慢导致看门狗复位，可通过该函数在写入前喂狗
-   			注意：写入前喂狗可能使系统无法回到主循环,导致无法响应其他事件！
-**/
-/*----------------------------------------------------------------------------*/
-void wfil_soft2_isr_hook(enc_obj *hdl)
-{
 
+u16 enc_input(void *priv, s16 *buf, u8 channel, u16 len)
+{
+    u16 rlen;
+    enc_obj *obj = priv;
+    //log_info("channel %d, %d", channel, len);
+    if (2 != obj->info.nch) {
+        len = len * 2; //点数转化位字节长度
+    }
+    if (obj->enable & B_ENC_STOP) {
+        u16 tlen = cbuf_get_data_size(obj->p_ibuf);
+        tlen = tlen > len ? len : tlen;
+        rlen = cbuf_read(obj->p_ibuf, buf, tlen);
+
+    } else {
+        rlen = cbuf_read(obj->p_ibuf, buf, len);
+    }
+    if (2 == obj->info.nch) {
+        u8 *rptr = (u8 *)buf;
+        memcpy((void *)&rptr[rlen], (void *)&rptr[0], rlen);
+        rlen += rlen;
+    }
+
+    /* if ((0 != rlen) && (2 == channel)) { //单声道转化为立体声 */
+    /* log_char('2'); */
+    /* u32 plen = rlen / 2; */
+    /* s16 *rptr = buf; */
+    /* while (plen--) { */
+    /* rptr[plen * 2 + 1] = rptr[plen]; */
+    /* rptr[plen * 2] = rptr[plen]; */
+    /* } */
+    /* } */
+
+    rlen = rlen / 2;//字节长度转化为样点数
+    //log_info("rlen  %d", rlen);
+
+    return rlen;
 }
-#endif
+
+
+
+
+
+

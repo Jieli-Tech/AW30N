@@ -337,6 +337,9 @@ static void testbox_uart_update_check(void)
 
 u8 uart_update_ota_loop(u8 *buf, u32 len)
 {
+    if (!CONFIG_UPDATE_TESTBOX_UART_EN) {
+        return UPDATA_NON;
+    }
     uart_update_ota_start();
     uart_update_ota_start();
     testbox_uart_update_check();

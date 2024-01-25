@@ -20,6 +20,8 @@ typedef struct _enc_obj {
     void *p_dbuf;
     ENC_DATA_INFO info;
     volatile u32 enable;
+    u32 indata_kick_size;
+    void (*wait_output_empty)(void *);
 } enc_obj;
 
 typedef enum  {//停止编码时，是否需要将ADC中剩余的样点消耗完
@@ -27,16 +29,20 @@ typedef enum  {//停止编码时，是否需要将ADC中剩余的样点消耗完
     ENC_NEED_WAIT = 1,
 } ENC_STOP_WAIT;
 
+extern enc_obj *enc_hdl;
+void start_encode(void);
+
+
 u16 enc_input(void *priv, s16 *buf, u8 channel, u16 len);
-u32 enc_output(void *priv, u8 *data, u16 len);
+// u32 enc_output(void *priv, u8 *data, u16 len);
 
 void stop_encode(void *pfile, u32 dlen);
-void stop_encode_phy(ENC_STOP_WAIT wait, u8 has_file_write);
-void encoder_io(u32(*fun)(void *, void *, void *), void *pfile);
+void stop_encode_phy(ENC_STOP_WAIT wait);
+enc_obj *encoder_io(u32(*fun)(void *, void *, void *), void *input_func, void *output_func, void *pfile);
 void wfil_soft2_isr_hook(enc_obj *hdl);
 
 void kick_encode_api(void *obj);
-void enc_phy_init(void);
+void enc_wfile_init(void);
 void rec_cbuf_init(void *cbuf_t);
 
 

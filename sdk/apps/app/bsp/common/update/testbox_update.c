@@ -116,6 +116,9 @@ static void testbox_ble_update_state_cbk(int type, u32 state, void *priv)
 }
 void testbox_update_ble_handle(void)
 {
+    if (!CONFIG_UPDATE_TESTBOX_BLE_EN) {
+        return;
+    }
     /* 蓝牙测试盒升级 */
     update_mode_info_t info = {
         .type = BLE_TEST_UPDATA,

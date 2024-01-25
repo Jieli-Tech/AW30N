@@ -35,7 +35,6 @@ bool regist_dac_channel(void *sound, void *kick);
 bool unregist_dac_channel(void *dec_hld);
 
 bool dac_cbuff_active(void *sound_hld);
-void dac_kick(void *sound_hld, void *pkick);
 u32 get_dac_max_phy_vol(void);
 
 

@@ -22,7 +22,6 @@
 #include "midi_keyboard_mode.h"
 #include "loudspk_mode.h"
 #include "rtc_mode.h"
-#include "bt_ble.h"
 #if RF_RADIO_EN
 #include "rf_radio_app.h"
 #endif
@@ -94,11 +93,13 @@ void app_timer_loop(void)
     }
 
 #if (TCFG_PC_ENABLE || TCFG_UDISK_ENABLE)
+#if BLE_EN
 #if (0 == (RF_REMOTECONTROL_MODE_EN & TRANS_DATA_SPPLE_EN))
     if (0 == (tick_cnt % 25)) {
         void usb_hotplug_detect(void *argv);
         usb_hotplug_detect(NULL);
     }
+#endif
 #endif
 #endif
 #if SYS_TIMER_EN
@@ -238,11 +239,13 @@ void mbox_flash_main(void)
             /* rtc_timed_wakeup_app(); */
             break;
 #endif
+#if BLE_EN
 #if RF_RADIO_EN & BLE_EN & TESTE_BLE_EN
         case RF_RADIO_MODE:
             log_info("-RF Radio Mode\n");
             rf_radio_app();
             break;
+#endif
 #endif
         /* #if RF_REMOTECONTROL_MODE_EN & BLE_EN */
         /*         case REMOTECONTROL_MODE: */

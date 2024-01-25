@@ -42,8 +42,10 @@
 //---------------------------------------------------------------------
 extern void dongle_custom_hid_rx_handler(void *priv, u8 *buf, u32 len);
 extern int ble_hid_data_send_ext(u8 report_type, u8 report_id, u8 *data, u16 len);
+#if TCFG_USER_BLE_ENABLE
 extern void dongle_ota_init(void);
 extern void dongle_return_online_list(void);
+#endif
 extern void custom_hid_init(void);
 extern int dongle_pc_event_handler(struct dg_ota_event *dg_ota);
 extern int dongle_otg_event_handler(struct dg_ota_event *dg_ota);
@@ -83,11 +85,13 @@ static void dongle_app_start()
 
 //ota升级初始化——预留
 #if RCSP_BTMATE_EN
-    dongle_ota_init();
     custom_hid_set_rx_hook(NULL, dongle_custom_hid_rx_handler);//重注册接收回调到dongle端
     /* download_buf = malloc(1024); */
     /* dongle_return_online_list(); */
+#if TCFG_USER_BLE_ENABLE
+    dongle_ota_init();
     sys_timeout_add(NULL, dongle_return_online_list, 4000);
+#endif
 #endif
 }
 
@@ -100,11 +104,13 @@ void ble_master_init(void)
 
     btstack_init();
 #if RCSP_BTMATE_EN
-    dongle_ota_init();
     custom_hid_set_rx_hook(NULL, dongle_custom_hid_rx_handler);//重注册接收回调到dongle端
     /* download_buf = malloc(1024); */
     /* dongle_return_online_list(); */
+#if TCFG_USER_BLE_ENABLE
+    dongle_ota_init();
     sys_timeout_add(NULL, dongle_return_online_list, 4000);
+#endif
 #endif
 }
 

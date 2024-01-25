@@ -16,9 +16,8 @@
 #include "sys_timer.h"
 #include "app_modules.h"
 #include "flash_init.h"
-
-#if TESTBOX_UART_UPDATE_EN
-#include "testbox_uart_update.h"
+#if UPDATE_V2_EN
+#include "code_v2/update.h"
 #endif
 
 #define LOG_TAG_CONST       NORM
@@ -39,19 +38,7 @@ void system_init(void)
 
 #if UPDATE_V2_EN
     //升级初始化
-    int app_update_init(void);
     app_update_init();
-
-#if TESTBOX_UART_UPDATE_EN
-    /* 测试盒串口升级 */
-    testbox_uart_update_init();
-#endif
-
-#if CONFIG_APP_OTA_EN
-    extern void rcsp_init();
-    rcsp_init();
-#endif
-
 #endif
 }
 

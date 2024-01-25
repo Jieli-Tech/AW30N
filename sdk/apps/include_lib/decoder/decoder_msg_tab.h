@@ -33,6 +33,16 @@ enum {
 #if DECODER_OPUS_EN
     INDEX_OPUS,
 #endif
+#if DECODER_IMA_EN
+    INDEX_IMA,
+#endif
+#if DECODER_SPEEX_EN
+    INDEX_SPEEX,
+#endif
+#if DECODER_SBC_EN
+    INDEX_SBC,
+#endif
+
     INDEX_E_SPEED   = 12,
     INDEX_E_EQ      = 13,
     INDEX_E_SRC_FORCE = 14,
@@ -200,6 +210,57 @@ enum {
 #define OPUS_PARM_SET
 #define OPUS_HLD     (u32)NULL
 #define BIT_OPUS      0
+#endif
+
+#if DECODER_IMA_EN
+#include "ima_api.h"
+#define IMA_LST  	 IMA_HLD,
+#define IMA_API      (u32)ima_decode_api,
+#define IMA_MUT_TAB  (u32)ima_buff_api,
+#define IMA_PARM_SET (u32)set_ima_Headerstate_api,
+#define IMA_HLD      (u32)&dec_ima_hld
+#define BIT_IMA      BIT(INDEX_IMA)
+#else
+#define IMA_LST
+#define IMA_API
+#define IMA_MUT_TAB
+#define IMA_PARM_SET
+#define IMA_HLD     (u32)NULL
+#define BIT_IMA      0
+#endif
+
+#if DECODER_SPEEX_EN
+#include "speex_api.h"
+#define SPEEX_LST  	   SPEEX_HLD,
+#define SPEEX_API      (u32)speex_decode_api,
+#define SPEEX_MUT_TAB  (u32)speex_buff_api,
+#define SPEEX_PARM_SET (u32)set_speex_Headerstate_api,
+#define SPEEX_HLD      (u32)&dec_speex_hld
+#define BIT_SPEEX      BIT(INDEX_SPEEX)
+#else
+#define SPEEX_LST
+#define SPEEX_API
+#define SPEEX_MUT_TAB
+#define SPEEX_PARM_SET
+#define SPEEX_HLD     (u32)NULL
+#define BIT_SPEEX      0
+#endif
+
+#if DECODER_SBC_EN
+#include "sbc_api.h"
+#define SBC_LST  	 SBC_HLD,
+#define SBC_API      (u32)sbc_decode_api,
+#define SBC_MUT_TAB  (u32)sbc_buff_api,
+#define SBC_PARM_SET (u32)NULL,
+#define SBC_HLD      (u32)&dec_sbc_hld
+#define BIT_SBC      BIT(INDEX_SBC)
+#else
+#define SBC_LST
+#define SBC_API
+#define SBC_MUT_TAB
+#define SBC_PARM_SET
+#define SBC_HLD     (u32)NULL
+#define BIT_SBC      0
 #endif
 
 // #define MAX_F1A_CHANNEL 1

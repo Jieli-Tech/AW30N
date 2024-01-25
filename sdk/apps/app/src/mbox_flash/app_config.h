@@ -13,9 +13,9 @@
 
 /*---------系统时钟配置---------------------*/
 #define TCFG_SYS_PLL_CLK                    96000000
-// #define TCFG_PLL_SEL                        PLL_D1p0_192M
-// #define TCFG_PLL_DIV                        PLL_DIV2
-// #define TCFG_HSB_DIV                        HSB_DIV1
+#define TCFG_PLL_SEL                        PLL_D1p0_192M
+#define TCFG_PLL_DIV                        PLL_DIV2
+#define TCFG_HSB_DIV                        HSB_DIV1
 
 /*---------Cache Configuration--------------*/
 #define CPU_USE_CACHE_WAY_NUMBER            4//cache_way范围:2~4
@@ -62,7 +62,7 @@
 
 /*---------RTC Configuration-------------*/
 #if RTC_EN
-#define RTC_CLK_SEL                         CLK_SEL_LRC//RTC时钟源选择,可选32k晶振或者LRC时钟
+#define RTC_CLK_SEL                         CLK_SEL_LRC//RTC时钟源选择,可选32k晶振或者LRC时钟或者BT_OSC
 #else
 #define RTC_CLK_SEL                         0//无RTC功能
 #endif

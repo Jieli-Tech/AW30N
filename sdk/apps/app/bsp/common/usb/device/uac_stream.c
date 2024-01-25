@@ -453,7 +453,7 @@ void uac_init(void)
     _uac_info.speaker_dma_buffer = usb_get_ep_buffer(0, SPK_ISO_EP_OUT);
     _uac_info.mic_dma_buffer = usb_get_ep_buffer(0, MIC_ISO_EP_IN | USB_DIR_IN);
 
-    set_usb_mic_info(NULL, NULL, NULL);//清除USB_MIC管理句柄
+    set_usb_mic_info(NULL);//清除USB_MIC管理句柄
 }
 
 void uac_release_api(void)

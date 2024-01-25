@@ -123,10 +123,14 @@ u8 *get_l2cap_stack_addr(void)
         extern u16 get_l2cap_stack_len(void);
         len = get_l2cap_stack_len();
         printf("l2cap stack len %d\n", len);
+#if TCFG_USER_BLE_ENABLE
         if (len > sizeof(app_l2cap_pool)) {
             ASSERT(0, "l2cap pool is small\n");
         }
         return &app_l2cap_pool;
+#else
+        return NULL;
+#endif
     } else {
         return NULL;
     }

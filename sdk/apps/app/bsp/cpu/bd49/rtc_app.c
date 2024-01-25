@@ -1,54 +1,80 @@
-#if 0
-#include "power_interface.h"
+
+#include "rtc.h"
+#include "cpu.h"
+/* #include "asm/power/p33.h" */
+/* #include "asm/power/p33_app.h" */
+/* #include "asm/power/power_reset.h" */
+/* #include "asm/power/power_wakeup.h" */
+#include "gpio.h"
+#include "irq.h"
 
 #define LOG_TAG_CONST       NORM
-#define LOG_TAG             "[rtc]"
+#define LOG_TAG             "[RTC]"
 #include "log.h"
 
-const struct sys_time def_sys_time = {  //初始一下当前时间
-    .year = 2020,
-    .month = 1,
-    .day = 1,
-    .hour = 0,
-    .min = 0,
-    .sec = 0,
-};
-
-const struct sys_time def_alarm = {     //初始一下目标时间，即闹钟时间
-    .year = 2050,
-    .month = 1,
-    .day = 1,
-    .hour = 0,
-    .min = 0,
-    .sec = 0,
-};
-
-/* extern void alarm_isr_user_cbfun(u8 index); */
-RTC_DEV_PLATFORM_DATA_BEGIN(rtc_data)
-.default_sys_time = &def_sys_time,
- .default_alarm = &def_alarm,
-  .clk_sel = CLK_SEL_32K,
-   .cbfun = NULL,                      //闹钟中断的回调函数,用户自行定义
-    /* .cbfun = alarm_isr_user_cbfun, */
-    RTC_DEV_PLATFORM_DATA_END()
-
-
-    void rtc_demo_init()
+void read_current_time()
 {
-    struct sys_time time;
+    struct sys_time tmp_time;
+    memset((u8 *)&tmp_time, 0, sizeof(tmp_time));
+    rtc_read_time(&tmp_time); 				//读rtc时间
+    log_info("current_rtc_time: %d-%d-%d %d:%d:%d", tmp_time.year, \
+             tmp_time.month, \
+             tmp_time.day, \
+             tmp_time.hour, \
+             tmp_time.min, \
+             tmp_time.sec);
 
-    rtc_init(&rtc_data);
-
-    while (1) {
-        void mdelay(u32 ms);
-        mdelay(1000);
-        read_sys_time(&time);
-        printf("time->%d.%d.%d %d.%d.%d\n", time.year, time.month, time.day, time.hour, time.min, time.sec);
-    }
+}
+void write_clock_time(u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec)
+{
+    struct sys_time tmp_time;
+    memset((u8 *)&tmp_time, 0, sizeof(tmp_time));
+    tmp_time.year = year;
+    tmp_time.month = month;
+    tmp_time.day = day;
+    tmp_time.hour = hour;
+    tmp_time.min = min;
+    tmp_time.sec = sec;
+    rtc_write_time(&tmp_time); 		//修改rtc时间
+    log_info("modification_rtc_time : %d-%d-%d %d:%d:%d", tmp_time.year, \
+             tmp_time.month, \
+             tmp_time.day, \
+             tmp_time.hour, \
+             tmp_time.min, \
+             tmp_time.sec);
+    read_current_time();
 }
 
+void read_alarm_time()
+{
+    struct sys_time tmp_time;
+    memset((u8 *)&tmp_time, 0, sizeof(tmp_time));
+    rtc_read_alarm(&tmp_time); 				//读rtc时间
+    log_info("current_alm_time: %d-%d-%d %d:%d:%d", tmp_time.year, \
+             tmp_time.month, \
+             tmp_time.day, \
+             tmp_time.hour, \
+             tmp_time.min, \
+             tmp_time.sec);
 
-#endif
-
-
+}
+void write_alarm_time(u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec)
+{
+    struct sys_time tmp_time;
+    memset((u8 *)&tmp_time, 0, sizeof(tmp_time));
+    tmp_time.year = year;
+    tmp_time.month = month;
+    tmp_time.day = day;
+    tmp_time.hour = hour;
+    tmp_time.min = min;
+    tmp_time.sec = sec;
+    rtc_write_alarm(&tmp_time); 		//修改rtc时间
+    log_info("modification_alm_time : %d-%d-%d %d:%d:%d", tmp_time.year, \
+             tmp_time.month, \
+             tmp_time.day, \
+             tmp_time.hour, \
+             tmp_time.min, \
+             tmp_time.sec);
+    read_alarm_time();
+}
 

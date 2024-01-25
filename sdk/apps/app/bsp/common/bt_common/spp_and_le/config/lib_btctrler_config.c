@@ -204,7 +204,13 @@ const int sniff_support_reset_anchor_point = 1;   //sniff状态下是否支持re
 #else
 const int sniff_support_reset_anchor_point = 0;   //sniff状态下是否支持reset到最近一次通信点，用于HID
 #endif
+#if CONFIG_BLE_CONNECT_SLOT
+const int config_rf_slot_unit = 500;
+const int sniff_long_interval = (500 / 0.500);    //sniff状态下进入long interval的通信间隔(ms)
+#else
+const int config_rf_slot_unit = 625;
 const int sniff_long_interval = (500 / 0.625);    //sniff状态下进入long interval的通信间隔(ms)
+#endif
 
 const int config_rf_oob = 0;
 

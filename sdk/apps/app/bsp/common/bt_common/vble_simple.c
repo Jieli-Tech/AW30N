@@ -15,7 +15,13 @@
 extern const vble_smpl_role_ops ble_slave_ops;
 extern const vble_smpl_role_ops ble_master_ops;
 
+#if (SLAVE)
 const vble_smpl_role_ops *vble_smpl_ops = &ble_slave_ops;
+#elif (MASTER)
+const vble_smpl_role_ops *vble_smpl_ops = &ble_master_ops;
+#else
+#error "VBLE_SIMPLE NO ROLE!"
+#endif
 
 void set_vble_smpl_role_ops(const vble_smpl_role_ops *ops)
 {
@@ -24,8 +30,8 @@ void set_vble_smpl_role_ops(const vble_smpl_role_ops *ops)
 
 void vble_smpl_init(void)
 {
-    extern u8 bt_get_pwr_max_level(void);
-    bt_max_pwr_set(10, 5, 8, bt_get_pwr_max_level());
+    /* extern u8 bt_get_pwr_max_level(void); */
+    /* bt_max_pwr_set(10, 5, 8, bt_get_pwr_max_level()); */
 
     btstack_init();
     vble_smpl_ops->init();
@@ -42,9 +48,9 @@ int vble_smpl_send_api(u8 *data, u16 len)
     return vble_smpl_ops->send(data, len);
 }
 
-void vble_smpl_recv_register(int (*callback_func)(u8 *buf, u16 len))
+void vble_smpl_recv_register(void *priv, int (*callback_func)(void *, u8 *, u16))
 {
-    vble_smpl_ops->recv_cb_register(callback_func);
+    vble_smpl_ops->recv_cb_register(priv, callback_func);
 }
 
 u32 vble_smpl_ioctl(u32 cmd, int arg)
@@ -83,18 +89,23 @@ void ble_profile_init(void)
 
 void vble_smpl_slave_select(void)
 {
+#if (SLAVE)
     log_info("bt_ble_slave_var init!\n");
     vble_smpl_ops = &ble_slave_ops;
+#endif
 }
 
 void vble_smpl_master_select(void)
 {
+#if (MASTER)
     log_info("bt_ble_master_var init!\n");
     vble_smpl_ops = &ble_master_ops;
+#endif
 }
 
 void vble_smpl_switch_role(void)
 {
+#if (MASTER && SLAVE)
     if (vble_smpl_ops == &ble_master_ops) {
         log_info("switch master -> slave\n");
         vble_smpl_slave_select();
@@ -102,5 +113,6 @@ void vble_smpl_switch_role(void)
         log_info("switch slave -> master\n");
         vble_smpl_master_select();
     }
+#endif
 }
 #endif

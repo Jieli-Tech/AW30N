@@ -88,6 +88,7 @@ u32 opus_encode_api(void *p_file, void *input_func, void *output_func)
         return 0;
     }
     /******************************************/
+    memset(&enc_opus_hdl, 0, sizeof(enc_obj));
     cbuf_init(&cbuf_enc_opus_o, &obuf_enc_opus_o[0], sizeof(obuf_enc_opus_o));
     log_info("A\n");
     // log_info("B\n");
@@ -107,6 +108,10 @@ u32 opus_encode_api(void *p_file, void *input_func, void *output_func)
     enc_opus_hdl.info.sr = 16000;//固定16k采样率
     enc_opus_hdl.info.br = 16;//16kbps、32kbps、64kbps
     enc_opus_hdl.info.nch = 1;
+    if (enc_opus_hdl.info.sr != read_audio_adc_sr()) {
+        log_error("opus sr not match %d %d \n", enc_opus_hdl.info.sr, read_audio_adc_sr());
+        return 0;
+    }
 
     u8 quality_complexity = QY_COMPLEXITY_LOW;
     u8 quality_format_mode = QY_FORMAT_MODE_BAIDU;

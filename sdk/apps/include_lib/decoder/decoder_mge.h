@@ -20,6 +20,11 @@ typedef enum {
     MAD_ERROR_NODATA           = 0x48,              // NO USED
     MAD_ERROR_PLAY_END		   = 0x50,				//MIDI CTRL DATA OUTPUT END
     MAD_ERROR_F1X_START_ADDR   = 0x51,				//F1X起始位置错误
+
+    MAD_ERROR_STREAM_NODATA    = 0x60,     			//本轮run读不到数据
+    MAD_CANNOT_SYNC_TSLOOP     = 0x61,   			//本轮没有找到同步字
+    MAD_THISREAD_LT_NEEDSZ     = 0x62,  			//本次读数据没读够
+    MAD_FRAMELEN_GT_BUFFSZ     = 0x63,   			//压缩帧长超出范围
 } MAD_INFO ;
 
 
@@ -32,6 +37,7 @@ typedef struct _dec_obj {
     void *p_kick;
     u8 *event_tab;
     u32 sr;
+    u16 br;
     sound_out_obj sound;
     void *src_effect;
     void *eq_effect;

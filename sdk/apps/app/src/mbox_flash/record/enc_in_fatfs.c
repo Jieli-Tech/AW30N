@@ -15,7 +15,7 @@
 #include "log.h"
 
 #define REC_FOLDER_PATH     "/JL_REC"
-#define REC_FILE_NAME       "AD16****.mp3"
+#define REC_FILE_NAME       "BD49****.mp3"
 static char path_buff[25];
 
 static void numtostr(char *str, u32 num, u8 bitnum)

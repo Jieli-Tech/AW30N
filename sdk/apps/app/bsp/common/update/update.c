@@ -14,6 +14,12 @@
 /* #include "btstack/avctp_user.h" */
 /* #include "poweroff.h" */
 /* #include "app_main.h" */
+#if TESTBOX_UART_UPDATE_EN
+#include "testbox_uart_update.h"
+#endif
+#if CONFIG_APP_OTA_EN
+#include "rcsp_bluetooth.h"
+#endif
 #include "vm.h"
 #include "clock.h"
 
@@ -557,7 +563,17 @@ static void update_common_state_cbk(update_mode_info_t *info, u32 state, void *p
 int app_update_init(void)
 {
     update_module_init(update_common_state_cbk);
+#if TESTBOX_BT_UPDATE_EN
+    /* 测试盒蓝牙升级 */
     testbox_update_init();
+#endif
+#if TESTBOX_UART_UPDATE_EN
+    /* 测试盒串口升级 */
+    testbox_uart_update_init();
+#endif
+#if CONFIG_APP_OTA_EN
+    rcsp_init();
+#endif
     return 0;
 }
 
@@ -610,9 +626,10 @@ extern int get_ble_connect_handle(void);
 #endif
 void app_update_handle(int msg)
 {
+#if UPDATE_V2_EN
     int connect_handle = 0;
     switch (msg) {
-#if TCFG_USER_BLE_ENABLE
+#if TESTBOX_BT_UPDATE_EN
     /* 蓝牙测试盒升级 */
     case MSG_BLE_TESTBOX_UPDATE_START:
         testbox_update_ble_handle();
@@ -636,6 +653,6 @@ void app_update_handle(int msg)
         break;
 #endif
     }
-
+#endif
 }
 

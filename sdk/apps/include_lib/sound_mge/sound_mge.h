@@ -18,6 +18,7 @@
 #define B_REC_RUN        BIT(9)
 #define B_DEC_FIRST      BIT(10)
 
+#define B_DEC_NO_INDATA  BIT(11)
 // #define B_LOUDSPEAKER    BIT(10)
 
 //sound.info bits list

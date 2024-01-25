@@ -73,6 +73,7 @@
 #define CONFIG_BT_COMPOSITE_EQUIPMENT      0
 #define CONFIG_BT_GATT_SERVER_NUM          0 //
 #define CONFIG_BT_GATT_CONNECTION_NUM      (CONFIG_BT_GATT_SERVER_NUM + CONFIG_BT_GATT_CLIENT_NUM) //
+#define CONFIG_BLE_CONNECT_SLOT            0 //BLE高回报率设置, 支持私有协议
 #define CONFIG_BLE_HIGH_SPEED              1 //BLE提速模式: 使能DLE+2M, payload要匹配pdu的包长
 
 #else

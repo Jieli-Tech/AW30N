@@ -12,6 +12,7 @@
 #include "ui_api.h"
 #include "hot_msg.h"
 #include "encoder_mge.h"
+#include "encoder_file.h"
 #include "music_play.h"
 #include "play_file.h"
 #include "app.h"
@@ -28,12 +29,16 @@
 
 #if ENCODER_UMP3_EN
 #include "ump3_encoder.h"
-#endif
-#if ENCODER_MP3_EN
+#define ENCODER_API  ump3_encode_api
+#define DEC_TYPE	 (BIT_UMP3 | BIT_SPEED)
+#elif ENCODER_MP3_EN
 #include "mp3_encoder.h"
-#endif
-#if ENCODER_A_EN
+#define ENCODER_API  mp3_encode_api
+#define DEC_TYPE	 BIT_MP3_ST
+#elif ENCODER_A_EN
 #include "a_encoder.h"
+#define ENCODER_API  a_encode_api
+#define DEC_TYPE	 (BIT_A | BIT_SPEED)
 #endif
 
 #define LOG_TAG_CONST       NORM
@@ -51,8 +56,7 @@ void record_app(void)
     int msg[2];
     u32 err = 0;
     dec_obj *p_dec_obj = 0;
-    u16 fat_decode_type = BIT_MP3_ST;
-    u16 norfs_decode_type = BIT_A | BIT_UMP3 | BIT_SPEED;
+    u16 decode_type = DEC_TYPE;
     key_table_sel(record_key_msg_filter);
     decoder_init();
 
@@ -83,16 +87,17 @@ void record_app(void)
         case MSG_PP:
             encode_stop(&record_obj);
             decoder_stop(p_dec_obj, NEED_WAIT, 0);
+            dec_obj *(*enc_file_decode)(Encode_Control * obj, u16 dec_type);
 
             if (0 == (strcmp(record_obj.fs_name, "fat"))) {
-                /* 标准MP3解码与变速变调资源互斥 */
-                p_dec_obj = fatfs_enc_file_decode(&record_obj, fat_decode_type & (~BIT_SPEED));
+                enc_file_decode = fatfs_enc_file_decode;
             } else if (0 == (strcmp(record_obj.fs_name, "norfs"))) {
-                p_dec_obj = norfs_enc_file_decode(&record_obj, norfs_decode_type);
+                enc_file_decode = norfs_enc_file_decode;
             } else {
                 log_info("record hasn't been started!\n");
                 break;
             }
+            p_dec_obj = enc_file_decode(&record_obj, decode_type);
             if (NULL == p_dec_obj) {
                 log_info("record file decode fail!\n");
                 encode_file_fs_close(&record_obj);
@@ -100,12 +105,16 @@ void record_app(void)
             break;
 
         case MSG_REC_SPEED_EN:
-            if (norfs_decode_type & BIT_SPEED) {
+            if (decode_type & BIT_MP3_ST) {
+                /* 标准MP3解码与变速变调资源互斥 */
+                break;
+            }
+            if (decode_type & BIT_SPEED) {
                 log_info("record normal mode \n");
-                norfs_decode_type &= ~BIT_SPEED;
+                decode_type &= ~BIT_SPEED;
             } else {
                 log_info("record speed mode \n");
-                norfs_decode_type |= BIT_SPEED;
+                decode_type |= BIT_SPEED;
             }
             break;
         case MSG_WFILE_FULL:
@@ -170,6 +179,11 @@ static void encode_stop(Encode_Control *obj)
     audio_adc_off_api();
 }
 
+const u8 recoder_device_tab[3] = {
+    UDISK_INDEX,
+    SD0_INDEX,
+    INNER_FLASH_RW
+};
 static int encode_start(Encode_Control *obj)
 {
     u32 sr = RECORD_AUDIO_ADC_SR;
@@ -182,50 +196,36 @@ static int encode_start(Encode_Control *obj)
     }
 
     u32 online_dev = device_online();
-    u8 index = 0;
-    for (; index <= SD0_INDEX; index++) {
+    u8 index = -1;
+    for (u8 i = 0; i <= sizeof(recoder_device_tab); i++) {
+        index = recoder_device_tab[i];
         if (online_dev & BIT(index)) {
             break;
         }
     }
+
+    const char *p_fs_name = NULL;
+    int (*enc_file_create)(Encode_Control * obj);
     if (index > SD0_INDEX) {
-#if ENCODER_UMP3_EN
-        obj->dev_index = INNER_FLASH_RW;//内置flash录音
-        strcpy(obj->fs_name, "norfs");
-        err = norfs_enc_file_create(obj);
-        if (0 != err) {
-            log_info("vfs create 0x%x!\n", err);
-            return err;
-        }
-        encoder_io(ump3_encode_api, obj->pfile);
-#elif ENCODER_A_EN
-        obj->dev_index = INNER_FLASH_RW;//内置flash录音
-        strcpy(obj->fs_name, "norfs");
-        err = norfs_enc_file_create(obj);
-        if (0 != err) {
-            log_info("vfs create 0x%x!\n", err);
-            return err;
-        }
-        encoder_io(a_encode_api, obj->pfile);
-#else
-        log_info("no ump3 & a format encoder!\n");
-        return E_ENC_FORMAT;
-#endif
+        p_fs_name = "norfs";//内置flash录音
+        enc_file_create = norfs_enc_file_create;
     } else {
-#if ENCODER_MP3_EN
-        obj->dev_index = index;//U盘/SD卡录音
-        strcpy(obj->fs_name, "fat");
-        err = fatfs_enc_file_create(obj);
-        if (0 != err) {
-            log_info("vfs create 0x%x!\n", err);
-            return err;
-        }
-        encoder_io(mp3_encode_api, obj->pfile);
-#else
-        log_info("no mp3 format encoder!\n");
-        return E_ENC_FORMAT;
-#endif
+        p_fs_name = "fat";//SD卡、U盘录音
+        enc_file_create = fatfs_enc_file_create;
     }
+#ifdef ENCODER_API
+    obj->dev_index = index;
+    strcpy(obj->fs_name, p_fs_name);
+    err = enc_file_create(obj);
+    if (0 != err) {
+        log_info("%s create 0x%x!\n", p_fs_name, err);
+        return err;
+    }
+    encoder_file(ENCODER_API, obj->pfile);
+#else
+    log_info("no format encoder!\n");
+    return E_ENC_FORMAT;
+#endif
 
     obj->enc_status = ENC_ING;
     return 0;

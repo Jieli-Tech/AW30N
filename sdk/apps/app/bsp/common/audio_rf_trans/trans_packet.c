@@ -7,18 +7,16 @@
 #include "trans_packet.h"
 #include "crc16.h"
 #include "errno-base.h"
+#include "audio2rf_send.h"
+#include "rf_send_queue.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[au2rf_pack]"
 #include "log.h"
 
-static audio2rf_send_mge_ops *p_send_ops AT(.ar_trans_data);
+audio2rf_send_mge_ops *g_send_ops AT(.ar_trans_data);
 extern volatile u32 rf_send_cnt;
-
-#define HEAD_DATA_SEND_TOGETHER     0
-#if HEAD_DATA_SEND_TOGETHER
-static u8 tmp_send_buf[SENDER_BUF_SIZE] AT(.ar_trans_data);
-#endif
+static u8 g_pack_buf[SENDER_BUF_SIZE] AT(.ar_trans_data);
 
 /*----------------------------------------------------------------------------*/
 /**@brief   音频无线传输接口注册
@@ -31,7 +29,7 @@ static u8 tmp_send_buf[SENDER_BUF_SIZE] AT(.ar_trans_data);
 void audio2rf_send_register(void *ops)
 {
     local_irq_disable();
-    p_send_ops = ops;
+    g_send_ops = ops;
     local_irq_enable();
 }
 
@@ -40,33 +38,16 @@ void audio2rf_send_register(void *ops)
    @param   type    :发送的数据类型
             data    :发送的数据buff
             data_len:发送的数据长度
-   @return  0:成功   非0:失败，错误值请查看errno-base.h
+            packet_buf:封包缓存buff
+   @return  封包后的包长度
    @author
    @note    发送前会查询发送状态和可发送长度，条件未满足退出发送
 */
 /*----------------------------------------------------------------------------*/
-u32 ar_trans_pack(RADIO_PACKET_TYPE type, u8 *data, u16 data_len)
+u16 ar_trans_pack(RADIO_PACKET_TYPE type, u8 *data, u16 data_len, u8 *packet_buf)
 {
-    if (NULL == p_send_ops) {
-        return E_AU2RF_OBJ_NULL;
-    }
-
-    u32 rf_status = p_send_ops->check_status();
-    if (rf_status == 0) {
-        /* rf无法正常通信 */
-        return E_AU2RF_RF_OFFLINE;
-    }
-
-    u32 can_send_len = p_send_ops->get_valid_len();
-    if (can_send_len < (sizeof(RF_RADIO_PACKET) + data_len)) {
-        /* 可发送长度不足头+数据,退出本次发送 */
-        /* putchar('@'); */
-        log_info("can_send_len:%d  %d\n", can_send_len, (sizeof(RF_RADIO_PACKET) + data_len));
-        return E_AU2RF_RF_BUSY;
-    }
-
     u16 crc16_tmp;
-    u32 err = 0;
+    u16 slen = 0;
 
     RF_RADIO_PACKET packet = {0};
     packet.header      = PACKET_HEAD;
@@ -79,45 +60,26 @@ u32 ar_trans_pack(RADIO_PACKET_TYPE type, u8 *data, u16 data_len)
     }
     packet.crc8_l = crc16_tmp & 0xff;
 
-#if HEAD_DATA_SEND_TOGETHER
-    memcpy(&tmp_send_buf[0], &packet, sizeof(packet));
+    memcpy(&packet_buf[0], &packet, sizeof(packet));
+    slen += sizeof(packet);
     if (NULL != data) {
-        memcpy(&tmp_send_buf[sizeof(packet)], data, data_len);
+        memcpy(&packet_buf[sizeof(packet)], data, data_len);
+        slen += data_len;
     }
-    err = p_send_ops->send((u8 *)&tmp_send_buf[0], sizeof(packet) + data_len);
-    /* err = p_send_ops->send((u8 *)&err, 1); */
-    if (err) {
-        return E_AU2RF_SNED_DATA_ERR;
-    } else {
-        return 0;
-    }
-#else
-
-    local_irq_disable();
-    /* 数据头压入发送缓存 */
-    err = p_send_ops->send((u8 *)&packet, sizeof(RF_RADIO_PACKET));
-    if (err) {
-        /* log_info("001 err:0x%x\n",err); */
-        local_irq_enable();
-        return E_AU2RF_SNED_HEAD_ERR;
-    }
-    /* 数据压入发送缓存 */
-    if (NULL != data) {
-        err = p_send_ops->send((u8 *)data, data_len);
-        if (err) {
-            /* log_info("002 err:0x%x\n",err); */
-            local_irq_enable();
-            return E_AU2RF_SNED_DATA_ERR;
-        }
-    }
-    local_irq_enable();
-
-#endif
     /* log_info("S cnt:%d type:%d len:%d crc:0x%x", packet.packet_index, packet.type, sizeof(RF_RADIO_PACKET) + packet.data_length, crc16_tmp); */
-    return 0;
+    return slen;
 }
 
 u32 audio2rf_send_packet(RADIO_PACKET_TYPE type, u8 *data, u16 data_len)
 {
-    return ar_trans_pack(type, data, data_len);
+    u32 res = 0;
+    /* bool is_in_isr = cpu_in_irq() */
+    u8 *packet_data = &g_pack_buf[0];
+
+    local_irq_disable();
+    u16 packet_len = ar_trans_pack(type, data, data_len, packet_data);
+    //packet_data & packet_len
+    res = rf_send_push2queue(packet_data, packet_len);
+    local_irq_enable();
+    return res;
 }

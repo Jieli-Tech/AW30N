@@ -1,12 +1,13 @@
-#pragma bss_seg(".app_test.data.bss")
-#pragma data_seg(".app_test.data")
-#pragma const_seg(".app_test.text.const")
-#pragma code_seg(".app_test.text")
-#pragma str_literal_override(".app_test.text.const")
+#pragma bss_seg(".app_rc.data.bss")
+#pragma data_seg(".app_rc.data")
+#pragma const_seg(".app_rc.text.const")
+#pragma code_seg(".app_rc.text")
+#pragma str_literal_override(".app_rc.text.const")
 
 #include "audio_rf_mge.h"
 #include "audio2rf_send.h"
 #include "trans_packet.h"
+#include "trans_unpacket.h"
 #include "rf2audio_recv.h"
 #include "rc_app.h"
 #include "app_modules.h"
@@ -18,6 +19,7 @@
 #include "vfs.h"
 #include "hot_msg.h"
 #include "msg.h"
+#include "custom_event.h"
 #include "crc16.h"
 #include "circular_buf.h"
 
@@ -41,6 +43,7 @@
 #include "power_api.h"
 #include "tick_timer_driver.h"
 #include "update.h"
+#include "encoder_stream.h"
 
 #if ENCODER_UMP3_EN
 #include "ump3_encoder.h"
@@ -48,6 +51,26 @@
 
 #if DECODER_UMP3_EN
 #include "ump3_encoder.h"
+#endif
+
+#if ENCODER_IMA_EN
+#include "ima_encoder.h"
+#endif
+
+#if DECODER_IMA_EN
+#include "ima_api.h"
+#endif
+
+#if ENCODER_SBC_EN
+#include "sbc_encoder.h"
+#endif
+
+#if ENCODER_SPEEX_EN
+#include "speex_encoder.h"
+#endif
+
+#if DECODER_SBC_EN
+#include "sbc_api.h"
 #endif
 
 #define LOG_TAG_CONST       NORM
@@ -59,19 +82,37 @@
 /* 外部变量/函数声明 */
 extern void bt_init_api(void);
 extern void ble_module_enable(u8 en);
-extern u32 rf_enc_output(void *priv, u8 *data, u16 len);
 
+#define RC_ENC_SR      16000
+#define RC_ENC_FUNC    ima_encode_api
+#define RC_ENC_TYPE    FORMAT_IMA
+/* #define RC_ENC_SR      16000 */
+/* #define RC_ENC_FUNC    opus_encode_api */
+/* #define RC_ENC_TYPE    FORMAT_OPUS */
+/* #define RC_ENC_SR      16000 */
+/* #define RC_ENC_FUNC    speex_encode_api */
+/* #define RC_ENC_TYPE    FORMAT_SPEEX */
+/* #define RC_ENC_SR      16000 */
+/* #define RC_ENC_FUNC    sbc_encode_api */
+/* #define RC_ENC_TYPE    FORMAT_SBC */
+
+#define SPEAKER_WAIT_START_ACK    2
 #define SPEAKER_START   1
 #define SPEAKER_STOP    0
 
+#define IDLE_SYS_CLK         96000000
+#define SEND_AUDIO_SYS_CLK  192000000
+
+volatile u32 rc_event_status;
 volatile u8 speaker_status = SPEAKER_STOP;
+enc_obj *gp_rc_enc_obj;
 static void set_speaker_status(u8 status)
 {
     local_irq_disable();
     speaker_status = status;
     local_irq_enable();
 }
-static void get_speaker_status()
+static u32 get_speaker_status()
 {
     local_irq_disable();
     if (SPEAKER_STOP == speaker_status) {
@@ -80,6 +121,7 @@ static void get_speaker_status()
         log_info("speaker status working!!!\n");
     }
     local_irq_enable();
+    return speaker_status;
 }
 
 static int remote_audio_send_api(u8 *data, u16 len)
@@ -105,6 +147,37 @@ const audio2rf_send_mge_ops remote_ops = {
     .check_status = rc_check_status_api,
     .get_valid_len = rc_get_valid_len_api,
 };
+
+static rev_fsm_mge rc_recv_ops;
+u8 rc_packet[16] ALIGNED(2);
+cbuffer_t packet_cmd_cbuf;
+u8 packet_cmd_buff[6 * 10];
+u32 rc_rf_loop(void)
+{
+    rev_fsm_mge *p_recv_ops = &rc_recv_ops;
+    u32 len = packet_cmd_get(p_recv_ops->cmd_pool, &rc_packet[0], sizeof(rc_packet));
+    if (0 == len) {
+        return 0;
+    }
+    log_info("get_cmd_msg! 0x%x:%d 0x%x:%d \n", &rc_packet[1], rc_packet[1], &rc_packet[0], rc_packet[0]);
+    u8 *cmd_data = &rc_packet[2];
+    switch (rc_packet[1]) {
+    case (AUDIO2RF_ACK | AUDIO2RF_START_PACKET):
+        if (1 == cmd_data[0]) {
+            clk_set("sys", SEND_AUDIO_SYS_CLK);
+            delay_10ms(30);
+            audio2rf_encoder_start(gp_rc_enc_obj);
+            speaker_status = SPEAKER_START;
+        } else {
+            log_info("no ack enc stop\n");
+            audio2rf_encoder_stop(ENC_NO_WAIT);
+            audio_adc_off_api();
+            speaker_status = SPEAKER_STOP;
+        }
+        break;
+    }
+    return 0;
+}
 
 /* 红外发射 */
 const u8 key_cmd_tab[][2] = { //msg转cmd码表,匹配海信电视
@@ -152,8 +225,7 @@ void rec_cbuf_init(void *cbuf_t)
 void rf_controller_uninit()
 {
     if (SPEAKER_START == speaker_status) {
-        audio2rf_encoder_stop();
-        audio2rf_send_stop_packet();
+        audio2rf_encoder_stop(ENC_NO_WAIT);
         set_speaker_status(SPEAKER_STOP);
         log_info("SPEAKER_STOP\n");
     }
@@ -219,8 +291,6 @@ void set_softoff_countdown(u32 count_down)
 {
     softoff_count_down = count_down;
 }
-#define IDLE_SYS_CLK         96000000
-#define SEND_AUDIO_SYS_CLK  192000000
 u32 get_softoff_countdown()
 {
     return softoff_count_down;
@@ -228,20 +298,24 @@ u32 get_softoff_countdown()
 void rf_rc_app()
 {
     int msg[2];
-    u32 err;
+    u32 err, ret, retry, target_jiff;
     clk_set("sys", IDLE_SYS_CLK);
     delay_10ms(30);
     key_table_sel(rc_key_msg_filter);
     audio_rf_clr_buf();
     u32 last_jiffies = 0;
     u32 ble_status = 0;
-
+    u32 app_event;
     /* ir_encoder_init(IO_PORTB_03, 38000, 5000); */
     /* 蓝牙BLE初始化 */
+    memset(&rc_recv_ops, 0, sizeof(rc_recv_ops));
+    cbuf_init(&packet_cmd_cbuf, &packet_cmd_buff[0], sizeof(packet_cmd_buff));
+    rc_recv_ops.cmd_pool = &packet_cmd_cbuf;
 #if BLE_EN
     /* bt_init_api(); */
     vble_slave_init_api();
     audio2rf_send_register(&remote_ops);
+    vble_slave_recv_cb_register(ATT_MSTR2SLV_RF_RADUI_IDX, &rc_recv_ops, unpack_data_deal);
 #endif
 
     log_info("rf_controller\n");
@@ -256,9 +330,10 @@ void rf_rc_app()
             /* dac_power_on(sr); */
         }
 
-        vble_ioctl(VBLE_IOCTL_GET_SLAVE_STATUS, (int)&ble_status);
-        if ((BLE_ST_NOTIFY_IDICATE != ble_status) && (SPEAKER_START == speaker_status)) {
-            audio2rf_encoder_stop();
+        /* vble_ioctl(VBLE_IOCTL_GET_SLAVE_STATUS, (int)&ble_status); */
+        ble_status = rc_check_status_api();
+        if ((!ble_status) && (SPEAKER_START == speaker_status)) {
+            audio2rf_encoder_stop(ENC_NO_WAIT);
             audio_adc_off_api();
             clk_set("sys", IDLE_SYS_CLK);
             delay_10ms(30);
@@ -267,6 +342,18 @@ void rf_rc_app()
 #if SYS_TIMER_SOFTOFF
             set_softoff_countdown(SYS_TIMER_SOFTOFF_TIME);
 #endif
+        } else if (SPEAKER_WAIT_START_ACK == speaker_status) {
+            if (time_after(maskrom_get_jiffies(), target_jiff)) {
+                log_info("resending start packet!\n");
+                audio2rf_start_cmd(gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
+                target_jiff = maskrom_get_jiffies() + 5;
+                if (0 == retry--) {
+                    log_info("no ack enc stop\n");
+                    audio2rf_encoder_stop(ENC_NO_WAIT);
+                    audio_adc_off_api();
+                    speaker_status = SPEAKER_STOP;
+                }
+            }
         }
 
 #if SYS_TIMER_SOFTOFF
@@ -279,6 +366,13 @@ void rf_rc_app()
 
 #endif
         err = get_msg(2, &msg[0]);
+        if (MSG_NO_ERROR != err) {
+            msg[0] = NO_MSG;
+            log_info("get msg err 0x%x\n", err);
+        }
+
+        rc_rf_loop();
+
         switch (msg[0]) {
         case MSG_MENU:
         case MSG_UP:
@@ -293,8 +387,8 @@ void rf_rc_app()
         case MSG_LEFT:
         case MSG_RIGHT:
             /* send_ir_key(msg[0], 0); */
-            vble_ioctl(VBLE_IOCTL_GET_SLAVE_STATUS, (int)&ble_status);
-            if (BLE_ST_NOTIFY_IDICATE != ble_status) {
+            ble_status = rc_check_status_api();
+            if (!ble_status) {
                 break;
             }
             rf_send_hid_key_api(msg[0], sizeof(u16));
@@ -302,23 +396,47 @@ void rf_rc_app()
             break;
         //io_key
         case MSG_SPEAKER://audio_data
-            vble_ioctl(VBLE_IOCTL_GET_SLAVE_STATUS, (int)&ble_status);
-            if (BLE_ST_NOTIFY_IDICATE != ble_status) {
+            ble_status = rc_check_status_api();
+            if (!ble_status) {
                 break;
             }
             if (SPEAKER_STOP == speaker_status) {
-                clk_set("sys", SEND_AUDIO_SYS_CLK);
-                delay_10ms(30);
                 log_info("SPEAKER_START\n");
-                set_speaker_status(SPEAKER_START);
-                audio_adc_init_api(16000, AUDIO_ADC_MIC, 0);
-                audio2rf_encoder_io(opus_encode_api, enc_input, rf_enc_output, INDEX_OPUS);
-                /* audio2rf_encoder_io(ump3_encode_api, enc_input, rf_enc_output, INDEX_UMP3); */
+                ret = audio_adc_init_api(RC_ENC_SR, AUDIO_ADC_MIC, 0);
+                if (ret != 0) {
+                    log_error("audio_adc_init err 0x%x\n", ret);
+                    break;
+                }
+                gp_rc_enc_obj = audio2rf_encoder_io(RC_ENC_FUNC, RC_ENC_TYPE);
+                if (NULL != gp_rc_enc_obj) {
+                    audio2rf_start_cmd(gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
+                    target_jiff = maskrom_get_jiffies() + 5;
+                    retry = 3;
+                    speaker_status = SPEAKER_WAIT_START_ACK;
+                }
+                break;
+#if 0
+                u8 retry = 3;
+                do {
+                    audio2rf_start_cmd(gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
+                    delay_10ms(10);
+                    retry--;
+                    log_info("retry %d\n", retry);
+                } while ((0 != retry) && (SPEAKER_STOP == speaker_status));
+                if (SPEAKER_START == speaker_status) {
+                    clk_set("sys", SEND_AUDIO_SYS_CLK);
+                    delay_10ms(30);
+                    audio2rf_encoder_start(gp_rc_enc_obj);
+                } else {
+                    log_info("no ack enc stop\n");
+                    audio2rf_encoder_stop(ENC_NO_WAIT);
+                    audio_adc_off_api();
+                }
                 //send_audio_data
+#endif
             } else {
                 //send_audio_data
-                audio2rf_encoder_stop();
-                audio2rf_send_stop_packet();
+                audio2rf_encoder_stop(ENC_NEED_WAIT);
                 audio_adc_off_api();
                 clk_set("sys", IDLE_SYS_CLK);
                 delay_10ms(30);

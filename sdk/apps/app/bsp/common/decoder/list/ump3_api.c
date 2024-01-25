@@ -103,6 +103,7 @@ u32 ump3_decode_api(void *strm, void **p_dec, void *p_dp_buf)
     /* log_info("file name : %s\n", g_file_sname); */
     if ((B_DEC_IS_STRM & p_strm->strm_ctl)) {
         psound_strm->kick_thr = 128;
+        dec_ump3_hld.sr	   	  = p_strm->sr;
     }
 
     if (!(B_DEC_NO_CHECK & p_strm->strm_ctl)) {
@@ -142,7 +143,7 @@ u32 set_ump2_Headerstate_api(u32 sr, u32 br, int (*ump2_goon_cb)(void *))
 {
     set_ump2_Headerstate(ump3_CAL_BUF, sr, br);
     GoOn_DEC_CallBack gocio = {0};
-    gocio.priv = NULL;
+    gocio.priv = &dec_ump3_hld;
     gocio.callback = ump2_goon_cb;
     decoder_ops_t *ops = get_ump3_ops();
     ops->dec_confing(ump3_CAL_BUF, CMD_SET_GOON_CALLBACK, &gocio);

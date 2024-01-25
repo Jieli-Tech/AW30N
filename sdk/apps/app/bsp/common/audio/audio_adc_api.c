@@ -64,6 +64,9 @@ void audio_adc_mode_init(void)
 
 u32 audio_adc_init_api(u32 sr, AUDIO_ADC_MODE mode, u32 throw_sp_num)
 {
+    if (sr == 0) {
+        return E_ADC_SR;
+    }
     u32 res = 0;
     if (AUDIO_ADC_MIC == mode) {
         audio_adc_mge.track = 1;

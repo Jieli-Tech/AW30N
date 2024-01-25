@@ -25,7 +25,7 @@
 #if TFG_EXT_FLASH_EN
 #include "norflash.h"
 #include "gpio.h"
-struct spi_platform_data spix_p_data_cache[HW_SPI_MAX_NUM] = {
+struct spi_platform_data spix_p_data[HW_SPI_MAX_NUM] = {
     //spi0
     {0},
     //spi1
@@ -45,6 +45,7 @@ struct spi_platform_data spix_p_data_cache[HW_SPI_MAX_NUM] = {
         .cpha = 0,//sampling edge:0:first,  1:second
         .clk  = 10000000,
     },
+#if SUPPORT_SPI2
     //spi2
     {
         .port = {
@@ -62,12 +63,13 @@ struct spi_platform_data spix_p_data_cache[HW_SPI_MAX_NUM] = {
         .cpha = 0,//sampling edge:0:first,  1:second
         .clk  = 1000000L,
     }
+#endif
 };
 NORFLASH_DEV_PLATFORM_DATA_BEGIN(norflash_data)
     .spi_hw_num = TFG_SPI_HW_NUM,
     .spi_cs_port = TFG_SPI_CS_PORT_SEL,
     .spi_read_width = TFG_SPI_READ_DATA_WIDTH,
-    .spi_pdata = &spix_p_data_cache[TFG_SPI_HW_NUM],
+    .spi_pdata = &spix_p_data[TFG_SPI_HW_NUM],
 NORFLASH_DEV_PLATFORM_DATA_END()
 extern const struct device_operations norflash_dev_ops;
 #endif

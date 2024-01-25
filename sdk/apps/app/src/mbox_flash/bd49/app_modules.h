@@ -19,6 +19,9 @@
 //  A格式解码
 #define DECODER_A_EN 1
 
+//  ADPCM-IMA格式解码
+#define DECODER_IMA_EN 1
+
 //  标准MP3格式解码
 #define DECODER_MP3_ST_EN 1
 
@@ -41,6 +44,12 @@
 //  OPUS格式解码
 #define DECODER_OPUS_EN 0
 
+//  SPEEX格式解码
+#define DECODER_SPEEX_EN 1
+
+//  SBC格式解码
+#define DECODER_SBC_EN 1
+
 //  mp3格式压缩
 #define ENCODER_MP3_EN 1
 #define ENCODER_MP3_STEREO 0
@@ -53,6 +62,15 @@
 
 //  opus格式压缩
 #define ENCODER_OPUS_EN 0
+
+//  SPEEX格式压缩
+#define ENCODER_SPEEX_EN 1
+
+//  adpcm-ima格式压缩
+#define ENCODER_IMA_EN 1
+
+//  SBC格式压缩
+#define ENCODER_SBC_EN 1
 
 //  MIO功能使能
 #define HAS_MIO_EN 0
@@ -88,6 +106,10 @@
 #else
 #define DECODE_SR_IS_NEED_JUDIGMENT 0
 #endif
+
+//  文件系统
+#define FATFS_EN 1
+#define NORFS_EN 1
 
 //  手机APP应用升级
 #define CONFIG_APP_OTA_EN 0
@@ -129,12 +151,32 @@
 #define ECHO_EN 0
 #define PCM_SW_EQ_EN 0
 #define DECODE_SR_IS_NEED_JUDIGMENT 0
+#define FATFS_EN 0
+#define NORFS_EN 0
 
 //  opus格式压缩
 #define ENCODER_OPUS_EN 1
 
+//  ADPCM-IMA格式解码
+#define DECODER_IMA_EN 1
+
+//  SPEEX格式解码
+#define DECODER_SPEEX_EN 1
+
+//  SBC格式解码
+#define DECODER_SBC_EN 1
+
 //  OPUS格式解码
 #define DECODER_OPUS_EN 1
+
+//  SPEEX格式压缩
+#define ENCODER_SPEEX_EN 1
+
+//  ADPCM-IMA格式压缩
+#define ENCODER_IMA_EN 1
+
+//  SBC格式压缩
+#define ENCODER_SBC_EN 1
 
 //  手机APP应用升级
 #define CONFIG_APP_OTA_EN 1
@@ -165,6 +207,9 @@
 
 //  充电仓/蓝牙测试盒单线串口升级
 #define TESTBOX_UART_UPDATE_EN 0
+
+//  测试盒蓝牙升级
+#define TESTBOX_BT_UPDATE_EN 1
 
 //  SD卡设备升级
 #define SD_UPDATE_EN 1

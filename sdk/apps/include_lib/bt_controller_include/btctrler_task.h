@@ -11,6 +11,7 @@
 
 #define TCFG_BT_TO_WHILE                   1//配置bt跑while循环
 #define TCFG_BT_TO_CBUF                    1//配置跑cbuf
+#define TCFG_BT_CLOSE_BR                   0
 
 
 enum {

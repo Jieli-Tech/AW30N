@@ -74,6 +74,7 @@ u32 ump3_encode_api(void *p_file, void *input_func, void *output_func)
         return 0;
     }
     /******************************************/
+    memset(&enc_ump3_hdl, 0, sizeof(enc_obj));
     cbuf_init(&cbuf_eump3_o, &obuf_eump3_o[0], sizeof(obuf_eump3_o));
     log_info("A\n");
     // log_info("B\n");

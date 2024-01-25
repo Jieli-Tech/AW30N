@@ -22,6 +22,9 @@ typedef enum {
     D_TYPE_WAV,
     D_TYPE_MP3_ST = 7,
     D_TYPE_OPUS = 8,
+    D_TYPE_IMA,
+    D_TYPE_SPEEX,
+    D_TYPE_SBC,
 } DECOER_TYPE ;
 
 
@@ -114,7 +117,7 @@ bool decoder_fr(dec_obj *obj, u8 step);	// 快退。step单位-秒
 
 void decoder_set_file_size(dec_obj *obj, u32 size);	// 设置解码文件长度
 void decoder_soft_hook(void);
-dec_obj *decoder_list(dec_data_stream *p_strm, u32 dec_ctl, dp_buff *dbuff, u8 loop, u32 output_sr, u16 *p_max_input);
+dec_obj *decoder_list(dec_data_stream *p_strm, u32 dec_ctl, dp_buff *dbuff, u8 loop, u32 output_sr);
 void kick_decoder_api(void *p_stream_in, void *psound);
 
 

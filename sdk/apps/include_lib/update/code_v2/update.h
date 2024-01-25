@@ -137,6 +137,7 @@ void update_clear_result();
 bool update_success_boot_check(void);
 void update_enter_cb_register(void *callback);
 void app_update_handle(int msg);
+int app_update_init(void);
 extern void (*update_enter_callback)(void);
 
 typedef void(*update_handler_t)(void);
@@ -164,5 +165,12 @@ extern const struct update_target update_target_end[];
 
 #define list_for_each_update_target(p) \
     for (p = update_target_begin; p < update_target_end; p++)
+
+
+
+extern const int CONFIG_UPDATE_STORAGE_DEV_EN;
+extern const int CONFIG_UPDATE_TESTBOX_UART_EN;
+extern const int CONFIG_UPDATE_APP_OTA_EN;
+extern const int CONFIG_UPDATE_TESTBOX_BLE_EN;
 
 #endif

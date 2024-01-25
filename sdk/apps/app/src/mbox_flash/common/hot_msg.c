@@ -101,7 +101,7 @@ __app_vol_deal:
         if (time_before(maskrom_get_jiffies(), 150)) {
             break;//上电1.5s内不响应设备上线消息
         }
-#if UDISK_UPDATE_EN
+#if (UPDATE_V2_EN && UDISK_UPDATE_EN)
         err = dev_update_check("udisk0");
         log_info("udisk update err 0x%x\n", err);
 #endif
@@ -111,7 +111,7 @@ __app_vol_deal:
             break;//上电1.5s内不响应设备上线消息
         }
         log_info("sd in\n");
-#if SD_UPDATE_EN
+#if (UPDATE_V2_EN && SD_UPDATE_EN)
         err = dev_update_check("sd0");
         log_info("sd update err 0x%x\n", err);
 #endif

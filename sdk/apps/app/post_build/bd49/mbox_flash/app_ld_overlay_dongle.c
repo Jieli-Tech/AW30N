@@ -43,6 +43,24 @@
             *(.opus_dec_data);
             PROVIDE(opus_buf_end = .);
         }
+        .d_ima {
+            . = ar_trans_data_end;
+            PROVIDE(ima_buf_start = .);
+            *(.ima_dec_data);
+            PROVIDE(ima_buf_end = .);
+        }
+        .d_sbc {
+            . = ar_trans_data_end;
+            PROVIDE(sbc_buf_start = .);
+            *(.sbc_dec_data)
+            PROVIDE(sbc_buf_end = .);
+		}
+        .d_speex {
+            . = ar_trans_data_end;
+            PROVIDE(speex_buf_start = .);
+            *(.speex_dec_data);
+            PROVIDE(speex_buf_end = .);
+        }
         .update_tmp_buf {
             . = norflash_cache_buf_end;
             . = ALIGN(4);

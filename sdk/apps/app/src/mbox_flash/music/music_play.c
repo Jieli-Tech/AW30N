@@ -184,7 +184,7 @@ void music_app(void)
             }
             used_device = msg[0] - MSG_USB_DISK_IN;
             log_info("DEV_IN %d\n", used_device);
-#if (SD_UPDATE_EN || UDISK_UPDATE_EN)
+#if (UPDATE_V2_EN && (SD_UPDATE_EN || UDISK_UPDATE_EN))
             char *name = get_device_name(used_device);
             err = dev_update_check(name);
             /* log_info("update err 0x%x\n", err); */

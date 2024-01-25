@@ -29,7 +29,7 @@ bool JL_rcsp_hid_fw_ready(void *priv)
 
 static int update_send_user_data_do(void *priv, void *data, u16 len)
 {
-#if (RCSP_BTMATE_EN && TCFG_PC_ENABLE && (USB_DEVICE_CLASS_CONFIG & HID_CLASS) && TRANS_DATA_SPPLE_EN)
+#if (RCSP_BTMATE_EN && TCFG_PC_ENABLE && (USB_DEVICE_CLASS_CONFIG & HID_CLASS) && TRANS_DATA_SPPLE_EN && TCFG_USER_BLE_ENABLE)
     //-------------------!!!!!!!!!!考虑关闭RCSP_BTMATE_EN使能编译报错
     extern void dongle_send_data_to_pc_3(u8 * data, u16 len);
     dongle_send_data_to_pc_3(data, len);

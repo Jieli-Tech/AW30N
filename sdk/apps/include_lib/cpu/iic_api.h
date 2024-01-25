@@ -34,11 +34,11 @@ struct iic_master_config {
     u8 io_filter;
 };
 #include "iic_soft.h"
-// #if defined CONFIG_CPU_BR50 || defined CONFIG_CPU_BR29
+#if defined CONFIG_CPU_BD49 || defined CONFIG_CPU_BR29
 #include "iic_hw_v2.h"
-// #else
-// #include "iic_hw_v1.h"
-// #endif
+#elif defined CONFIG_CPU_UC03
+#include "iic_hw.h"
+#endif
 
 /******************************soft iic*****************************/
 //如果无reg_addr:reg_addr=NULL,reg_len=0

@@ -18,6 +18,7 @@
 
 #include "decoder_api.h"
 #include "decoder_mge.h"
+#include "audio_codec_format.h"
 #include "sound_mge.h"
 #include "app.h"
 #include "audio.h"
@@ -34,6 +35,8 @@
 #if DECODER_OPUS_EN
 #include "opus_api.h"
 #endif
+
+#define DEC_RUN_LIMIT   1
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[rf_recv]"
@@ -54,14 +57,6 @@ const struct if_decoder_io dec_io_for_rf = {
     0
 };
 
-
-/* 内部变量定义 */
-sound_stream_obj rf_stream AT(.ar_trans_data);
-cbuffer_t cbuf_rf_data AT(.ar_trans_data);
-volatile dec_obj *g_recv_dec_obj AT(.ar_trans_data);
-static u32 rf_data_buff[1024 * 2 / 4] AT(.ar_trans_data);
-volatile u16 rf_dec_kick_size AT(.ar_trans_data);
-
 /*----------------------------------------------------------------------------*/
 /**@brief   启动解码器解码数据
    @param   p_stream_in :数据流管理句柄，该参数为空强制启动一次解码
@@ -75,15 +70,25 @@ volatile u16 rf_dec_kick_size AT(.ar_trans_data);
 void rf2audio_receiver_kick_decoder(void *p_stream_in, void *psound)
 {
     sound_stream_obj *pstream = (sound_stream_obj *)p_stream_in;
+    sound_out_obj *p_sound = psound;
     if (NULL != pstream) {
         u32 len = cbuf_get_data_size((cbuffer_t *)pstream->p_ibuf);
         if (len < pstream->kick_thr) {
             /* 未达到数据源kick门槛值 */
             return;
         }
+        if (p_sound->enable & B_DEC_FIRST) {
+            /* 首次启动，ibuf数据达到门槛后才启动解码 */
+            if (len < (cbuf_get_space((cbuffer_t *)pstream->p_ibuf) / 2)) {
+                return;
+            }
+        }
+#if DEC_RUN_LIMIT
+        p_sound->enable &= ~B_DEC_NO_INDATA;
+        /* putchar('A'); */
+#endif
     }
     if (NULL != psound) {
-        sound_out_obj *p_sound = psound;
         p_sound->enable |= B_DEC_KICK;
         kick_decoder();
     }
@@ -91,50 +96,39 @@ void rf2audio_receiver_kick_decoder(void *p_stream_in, void *psound)
 
 /*----------------------------------------------------------------------------*/
 /**@brief   写入音频接收缓存数据
-   @param   data    :写入的数据buff
-            data_len:写入的数据长度
+   @param   p_recv_dec_obj  :解码句柄
+            data            :写入的数据buff
+            data_len        :写入的数据长度
    @return  本次已成功写入的数据长度
    @author
    @note    音频接收缓存cbuf为rf_data_buff，由cbuf_rf_data管理，收到无线传输数据后写入
 */
 /*----------------------------------------------------------------------------*/
-u32 rf2audio_receiver_write_data(u8 *data, u32 data_len)
+u32 rf2audio_receiver_write_data(dec_obj *p_recv_dec_obj, u8 *data, u32 data_len)
 {
-    if (0 == if_decoder_is_run(g_recv_dec_obj)) {
+    if (0 == if_decoder_is_run(p_recv_dec_obj)) {
+        log_info("dec isn't running!\n");
         return 0;
     }
-    if (B_DEC_ERR == decoder_status(g_recv_dec_obj)) {
+    if (B_DEC_ERR == decoder_status(p_recv_dec_obj)) {
+        log_info("dec status err!\n");
         return 0;
     }
-    if (cbuf_get_available_space(&cbuf_rf_data) < data_len) {
-        rf2audio_receiver_kick_decoder(g_recv_dec_obj->p_file, &g_recv_dec_obj->sound);
+    sound_stream_obj *pstream = p_recv_dec_obj->p_file;
+    if (cbuf_get_available_space((cbuffer_t *)pstream->p_ibuf) < data_len) {
+        rf2audio_receiver_kick_decoder(pstream, &p_recv_dec_obj->sound);
+        log_info("RF_rxbuf Full 001!!!\n");
         return 0;
     }
     u32 wlen = 0;
-    wlen = cbuf_write(&cbuf_rf_data, data, data_len);
+    wlen = cbuf_write(pstream->p_ibuf, data, data_len);
     if (wlen != data_len) {
-        log_info("RF_rxbuf Full!!!\n");
+        log_info("RF_rxbuf Full 002!!!\n");
         /* while(1); */
     }
-    rf2audio_receiver_kick_decoder(g_recv_dec_obj->p_file, &g_recv_dec_obj->sound);
+    rf2audio_receiver_kick_decoder(pstream, &p_recv_dec_obj->sound);
     return wlen;
 }
-/*----------------------------------------------------------------------------*/
-/**@brief   读取音频接收缓存数据
-   @param   data    :读取的数据buff
-            data_len:读取的数据长度
-   @return  本次已成功读取的数据长度
-   @author
-   @note    音频接收缓存cbuf为rf_data_buff，由cbuf_rf_data管理，解码器启动后读取
-*/
-/*----------------------------------------------------------------------------*/
-u32 rf2audio_receiver_read_data(u8 *data, u32 data_len)
-{
-    u32 remain_len = cbuf_get_data_size(&cbuf_rf_data);
-    u32 rlen = cbuf_read(&cbuf_rf_data, data, (data_len > remain_len ? remain_len : data_len));
-    return rlen;
-}
-
 /*----------------------------------------------------------------------------*/
 /**@brief   解码器数据预读回调
    @param   priv    :私有结构体，此处为解码句柄
@@ -145,7 +139,9 @@ u32 rf2audio_receiver_read_data(u8 *data, u32 data_len)
 /*----------------------------------------------------------------------------*/
 static int rf2audio_receiver_read_check(void *priv)
 {
-    u32 len = cbuf_get_data_size(&cbuf_rf_data);
+    dec_obj *obj = priv;
+    sound_stream_obj *pstream = obj->p_file;
+    u32 len = cbuf_get_data_size(pstream->p_ibuf);
     /* log_info("check: %d", len); */
     return len;
 }
@@ -163,7 +159,19 @@ static int rf2audio_receiver_read_check(void *priv)
 /*----------------------------------------------------------------------------*/
 static int rf2audio_receiver_mp_input(void *priv, u32 addr, void *buf, int len, u8 type)
 {
-    int rlen = rf2audio_receiver_read_data(buf, len);
+    dec_obj *obj = priv;
+    sound_stream_obj *pstream = obj->p_file;
+    int rlen = cbuf_read(pstream->p_ibuf, buf, len);
+#if DEC_RUN_LIMIT
+    u32 remain_len = cbuf_get_data_size(pstream->p_ibuf);
+    if (remain_len < pstream->kick_thr) {
+        /* 剩余数据不够解下一包，暂停解码 */
+        sound_out_obj *psound = &obj->sound;
+        psound->enable |= B_DEC_NO_INDATA;
+        /* putchar('P'); */
+    }
+    /* log_info("%d-%d,%d-%d\n", len, rlen, remain_len, pstream->kick_thr); */
+#endif
     /* static u32 cnt = 0; */
     /* log_info("in %d %d %d", cnt++, rlen, len); */
     return rlen;
@@ -171,18 +179,15 @@ static int rf2audio_receiver_mp_input(void *priv, u32 addr, void *buf, int len, 
 /*----------------------------------------------------------------------------*/
 /**@brief   音频传输接收开始，启动解码器
    @param   p_enc_head  :编码头信息，依据该信息初始化解码器
-            channel     :解码后的pcm数据输出端口，可选择输出到DAC或USB MIC
+            p_rf_stream :音频数据源句柄
             output_sr   :解码后的pcm数据输出采样率
-   @return
+   @return  成功：返回解码句柄 失败：返回NULL
    @author
    @note    音频传输接收到编码头信息后，启动相应解码器开始解码
 */
 /*----------------------------------------------------------------------------*/
-bool rf2audio_decoder_start(RF_RADIO_ENC_HEAD *p_enc_head, STREAM_CHANNEL channel, u32 output_sr)
+dec_obj *rf2audio_decoder_start(RF_RADIO_ENC_HEAD *p_enc_head, sound_stream_obj *p_rf_stream, u32 output_sr)
 {
-    set_radio_status(RADIO_RECEIVING);
-    cbuf_init(&cbuf_rf_data, &rf_data_buff[0], sizeof(rf_data_buff));
-
     log_info("/***********************/");
     log_info("RF_Recv_Head Succ!");
     log_info("Encode_Type : %d", p_enc_head->enc_type);
@@ -191,62 +196,60 @@ bool rf2audio_decoder_start(RF_RADIO_ENC_HEAD *p_enc_head, STREAM_CHANNEL channe
     log_info("Reserved    : %d", p_enc_head->reserved);
     log_info("/***********************/\n");
 
-    memset(&rf_stream, 0, sizeof(sound_stream_obj));
-    rf_stream.p_ibuf    = &cbuf_rf_data;
+    u32 dec_index = select_codec(p_enc_head->enc_type);
+    if (-1 == dec_index) {
+        log_error("no dec_type!\n");
+        return NULL;
+    }
 
     dec_data_stream t_strm = {0};
-    t_strm.strm_source = &rf_stream;
+    t_strm.strm_source = p_rf_stream;
     t_strm.io   = (struct if_decoder_io *)&dec_io_for_rf;
     t_strm.goon_callback = rf2audio_receiver_read_check;
     t_strm.sr   = p_enc_head->sr;
     t_strm.br   = p_enc_head->br;
     t_strm.strm_ctl = B_DEC_NO_CHECK | B_DEC_IS_STRM;
 
-    g_recv_dec_obj = decoder_list(&t_strm, BIT(p_enc_head->enc_type), 0, 0, output_sr, &rf_dec_kick_size);
-    if (NULL == g_recv_dec_obj) {
+    dec_obj *p_recv_dec_obj = decoder_list(&t_strm, BIT(dec_index), 0, 0, output_sr);
+    if (NULL == p_recv_dec_obj) {
         log_info("rf_recv init fail \n");
-        return false;
-    }
-
-    g_recv_dec_obj->p_kick = rf2audio_receiver_kick_decoder;
-    if (channel == STREAM_TO_USB) {
-        set_usb_mic_info(&g_recv_dec_obj->sound, g_recv_dec_obj->p_kick, g_recv_dec_obj->src_effect);
+        return NULL;
     } else {
-        regist_dac_channel(&g_recv_dec_obj->sound, NULL);
+        p_recv_dec_obj->br = p_enc_head->br;
+        p_recv_dec_obj->p_kick = rf2audio_receiver_kick_decoder;
+        p_recv_dec_obj->sound.enable |= B_DEC_ENABLE | B_DEC_FIRST | B_DEC_NO_INDATA;
+        log_info("rf_recv init succ \n");
+        return p_recv_dec_obj;
     }
-    g_recv_dec_obj->sound.enable |= B_DEC_ENABLE | B_DEC_FIRST;
-
-    log_info("rf_recv init succ \n");
-    return true;
 }
 /*----------------------------------------------------------------------------*/
 /**@brief   音频传输接收停止，关闭解码器
-   @param
+   @param   p_recv_dec_ob   :解码句柄
+            unregist_func   :后级注销函数
    @return
    @author
    @note
 */
 /*----------------------------------------------------------------------------*/
-void rf2audio_decoder_stop(STREAM_CHANNEL channel)
+void rf2audio_decoder_stop(dec_obj *p_recv_dec_obj, bool(*unregist_func)(void *))
 {
-    if (channel == STREAM_TO_USB) {
-        decoder_stop_phy(g_recv_dec_obj, NO_WAIT, 0, 1, clr_usb_mic_info);
-    } else {
-        decoder_stop_phy(g_recv_dec_obj, NO_WAIT, 0, 1, unregist_dac_channel);
-    }
-    local_irq_disable();
-    g_recv_dec_obj = NULL;
-    local_irq_enable();
+    decoder_stop_phy(p_recv_dec_obj, NO_WAIT, 0, 1, unregist_func);
 }
 
-sound_out_obj *usb_mic_get_stream_info(u32 sr, u32 frame_len, u32 ch, void **ppsrc, void **pkick)
+sound_out_obj *usb_mic_get_stream_info(uac_mic_read *p_uac_read)
 {
-    if (NULL == g_recv_dec_obj) {
+    if (NULL == p_uac_read) {
         return NULL;
     }
-    *ppsrc = g_recv_dec_obj->src_effect;
-    *pkick = g_recv_dec_obj->p_kick;
-    return &g_recv_dec_obj->sound;
+    if (NULL != p_uac_read->source) {
+        dec_obj *p_recv_dec_obj = p_uac_read->source;
+        p_uac_read->p_src = p_recv_dec_obj->src_effect;
+        p_uac_read->pkick = p_recv_dec_obj->p_kick;
+        p_uac_read->read_sound = &p_recv_dec_obj->sound;
+        return &p_recv_dec_obj->sound;
+    } else {
+        return NULL;
+    }
 }
 
 void usb_mic_stream_clear_stream_info(void **ppsrc)

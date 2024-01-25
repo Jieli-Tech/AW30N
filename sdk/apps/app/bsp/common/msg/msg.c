@@ -30,42 +30,46 @@ static const u16 event2msg[] = {
     MSG_F1A2_FILE_END,
     MSG_F1A2_FILE_ERR,
     MSG_F1A2_LOOP,          /* 5 */
-    MSG_MIDI_FILE_END,
-    MSG_MIDI_FILE_ERR,
-    NO_MSG,
-    MSG_A_FILE_END,
-    MSG_A_FILE_ERR,    		/* 10 */
-    MSG_A_LOOP,
-    MSG_MP3_FILE_END,
-    MSG_MP3_FILE_ERR,
-    MSG_MP3_LOOP,
-    MSG_WAV_FILE_END,	    /* 15 */
-    MSG_WAV_FILE_ERR,
-    MSG_WAV_LOOP,
-    MSG_OPUS_FILE_END,      /* 18 */
-    MSG_OPUS_FILE_ERR,
-    MSG_OPUS_LOOP,
 
-    MSG_APP_SWITCH_ACTIVE,  /* 21 */
+    MSG_MIDI_FILE_END,
+    MSG_MIDI_FILE_ERR,    		/* 7 */
+
+    MSG_A_FILE_END,
+    MSG_A_FILE_ERR,    		/* 9 */
+    MSG_A_LOOP,
+
+    MSG_MP3_FILE_END,
+    MSG_MP3_FILE_ERR,    		/* 12 */
+    MSG_MP3_LOOP,
+
+    MSG_WAV_FILE_END,
+    MSG_WAV_FILE_ERR,    		/* 15 */
+    MSG_WAV_LOOP,
+
+    MSG_DEC_OTHER_FORMAT_END,
+    MSG_DEC_OTHER_FORMAT_ERR,
+    MSG_DEC_OTHER_FORMAT_LOOP,
+
+    MSG_APP_SWITCH_ACTIVE,  /* 20 */
     MSG_WFILE_FULL,
 
-    MSG_OTG_IN,             /* 23 */
+    MSG_OTG_IN,             /* 22 */
     MSG_OTG_OUT,
     MSG_USB_DISK_IN,
     MSG_USB_DISK_OUT,
     MSG_PC_IN,
-    MSG_PC_OUT,             /* 28 */
-    MSG_PC_SPK,             /* 29 */
-    MSG_PC_MIC,             /* 30 */
+    MSG_PC_OUT,             /* 27 */
+    MSG_PC_SPK,             /* 28 */
+    MSG_PC_MIC,             /* 29 */
     MSG_SDMMCA_IN,
     MSG_SDMMCA_OUT,
     MSG_AUX_IN,
     MSG_AUX_OUT,
-    MSG_EXTFLSH_IN,         /* 35 */
+    MSG_EXTFLSH_IN,         /* 34 */
 
-    MSG_BLE_APP_UPDATE_START,		/* 36 */
-    MSG_BLE_TESTBOX_UPDATE_START,	/* 37 */
-    MSG_UART_TESTBOX_UPDATE_START,	/* 38 */
+    MSG_BLE_APP_UPDATE_START,		/* 35 */
+    MSG_BLE_TESTBOX_UPDATE_START,	/* 36 */
+    MSG_UART_TESTBOX_UPDATE_START,	/* 37 */
 
     NO_MSG,
 };

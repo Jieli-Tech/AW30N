@@ -12,6 +12,7 @@
 /* #include "mbr.h" */
 #include "fs_file_name.h"
 #include "fat/mbr.h"
+#include "app_modules.h"
 
 extern u32 __dev_read(void *p, u8 *buf, u32 addr);
 extern u32 __dev_write(void *p, u8 *buf, u32 addr);
@@ -384,7 +385,7 @@ int fat_ioctl_api(void *pfile, int cmd, int arg)
     return -1;
 }
 
-#if HAS_VFS_EN
+#if (HAS_VFS_EN && FATFS_EN)
 
 const struct vfs_operations fat_vfs_ops sec_used(.vfs_operations) = {
     .fs_type = "fat",

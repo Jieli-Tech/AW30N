@@ -66,7 +66,7 @@
 #define spi_bit_mode(reg, val)              SFR((reg)->CON1, 0, 2, val)
 
 
-/* struct spi_platform_data spix_p_data_cache[HW_SPI_MAX_NUM]; */
+struct spi_platform_data spix_p_data_cache[HW_SPI_MAX_NUM];
 static void (*hw_spi_irq_cbfun[HW_SPI_MAX_NUM])(hw_spi_dev spi, enum hw_spi_isr_status sta) = {0, 0, 0};
 #if 0
 struct spi_platform_data spix_p_data[HW_SPI_MAX_NUM] = {
@@ -197,7 +197,7 @@ int spi_set_baud(hw_spi_dev spi, u32 baud)
     u32 sysclk;
 
     sysclk = clk_get("spi");
-    log_debug("spi clock source freq %lu", sysclk);
+    log_debug("spi clock source freq %d", sysclk);
     if (sysclk < baud) {
         spi_w_reg_baud(spi_regs[spi], 0);
         return -EINVAL;
@@ -384,7 +384,7 @@ void spi_close(hw_spi_dev spi)
         }
     }
     spi_disable(spi_regs[spi]);
-    /* memset((u8 *)&spix_p_data_cache[spi], 0, sizeof(spi_hardware_info)); */
+    memset((u8 *)&spix_p_data_cache[spi], 0, sizeof(spi_hardware_info));
 }
 
 void spi_suspend(hw_spi_dev spi)
@@ -804,9 +804,9 @@ enum hw_spi_isr_status hw_spix_get_isr_status(hw_spi_dev spi)
 //每包数据前清空,在通信中间调用,会导致数据长不准
 void hw_spix_clear_isr_len(hw_spi_dev spi)
 {
-    if (spi_isr_data_len[spi] < 0) {//except dma
-        return;
-    }
+    /* if (spi_isr_data_len[spi] < 0) {//except dma */
+    /*     return; */
+    /* } */
     spi_isr_data_len[spi] = 0;
 }
 

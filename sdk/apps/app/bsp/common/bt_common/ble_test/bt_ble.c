@@ -1,12 +1,33 @@
 #include "bt_ble.h"
 #include "test_app_config.h"
 #include "msg/msg.h"
+#include "user_cfg.h"
+/* #include "fs.h" */
+#include "includes.h"
+#include "vm.h"
+
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[ble]"
 #include "log.h"
 
 #if (TESTE_BLE_EN)
+
+BT_CONFIG bt_cfg = {
+    .edr_name        = "BD49_BLE",
+    .mac_addr        = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff},
+    .tws_local_addr  = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff},
+    .rf_power        = 10,
+    .dac_analog_gain = 25,
+    .mic_analog_gain = 7,
+    .tws_device_indicate = 0x6688,
+};
+
+const char *bt_get_local_name()
+{
+    return bt_cfg.edr_name;
+}
+
 extern void bt_ble_init(void);
 extern void btstack_task(void);
 extern void vPortSuppressTicksAndSleep(u32 usec);
@@ -123,6 +144,37 @@ int get_buffer_vaild_len(void *priv)
     ble_op_att_get_remain(&vaild_len);
     return vaild_len;
 }
+
+static u8 bt_mac_addr_for_testbox[6] = {0};
+const u8 *bt_get_mac_addr()
+{
+    int ret = 0;
+    u8 mac_buf[6];
+    u8 mac_buf_tmp[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+    u8 mac_buf_tmp2[6] = {0, 0, 0, 0, 0, 0};
+
+    do {
+        ret = syscfg_read(CFG_BT_MAC_ADDR, mac_buf, 6);
+        if ((ret != 6) || !memcmp(mac_buf, mac_buf_tmp, 6) || !memcmp(mac_buf, mac_buf_tmp2, 6)) {
+            get_random_number(mac_buf, 6);
+            syscfg_write(CFG_BT_MAC_ADDR, mac_buf, 6);
+        }
+    } while (0);
+
+    syscfg_read(CFG_BT_MAC_ADDR, bt_mac_addr_for_testbox, 6);
+    if (!memcmp(bt_mac_addr_for_testbox, mac_buf_tmp, 6)) {
+        get_random_number(bt_mac_addr_for_testbox, 6);
+        syscfg_write(CFG_BT_MAC_ADDR, bt_mac_addr_for_testbox, 6);
+        log_info(">>>init mac addr!!!\n");
+    }
+
+    log_info("mac:");
+    log_info_hexdump(mac_buf, sizeof(mac_buf));
+    memcpy(bt_cfg.mac_addr, mac_buf, 6);
+
+    return bt_cfg.mac_addr;
+}
+
 #else
 void ble_module(void)
 {

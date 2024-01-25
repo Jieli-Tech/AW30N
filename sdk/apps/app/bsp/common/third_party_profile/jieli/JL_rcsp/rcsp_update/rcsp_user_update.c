@@ -275,6 +275,10 @@ void rcsp_update_jump_to_loader_handle(void *priv)
 
 void app_ota_update_handle(void)
 {
+    if (!CONFIG_UPDATE_APP_OTA_EN) {
+        return;
+    }
+
     rcsp_update_data_api_register(rcsp_update_data_read, rcsp_update_status_response);
     register_receive_fw_update_block_handle(rcsp_update_handle);
     if (RCSP_BLE == get_curr_device_type()) {

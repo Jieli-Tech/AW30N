@@ -1,10 +1,11 @@
-#pragma bss_seg(".app_test.data.bss")
-#pragma data_seg(".app_test.data")
-#pragma const_seg(".app_test.text.const")
-#pragma code_seg(".app_test.text")
-#pragma str_literal_override(".app_test.text.const")
+#pragma bss_seg(".app_dongle.data.bss")
+#pragma data_seg(".app_dongle.data")
+#pragma const_seg(".app_dongle.text.const")
+#pragma code_seg(".app_dongle.text")
+#pragma str_literal_override(".app_dongle.text.const")
 
 #include "audio2rf_send.h"
+#include "rf_send_queue.h"
 #include "rf2audio_recv.h"
 #include "trans_unpacket.h"
 #include "rc_app.h"
@@ -16,6 +17,7 @@
 #include "typedef.h"
 #include "vfs.h"
 #include "msg.h"
+#include "custom_event.h"
 #include "crc16.h"
 #include "circular_buf.h"
 
@@ -42,6 +44,7 @@
 #include "bt_ble.h"
 #include "vble_complete.h"
 #include "update.h"
+#include "trans_unpacket.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[rf_controller]"
@@ -51,11 +54,11 @@
 
 /* 外部变量/函数声明 */
 extern bool get_usb_mic_status();
-extern bool rf_recv_data_check(void *rf_packet, u16 packet_len);
-extern int rf_dongle_hid_callback(u8 *rf_packet, u16 packet_len);
+extern int rf_dongle_hid_callback(void *priv, u8 *rf_packet, u16 packet_len);
 extern sound_out_obj *usb_mic_get_stream_info(u32 sr, u32 frame_len, u32 ch, void **ppsrc, void **pkick);
 extern void usb_mic_stream_clear_stream_info(void **ppsrc);
 extern void set_usb_mic_func(void *open, void *close);
+static void dongle_receiver_audio(u32 index, RADIO_PACKET_TYPE type, u8 *data, u16 len);
 
 /* #define HIDKEY_REPORT_ID               0x1 */
 
@@ -84,6 +87,26 @@ extern void set_usb_mic_func(void *open, void *close);
 /* { */
 /*     return HIDKEY_REPORT_ID; */
 /* } */
+
+typedef struct __dongle_mge_struct {
+    rev_fsm_mge packet_recv;
+    /* RF_RADIO_ENC_HEAD enc_head; */
+    sound_stream_obj stream;
+    /* dec_obj *packet_recv.dec_obj; */
+    cbuffer_t dec_icbuf;
+    cbuffer_t ack_cbuf;
+    cbuffer_t cmd_cbuf;
+    /* volatile u32 dongle_event_status; */
+} dongle_mge_struct;
+static dongle_mge_struct dongle_mge;
+
+static u32 rf_recv_cnt = -1;
+static u32 dongle_dec_ibuff[1024 * 2 / 4];
+static u32 dongle_ack_buff[32 / 4];
+static u8 dongle_packet_cmd_buff[6 * 10];
+static u8 dongle_packet[16] ALIGNED(2);
+extern volatile u8 rf_radio_status;
+
 static void bt_usb_mic_hid_init()
 {
     u32 usb_class = HID_CLASS | MIC_CLASS;
@@ -98,7 +121,86 @@ static void bt_usb_mic_hid_init()
     usb_device_mode(0, usb_class);
 }
 
-extern volatile u8 rf_radio_status;
+static int dg_audio_send_api(u8 *data, u16 len)
+{
+    return vble_master_send_api(ATT_MSTR2SLV_RF_RADUI_IDX, data, len);
+}
+static int dg_check_status_api(void)
+{
+    int ble_status;
+    vble_ioctl(VBLE_IOCTL_GET_MASTER_STATUS, (int)&ble_status);
+    if (ble_status == 0x50) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+static int dg_get_valid_len_api(void)
+{
+    return get_buffer_vaild_len(0);
+}
+const audio2rf_send_mge_ops dongle_ops = {
+    .send = dg_audio_send_api,
+    .check_status = dg_check_status_api,
+    .get_valid_len = dg_get_valid_len_api,
+};
+
+
+u32 dongle_rf_loop(void)
+{
+    rev_fsm_mge *p_recv_ops = &dongle_mge.packet_recv;
+    u32 len = packet_cmd_get(p_recv_ops->cmd_pool, &dongle_packet[0], sizeof(dongle_packet));
+    if (0 == len) {
+        return 0;
+    }
+    log_info("get_cmd_msg! 0x%x:%d 0x%x:%d \n", &dongle_packet[1], dongle_packet[1], &dongle_packet[0], dongle_packet[0]);
+    RF_RADIO_ENC_HEAD *p_enc_head = &dongle_packet[2];
+    switch (dongle_packet[1]) {
+    case AUDIO2RF_START_PACKET:
+        log_info("MSG_RECEIVER_START");
+        if (0 == get_usb_mic_status()) {
+            break;
+        }
+        u8 ack;
+        if (RADIO_RECEIVING == rf_radio_status) {
+            ack = 1;
+            audio2rf_ack_cmd(AUDIO2RF_START_PACKET, &ack, sizeof(ack));
+            break;
+        }
+        //准备数据源，相当于开文件
+        log_info("dec_start!!!\n");
+        cbuf_init(&dongle_mge.dec_icbuf, &dongle_dec_ibuff[0], sizeof(dongle_dec_ibuff));
+        memset(&dongle_mge.stream, 0, sizeof(sound_stream_obj));
+        dongle_mge.stream.p_ibuf =  &dongle_mge.dec_icbuf;
+        dongle_mge.packet_recv.dec_obj = rf2audio_decoder_start(p_enc_head,  &dongle_mge.stream, MIC_AUDIO_RATE);
+        if (NULL != dongle_mge.packet_recv.dec_obj) {
+            //ack cmd
+            set_usb_mic_info(dongle_mge.packet_recv.dec_obj);
+            set_radio_status(RADIO_RECEIVING);
+            ack = 1;
+            audio2rf_ack_cmd(AUDIO2RF_START_PACKET, &ack, sizeof(ack));
+        } else {
+            ack = 0;
+            audio2rf_ack_cmd(AUDIO2RF_START_PACKET, &ack, sizeof(ack));
+        }
+
+        break;
+    case AUDIO2RF_STOP_PACKET:
+        log_info("************ RX PACK_STOP ************\n");
+        log_info("MSG_RECEIVER_STOP");
+        if (RADIO_IDLE != rf_radio_status) {
+            rf2audio_decoder_stop(dongle_mge.packet_recv.dec_obj, clr_usb_mic_info);
+            dongle_mge.packet_recv.dec_obj = NULL;
+            set_radio_status(RADIO_IDLE);
+        }
+
+        break;
+    }
+    return 0;
+}
+
+
+
 void dongle_app()
 {
     int msg[2];
@@ -112,46 +214,50 @@ void dongle_app()
 
     vble_master_init_api();
 
-    vble_master_recv_cb_register(ATT_SLV2MSTR_HID_IDX, rf_dongle_hid_callback);
-    vble_master_recv_cb_register(ATT_SLV2MSTR_RF_RADIO_IDX, rf_receiver_audio_callback);
+    memset(&dongle_mge, 0, sizeof(dongle_mge));
+
+    cbuf_init(&dongle_mge.cmd_cbuf, &dongle_packet_cmd_buff[0], sizeof(dongle_packet_cmd_buff));
+    dongle_mge.packet_recv.cmd_pool = &dongle_mge.cmd_cbuf;
+    vble_master_recv_cb_register(ATT_SLV2MSTR_HID_IDX,      &dongle_mge.packet_recv, rf_dongle_hid_callback);
+    vble_master_recv_cb_register(ATT_SLV2MSTR_RF_RADIO_IDX, &dongle_mge.packet_recv, unpack_data_deal);
+
     decoder_init();
 
+    cbuf_init(&dongle_mge.ack_cbuf, &dongle_ack_buff[0], sizeof(dongle_ack_buff));
+    rf_send_soft_isr_init(&dongle_mge.ack_cbuf);
+    audio2rf_send_register(&dongle_ops);
     u32 ble_status = 0;
+    u32 app_event = 0;
     log_info("rf_receiver\n");
 
     while (1) {
         err = get_msg(2, &msg[0]);
+        if (MSG_NO_ERROR != err) {
+            msg[0] = NO_MSG;
+            log_info("get msg err 0x%x\n", err);
+        }
+        dongle_rf_loop();
 
 #if RCSP_BTMATE_EN
         extern void app_update_start(int msg);
         app_update_start(msg[0]);
 #endif
 
-        vble_ioctl(VBLE_IOCTL_GET_MASTER_STATUS, (int)&ble_status);
-        if (((0x50 != ble_status) && (RADIO_RECEIVING == rf_radio_status)) || (RADIO_IDLE == rf_radio_status)) {
-            rf2audio_decoder_stop(STREAM_TO_USB);
-            if (RADIO_RECEIVING == rf_radio_status) {
-                set_radio_status(RADIO_IDLE);
-            }
+        /* vble_ioctl(VBLE_IOCTL_GET_MASTER_STATUS, (int)&ble_status); */
+        ble_status = dg_check_status_api();
+        if (((!ble_status) && (RADIO_RECEIVING == rf_radio_status))) {
+            rf2audio_decoder_stop(dongle_mge.packet_recv.dec_obj, clr_usb_mic_info);
+            dongle_mge.packet_recv.dec_obj = NULL;
+            set_radio_status(RADIO_IDLE);
         }
         switch (msg[0]) {
         case MSG_500MS:
             wdt_clear();
             break;
-
-        case MSG_RECEIVER_STOP://audio_data
-            rf2audio_decoder_stop(STREAM_TO_USB);
-            if (RADIO_RECEIVING == rf_radio_status) {
-                set_radio_status(RADIO_IDLE);
-            }
-            break;
-        case MSG_POWER:
-            log_info("POWER\n");
-            break;
         }
     }
 }
-int rf_dongle_hid_callback(u8 *rf_packet, u16 packet_len)
+int rf_dongle_hid_callback(void *priv, u8 *rf_packet, u16 packet_len)
 {
     u32 hid_key = *rf_packet;
     u8 usb_packet[packet_len + 1];
@@ -166,58 +272,6 @@ int rf_dongle_hid_callback(u8 *rf_packet, u16 packet_len)
     memset(&usb_packet[1], 0, (sizeof(usb_packet) - 1));
     usb_write_hid_key(usb_packet, packet_len + 1);
     return packet_len;
-}
-
-static u32 rf_recv_cnt = -1;
-static rev_fsm_mge dongle_recv_ops;
-static int dongle_receiver_audio(rev_fsm_mge *ops, u8 *buff, u16 packet_len)
-{
-    u32 stream_index = 0;
-    bool res = ar_trans_unpack(ops, buff, packet_len, &stream_index);
-    if (false == res) {
-        return 0;
-    }
-    /* JL_PORTA->DIR &= ~BIT(3); */
-    /* JL_PORTA->OUT |=  BIT(3); */
-
-    /* log_info("R cnt:%d type:%d len:%d", ops->packet_index, ops->type, sizeof(RF_RADIO_PACKET) + ops->length); */
-    /* log_info_hexdump((u8 *)packet, sizeof(RF_RADIO_PACKET)); */
-    /* log_info_hexdump((u8 *)((u32)packet + sizeof(RF_RADIO_PACKET)),  len); */
-    u8 *pdata = &buff[stream_index];
-
-
-    switch (ops->type) {
-    case AUDIO2RF_START_PACKET:
-        log_info("************ RX PACK_HEADER ************\n");
-        RF_RADIO_ENC_HEAD *p_enc_head = (RF_RADIO_ENC_HEAD *)pdata;
-        rf2audio_decoder_start(p_enc_head, STREAM_TO_USB, MIC_AUDIO_RATE);
-        rf_recv_cnt = ops->packet_index;
-        break;
-    case AUDIO2RF_DATA_PACKET:
-        if (0 == get_usb_mic_status()) {
-            break;
-        }
-        rf2audio_receiver_write_data(pdata, ops->length);
-        if (rf_recv_cnt == ops->packet_index - 1) {
-            rf_recv_cnt = ops->packet_index;
-        } else {
-            /* log_info("************ Recv index wrong!!! %d / %d\n", rf_recv_cnt, ops->packet_index); */
-        }
-        break;
-    case AUDIO2RF_STOP_PACKET:
-        log_info("************ RX PACK_STOP ************\n");
-        rf_recv_cnt = -1;
-        set_radio_status(RADIO_IDLE);
-        post_msg(1, MSG_RECEIVER_STOP);
-        break;
-    }
-
-    /* JL_PORTA->OUT &= ~BIT(3); */
-    return 0;
-}
-int rf_receiver_audio_callback(u8 *rf_packet, u16 packet_len)
-{
-    return dongle_receiver_audio(&dongle_recv_ops, rf_packet, packet_len);
 }
 
 

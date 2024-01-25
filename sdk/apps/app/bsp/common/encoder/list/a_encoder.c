@@ -62,6 +62,8 @@ u32 a_encode_api(void *p_file, void *input_func, void *output_func)
         return 0;
     }
     /******************************************/
+
+    memset(&enc_a_hdl, 0, sizeof(enc_obj));
     cbuf_init(&cbuf_ima_o, &obuf_ima_o[0], sizeof(obuf_ima_o));
     /* debug_puts("A\n"); */
     // debug_puts("B\n");

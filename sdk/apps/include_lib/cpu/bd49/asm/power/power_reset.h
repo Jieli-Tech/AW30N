@@ -1,7 +1,7 @@
 #ifndef __POWER_RESET_H__
 #define __POWER_RESET_H__
 
-#include "asm/power/pmu_flag.h"
+// #include "asm/power/pmu_flag.h"
 /*
  *复位原因包括两种
  1.系统复位源: p33 p11 主系统
@@ -102,7 +102,7 @@ void system_reset(enum RESET_FLAG flag);
 /**
  * @brief  复位的时候锁存模拟模块状态，例如GPIO
  */
-void latch_reset(struct boot_soft_flag_t *softflag);
+// void latch_reset(struct boot_soft_flag_t *softflag);
 
 /**
  * @brief 返回系统软复位源

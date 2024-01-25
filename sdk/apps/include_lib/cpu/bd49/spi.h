@@ -4,6 +4,10 @@
 #include "typedef.h"
 #include "ioctl.h"
 
+#define SUPPORT_SPI0  0   //是否使能SPI0
+#define SUPPORT_SPI1  1   //是否使能SPI1
+#define SUPPORT_SPI2  1   //是否使能SPI2
+
 typedef enum spi_index {
     HW_SPI0, //SPI0系统已使用
     HW_SPI1,
@@ -48,7 +52,6 @@ typedef struct spi_platform_data {
     u32 clk;  //波特率
 } spi_hardware_info;
 
-extern struct spi_platform_data spix_p_data_cache[HW_SPI_MAX_NUM];
 
 #define HW_SPI_MASTER_CS_EN 0//0:close,1:open
 #define HW_SPI_IRQ_PRIORITY 7//低到高:0~7

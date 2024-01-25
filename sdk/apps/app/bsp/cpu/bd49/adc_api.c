@@ -193,7 +193,7 @@ void adc_sample(enum AD_CH ch, u32 ie) //启动一次cpu模式的adc采样
     }
 
     JL_ADC->ADC_CON = adc_con;
-    if (adc_type_sel == ADC_CH_TYPE_PMU) {
+    if ((adc_type_sel == ADC_CH_TYPE_PMU) || (adc_type_sel == ADC_CH_TYPE_LPCTM)) {
         udelay(11); //10us
     }
     JL_ADC->ADC_CON |= BIT(2);//CAL_KST

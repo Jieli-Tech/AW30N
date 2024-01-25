@@ -96,6 +96,24 @@
             *(.opus_dec_data);
             PROVIDE(opus_buf_end = .);
         }
+        .d_ima {
+            . = a_buf_end;
+            PROVIDE(ima_buf_start = .);
+            *(.ima_dec_data);
+            PROVIDE(ima_buf_end = .);
+        }
+        .d_speex {
+            . = a_buf_end;
+			PROVIDE(speex_buf_start = .);
+			*(.speex_dec_data);
+			PROVIDE(speex_buf_end = .);
+		}
+		.d_sbc {
+			. = a_buf_end;
+			PROVIDE(sbc_buf_start = .);
+			*(.sbc_dec_data);
+			PROVIDE(sbc_buf_end = .);
+		}
         .d_midi {
             . = a_buf_end;
             PROVIDE(midi_buf_start = .);
@@ -125,7 +143,7 @@
             *(.rec_data)
             rec_data_end = .;
         }
-        .d_enc_ima {
+        .d_enc_a {
             . = rec_data_end;
             *(.enc_a_data)
             enc_a_data_end = .;
@@ -144,6 +162,21 @@
             . = rec_data_end;
             *(.enc_opus_data)
             enc_opus_data_end = .;
+        }
+        .d_enc_speex {
+            . = rec_data_end;
+            *(.enc_speex_data)
+            enc_speex_data_end = .;
+		}
+        .d_enc_ima {
+            . = rec_data_end;
+            *(.enc_ima_data)
+            enc_ima_data_end = .;
+        }
+        .d_enc_sbc {
+            . = rec_data_end;
+            *(.enc_sbc_data)
+            enc_sbc_data_end = .;
         }
 
         .d_linein {

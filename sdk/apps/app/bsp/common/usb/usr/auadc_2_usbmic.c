@@ -20,8 +20,12 @@ u16 mic_out_obuf[AUDIO_ADC_PACKET_SIZE * 2] SEC(.uac_var);
 cbuffer_t mic_run_cbuf SEC(.uac_var);
 u16 mic_run_obuf[AUDIO_ADC_PACKET_SIZE * 4] SEC(.uac_var);
 
-sound_out_obj *auadc_mic_open(u32 sr, u32 frame_len, u32 ch, void **ppsrc, void **pkick)
+sound_out_obj *auadc_mic_open(uac_mic_read *p_uac_read)
 {
+    u32 sr        = p_uac_read->self.sr;
+    u32 frame_len = p_uac_read->self.frame_len;
+    u32 ch        = p_uac_read->self.ch;
+    void *p_src = NULL;
     u32 err = 0;
     log_info("AUADC MIC OPEN");
     cbuf_init(&mic_out_cbuf, &mic_out_obuf[0], sizeof(mic_out_obuf));
@@ -38,11 +42,12 @@ sound_out_obj *auadc_mic_open(u32 sr, u32 frame_len, u32 ch, void **ppsrc, void 
     p_curr_sound = link_src_sound(
                        p_curr_sound,
                        &mic_run_cbuf,
-                       (void **)ppsrc,
+                       (void **)&p_src,
                        sr,
                        sr,
                        1
                    );
+    p_uac_read->p_src = p_src;
     /* uac_sync_init(&uac_mic_sync, sr); */
     //*/
 #endif

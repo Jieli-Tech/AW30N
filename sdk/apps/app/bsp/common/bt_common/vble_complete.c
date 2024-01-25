@@ -13,7 +13,8 @@
 typedef struct _vble_chn_mge {
     u16 att_handle;
     u16 reserved;
-    void (*callback)(u8 *, u16);
+    void *priv;
+    void (*callback)(void *, u8 *, u16);
 } vble_attchn_mge;
 
 vble_attchn_mge vble_slv2mstr_info[] = {
@@ -58,7 +59,8 @@ void vble_master_receive(u16 att_handle, u8 *recv_data, u16 len)
 
     /* log_info("vble recv att_handle:0x%x\n", vble_slv2mstr_info[index].att_handle); */
     if (NULL != vble_slv2mstr_info[index].callback) {
-        vble_slv2mstr_info[index].callback(recv_data, len);
+        void *priv = vble_slv2mstr_info[index].priv;
+        vble_slv2mstr_info[index].callback(priv, recv_data, len);
     }
 }
 
@@ -89,26 +91,29 @@ void vble_slave_receive(u16 att_handle, u8 *recv_data, u16 len)
 
     log_info("vble recv att_handle:0x%x\n", vble_mstr2slv_info[index].att_handle);
     if (NULL != vble_mstr2slv_info[index].callback) {
-        vble_mstr2slv_info[index].callback(recv_data, len);
+        void *priv = vble_mstr2slv_info[index].priv;
+        vble_mstr2slv_info[index].callback(priv, recv_data, len);
     }
 }
 
 /*----------------------------------------------------------------------------*/
 /**@brief   注册蓝牙主机接收从机att发送通道对应的接收回调函数
    @param   slv_att_idx     :蓝牙从机发送的att通道号
+            priv            :私有参数
             callback_fun    :回调函数
    @return  0:成功  -1:失败
    @author
    @note    从机通过该att通道发送数据,主机会调用该注册的回调函数
 */
 /*----------------------------------------------------------------------------*/
-int vble_master_recv_cb_register(u32 slv_att_idx, void *callback_fun)
+int vble_master_recv_cb_register(u32 slv_att_idx, void *priv, void *callback_fun)
 {
     if (slv_att_idx >= ARRAY_SIZE(vble_slv2mstr_info)) {
         log_error("slv_att_idx is bigger than Array_size!");
         return -1;
     }
     local_irq_disable();
+    vble_slv2mstr_info[slv_att_idx].priv = priv;
     vble_slv2mstr_info[slv_att_idx].callback = callback_fun;
     local_irq_enable();
     return 0;
@@ -116,19 +121,21 @@ int vble_master_recv_cb_register(u32 slv_att_idx, void *callback_fun)
 /*----------------------------------------------------------------------------*/
 /**@brief   注册蓝牙从机att通道对应的接收回调函数
    @param   mstr_att_idx    :蓝牙主机发送的att通道号
+            priv            :私有参数
             callback_fun    :回调函数
    @return  0:成功  -1:失败
    @author
    @note    主机通过该att通道发送数据,从机会调用该注册的回调函数
 */
 /*----------------------------------------------------------------------------*/
-int vble_slave_recv_cb_register(u32 mstr_att_idx, void *callback_fun)
+int vble_slave_recv_cb_register(u32 mstr_att_idx, void *priv, void *callback_fun)
 {
     if (mstr_att_idx >= ARRAY_SIZE(vble_mstr2slv_info)) {
         log_error("mstr_att_idx is bigger than Array_size!");
         return -1;
     }
     local_irq_disable();
+    vble_mstr2slv_info[mstr_att_idx].priv = priv;
     vble_mstr2slv_info[mstr_att_idx].callback = callback_fun;
     local_irq_enable();
     return 0;

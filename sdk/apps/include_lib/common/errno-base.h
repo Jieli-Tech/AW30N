@@ -73,6 +73,8 @@
 #define E_DECODER       (0X8100 + 1)
 #define E_PARG_NULL     (0x8100 + 2)
 #define E_ENC_FORMAT    (0x8100 + 3)
+#define E_ENC_NOHDL     (0x8100 + 4)
+#define E_ENC_FUNC_NULL  (0x8100 + 5)
 
 #define E_AMEM_OVERFLOW    (0x8140 + 1)
 #define E_AMEM_NOINDEX     (0x8140 + 2)
@@ -113,6 +115,11 @@
 #define E_AU2RF_RF_BUSY        (0x8500 + 0x02)
 #define E_AU2RF_SNED_HEAD_ERR  (0x8500 + 0x03)
 #define E_AU2RF_SNED_DATA_ERR  (0x8500 + 0x04)
+#define E_AU2RF_SNED_QUEUE_FULL  (0x8500 + 0x05)
+
+#define E_PACKET_FULL      (0x8520 + 0x01)
+#define E_PACKET_WRITE     (0x8520 + 0x02)
+#define E_PACKET_NULL      (0x8520 + 0x01)
 
 #define E_F1A_INDEX	    (0X9000 + 0)
 #define E_F1A_DBUF	    (0X9000 + 1)
@@ -159,6 +166,21 @@
 #define E_OPUS_DBUF     (0X9070 + 1)
 #define E_OPUS_FORMAT   (0X9070 + 2)
 #define E_OPUS_TYPE     (0X9070 + 3)
+
+#define E_IMA_INDEX		(0X9080 + 0)
+#define E_IMA_DBUF		(0X9080 + 1)
+#define E_IMA_FORMAT  	(0X9080 + 2)
+#define E_IMA_TYPE		(0X9080 + 3)
+
+#define E_SPEEX_INDEX	(0X9090 + 0)
+#define E_SPEEX_DBUF	(0X9090 + 1)
+#define E_SPEEX_FORMAT 	(0X9090 + 2)
+#define E_SPEEX_TYPE	(0X9090 + 3)
+
+#define E_SBC_INDEX		(0X90A0 + 0)
+#define E_SBC_DBUF		(0X90A0 + 1)
+#define E_SBC_FORMAT 	(0X90A0 + 2)
+#define E_SBC_TYPE		(0X90A0 + 3)
 
 #define E_ADCANA_PARA   (0xA000 + 1)
 #define E_ADC_SR        (0xA000 + 2)

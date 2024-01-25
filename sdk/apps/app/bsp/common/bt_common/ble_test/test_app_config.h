@@ -35,13 +35,14 @@
 #endif
 #define CONFIG_BT_GATT_CONNECTION_NUM   1 //(test 应用仅支持1条链路主从切换)(CONFIG_BT_GATT_SERVER_NUM + CONFIG_BT_GATT_CLIENT_NUM) //配置连接个数
 #define CONFIG_BLE_HIGH_SPEED           1 //BLE提速模式: 使能DLE+2M, payload要匹配pdu的包长
-#define CONFIG_BLE_CONNECT_SLOT         0 //BLE高回报率设置
+#define CONFIG_BLE_CONNECT_SLOT         0 //BLE高回报率设置, 支持私有协议
 #define PHY_CODE_TEST                   0 //CODED s2 s8认证
 #if (PHY_CODE_TEST)
 #undef CONFIG_BLE_HIGH_SPEED
 #define CONFIG_BLE_HIGH_SPEED           0
 #endif
 
+#define CONFIG_BT_LITTLE_BUFFER_MODE    1 //配置蓝牙小buffer模式,数据响应更快,由应用层做缓存。优点：收发响应快，应用层可做丢数(BT ACL不支持丢数)
 
 
 #define SNIFF_MODE_RESET_ANCHOR         0
