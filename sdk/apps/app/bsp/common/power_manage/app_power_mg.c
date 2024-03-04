@@ -22,8 +22,8 @@ static u16 vbat_voltage;
 
 static void lvd_warning_init(void)
 {
-    extern u16 get_lvd_voltage(void);
-    u16 lvd_voltage = get_lvd_voltage();
+    extern u32 get_lvd_vol(void);
+    u32 lvd_voltage = get_lvd_vol();
     lvd_warning_voltage = lvd_voltage + 300;
     /* log_info("lvd_warning_voltage : %d\n", lvd_warning_voltage); */
 }

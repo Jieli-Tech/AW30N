@@ -80,6 +80,11 @@
 #define TCFG_USER_BLE_ENABLE            ENABLE_THIS_MOUDLE
 #define TCFG_USER_EDR_ENABLE            DISABLE_THIS_MOUDLE
 
+#define  SET_BLE_TX_POWER_LEVEL         (5)//0dBm
+/* #define  SET_BLE_TX_POWER_LEVEL         (6)//4dBm */
+/* #define  SET_BLE_TX_POWER_LEVEL         (7)//6dBm */
+
+
 //lib_btstack_config.c
 #define TCFG_BT_SUPPORT_AAC             DISABLE_THIS_MOUDLE
 //profile
@@ -354,8 +359,7 @@ typedef struct {
                         SFR(JL_CLOCK->PRP_CON2, 8, 1, 1); \
                         asm("csync"); \
                         bt_pll_para(48000000, 48000000, 0, 0); \
-                        extern u8 bt_get_pwr_max_level(void); \
-                        bt_max_pwr_set(10, 5, 8, bt_get_pwr_max_level());
+                        bt_max_pwr_set(10, 5, 8, SET_BLE_TX_POWER_LEVEL);//0dBm
 
 int ble_priv_audio_send_api(u8 *data, u32 len);
 void ble_priv_audio_recv_cb_register(int (*callback_func)(u8 *, u16));

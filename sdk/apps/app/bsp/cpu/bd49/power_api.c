@@ -53,12 +53,6 @@ void sleep_time_compensate_callback(void *priv, u32 usec)
 
 }
 
-#define BD49_VLVD_BASE_VOL  1800
-u16 get_lvd_voltage(void)
-{
-    return BD49_VLVD_BASE_VOL + 100 * ((P3_VLVD_CON >> 3) & 0x7);
-}
-
 bool is_port_edge_wkup_source(void)
 {
     extern u8 is_wakeup_source(enum WAKEUP_REASON index);

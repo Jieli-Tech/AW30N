@@ -27,13 +27,15 @@
 #include "log.h"
 
 /*对应bt的tx功率挡位,SDK默认使用接近 0 dbm 功率挡位*/
-#if (defined CONFIG_CPU_BR30)
-#define  SET_BLE_TX_POWER_LEVEL        (4)
-#elif (defined CONFIG_CPU_BR34)
-#define  SET_BLE_TX_POWER_LEVEL        (7)
-#else
-#define  SET_BLE_TX_POWER_LEVEL        (6)
-#endif
+/* #if (defined CONFIG_CPU_BR30) */
+/* #define  SET_BLE_TX_POWER_LEVEL        (4) */
+/* #elif (defined CONFIG_CPU_BR34) */
+/* #define  SET_BLE_TX_POWER_LEVEL        (7) */
+/* #else */
+/* #define  SET_BLE_TX_POWER_LEVEL        (5)//0dBm */
+/* #<{(| #define  SET_BLE_TX_POWER_LEVEL        (6)//4dBm |)}># */
+/* #<{(| #define  SET_BLE_TX_POWER_LEVEL        (7)//6dBm |)}># */
+/* #endif */
 
 void lp_winsize_init(struct lp_ws_t *lp);
 /* void bt_max_pwr_set(u8 pwr, u8 pg_pwr, u8 iq_pwr, u8 ble_pwr); */
@@ -272,10 +274,24 @@ void cfg_file_parse(u8 idx)
     bt_max_pwr_set(app_var.rf_power, 5, 8, SET_BLE_TX_POWER_LEVEL);
     log_info("rf config:%d\n", app_var.rf_power);
 #else
-    extern u8 bt_get_pwr_max_level(void);
     app_var.rf_power = 10;
-    bt_max_pwr_set(app_var.rf_power, 5, 8, bt_get_pwr_max_level());
-    log_info("rf config:%d\n", bt_get_pwr_max_level());
+    bt_max_pwr_set(app_var.rf_power, 5, 8, SET_BLE_TX_POWER_LEVEL);
+
+    switch (SET_BLE_TX_POWER_LEVEL) {
+    case 5:
+        log_info("rf config ble power :0 dBm\n");
+        break;
+    case 6:
+        log_info("rf config ble power :4 dBm\n");
+        break;
+    case 7:
+        log_info("rf config ble power :6 dBm\n");
+        break;
+
+    default:
+        log_info("rf config :%d \n", SET_BLE_TX_POWER_LEVEL);
+        break;
+    }
 
 #endif
     /* g_printf("rf config:%d\n", app_var.rf_power); */

@@ -146,8 +146,13 @@ typedef enum {
     VLVD_SEL_25V,
 } LVD_VOL;
 
+#define VLVD_LOWEST_VOL 1800
+
 void lvd_en(u8 en);
 void lvd_config(LVD_VOL vol, u8 expin_en, LVD_MODE mode, void (*callback));
+u32 get_lvd_en(void);
+u32 get_lvd_level(void);
+u32 get_lvd_vol(void);
 
 //
 //

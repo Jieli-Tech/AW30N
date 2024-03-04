@@ -16,7 +16,10 @@
 #define LOG_TAG             "[sbc_api]"
 #include "log.h"
 
-#define DEC_SBC_TYPE 0		//决定解码格式0: SBC； 1: MSBC
+#define DEC_SBC    0
+#define DEC_MSBC   1
+#define DEC_USBC   2
+#define DEC_SBC_TYPE 	DEC_SBC		//决定解码格式 0: SBC; 1: MSBC 2：USBC
 
 #define SBC_OBUF_SIZE (DAC_DECODER_BUF_SIZE * 4)
 #define SBC_KICK_SIZE (SBC_OBUF_SIZE - (SBC_DEC_OUTPUT_MAX_SIZE * 2))
@@ -24,7 +27,7 @@
 dec_obj dec_sbc_hld;
 cbuffer_t cbuf_sbc				  	 AT(.sbc_dec_data);
 u32 obuf_sbc[SBC_OBUF_SIZE / 4]		 AT(.sbc_dec_data);
-u32 sbc_decode_buff[0x1354 / 4] 		 AT(.sbc_dec_data);	//受input、output大小影响
+u32 sbc_decode_buff[0x1360 / 4] 		 AT(.sbc_dec_data);	//受input、output大小影响
 
 struct if_decoder_io sbc_dec_io0 	 AT(.sbc_dec_data);
 
@@ -34,7 +37,8 @@ u32 sbc_decode_api(void *strm, void **p_dec, void *p_dp_buf)
 {
     log_info("sbc_decode_api");
     dec_data_stream *p_strm = strm;
-    u32 buff_len, i = 0;
+    u32 buff_len;
+    int ret = 0;
     decoder_ops_t *ops;
     memset(&dec_sbc_hld, 0, sizeof(dec_obj));
     dec_sbc_hld.type = D_TYPE_SBC;
@@ -51,7 +55,6 @@ u32 sbc_decode_api(void *strm, void **p_dec, void *p_dp_buf)
     sbc_dec_io0.priv      = &dec_sbc_hld;
 
     cbuf_init(&cbuf_sbc, &obuf_sbc[0], sizeof(obuf_sbc));
-    /* debug_puts("A\n"); */
     sound_stream_obj *psound_strm = p_strm->strm_source;
     dec_sbc_hld.p_file       = psound_strm;
     dec_sbc_hld.sound.p_obuf = &cbuf_sbc;
@@ -65,7 +68,7 @@ u32 sbc_decode_api(void *strm, void **p_dec, void *p_dp_buf)
         psound_strm->kick_thr = 80;
     }
     /******************************************/
-    ops->open(SBC_CAL_BUF, &sbc_dec_io0, NULL);         //传入io接口，说明如下
+    ops->open(SBC_CAL_BUF, &sbc_dec_io0, NULL);
 
     AUDIO_DEC_CH_OPUT_PARA sbcset;
     sbcset.mode = 3;
@@ -76,9 +79,37 @@ u32 sbc_decode_api(void *strm, void **p_dec, void *p_dp_buf)
     AUDIO_DECODE_PARA sbco_m;   //设置是否完全输出方式.
     sbco_m.mode = 1;
     ops->dec_confing(SBC_CAL_BUF, SET_DECODE_MODE, &sbco_m);
+    /******************************************/
 
-#if DEC_SBC_TYPE
-    ops->dec_confing(SBC_CAL_BUF, SET_FORMAT_MSBC, &sbco_m);	//msbc时需要配置此参数
+#if (DEC_SBC_TYPE == DEC_MSBC)
+    /* msbc */
+    ret = ops->dec_confing(SBC_CAL_BUF, SET_FORMAT_MSBC, &sbco_m);	//msbc时需要配置此参数
+    if (ret != 0) {
+        log_info("init msbc err\n");
+    } else {
+        log_info("init msbc succ\n");
+    }
+#endif
+
+#if (DEC_SBC_TYPE == DEC_USBC)
+    /* usbc	 */
+    /* usbc解码的时候需要配置和编码一样的参数 */
+    USBC_DECODE_PARA usbc_para;
+    usbc_para.sr = 16000 ;
+    usbc_para.bitpool = 31;
+    usbc_para.subbands = 8;
+    usbc_para.blocks = 16;
+    usbc_para.snr = 1;
+    usbc_para.nch = 1;
+    usbc_para.joint = 0;
+    usbc_para.dual = 1;
+
+    ret = ops->dec_confing(SBC_CAL_BUF, SET_FORMAT_USBC, &usbc_para);  	//usbc时需要配置此参数
+    if (ret != 0) {
+        log_info("init usbc err\n");
+    } else {
+        log_info("init usbc succ\n");
+    }
 #endif
 
     *p_dec = (void *)&dec_sbc_hld;

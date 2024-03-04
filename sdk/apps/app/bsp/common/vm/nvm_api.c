@@ -27,8 +27,24 @@ void *nvm_buf_for_lib(NEW_VM_OBJ *p_nvm, u32 *p_len)
 
 #define NVM_CACHE_ENABLE    1
 #define NVM_CACHE_NUMBER    6
+
+/******************************************************
+ * 变量：config_vm_multiple_read_en
+ * 用法：此变量在vm读时会调用
+ * 作用：是否支持单个id分次读
+ * 详细内容可见SDK文档VM掉电存储详细说明章节
+ * */
 const bool config_vm_multiple_read_en = 0;
-const bool config_vm_erasure_after_format_en = 0;
+
+/******************************************************
+ * 变量：config_vm_erasure_after_format_en
+ * 用法：此变量在vm格式整理时会调用到
+ * 作用：在vm格式整理后，原半区的数据不会立即擦除，而是等到系统空闲时才会被擦除
+ * 常见场景1：没有开启该配置，在音乐模式下播放歌曲时，调整音量记忆到vm，此时遇上格式整理，整理后原半区数据依旧存在(即旧数据)，芯片若此时断电重启，从vm获取到的音量还是旧数据，不是最新数据,因为系统在断电前没有进入过空闲状态把旧数据擦除掉
+ * 常见场景2：开启该配置后，在音乐模式下播放歌曲中途，若遇上格式整理需要擦除flash，则会造成卡音现象
+ * 详细内容可见SDK文档VM掉电存储详细说明章节
+ * */
+const bool config_vm_erasure_after_format_en = 1;
 
 #if NVM_CACHE_ENABLE
 

@@ -4,6 +4,7 @@
 #include "key.h"
 #include "audio.h"
 #include "power_api.h"
+#include "rf_pa_port.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[rf_radio]"
@@ -153,6 +154,9 @@ static void rf_radio_app_init(void)
     /*     vble_master_recv_cb_register(ATT_SLV2MSTR_RF_RADIO_IDX, rf_receiver_deal); */
     /* #elif TESTE_BLE_EN */
     ble_clock_init();
+#if RF_PA_EN
+    rf_pa_io_sel();
+#endif
 #if RADIO_DEFAULT_ROLE_MASTER
     vble_smpl_master_select();
 #else

@@ -104,6 +104,14 @@
 #define TCFG_USB_COMM                       2//USB通信
 #define TCFG_COMM_TYPE                      TCFG_USB_COMM//暂时只支持USB通信调音
 
+/*---------RF PA----------------*/
+#define RF_PA_EN     						DISABLE
+#define RF_PA_POWER_SUPPLY      			DISABLE
+#define RF_PA_POWER_SUPPLY_IO      			IO_PORTB_02
+#define RF_PA_POWER_RX_IO      				IO_PORTA_13
+#define RF_PA_POWER_TX_IO      				IO_PORTA_12
+
+
 /*---------------UPDATE---------------------*/
 #define TFG_DEV_UPGRADE_SUPPORT             0//ENABLE
 #define TFG_UPGRADE_FILE_NAME               "/update.ufw"

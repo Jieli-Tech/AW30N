@@ -259,6 +259,8 @@
 <Unit filename="apps/app/bsp/common/audio_rf_trans/audio_rf_mge.h" />
 <Unit filename="apps/app/bsp/common/audio_rf_trans/rf2audio_recv.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/audio_rf_trans/rf2audio_recv.h" />
+<Unit filename="apps/app/bsp/common/audio_rf_trans/rf_pa_port.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/common/audio_rf_trans/rf_pa_port.h" />
 <Unit filename="apps/app/bsp/common/audio_rf_trans/rf_send_queue.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/audio_rf_trans/rf_send_queue.h" />
 <Unit filename="apps/app/bsp/common/audio_rf_trans/trans_packet.c"><Option compilerVer="CC"/></Unit>

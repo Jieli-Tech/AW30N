@@ -14,6 +14,7 @@
 
 extern const vble_smpl_role_ops ble_slave_ops;
 extern const vble_smpl_role_ops ble_master_ops;
+extern void user_sele_dut_mode(bool set);
 
 #if (SLAVE)
 const vble_smpl_role_ops *vble_smpl_ops = &ble_slave_ops;
@@ -30,11 +31,15 @@ void set_vble_smpl_role_ops(const vble_smpl_role_ops *ops)
 
 void vble_smpl_init(void)
 {
-    /* extern u8 bt_get_pwr_max_level(void); */
-    /* bt_max_pwr_set(10, 5, 8, bt_get_pwr_max_level()); */
+    /* bt_max_pwr_set(10, 5, 8, SET_BLE_TX_POWER_LEVEL); */
+#if BLE_DUT_TEST
+    user_sele_dut_mode(1);
+#endif
 
     btstack_init();
+#if !BLE_DUT_TEST
     vble_smpl_ops->init();
+#endif
 }
 
 void vble_smpl_exit(void)

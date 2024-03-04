@@ -55,8 +55,7 @@ void ble_module(void)
     user_sele_dut_mode(1);
 #endif
 
-    extern u8 bt_get_pwr_max_level(void);
-    bt_max_pwr_set(10, 5, 8, bt_get_pwr_max_level());
+    bt_max_pwr_set(10, 5, 8, SET_BLE_TX_POWER_LEVEL);
 
     btstack_init();
 
@@ -122,14 +121,20 @@ void bt_init_api(void)
 
     bt_pll_para(48000000, 48000000, 0, 0);
 
-    extern u8 bt_get_pwr_max_level(void);
-    bt_max_pwr_set(10, 5, 8, bt_get_pwr_max_level());
+#if BLE_DUT_TEST
+    user_sele_dut_mode(1);
+#endif
+
+    bt_max_pwr_set(10, 5, 8, SET_BLE_TX_POWER_LEVEL);
 
     btstack_init();
+
+#if !BLE_DUT_TEST
 #if MASTER
     bt_ble_master_init();
 #elif SLAVE
     bt_ble_slave_init();
+#endif
 #endif
 
     //btstack task 使用软中断执行

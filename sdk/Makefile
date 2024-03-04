@@ -271,6 +271,7 @@ c_SRC_FILES := \
 	apps/app/bsp/common/audio_rf_trans/audio2rf_send.c \
 	apps/app/bsp/common/audio_rf_trans/audio_rf_mge.c \
 	apps/app/bsp/common/audio_rf_trans/rf2audio_recv.c \
+	apps/app/bsp/common/audio_rf_trans/rf_pa_port.c \
 	apps/app/bsp/common/audio_rf_trans/rf_send_queue.c \
 	apps/app/bsp/common/audio_rf_trans/trans_packet.c \
 	apps/app/bsp/common/audio_rf_trans/trans_unpacket.c \

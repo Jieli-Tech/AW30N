@@ -248,3 +248,8 @@ const char log_tag_const_i_SYS_TMR AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
 const char log_tag_const_d_SYS_TMR AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
 const char log_tag_const_e_SYS_TMR AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
 const char log_tag_const_c_SYS_TMR AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
+
+const char log_tag_const_i_PERI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(0);
+const char log_tag_const_d_PERI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
+const char log_tag_const_e_PERI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);
+const char log_tag_const_c_PERI AT(.LOG_TAG_CONST) = CONFIG_DEBUG_LIBS(1);

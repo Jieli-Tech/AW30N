@@ -10,6 +10,14 @@
 #define SET_DECODE_MODE   0x80
 #define SET_DEC_CH_MODE   0x81       //配置声道模式参数
 #define SET_FORMAT_MSBC   0x88
+#define SET_FORMAT_USBC   0x89       //usbc模式,同时设置参数.  检查返回值为0,设置成功.
+
+
+//ERROR_CODE for sbc.m dec
+#define ERR_ERROR_NODATA         0x60    //本轮run读不到数据.
+#define ERR_CANNOT_SYNC_TSLOOP   0x61    //本轮没有找到同步字
+#define ERR_FRAMELEN_GT_BUFFSZ   0x62    //压缩帧长超出范围
+//流媒体解码过程返回错误忽略 继续解码.
 
 
 //typedef struct sbc_decoder_io {
@@ -46,6 +54,33 @@ typedef struct _AUDIO_DEC_CH_OPUT_PARA {
 // typedef struct _AUDIO_DECODE_PARA {
 // u32 mode;
 // } AUDIO_DECODE_PARA;   //设置是否完全输出方式.
+
+typedef struct _USBC_DECODE_PARA {      //SET_FORMAT_USBC
+    u32 sr;      //samplerate: 16000/32000/44100/48000.
+    u8 bitpool;  //[4,15*subbands]  .bitpool影响码率.
+    u8 subbands; //4|8   子带数
+    u8 blocks;   //[4,16] .块长度.
+    u8 snr;      //0|1   影响内部码流分配.  allocation.
+    u8 nch;      //1|2 channels.
+    u8 joint;    //0|1 joint_stereo  for nch=2.
+    u8 dual;     //0|1 dualchannel   for nch=2,设1码率加倍.    joint和dual不能同时为1.
+} USBC_DECODE_PARA;   //设置usbc解码参数.
+
+//typedef struct _SBC_ENC_PARA_
+//{
+//	u32 sr;      //samplerate: 16000/32000/44100/48000.
+//	u8 msbc;     //设为1,格式为msbc. 其他参数失效.  msbc:sr=16000,nch=1,bitpool=26,subbands=8,blocks=15.
+//	u8 bitpool;  //[4,15*subbands]  .bitpool影响码率.  蓝牙常用单声道35  双声道51|53  at subbands=8.   subbands=4时参数应减半.
+//	u8 subbands; //4|8   子带数.
+//	u8 blocks;   //4/8/12/16  .块长度.
+//	u8 snr;      //0|1   影响内部码流分配.  allocation.
+//	u8 nch;      //1|2 channels.
+//	u8 joint;    //0|1 joint_stereo  for nch=2.
+//	u8 dual;     //0|1 dualchannel   for nch=2,设1码率加倍.    joint和dual不能同时为1.
+//	//每帧每个声道输入pcm点数为  subbands*blocks.     GET_ENC_PCMPOINT_PERCH
+//}SBC_ENC_PARA;
+////add msbc = 2 for mono_usbc,   blocks参数支持4--16.  fixed nch=1,joint/dual失效.
+
 
 
 
@@ -137,10 +172,11 @@ extern audio_decoder_ops *get_sbc_stdec_ops();
 //#pragma bss_seg(".sbc_stddec.data.bss")
 //#pragma data_seg(".sbc_stddec.data")
 //#pragma const_seg(".sbc_stddec.text.const")
-//#pragma code_seg(".sbc_stddec..text")
+//#pragma code_seg(".sbc_stddec.text")
 
 
 
 #endif
+
 
 
