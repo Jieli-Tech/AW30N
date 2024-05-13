@@ -3,6 +3,7 @@
 #include "sys_timer.h"
 #include "key_ir.h"
 #include "key.h"
+#include "tick_timer_driver.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[ir_encode]"
@@ -58,7 +59,7 @@ static struct irft_data *ir_data;
 static struct irft_data _ir_data;
 static u32 irflt_get_jiffies()
 {
-    return NEC_JIFFIES_MS * jiffies;
+    return NEC_JIFFIES_MS * maskrom_get_jiffies();
 }
 static u32 irflt_pulse_check(u32 us)
 {

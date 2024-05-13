@@ -1,6 +1,8 @@
 #include "app_config.h"
 #include "includes.h"
+#ifdef BLE_EN
 #include "bd49/bt_includes.h"
+#endif
 #include "jiffies.h"
 #include "tick_timer_driver.h"
 #include "device_drive.h"

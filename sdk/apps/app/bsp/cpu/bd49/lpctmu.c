@@ -211,9 +211,12 @@ void lpctmu_udma_isr(void)
 }
 
 #else
-
-void lpctmu_udma_isr_cbfunc(enum dma_int_type int_type)
+#define LPCTMU_DMA_SEL DMA3
+void lpctmu_udma_isr_cbfunc(enum dma_index channel, enum dma_int_type int_type)
 {
+    if (channel != LPCTMU_DMA_SEL) {
+        return;
+    }
     /* putchar('$'); */
     /* putchar('0' + int_type); */
     /* putchar('\n'); */
@@ -278,7 +281,7 @@ void lpctmu_udma_init(void)
     log_info("JL_DMAGEN->JL_DMAGEN_CH3.SEL1 = 0x%x", JL_DMAGEN->JL_DMAGEN_CH3.SEL1);
 #else
 
-    u8 dma_idx = DMA3;
+    u8 dma_idx = LPCTMU_DMA_SEL;
 __check_start:
     if (dma_busy_check(dma_idx)) {
         if (dma_idx) {

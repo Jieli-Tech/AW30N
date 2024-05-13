@@ -19,7 +19,11 @@ define RUN_APP_DONGLE   0
 -
 -
 if RUN_APP_CUSTOM
+#ifdef HAS_RF_RADIO_MODE
 -
+** 全双工对讲机功能开关（ram使用比较紧张，需要关掉部分算法）
+define FULL_DUPLEX_RADIO 0
+#endif
 -
 ** A格式解码
 #ifdef HAS_A_DECODER
@@ -268,9 +272,14 @@ define NORFS_EN 1
 define NORFS_EN 0
 #endif
 
+#if defined (HAS_CONFIG_APP_OTA_EN) && (HAS_CONFIG_APP_OTA_EN)
 -
 ** 手机APP应用升级
 define CONFIG_APP_OTA_EN 0
+#elif defined (HAS_CONFIG_APP_OTA_EN) && (!HAS_CONFIG_APP_OTA_EN)
+define CONFIG_APP_OTA_EN 0
+#else
+#endif
 
 -
 ** APP应用使能
@@ -412,12 +421,13 @@ define ENCODER_SBC_EN  1
 define ENCODER_SBC_EN  0
 #endif
 
+#if defined (HAS_CONFIG_APP_OTA_EN) && (HAS_CONFIG_APP_OTA_EN)
 -
 ** 手机APP应用升级
-#ifdef HAS_CONFIG_APP_OTA_EN
 define CONFIG_APP_OTA_EN 1
-#else
+#elif defined (HAS_CONFIG_APP_OTA_EN) && (!HAS_CONFIG_APP_OTA_EN)
 define CONFIG_APP_OTA_EN 0
+#else
 #endif
 
 -
@@ -453,52 +463,58 @@ define SYS_TIMER_EN   1
 define SYS_TIMER_EN   0
 #endif
 
+#if defined (HAS_BLE_EN) && (HAS_BLE_EN)
 -
 ** 蓝牙BLE功能使能
-#ifdef HAS_BLE_EN
 define BLE_EN   1
-#else
+#elif defined (HAS_BLE_EN) && (!HAS_BLE_EN)
 define BLE_EN   0
+#else
 #endif
 
+#if defined (HAS_UPDATE_V2_EN) && (HAS_UPDATE_V2_EN)
 -
 ** 升级功能使能
-#ifdef HAS_UPDATE_V2_EN
 define UPDATE_V2_EN   1
+#elif defined (HAS_UPDATE_V2_EN) && (!HAS_UPDATE_V2_EN)
+define UPDATE_V2_EN   0
 #else
-define UPDATE_V2_EN 0
 #endif
 
+#if defined (HAS_TESTBOX_UART_UPDATE_EN) && (HAS_TESTBOX_UART_UPDATE_EN)
 -
 ** 充电仓/蓝牙测试盒单线串口升级
-#ifdef HAS_TESTBOX_UART_UPDATE_EN
+define TESTBOX_UART_UPDATE_EN 0
+#elif defined (HAS_TESTBOX_UART_UPDATE_EN) && (!HAS_TESTBOX_UART_UPDATE_EN)
 define TESTBOX_UART_UPDATE_EN 0
 #else
-define TESTBOX_UART_UPDATE_EN 0
 #endif
 
+#if defined (HAS_TESTBOX_BT_UPDATE_EN) && (HAS_TESTBOX_BT_UPDATE_EN)
 -
 ** 测试盒蓝牙升级
-#ifdef HAS_TESTBOX_BT_UPDATE_EN
 define TESTBOX_BT_UPDATE_EN 1
-#else
+#elif defined (HAS_TESTBOX_BT_UPDATE_EN) && (!HAS_TESTBOX_BT_UPDATE_EN)
 define TESTBOX_BT_UPDATE_EN 0
+#else
 #endif
 
+#if defined (HAS_SD_UPDATE_EN) && (HAS_SD_UPDATE_EN)
 -
 ** SD卡设备升级
-#ifdef HAS_SD_UPDATE_EN
 define SD_UPDATE_EN 1
-#else
+#elif defined (HAS_SD_UPDATE_EN) && (!HAS_SD_UPDATE_EN)
 define SD_UPDATE_EN 0
+#else
 #endif
 
+#if defined (HAS_UDISK_UPDATE_EN) && (HAS_UDISK_UPDATE_EN)
 -
 ** U盘设备升级
-#ifdef HAS_UDISK_UPDATE_EN
 define UDISK_UPDATE_EN 1
-#else
+#elif defined (HAS_UDISK_UPDATE_EN) && (!HAS_UDISK_UPDATE_EN)
 define UDISK_UPDATE_EN 0
+#else
 #endif
 
 -

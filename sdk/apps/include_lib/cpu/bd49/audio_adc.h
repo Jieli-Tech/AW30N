@@ -165,4 +165,37 @@ void set_auadc_aux_pga(AUDIO_MICPGA_G pga);
 #endif
 
 
+#include "audio_link/audio_link.h"
+extern void fill_audio_adc_fill_phy(u8 *buf, u32 len);
+
+
+#define AUIN_USE_ADC     	1
+#define AUIN_USE_ALINK      2
+#define AUDIO_ADC_TYPE      AUIN_USE_ADC
+
+#if (AUDIO_ADC_TYPE == AUIN_USE_ADC)
+// audio_adc
+#define auin_mode_init()
+#define auin_init(m,n,o,p)     		audio_adc_phy_init(m,n,o,p)
+#define auin_uninit     			audio_adc_off_api
+#define AUDIO_ADC_CHANNEL_TOTAL 	AUADC_CHANNEL_TOTAL
+
+#elif (AUDIO_ADC_TYPE == AUIN_USE_ALINK)
+// audio_link_
+#define auin_mode_init 				audio_link_init_api
+#define auin_init(m,n,o,p)     		audio_link_phy_init(m,n,o,p)
+#define auin_uninit     			alink_mode_uninit
+#define AUDIO_ADC_CHANNEL_TOTAL 	AUDIO_LINK_CHANNEL_TOTAL
+
+#else
+#define auin_mode_init()
+#define auin_init(m,n,o,p)
+#define auin_uninit()
+#define AUDIO_ADC_CHANNEL_TOTAL 	1
+
+#endif
+
+
+
+
 #endif

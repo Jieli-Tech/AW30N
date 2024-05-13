@@ -44,7 +44,7 @@ static bool auadc_mutex_check(void)
         return false;
     }
     /* 模拟DAC输出固定占用PA5，使用期间micin不可选择PA5输入 */
-    if (AUOUT_USE_RDAC && (mic_input_ana2_pa5 == audio_adc_mic_input_mode)) {
+    if ((AUOUT_USE_DAC == AUOUT_USE_RDAC) && (mic_input_ana2_pa5 == audio_adc_mic_input_mode)) {
         log_error("ADC micin can't select to PA5 while DAC defaultly using PA5!");
         return false;
     }

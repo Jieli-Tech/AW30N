@@ -89,6 +89,7 @@ struct spi_platform_data spix_p_data[HW_SPI_MAX_NUM] = {
         .cpha = 0,//sampling edge:0:first,  1:second
         .clk  = TCFG_HW_SPI1_BAUD,
     },
+#if SUPPORT_SPI2
     //spi2
     {
         .port = {
@@ -106,6 +107,7 @@ struct spi_platform_data spix_p_data[HW_SPI_MAX_NUM] = {
         .cpha = 0,//sampling edge:0:first,  1:second
         .clk  = 1000000L,
     }
+#endif
 };
 #endif
 
@@ -131,6 +133,7 @@ static void spi1_iomc_config(hw_spi_dev spi, enum spi_mode mode)
 
 static void spi2_iomc_config(hw_spi_dev spi, enum spi_mode mode)
 {
+#if SUPPORT_SPI2
     u8 *port = spix_p_data_cache[spi].port;
     gpio_set_function(IO_PORT_SPILT(port[0]), PORT_FUNC_SPI2_CLK);
     gpio_set_function(IO_PORT_SPILT(port[1]), PORT_FUNC_SPI2_DA0);
@@ -142,6 +145,7 @@ static void spi2_iomc_config(hw_spi_dev spi, enum spi_mode mode)
         /* gpio_set_function(IO_PORT_SPILT(port[3]), PORT_FUNC_SPI2_DA2); */
         /* gpio_set_function(IO_PORT_SPILT(port[4]), PORT_FUNC_SPI2_DA3); */
     }
+#endif
 }
 
 static void (*pSPI_IOMC_CONFIG[])(hw_spi_dev spi, enum spi_mode mode) = {
@@ -173,13 +177,24 @@ static void spi_io_crossbar_uninit(hw_spi_dev spi)
     if (spi == HW_SPI1) { //spi1
         gpio_disable_function(IO_PORT_SPILT(port[0]), PORT_FUNC_SPI1_CLK);
         gpio_disable_function(IO_PORT_SPILT(port[1]), PORT_FUNC_SPI1_DA0);
-        gpio_disable_function(IO_PORT_SPILT(port[2]), PORT_FUNC_SPI1_DA1);
-        gpio_disable_function(IO_PORT_SPILT(port[3]), PORT_FUNC_SPI1_DA2);
-        gpio_disable_function(IO_PORT_SPILT(port[4]), PORT_FUNC_SPI1_DA3);
+        if (port[2] != (u8) - 1) {
+            gpio_disable_function(IO_PORT_SPILT(port[2]), PORT_FUNC_SPI1_DA1);
+        }
+        if (port[3] != (u8) - 1) {
+            gpio_disable_function(IO_PORT_SPILT(port[3]), PORT_FUNC_SPI1_DA2);
+        }
+        if (port[4] != (u8) - 1) {
+            gpio_disable_function(IO_PORT_SPILT(port[4]), PORT_FUNC_SPI1_DA3);
+        }
     } else { //spi2
+
+#if SUPPORT_SPI2
         gpio_disable_function(IO_PORT_SPILT(port[0]), PORT_FUNC_SPI2_CLK);
         gpio_disable_function(IO_PORT_SPILT(port[1]), PORT_FUNC_SPI2_DA0);
-        gpio_disable_function(IO_PORT_SPILT(port[2]), PORT_FUNC_SPI2_DA1);
+        if (port[2] != (u8) - 1) {
+            gpio_disable_function(IO_PORT_SPILT(port[2]), PORT_FUNC_SPI2_DA1);
+        }
+#endif
     }
 }
 
@@ -244,9 +259,12 @@ void spi_set_bit_mode(hw_spi_dev spi, enum spi_mode mode)
         spi_data_width(spi_regs[spi], 1);
         break;
     case SPI_MODE_UNIDIR_4BIT:
+#if SUPPORT_SPI2
         if (spi == HW_SPI2) {
             log_error("spi2 have no unidir_4bit mode!");
-        } else {
+        } else
+#endif
+        {
             spi_unidir(spi_regs[spi]);
             spi_data_width(spi_regs[spi], 2);
         }
@@ -254,7 +272,9 @@ void spi_set_bit_mode(hw_spi_dev spi, enum spi_mode mode)
     }
 
     pSPI_IOMC_CONFIG[spi](spi, mode);
-    gpio_set_mode(IO_PORT_SPILT(port[5]), role == SPI_ROLE_MASTER ? PORT_OUTPUT_HIGH : PORT_INPUT_PULLUP_10K); //cs io
+    if (port[5] != (u8) - 1) {
+        gpio_set_mode(IO_PORT_SPILT(port[5]), role == SPI_ROLE_MASTER ? PORT_OUTPUT_HIGH : PORT_INPUT_PULLUP_10K); //cs io
+    }
     spi_io_port_init(port[0], role == SPI_ROLE_MASTER ? 0 : 1);
     spi_io_port_init(port[1], role == SPI_ROLE_MASTER ? 0 : 1);
     if (mode == SPI_MODE_BIDIR_1BIT) {
@@ -329,8 +349,10 @@ int spi_open(hw_spi_dev spi, spi_hardware_info *spi_info)
         }
         if (spi == HW_SPI1) {
             request_irq(IRQ_SPI1_IDX, HW_SPI_IRQ_PRIORITY, hw_spi1_isr, 0);//7:配置中断优先级，中断函数
+#if SUPPORT_SPI2
         } else if (spi == HW_SPI2) {
             request_irq(IRQ_SPI2_IDX, HW_SPI_IRQ_PRIORITY, hw_spi2_isr, 0);//7:配置中断优先级，中断函数
+#endif
         }
     }
     spi_clr_pnd(spi_regs[spi]);
@@ -379,8 +401,10 @@ void spi_close(hw_spi_dev spi)
         hw_spi_irq_cbfun[spi] = NULL;
         if (spi == HW_SPI1) {
             bit_clr_ie(IRQ_SPI1_IDX);
+#if SUPPORT_SPI2
         } else if (spi == HW_SPI2) {
             bit_clr_ie(IRQ_SPI2_IDX);
+#endif
         }
     }
     spi_disable(spi_regs[spi]);

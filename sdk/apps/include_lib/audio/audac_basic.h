@@ -13,7 +13,8 @@
 
 typedef struct _DAC_MANAGE {
     /*多路数据流句柄*/
-    sound_out_obj *sound[AUDAC_CHANNEL_TOTAL];
+    sound_out_obj *sound_pre[AUDAC_CHANNEL_TOTAL];
+    sound_out_obj *sound_later[AUDAC_CHANNEL_TOTAL];
     /*多路数据流句柄所对应的触发函数*/
     void (*kick[AUDAC_CHANNEL_TOTAL])(void *);
     u8 ch;             /*通路标记*/

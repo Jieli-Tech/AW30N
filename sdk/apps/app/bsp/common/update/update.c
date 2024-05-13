@@ -56,7 +56,6 @@
 
 /////////////////////////////undef macro/////////////////////////
 #define TCFG_UI_ENABLE 0
-#define CONFIG_DEBUG_ENABLE 0
 #define CONFIG_UPDATE_JUMP_TO_MASK 0
 #define TCFG_BT_BACKGROUND_ENABLE 0
 #define TCFG_AUTO_SHUT_DOWN_TIME 0
@@ -96,7 +95,7 @@ extern const int support_norflash_update_en;
 /* const u8 loader_file_path[] = "mnt/norflash/C/"LOADER_NAME""; */
 //升级文件路径必须是短文件名（8+3）结构，仅支持２层目录
 /* const char updata_file_name[] = "/UPDATA/JL_692X.BFU"; */
-const char updata_file_name[] = "/*.UFW";
+const char updata_file_name[] = TFG_UPGRADE_FILE_NAME;
 static u32 g_updata_flag = 0;
 static volatile u8 ota_status = 0;
 static succ_report_t succ_report;
@@ -216,11 +215,9 @@ int update_result_deal()
     u16 result = 0;
     result = (g_updata_flag & 0xffff);
     log_info("<--------update_result_deal=0x%x %x--------->\n", result, g_updata_flag >> 16);
-#if CONFIG_DEBUG_ENABLE
 #if TCFG_APP_BT_EN
     u8 check_update_param_len(void);
     ASSERT(check_update_param_len(), "UPDATE_PARAM_LEN ERROR");
-#endif
 #endif
     if (result == UPDATA_NON || 0 == result) {
         return 0;
@@ -346,7 +343,7 @@ static void update_param_content_fill(int type, UPDATA_PARM *p, void (*priv_para
 
     if (support_norflash_update_en) {
         p->parm_type = NORFLASH_UPDATA;                                //uboot通过该标识从外挂flash读取ota.bin
-        *((u16 *)((u8 *)p + sizeof(UPDATA_PARM) + 32)) = (u16)type;    //将实际的升级类型保存到UPDATA_PARM后
+        *((u16 *)((u16)(u8 *)p + sizeof(UPDATA_PARM) + 32)) = (u16)type;    //将实际的升级类型保存到UPDATA_PARM后
     } else {
         p->parm_type = (u16)type;
     }
@@ -397,7 +394,7 @@ void update_mode_api_v2(UPDATA_TYPE type, void (*priv_param_fill_hdl)(UPDATA_PAR
     u16 update_param_len = UPDATA_PARM_SIZE;//sizeof(UPDATA_PARM) + UPDATE_PRIV_PARAM_LEN;
 
     u8 parm[UPDATA_PARM_SIZE] = {0};
-    UPDATA_PARM *p = &parm;
+    UPDATA_PARM *p = (UPDATA_PARM *)(u32)parm;
 
     if (p) {
         update_param_content_fill(type, p, priv_param_fill_hdl);

@@ -95,6 +95,7 @@ extern void ble_module_enable(u8 en);
 /* #define RC_ENC_SR      16000 */
 /* #define RC_ENC_FUNC    sbc_encode_api */
 /* #define RC_ENC_TYPE    FORMAT_SBC */
+/* #define RC_ENC_SR      16000 */
 
 #define SPEAKER_WAIT_START_ACK    2
 #define SPEAKER_START   1
@@ -314,8 +315,8 @@ void rf_rc_app()
 #if BLE_EN
     /* bt_init_api(); */
     vble_slave_init_api();
-    audio2rf_send_register(&remote_ops);
-    vble_slave_recv_cb_register(ATT_MSTR2SLV_RF_RADUI_IDX, &rc_recv_ops, unpack_data_deal);
+    audio2rf_send_register((void *)&remote_ops);
+    vble_slave_recv_cb_register(ATT_MSTR2SLV_RF_RADUI_IDX, &rc_recv_ops, (int (*)(void *, u8 *, u16))unpack_data_deal);
 #endif
 
     log_info("rf_controller\n");

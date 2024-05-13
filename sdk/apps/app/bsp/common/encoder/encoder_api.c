@@ -40,7 +40,7 @@ void rec_phy_init(void)
     rec_cbuf_init(&cbuf_adc);
     /* cbuf_init(&cbuf_adc, &adc_buff[0], sizeof(adc_buff)); */
     rec_sound.p_obuf = &cbuf_adc;
-    regist_audio_adc_channel(&rec_sound, (void *) kick_encode_api); //注册到DAC;
+    regist_audio_adc_channel(&rec_sound, NULL, (void *) kick_encode_api); //注册到DAC;
 }
 void rec_phy_suspend(void)
 {

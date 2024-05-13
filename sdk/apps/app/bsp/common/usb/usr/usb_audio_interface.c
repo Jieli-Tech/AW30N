@@ -140,7 +140,7 @@ void usb_slave_sound_open(sound_out_obj *p_sound, u32 sr)
         }
 #endif
         /* usb_src_obj = p_sound->effect; */
-        regist_dac_channel(p_sound, NULL);//注册到DAC;
+        regist_dac_channel(NULL, p_sound, NULL);//注册到DAC;
         p_sound->enable |=  B_DEC_RUN_EN;
     }
 }

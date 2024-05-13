@@ -137,7 +137,7 @@ u32 rf2audio_receiver_write_data(dec_obj *p_recv_dec_obj, u8 *data, u32 data_len
    @note    返回长度小于解码需要的最小长度，会跳过本次解码
 */
 /*----------------------------------------------------------------------------*/
-static int rf2audio_receiver_read_check(void *priv)
+static u32 rf2audio_receiver_read_check(void *priv)
 {
     dec_obj *obj = priv;
     sound_stream_obj *pstream = obj->p_file;

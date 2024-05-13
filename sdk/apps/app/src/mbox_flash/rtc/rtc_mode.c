@@ -23,11 +23,11 @@
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[RTC]"
 #include "log.h"
-
+#if RTC_EN
 #define RTC_LCD 0
 extern const u8 powerdown_lcd_on;
 void lcd_seg4x8_wakeupshow(u8 flag);
-static void alarm_callback(u8 priv)
+static void alarm_callback()
 {
     log_info("alarm time up!\n");
 }
@@ -153,7 +153,7 @@ void rtc_app(void)
         case MSG_CHANGE_WORK_MODE:
             goto __rtc_app_exit;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
             sysmem_pre_erase_api();
             wdt_clear();
             break;
@@ -232,7 +232,7 @@ void rtc_timed_wakeup_app()
         case MSG_CHANGE_WORK_MODE:
             goto __rtc_timed_wakeup_app_exit;
         default:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
             ap_handle_hotkey(msg[0]);
             rtc_powerdown();
             read_current_time();
@@ -246,4 +246,5 @@ __rtc_timed_wakeup_app_exit:
     /* rtc_disable(); */
     key_table_sel(NULL);
 }
+#endif
 #endif

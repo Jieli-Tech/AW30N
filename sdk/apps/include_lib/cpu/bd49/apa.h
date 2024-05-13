@@ -39,7 +39,7 @@
 #define APA_SR44K1   (1<<0)
 #define APA_SR32K    (2<<0)
 #define APA_SRBITS   (7<<0)
-#define DAC_SRBITS   APA_SRBITS
+// #define DAC_SRBITS   APA_SRBITS
 
 #define  CON0_SR_PARA  ((0x3ff <<22) | (0xff<<16))
 #define  CON1_SR_PARA  ((0x1ff <<10) | (0x3ff<<0))

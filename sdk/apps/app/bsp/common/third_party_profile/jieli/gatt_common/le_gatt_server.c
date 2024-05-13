@@ -19,6 +19,7 @@
 #include "btcontroller_modules.h"
 #include "bt_ble.h"
 #include "app_modules.h"
+#include "ll_config.h"
 /* #include "bt_common.h" */
 /* #include "3th_profile_api.h" */
 
@@ -81,6 +82,8 @@ static server_ctl_t server_s_hdl;
 
 extern void little_endian_store_16(uint8_t *buffer, uint16_t pos, uint16_t value);
 extern void little_endian_store_32(uint8_t *buffer, uint16_t pos, uint32_t value);
+extern u64 ll_hci_get_used_features(u16 handle);
+extern void ll_conn_param_vendor_set(u16 offset0, u8 instant_cnt);
 //------------------------------------------------------
 extern void clr_wdt(void);
 static void __gatt_server_check_auto_adv(void);
@@ -125,7 +128,12 @@ static int __gatt_server_connection_update_request_send(void)
             __this->server_connection_update_index++;
             log_info("connection_update_request: %04x: -%d-%d-%d-%d-\n", __this->server_operation_handle, \
                      param->interval_min, param->interval_max, param->latency, param->timeout);
-            ble_op_conn_param_request(__this->server_operation_handle, param);
+            if (ll_hci_get_used_features(__this->server_operation_handle) & LL_FEAT_CONN_PARAM_REQ_PROC)  {
+                ll_conn_param_vendor_set(9, 61);
+                ble_op_conn_param_update(__this->server_operation_handle, param);
+            } else {
+                ble_op_conn_param_request(__this->server_operation_handle, param);
+            }
         } else {
             __this->server_operation_handle = 0;
             return GATT_CMD_OPT_FAIL;

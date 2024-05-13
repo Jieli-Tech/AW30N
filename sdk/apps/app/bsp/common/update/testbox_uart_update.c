@@ -17,7 +17,7 @@
 
 #if TESTBOX_UART_UPDATE_EN
 
-static u8 tmp_buf[DMA_BUF_LEN] sec(.uart_update_buf1) = {0};
+static u8 tmp_buf[DMA_BUF_LEN] sec(.uart_update_buf1) __attribute__((aligned(4))) = {0};
 static u8 uart_buf[DMA_BUF_LEN] sec(.uart_update_buf1) __attribute__((aligned(4)));
 
 static volatile u8 is_testbox_uart_active = 0;	//串口升级空闲
@@ -37,6 +37,13 @@ static volatile u8 is_testbox_uart_active = 0;	//串口升级空闲
 #define SEEK_SET	0	/* Seek from beginning of file.  */
 #define SEEK_CUR	1	/* Seek from current position.  */
 #define SEEK_END	2	/* Seek from end of file.  */
+
+#define TESTBOX_UART_UPDATE_FLAG      0xAB539610
+#define SDK_JUMP_FLAG                 "SDKJUMP"
+struct testbox_uart_update_info {
+    u32 baud;
+    u32 uart_update_flag;
+};
 
 struct uart_upgrade_cmd {
     u8 cmd;
@@ -72,6 +79,8 @@ static u8 uart_step = UART_UPDATE_START; // 升级状态机
 static u32 loader_len = 0;  // 记录接收的loader长度
 static volatile u32 file_offset = 0;
 static const u8 ack_cmd[5] = {0x55, 0xaa, 1, 0x20, 0x22} ;
+static const u8 ack_cmd_1[6] = {0x55, 0xaa, 2, 0x20, 0xAA, 0xAA} ;
+static u32 update_baudrate = 0;
 
 extern u16 chip_crc16(void *ptr, u32 len);
 extern void uart_update_check(void);
@@ -88,18 +97,23 @@ static void uart_update_set_step(u8 step)
     uart_step = step;
 }
 
-static void uart_update_cmd_ack(void)
+static void uart_update_cmd_ack(u8 flag)
 {
     u32 tx_buf[2];
-    memcpy(tx_buf, ack_cmd, sizeof(ack_cmd));
-    uart_send_bytes(UART_UPDATE_NUM, (void *)tx_buf, sizeof(ack_cmd));
+    if (flag == 1) {
+        memcpy(tx_buf, ack_cmd_1, sizeof(ack_cmd_1));
+        uart_send_bytes(UART_UPDATE_NUM, (void *)tx_buf, sizeof(ack_cmd_1));
+    } else {
+        memcpy(tx_buf, ack_cmd, sizeof(ack_cmd));
+        uart_send_bytes(UART_UPDATE_NUM, (void *)tx_buf, sizeof(ack_cmd));
+    }
 }
 
 void uart_update_maskrom_start(void *buf, u32 len)
 {
     if (uart_update_get_step() == UART_UPDATE_START) {
         memcpy((u8 *)&ut_cmd, (u8 *)buf, sizeof(ut_cmd));
-        uart_update_cmd_ack();
+        uart_update_cmd_ack(ut_cmd.res);
         uart_wait_tx_idle(UART_UPDATE_NUM, 200);
         loader_len = 0;
         if (ut_cmd.baud) {
@@ -107,7 +121,12 @@ void uart_update_maskrom_start(void *buf, u32 len)
         } else {
             uart_set_baudrate(UART_UPDATE_NUM, 10 * 10000);
         }
-        uart_update_set_step(UART_UPDATE_OTA_RECV);
+        if (ut_cmd.res == 1) {
+            uart_update_set_step(UART_UPDATE_OTA);
+            post_event(EVENT_TEXTBOX_UART_UPDATE);
+        } else { // 按照原来的流程
+            uart_update_set_step(UART_UPDATE_OTA_RECV);
+        }
     }
 }
 
@@ -144,11 +163,10 @@ static bool uart_send_and_recv_packet(u8 *buf, u16 length, u32 timeout)
 
 static void uart_update_recv(u8 cmd, u8 *buf, u32 len)
 {
-    u32 baudrate = 0;
     switch (cmd) {
     case CMD_UPDATE_START:
-        memcpy(&baudrate, buf, 4);
-        uart_set_baudrate(UART_UPDATE_NUM, baudrate);
+        memcpy(&update_baudrate, buf, 4);
+        uart_set_baudrate(UART_UPDATE_NUM, update_baudrate);
         break;
 
     case CMD_UPDATE_END:
@@ -289,15 +307,34 @@ static void uart_update_ota_start(void)
     uart_update_cmd(CMD_UPDATE_START, NULL, 0);
 }
 
+static void app_testbox_loader_ufw_update_private_param_fill(UPDATA_PARM *p)
+{
+    memcpy(p->file_patch, updata_file_name, strlen(updata_file_name));
+}
+
 static void testbox_uart_update_param_private_handle(UPDATA_PARM *p)
 {
     u16 up_type = p->parm_type;
+    struct testbox_uart_update_info testbox_uart_update_parm;
+    testbox_uart_update_parm.baud = update_baudrate;
+    testbox_uart_update_parm.uart_update_flag = TESTBOX_UART_UPDATE_FLAG;
+
+    ASSERT(sizeof(struct testbox_uart_update_info) <= sizeof(p->parm_priv), "uart update parm size limit");
+
+    memcpy(p->parm_priv, &testbox_uart_update_parm, sizeof(testbox_uart_update_parm));
 
     memcpy(p->file_patch, updata_file_name, strlen(updata_file_name));
 }
 
+void testbox_uart_update_jump_flag_fill(void)
+{
+    u8 *p = (u8 *)BOOT_STATUS_ADDR;
+    memcpy(p, SDK_JUMP_FLAG, sizeof(SDK_JUMP_FLAG));
+}
+
 static void testbox_uart_update_before_jump_handle(int up_type)
 {
+    testbox_uart_update_jump_flag_fill();
 #if 0//CONFIG_UPDATE_JUMP_TO_MASK
     log_info(">>>[test]:latch reset update\n");
     latch_reset();
@@ -332,10 +369,13 @@ static void testbox_uart_update_check(void)
         .p_op_api = (update_op_api_t *) &uart_dev_update_op,
         .task_en = 0,
     };
+    if (ut_cmd.res == 1) {
+        info.type = TESTBOX_UART_UPDATA_2;
+    }
     app_active_update_task_init(&info);
 }
 
-u8 uart_update_ota_loop(u8 *buf, u32 len)
+int uart_update_ota_loop(u8 *buf, u32 len)
 {
     if (!CONFIG_UPDATE_TESTBOX_UART_EN) {
         return UPDATA_NON;
@@ -380,7 +420,7 @@ static void uart_update_isr_hook(uart_dev uart_num, enum uart_event event)
         testbox_timer_id = sys_timeout_add(NULL, testbox_uart_active_set, 2000);
     }
 
-    if (event & UART_EVENT_RX_DATA) {
+    if (event & (UART_EVENT_RX_DATA | UART_EVENT_RX_TIMEOUT)) {
         is_testbox_uart_active = 1;
         u32 rx_len = DMA_BUF_LEN;
         u32 len = uart_recv_bytes(UART_UPDATE_NUM, protocal_frame->raw_data, rx_len);
@@ -407,25 +447,26 @@ static int testbox_uart_dev_init()
         .parity = UART_PARITY_DISABLE,
     };
 
-    int ret = uartx_init(UART_UPDATE_NUM, &uart_update_config);
+    int ret = uart_init(UART_UPDATE_NUM, &uart_update_config);
     if (ret < 0) {
-        log_error("uartx_init err 0x%x \n", ret);
+        log_error("uart_init err 0x%x \n", ret);
         return ret;
     } else {
-        log_info("uartx_init succ\n");
+        log_info("uart_init succ\n");
     }
 
 
     struct uart_dma_config uart_update_dma = {
         .rx_timeout_thresh = 1070,
         .frame_size = DMA_BUF_LEN,//32,
-        .event_mask = UART_EVENT_TX_DONE | UART_EVENT_RX_DATA | UART_EVENT_RX_FIFO_OVF,
+        .event_mask = UART_EVENT_TX_DONE | UART_EVENT_RX_DATA | UART_EVENT_RX_FIFO_OVF | UART_EVENT_RX_TIMEOUT,
+        .irq_priority = 3,
         .irq_callback = uart_update_isr_hook,
         .rx_cbuffer = uart_buf,
         .rx_cbuffer_size = DMA_BUF_LEN,
     };
 
-    protocal_frame = tmp_buf;
+    protocal_frame = (protocal_frame_t *)tmp_buf;
 
     ret = uart_dma_init(UART_UPDATE_NUM, &uart_update_dma);
     if (ret != 0) {

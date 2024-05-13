@@ -103,6 +103,10 @@ int gpio_set_drive_strength(enum gpio_port port, u32 pin, enum gpio_drive_streng
 // 获取单个io输出强度 pin:只能带入1个io
 enum gpio_drive_strength  gpio_get_drive_strength(enum gpio_port port, u32 pin);
 
+//打印芯片全部gpio寄存器,crossbar信息
+void gpio_dump();
+//打印芯片指定io寄存器,crossbar信息
+void gpio_appoint_dump(enum gpio_port port, u32 pin);
 
 
 
@@ -119,6 +123,7 @@ struct gpio_irq_config_st {
     u32 pin;
     enum gpio_irq_edge irq_edge;
     gpio_irq_callback_p callback;
+    u8 irq_priority;//中断优先级
 };
 //配置中断(已使能)
 //禁止同一个io同一边沿多次注册

@@ -20,7 +20,6 @@
 #include "usb/device/hid.h"
 #include "usb/device/msd.h"
 
-#include "dev_update.h"
 #include "update.h"
 
 #define LOG_TAG_CONST       NORM
@@ -69,7 +68,7 @@ void ap_handle_hotkey(u16 key)
         vol = dac_vol('-', 255);
 __app_vol_deal:
         log_info("VOL:%d \n", vol);
-        UI_menu(MENU_MAIN_VOL, NULL);
+        UI_menu(MENU_MAIN_VOL, 0);
         break;
         //-------------设备上线
 #if TCFG_UDISK_ENABLE
@@ -96,28 +95,19 @@ __app_vol_deal:
         usb_stop();
         break;
 #endif
-    case MSG_USB_DISK_IN:
+    case MSG_USB_DISK_IN: //应用为了节省代码将插U盘和插卡消息分支写在一起，中间不可插入其他消息，否则影响设备升级
         log_info("udisk in\n");
-        if (time_before(maskrom_get_jiffies(), 150)) {
-            break;//上电1.5s内不响应设备上线消息
-        }
-#if (UPDATE_V2_EN && UDISK_UPDATE_EN)
-        err = dev_update_check("udisk0");
-        log_info("udisk update err 0x%x\n", err);
-#endif
-        break;
     case MSG_SDMMCA_IN:
         if (time_before(maskrom_get_jiffies(), 150)) {
             break;//上电1.5s内不响应设备上线消息
         }
-        log_info("sd in\n");
-#if (UPDATE_V2_EN && SD_UPDATE_EN)
-        err = dev_update_check("sd0");
-        log_info("sd update err 0x%x\n", err);
+#if TFG_DEV_UPGRADE_SUPPORT
+        u8 update_dev = key - MSG_USB_DISK_IN;
+        device_update(update_dev);
 #endif
         break;
 
-
+#if defined(UPDATE_V2_EN) && (1 == UPDATE_V2_EN)
     case MSG_BLE_APP_UPDATE_START:
     /* 手机APP升级 */
     case MSG_BLE_TESTBOX_UPDATE_START:
@@ -126,6 +116,7 @@ __app_vol_deal:
         /* 测试盒串口升级 */
         app_update_handle(key);
         break;
+#endif
 
     //-------------模式退出处理
     case MSG_NEXT_WORKMODE:
@@ -157,7 +148,7 @@ __app_vol_deal:
             Input_Number = 0;
         }
         Input_Number = Input_Number * 10 + key;
-        UI_menu(MENU_INPUT_NUMBER, NULL);
+        UI_menu(MENU_INPUT_NUMBER, 0);
         break;
 #endif
     }

@@ -25,7 +25,7 @@ static void lvd_warning_init(void)
     extern u32 get_lvd_vol(void);
     u32 lvd_voltage = get_lvd_vol();
     lvd_warning_voltage = lvd_voltage + 300;
-    /* log_info("lvd_warning_voltage : %d\n", lvd_warning_voltage); */
+    log_info("lvd_warning_voltage : %d\n", lvd_warning_voltage);
 }
 
 void app_power_init(void)

@@ -16,7 +16,7 @@
 #include "sys_timer.h"
 #include "app_modules.h"
 #include "flash_init.h"
-#if UPDATE_V2_EN
+#if defined(UPDATE_V2_EN) && (1 == UPDATE_V2_EN)
 #include "code_v2/update.h"
 #endif
 
@@ -36,7 +36,7 @@ void system_init(void)
     devices_init_api();
     flash_system_init();
 
-#if UPDATE_V2_EN
+#if defined(UPDATE_V2_EN) && (1 == UPDATE_V2_EN)
     //升级初始化
     app_update_init();
 #endif

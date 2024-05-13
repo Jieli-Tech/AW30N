@@ -86,13 +86,13 @@ static void _adc_pmu_vbg_enable()
 }
 static void _adc_pmu_vbg_diable()
 {
-    p33_and_1byte(P3_PMU_ADC0, ~BIT(5));
+    p33_and_1byte(P3_PMU_ADC0, (u8)~BIT(5));
     udelay(11);
     udelay(11);
     udelay(11);
     udelay(11);
     udelay(11);
-    p33_and_1byte(P3_PMU_ADC0, ~BIT(4));
+    p33_and_1byte(P3_PMU_ADC0, (u8)~BIT(4));
 }
 static void _adc_pmu_ch_select(u16 ch)
 {
@@ -190,6 +190,17 @@ void adc_sample(enum AD_CH ch, u32 ie) //启动一次cpu模式的adc采样
         SFR(adc_con, 6, 4, adc_ch_sel);
         SFR(adc_con, 3, 3, 0b010); //cpu adc io sel en
         break;
+    }
+
+    if (ch == ADC_CH_IO_DP) {
+        gpio_set_mode(IO_PORT_SPILT(IO_PORT_DP), PORT_HIGHZ);
+        JL_PORTUSB->CON = 0;
+        JL_PORTUSB->CON |= (BIT(8) | BIT(1) | BIT(0));
+    }
+    if (ch == ADC_CH_IO_DM) {
+        gpio_set_mode(IO_PORT_SPILT(IO_PORT_DM), PORT_HIGHZ);
+        JL_PORTUSB->CON = 0;
+        JL_PORTUSB->CON |= (BIT(8) | BIT(3) | BIT(0));
     }
 
     JL_ADC->ADC_CON = adc_con;

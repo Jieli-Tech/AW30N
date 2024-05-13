@@ -92,7 +92,7 @@ u32 usb_slave_mic_open(u32 sr, u32 frame_len, u32 ch)
 void usb_slave_mic_close(void)
 {
     if (mic_close_func) {
-        mic_close_func(&uac_read.p_src);
+        mic_close_func((void **)&uac_read.p_src);
     }
     memset(&uac_read, 0, sizeof(uac_read));
     /* uac_read.read_sound = NULL; */
@@ -194,7 +194,7 @@ int usb_slave_mic_read(u8 *buf, u32 len)
     }
 __no_read:
     //数据不够则部分清零
-    sound_kick(uac_read.read_sound, (u32)uac_read.pkick);
+    sound_kick(uac_read.read_sound, (void *)uac_read.pkick);
     if (tlen != len) {
         log_char('.');
         memset(buf + tlen, 0, len - tlen);

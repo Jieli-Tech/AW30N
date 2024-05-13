@@ -111,9 +111,27 @@
 #define RF_PA_POWER_RX_IO      				IO_PORTA_13
 #define RF_PA_POWER_TX_IO      				IO_PORTA_12
 
+/*---------AUDIO_LINK----------------*/
+#define ALINK_MODE_TYPE						ALINK_MD_IIS
+#define ALINK_ROLE_TYPE						ALINK_ROLE_MASTER
+#define ALINK_CLK_MODE_TYPE 				ALINK_CLK_FALL_UPDATE_RAISE_SAMPLE
+#define ALINK_BIT_WIDE_TYPE 				ALINK_LEN_16BIT
+#define ALINK_SCLK_PER_FRAME_TYPE			ALINK_FRAME_64SCLK
+#define ALINK_DMA_LEN 						ALNK_BUF_POINTS_NUM * 2 * 2 * 2 //16bit : 128 * 2(CH) * 2(Byte)* 2(dual buffer
+#define ALINK_SR_DEFAULT 					ALINK_SR_32000
+
+#define ALINK_MAX_CHANNEL					4
+#define ALINK_MCLK_IO 						IO_PORTA_02
+#define ALINK_SCLK_IO 						IO_PORTA_10
+#define ALINK_LCLK_IO 						IO_PORTA_09
+#define ALINK_DATA_IO0 						IO_PORTA_14
+#define ALINK_DATA_IO1 						IO_PORTA_15
+#define ALINK_DATA_IO2 						NULL
+#define ALINK_DATA_IO3 						NULL
+
 
 /*---------------UPDATE---------------------*/
-#define TFG_DEV_UPGRADE_SUPPORT             0//ENABLE
+#define TFG_DEV_UPGRADE_SUPPORT             ENABLE
 #define TFG_UPGRADE_FILE_NAME               "/update.ufw"
 
 /*---------UI Configuration-----------------*/
@@ -216,7 +234,7 @@
 #if TCFG_CFG_TOOL_ENABLE
 #define  USB_DEVICE_CLASS_CONFIG            (CDC_CLASS|AUDIO_CLASS|HID_CLASS)  //配置usb从机模式支持的class
 #else
-#if CONFIG_APP_OTA_EN
+#if defined(CONFIG_APP_OTA_EN) && (CONFIG_APP_OTA_EN)
 #define  USB_DEVICE_CLASS_CONFIG            (AUDIO_CLASS|HID_CLASS|CUSTOM_HID_CLASS)  //配置usb从机模式支持的class
 #else
 #define  USB_DEVICE_CLASS_CONFIG            (AUDIO_CLASS|HID_CLASS|MASSSTORAGE_CLASS)  //配置usb从机模式支持的class

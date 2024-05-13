@@ -149,7 +149,7 @@ __midi_dec_play_file_entry:
         case MSG_CHANGE_WORK_MODE:
             goto __midi_decode_app_exit;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
             if ((MUSIC_PLAY != get_decoder_status(midi_pctl[0].p_dec_obj)) && \
                 (MUSIC_PLAY != get_decoder_status(midi_pctl[1].p_dec_obj))) {
                 sysmem_pre_erase_api();

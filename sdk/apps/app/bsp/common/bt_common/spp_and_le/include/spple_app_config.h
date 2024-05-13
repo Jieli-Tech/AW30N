@@ -9,7 +9,7 @@
 //apps example 选择,只能选1个,要配置对应的board_config.h
 #define CONFIG_APP_SPP_LE                 0 //SPP + LE or LE's client
 #define CONFIG_APP_MULTI                  0 //蓝牙LE多连 + spp
-#define CONFIG_APP_DONGLE                 1 //usb + 蓝牙(ble 主机),PC hid设备  目前USB仅支持单设备
+#define CONFIG_APP_DONGLE                 1 //usb + 蓝牙(ble 主机),PC hid设备
 #define CONFIG_APP_CENTRAL                0 //ble client,中心设备
 #define CONFIG_APP_LL_SYNC                0 //腾讯连连
 #define CONFIG_APP_BEACON                 0 //蓝牙BLE ibeacon

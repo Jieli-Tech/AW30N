@@ -124,7 +124,7 @@ static int hid_report_map_size = sizeof(sHIDReportDesc);
 void usb_hid_set_repport_map(const u8 *map, int size)
 {
     hid_report_map_size = size;
-    hid_report_map = map;
+    hid_report_map = (u8 *)map;
 }
 
 static u32 get_hid_report_desc_len(u32 index)

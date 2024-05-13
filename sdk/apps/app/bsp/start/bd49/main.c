@@ -68,6 +68,7 @@
 
 /* } */
 
+extern const u8 config_no_osc_enable;
 __attribute__((noreturn))
 
 //void audio_adc_demo(void);
@@ -95,7 +96,11 @@ void c_main(int cfg_addr)
     /* clk_out2(6,CLK_OUT2_STD_48M,1); */
     /* clk_out2(6,CLK_OUT2_SYSPLL_D2P0,1); */
     clk_voltage_init(CLOCK_MODE_ADAPTIVE, DVDD_VOL_129V);
-    clk_early_init(PLL_REF_XOSC_DIFF, 24000000, 480000000);
+    if (config_no_osc_enable) {
+        clk_early_init(PLL_REF_LRC, 200000, 480000000);
+    } else {
+        clk_early_init(PLL_REF_XOSC_DIFF, 24000000, 480000000);
+    }
     clock_dump();
     clk_set("sys", TCFG_SYS_PLL_CLK);
 

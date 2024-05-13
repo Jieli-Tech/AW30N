@@ -17,7 +17,7 @@ typedef enum {
 } usb_slave_status;
 
 void usb_slave_suspend_resume_init(const usb_dev usb_id);
-u32 usb_slave_status_get(const usb_dev usb_id);
+u8 usb_slave_status_get();
 // void usb_slave_status_set(const usb_dev usb_id, usb_slave_status status);
 void usb_slave_reset(const usb_dev usb_id);
 void usb_slave_suspend(const usb_dev usb_id);

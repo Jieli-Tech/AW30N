@@ -42,11 +42,11 @@ Documentation
 
 * Chipset brief : [SoC datasheet](./doc)
 
-* Product Select Guide : [SoC Select Guide.pdf](doc/杰理科技AW30N系列芯片选型表_20240304.pdf)
+* Product Select Guide : [SoC Select Guide.pdf](doc/杰理科技AW30N系列芯片选型表_20240508.pdf)
 
 * SDK Version: [SDK History](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.3.pdf)
+* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.4.pdf)
 
 * Hardware Design Guide : [Hardware Design Guide](./doc/AW30N硬件设计指南V1.1.pdf)
 

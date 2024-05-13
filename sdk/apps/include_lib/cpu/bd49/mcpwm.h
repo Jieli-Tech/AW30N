@@ -61,6 +61,7 @@
 typedef enum {
     MCPWM_CH0 = 0,
     MCPWM_CH1,
+    MCPWM_CH2,
 } mcpwm_ch_type;
 
 /* 对齐方式选择 */

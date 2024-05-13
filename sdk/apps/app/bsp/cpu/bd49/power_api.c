@@ -2,7 +2,7 @@
 #include "sys_memory.h"
 #include "adc_api.h"
 #include "audio.h"
-#include "gpio_hw.h"
+#include "gpio.h"
 #include "app_config.h"
 
 #define PORT_WKUP_FILTER PORT_FLT_1ms

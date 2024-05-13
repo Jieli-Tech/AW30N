@@ -366,7 +366,7 @@ void LED5X7_show_string_menu(u8 menu)
 /*----------------------------------------------------------------------------*/
 void LED5X7_show_dev(int arg)
 {
-    if (NULL == arg) {
+    if (0 == arg) {
         return;
     }
     play_control *tmp_dec_pctl = (play_control *)arg;
@@ -389,7 +389,7 @@ void LED5X7_show_dev(int arg)
 /*----------------------------------------------------------------------------*/
 void LED5X7_show_filenumber(int arg)
 {
-    if (NULL == arg) {
+    if (0 == arg) {
         return;
     }
     play_control *tmp_dec_pctl = (play_control *)arg;
@@ -417,7 +417,7 @@ void LED5X7_show_IR_number(void)
 /*----------------------------------------------------------------------------*/
 void LED5X7_show_music_main(int arg)
 {
-    if (NULL == arg) {
+    if (0 == arg) {
         return;
     }
     play_control *tmp_dec_pctl = (play_control *)arg;
@@ -452,7 +452,7 @@ void LED5X7_show_music_main(int arg)
 /*----------------------------------------------------------------------------*/
 void LED5X7_show_dec_eq(u32 arg)
 {
-    if (NULL == arg) {
+    if (0 == arg) {
         return;
     }
     u32 ui_eq_mode = arg;
@@ -487,7 +487,7 @@ void LED5X7_show_hw_eq(void)
 /*----------------------------------------------------------------------------*/
 void LED5X7_show_playmode(int arg)
 {
-    if (NULL == arg) {
+    if (0 == arg) {
         return;
     }
     play_control *tmp_dec_pctl = (play_control *)arg;

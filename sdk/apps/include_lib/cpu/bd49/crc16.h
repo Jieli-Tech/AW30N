@@ -5,10 +5,9 @@
 #include "typedef.h"
 
 
-
-u16 chip_crc16(void *ptr, u32 len);
+u16 chip_crc16(const void *ptr, u32 len);
 // #define CRC16  chip_crc16
-u16 CRC16(void *ptr, u32 len);
+u16 CRC16(const void *ptr, u32 len);
 /* i_val: CRC校验初值 */
 u16 CRC16_with_initval(const void *ptr, u32 len, u16 i_val);
 

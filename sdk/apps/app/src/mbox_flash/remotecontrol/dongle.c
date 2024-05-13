@@ -154,7 +154,7 @@ u32 dongle_rf_loop(void)
         return 0;
     }
     log_info("get_cmd_msg! 0x%x:%d 0x%x:%d \n", &dongle_packet[1], dongle_packet[1], &dongle_packet[0], dongle_packet[0]);
-    RF_RADIO_ENC_HEAD *p_enc_head = &dongle_packet[2];
+    RF_RADIO_ENC_HEAD *p_enc_head = (RF_RADIO_ENC_HEAD *)&dongle_packet[2];
     switch (dongle_packet[1]) {
     case AUDIO2RF_START_PACKET:
         log_info("MSG_RECEIVER_START");
@@ -225,7 +225,7 @@ void dongle_app()
 
     cbuf_init(&dongle_mge.ack_cbuf, &dongle_ack_buff[0], sizeof(dongle_ack_buff));
     rf_send_soft_isr_init(&dongle_mge.ack_cbuf);
-    audio2rf_send_register(&dongle_ops);
+    audio2rf_send_register((void *)&dongle_ops);
     u32 ble_status = 0;
     u32 app_event = 0;
     log_info("rf_receiver\n");

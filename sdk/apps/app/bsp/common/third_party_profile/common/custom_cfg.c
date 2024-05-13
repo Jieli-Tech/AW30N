@@ -692,7 +692,7 @@ static u32 ex_cfg_fill_content(ex_cfg_t *user_ex_cfg, u8 *write_flag)
         u8 rsp_data[31] = {0};
         u8 i, rsp_len = 0;
         if (rsp_data) {
-            printf("[make new rsp data]\n");
+            printf("[make new adv data]\n");
             rsp_payload.vid = 0x05D6;
             memcpy(rsp_payload.logo, "JLOTA", sizeof("JLOTA"));
             for (i = 0; i < sizeof(rsp_payload.logo) / 2; i++) {
@@ -703,12 +703,19 @@ static u32 ex_cfg_fill_content(ex_cfg_t *user_ex_cfg, u8 *write_flag)
             rsp_payload.version = 0;
             memcpy(rsp_payload.addr, addr, 6);
 
+            i = 0;
             item_data = ble_get_adv_data_ptr(&len);
-            memcpy(rsp_data + rsp_len, item_data, len);
-            rsp_len += len;
+            while (item_data[i] && i < len) {
+                if (*(item_data + 1) != 0xff && *(item_data + 1) != 0x09) {
+                    memcpy(rsp_data + i, item_data, *item_data + 1);
+                    rsp_len += *item_data + 1;
+                }
+                i += (1 + *item_data);
+                item_data += (1 + *item_data);
+            }
 
             if (rsp_len + sizeof(struct excfg_rsp_payload) + 2 > 31) {
-                printf("rsp data overflow!!!\n");
+                printf("adv data overflow!!!\n");
             } else {
                 *(rsp_data + rsp_len) = sizeof(struct excfg_rsp_payload) + 1;        //fill jlpayload
                 *(rsp_data + rsp_len + 1) = 0xff;                                    // HCI_EIR_DATATYPE_MANUFACTURER_SPECIFIC_DATA
@@ -722,9 +729,13 @@ static u32 ex_cfg_fill_content(ex_cfg_t *user_ex_cfg, u8 *write_flag)
 
             //广播包里有0xff字段也要找出来去掉，小程序判断到adv和rsp有重复字段是会出错
             u8 new_adv_len = 0;
-            i = 0;
             memset(rsp_data, 0, sizeof(rsp_data));
             /* item_data = ble_get_adv_data_ptr(&len); */
+#if 1
+            u8 *name_p = bt_get_local_name();
+            new_adv_len += make_eir_packet_data(rsp_data, 0, HCI_EIR_DATATYPE_COMPLETE_LOCAL_NAME, (void *)name_p, strlen(name_p));
+#else
+            i = 0;
             u8 *item_data = ble_get_scan_rsp_ptr(&len);
             while (i < len) {                           //找出不等于0xff的信息,拷贝到new_adv_data
                 /* if (*(item_data + 1) != 0xff) { */
@@ -736,6 +747,7 @@ static u32 ex_cfg_fill_content(ex_cfg_t *user_ex_cfg, u8 *write_flag)
                 i += (1 + *item_data);
                 item_data += (1 + *item_data);
             }
+#endif
             printf("new rsp_data:\n");
             printf_buf(rsp_data, new_adv_len);
             custom_cfg_item_write(CFG_ITEM_SCAN_RSP, rsp_data, new_adv_len);

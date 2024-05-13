@@ -46,7 +46,7 @@ const u8 quality2br_16k_tab[10] = {
     4, 6, 8, 10, 12, 16, 20, 24, 28, 34
 };
 
-const u8 speex_sr_tab[] = {
+const u16 speex_sr_tab[] = {
     8000, 16000
 };
 
@@ -107,7 +107,7 @@ u32 speex_encode_api(void *p_file, void *input_func, void *output_func)
     log_info("br : %d\n", enc_speex_hdl.info.br);
 
     /******************************************/
-    if (ops->open((void *)&speex_encode_buff[0], &speex_enc_io, quality, enc_speex_hdl.info.sr)) {        //传入io接口，说明如下
+    if (ops->open((void *)&speex_encode_buff[0], (SPEEX_EN_FILE_IO *)&speex_enc_io, quality, enc_speex_hdl.info.sr)) {        //传入io接口，说明如下
         log_info("open fail\n");
         return 0;
     } else {

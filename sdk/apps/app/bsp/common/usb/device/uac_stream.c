@@ -24,7 +24,7 @@
 #include "msg.h"
 /* #include "dac_api.h" */
 
-#define     UAC_DEBUG_ECHO_MODE 1
+#define     UAC_DEBUG_ECHO_MODE 0
 
 
 static volatile u8 speaker_stream_is_open = 0;
@@ -309,14 +309,6 @@ static int uac_mic_echo_data(u8 *buf, u32 len)
         j += 2;
     }
 #endif
-#else
-    uac_speaker_read(NULL, buf, 2 * len);
-    u16 *r_ch = (u16 *)buf;
-    u16 *s_ch = r_ch;
-    for (int i = 0; i < len * 2 ; i += 2) {
-        *r_ch = s_ch[i * 2];
-        r_ch += 1;
-    }
 #endif
     return len;
 }

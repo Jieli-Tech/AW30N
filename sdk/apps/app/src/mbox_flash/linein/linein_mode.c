@@ -38,7 +38,7 @@ void linein_app(void)
 {
     sysmem_write_api(SYSMEM_INDEX_SYSMODE, &work_mode, sizeof(work_mode));
     SET_UI_MAIN(MENU_AUX_MAIN);
-    UI_menu(MENU_AUX_MAIN, NULL);
+    UI_menu(MENU_AUX_MAIN, 0);
     key_table_sel(linein_key_msg_filter);
 
 #if (LINEIN_MODE == DIGITAL_LINEIN_MODE)
@@ -52,8 +52,8 @@ void linein_app(void)
     /* log_info("dac_sr %d\n", sr); */
     dac_sr_api(48000);
     audio_adc_init_api(48000, AUDIO_ADC_LINEIN, 0);//48k采样率
-    regist_dac_channel(&digital_linein_sound, NULL);
-    regist_audio_adc_channel(&digital_linein_sound, NULL);
+    regist_dac_channel(NULL, &digital_linein_sound, NULL);
+    regist_audio_adc_channel(&digital_linein_sound, NULL, NULL);
 
     audio_adc_enable();
     digital_linein_sound.enable |= B_DEC_RUN_EN | B_DEC_FIRST;
@@ -94,7 +94,7 @@ void linein_app(void)
         case MSG_CHANGE_WORK_MODE:
             goto __linein_app_exit;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
         default:
             ap_handle_hotkey(msg[0]);
             break;
@@ -108,15 +108,15 @@ __linein_app_exit:
 #if (LINEIN_MODE == DIGITAL_LINEIN_MODE)
     digital_linein_sound.enable &= ~B_DEC_RUN_EN;
     audio_adc_disable();
+    auin_uninit();
     unregist_audio_adc_channel(&digital_linein_sound);
     unregist_dac_channel(&digital_linein_sound);
-    audio_adc_off_api();
     dac_sr_api(sr);
 #else
     audac_analog_open(1);
 #endif
     SET_UI_MAIN(MENU_POWER_UP);
-    UI_menu(MENU_POWER_UP, NULL);
+    UI_menu(MENU_POWER_UP, 0);
     key_table_sel(NULL);
 }
 

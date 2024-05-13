@@ -28,7 +28,6 @@ extern int __bt_updata_save_connection_info(void);
 extern const update_op_api_t lmp_ch_update_op;
 extern const update_op_api_t ble_ll_ch_update_op;
 u8 ble_update_ready_jump_flag = 0;
-extern void latch_reset(struct boot_soft_flag_t *softflag);
 
 static void testbox_bt_classic_update_private_param_fill(UPDATA_PARM *p)
 {

@@ -34,7 +34,7 @@
 #define CONFIG_BT_GATT_SERVER_NUM       0 //配置从机server个数
 #endif
 #define CONFIG_BT_GATT_CONNECTION_NUM   1 //(test 应用仅支持1条链路主从切换)(CONFIG_BT_GATT_SERVER_NUM + CONFIG_BT_GATT_CLIENT_NUM) //配置连接个数
-#define CONFIG_BLE_HIGH_SPEED           1 //BLE提速模式: 使能DLE+2M, payload要匹配pdu的包长
+#define CONFIG_BLE_HIGH_SPEED           1 //BLE提速模式: 使能DLE(2M暂时不开,对讲机距离要求), payload要匹配pdu的包长
 #define CONFIG_BLE_CONNECT_SLOT         0 //BLE高回报率设置, 支持私有协议
 #define PHY_CODE_TEST                   0 //CODED s2 s8认证
 #if (PHY_CODE_TEST)

@@ -32,9 +32,9 @@
 #endif
 
 #if CONFIG_BT_LITTLE_BUFFER_MODE
-#define ATT_LOCAL_MTU_SIZE        (247)
+#define ATT_LOCAL_MTU_SIZE        (137)
 //ATT缓存的buffer支持缓存数据包个数
-#define ATT_PACKET_NUMS_MAX       (2)
+#define ATT_PACKET_NUMS_MAX       (3)
 #define ATT_SEND_CBUF_SIZE        (ATT_PACKET_NUMS_MAX * (ATT_PACKET_HEAD_SIZE + ATT_LOCAL_MTU_SIZE))
 #else
 //ATT发送的包长,    note: 20 <=need >= MTU
@@ -514,7 +514,7 @@ static void cbk_packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *p
             mtu = att_event_mtu_exchange_complete_get_MTU(packet) - 3;
             log_info("ATT MTU = %u\n", mtu);
             ble_op_att_set_send_mtu(mtu);
-            set_connection_data_length(251, 2120);
+            /* set_connection_data_length(251, 2120); */
             break;
 
         case HCI_EVENT_VENDOR_REMOTE_TEST:
@@ -535,6 +535,9 @@ static void cbk_packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *p
 
         case HCI_EVENT_ENCRYPTION_CHANGE:
             log_info("HCI_EVENT_ENCRYPTION_CHANGE= %d\n", packet[2]);
+
+            //加密之后更新
+            set_connection_data_length(251, 2120);
             break;
 
         }
@@ -883,7 +886,7 @@ static void ble_slave_sm_setup_init(io_capability_t io_type, u8 auth_req, uint8_
     }
 }
 
-#define TRANS_TCFG_BLE_SECURITY_EN          0/*是否发请求加密命令*/
+#define TRANS_TCFG_BLE_SECURITY_EN          CONFIG_BT_SM_SUPPORT_ENABLE/*是否发请求加密命令*/
 void ble_slave_profile_init(void)
 {
     printf("ble profile init\n");

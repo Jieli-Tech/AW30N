@@ -2,9 +2,9 @@
 #define  __UART_TYPES_H__
 
 #define     HW_UART_NUM     3
-#define     JL_UARTX_TAB_LIST  JL_UART0, \
-                               JL_UART1, \
-                               JL_UART2, \
+#define     JL_UARTX_TAB_LIST  (u32)JL_UART0, \
+                               (u32)JL_UART1, \
+                               (u32)JL_UART2, \
 
 #define     UARTX_IRQ_IDX_TAB_LIST  IRQ_UART0_IDX, \
                                     IRQ_UART1_IDX, \

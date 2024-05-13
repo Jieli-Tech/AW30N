@@ -59,7 +59,7 @@ u32 audio2rf_start_cmd(u32 sr, u32 br, AUDIO_FORMAT enc_type)
     enc_head.reserved = 0xff;
     enc_head.sr = sr;
     enc_head.br = br;
-    return audio2rf_send_packet(AUDIO2RF_START_PACKET, &enc_head, sizeof(enc_head));
+    return audio2rf_send_packet(AUDIO2RF_START_PACKET, (u8 *)&enc_head, sizeof(enc_head));
 }
 
 /*----------------------------------------------------------------------------*/
@@ -88,7 +88,7 @@ u32 audio2rf_stop_cmd(void)
 /*----------------------------------------------------------------------------*/
 u32 audio2rf_ack_cmd(u8 ack_cmd, u8 *data, u16 len)
 {
-    log_info("********* SEND ACK:%d *********\n", ack_cmd);
+    log_info("********* PACKET_TYPE %d, SEND ACK:%d *********\n", ack_cmd, data[0]);
     return audio2rf_send_packet(ack_cmd | AUDIO2RF_ACK, data, len);
 }
 

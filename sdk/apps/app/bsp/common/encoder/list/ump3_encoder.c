@@ -61,6 +61,11 @@ static enc_obj enc_ump3_hdl;
 /*     ump3_enc_output, */
 /* }; */
 static EN_FILE_IO ump3_enc_io AT(.enc_ump3_data);
+int ump2_max_valid_br(int sr)
+{
+    int val = 17 * sr / 3200;
+    return val;
+}
 
 u32 ump3_encode_api(void *p_file, void *input_func, void *output_func)
 {
@@ -90,6 +95,10 @@ u32 ump3_encode_api(void *p_file, void *input_func, void *output_func)
     /*br的范围是：sr*16/压缩比，压缩比的范围是3~8
      * 例如sr = 24k，那么br的范围是 (24*16/8) ~ (24*16/3)*/
     enc_ump3_hdl.info.br = 80;
+    /* 最大码率限制 */
+    if (enc_ump3_hdl.info.br > ump2_max_valid_br(enc_ump3_hdl.info.sr)) {
+        enc_ump3_hdl.info.br = ump2_max_valid_br(enc_ump3_hdl.info.sr);
+    }
     enc_ump3_hdl.info.nch = 1;
 
 

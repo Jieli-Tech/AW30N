@@ -128,7 +128,7 @@ void music_app(void)
 {
     sysmem_write_api(SYSMEM_INDEX_SYSMODE, &work_mode, sizeof(work_mode));
     u32 dac_sr = dac_sr_read();
-    dac_sr_api(48000);
+    dac_sr_api(SR_DEFAULT);
     u8 music_vol, dindex, used_device;
     int msg[2], err;
 
@@ -148,12 +148,12 @@ void music_app(void)
 #if defined(AUDIO_HW_EQ_EN) && (AUDIO_HW_EQ_EN)
         case MSG_HW_EQ_SW:
             eq_mode_sw((void *)((pctl[0].p_dec_obj)->eq_effect));
-            UI_menu(MENU_HW_EQ, NULL);
+            UI_menu(MENU_HW_EQ, 0);
             break;
 #endif
         case MSG_DEC_EQ:
             decoder_eq_mode_switch((void *)((pctl[0].p_dec_obj)));
-            if (dec_eq_mode != -1) {
+            if (dec_eq_mode != (u8)(-1)) {
                 UI_menu(MENU_DEC_EQ, dec_eq_mode);
             }
             break;
@@ -162,10 +162,10 @@ void music_app(void)
             if (decoder_pause(pctl[0].p_dec_obj)) {
                 if ((0 == (pctl[0].p_dec_obj->sound.enable & B_DEC_PAUSE))) {
                     SET_UI_MAIN(MENU_MUSIC_MAIN);
-                    UI_menu(MENU_MUSIC_MAIN, &pctl[0]);
+                    UI_menu(MENU_MUSIC_MAIN, (int)&pctl[0]);
                 } else {
                     SET_UI_MAIN(MENU_PAUSE);
-                    UI_menu(MENU_PAUSE, &pctl[0]);
+                    UI_menu(MENU_PAUSE, (int)&pctl[0]);
                 }
             }
             break;
@@ -177,17 +177,15 @@ void music_app(void)
                 music_play_control(DEV_CMD_NEXT, 0, NEED_WAIT);
             }
             break;
-        case MSG_USB_DISK_IN:
+        case MSG_USB_DISK_IN://应用为了节省代码将插U盘和插卡消息分支写在一起，中间不可插入其他消息，否则影响设备升级
         case MSG_SDMMCA_IN:
             if (time_before(maskrom_get_jiffies(), 150)) {
                 break;//上电1.5s内不响应设备上线消息
             }
             used_device = msg[0] - MSG_USB_DISK_IN;
             log_info("DEV_IN %d\n", used_device);
-#if (UPDATE_V2_EN && (SD_UPDATE_EN || UDISK_UPDATE_EN))
-            char *name = get_device_name(used_device);
-            err = dev_update_check(name);
-            /* log_info("update err 0x%x\n", err); */
+#if TFG_DEV_UPGRADE_SUPPORT
+            device_update(used_device);
 #endif
             post_msg(1, MSG_SEL_NEW_DEVICE);
             break;
@@ -227,7 +225,7 @@ __find_last_device:
             if ((Input_Number <= pctl[0].ftotal) && (Input_Number > 0)) {
                 music_play_control(FILE_CMD_PLAY_BY_INDEX, Input_Number, NO_WAIT);
             } else {
-                UI_menu(MENU_MUSIC_MAIN, &pctl[0]);
+                UI_menu(MENU_MUSIC_MAIN, (int)&pctl[0]);
             }
             Input_Number = 0;
             break;
@@ -237,22 +235,22 @@ __find_last_device:
             if (pctl[0].play_mode >= MAX_PLAY_MODE) {
                 pctl[0].play_mode = REPEAT_ALL;
             }
-            UI_menu(MENU_PLAYMODE, &pctl[0]);
+            UI_menu(MENU_PLAYMODE, (int)&pctl[0]);
             log_info("MSG_NEXT_PLAYMODE : %d\n", pctl[0].play_mode);
             break;
         //-------------快进快退
         case MSG_MUSIC_FF:
             if (decoder_ff(pctl[0].p_dec_obj, 2)) {
-                UI_menu(MENU_HALF_SEC_REFRESH, &pctl[0]);
+                UI_menu(MENU_HALF_SEC_REFRESH, (int)&pctl[0]);
                 SET_UI_MAIN(MENU_MUSIC_MAIN);
-                UI_menu(MENU_MUSIC_MAIN, &pctl[0]);
+                UI_menu(MENU_MUSIC_MAIN, (int)&pctl[0]);
             }
             break;
         case MSG_MUSIC_FR:
             if (decoder_fr(pctl[0].p_dec_obj, 2)) {
-                UI_menu(MENU_HALF_SEC_REFRESH, &pctl[0]);
+                UI_menu(MENU_HALF_SEC_REFRESH, (int)&pctl[0]);
                 SET_UI_MAIN(MENU_MUSIC_MAIN);
-                UI_menu(MENU_MUSIC_MAIN, &pctl[0]);
+                UI_menu(MENU_MUSIC_MAIN, (int)&pctl[0]);
             }
             break;
         //-------------解码结束处理
@@ -277,8 +275,8 @@ __find_last_device:
             goto __out_music_mode;
         case MSG_500MS:
             /* decoder_time(pctl[0].p_dec_obj); */
-            UI_menu(MENU_MAIN, &pctl[0]);
-            UI_menu(MENU_HALF_SEC_REFRESH, &pctl[0]);
+            UI_menu(MENU_MAIN, (int)&pctl[0]);
+            UI_menu(MENU_HALF_SEC_REFRESH, (int)&pctl[0]);
             if (MUSIC_PLAY != get_decoder_status(pctl[0].p_dec_obj)) {
                 sysmem_pre_erase_api();
                 app_powerdown_deal(0);
@@ -299,7 +297,7 @@ __out_music_mode:
     Sys_IRInput = 0;
 #endif
     SET_UI_MAIN(MENU_POWER_UP);
-    UI_menu(MENU_POWER_UP, NULL);
+    UI_menu(MENU_POWER_UP, 0);
     key_table_sel(NULL);
     dac_sr_api(dac_sr);
     dac_fade_in_api();

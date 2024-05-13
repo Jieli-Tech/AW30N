@@ -41,7 +41,7 @@ enum hw_spi_isr_status {
 };
 
 typedef struct spi_platform_data {
-    u8 port[6];                //CLK, DO, DI, D2(wp), D3(hold), cs(只用于slave)
+    u8 port[6];                //CLK, DO, DI, D2(wp), D3(hold), cs(只用于slave),未使用的io配0xff
     enum spi_role role;        //master or slave
     enum spi_mode mode;        //模式，选项为enum spi_mode中的枚举常量
     enum spi_bit_mode bit_mode;

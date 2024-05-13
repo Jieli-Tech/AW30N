@@ -31,12 +31,15 @@ void dac_off_api(void);
 u8 dac_vol(char set, u8 vol);
 u8 stereo_dac_vol(char set, u8 vol_l, u8 vol_r);
 void dac_usb_vol(u8 vol_r, u8 vol_l);
-bool regist_dac_channel(void *sound, void *kick);
+bool regist_dac_channel(void *psound_pre, void *psound_later, void *kick);
 bool unregist_dac_channel(void *dec_hld);
 
 bool dac_cbuff_active(void *sound_hld);
 u32 get_dac_max_phy_vol(void);
 
+
+void uac_audio_dac_percent(u8 ch);
+void audio_dac_sync_once(void);
 
 #endif
 

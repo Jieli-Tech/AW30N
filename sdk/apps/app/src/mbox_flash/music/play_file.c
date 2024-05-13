@@ -307,7 +307,7 @@ __mpc_no_effetive_dev_deal:
         log_debug("err_device_break!\n");
         pctl[0].dev_index = NO_DEVICE;
         SET_UI_MAIN(MENU_IDLE);
-        UI_menu(MENU_IDLE, NULL);//无设备在线时显示IDLE
+        UI_menu(MENU_IDLE, 0);//无设备在线时显示IDLE
         return 0;
     }
 
@@ -345,7 +345,7 @@ __mpc_no_effetive_dev_deal:
 
     /*--------------- 挂载物理设备 ---------------*/
 __mpc_pick_one:
-    UI_menu(MENU_WAIT, NULL);//物理操作选择设备时显示WAIT
+    UI_menu(MENU_WAIT, 0);//物理操作选择设备时显示WAIT
     err = device_mount(&pctl[0], &dev_scan_info[pctl[0].dev_index]);
     if (err) {
         log_info("pick_dev err:0x%x\n", err);
@@ -392,7 +392,7 @@ __mpc_play_file:
     sysmem_pre_erase_api();
 
     SET_UI_MAIN(MENU_MUSIC_MAIN);
-    UI_menu(MENU_FILENUM, &pctl[0]);//解码前显示文件号
+    UI_menu(MENU_FILENUM, (int)&pctl[0]);//解码前显示文件号
 
     pctl[0].p_dec_obj = NULL;
     if (BIT_FDEC_DP & pctl[0].flag) {

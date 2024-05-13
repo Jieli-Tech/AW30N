@@ -206,6 +206,15 @@ void btstack_iodebug_out(void)
 {
     JL_PORTA->OUT &= ~BIT(1);
 }
+void ble_evt_iodebug_in(void)
+{
+    JL_PORTA->DIR &= ~BIT(2);
+    JL_PORTA->OUT |=  BIT(2);
+}
+void ble_evt_iodebug_out(void)
+{
+    JL_PORTA->OUT &= ~BIT(2);
+}
 #else
 void ble_rx_irq_iodebug_in(void)
 {
@@ -217,6 +226,12 @@ void btstack_iodebug_in(void)
 {
 }
 void btstack_iodebug_out(void)
+{
+}
+void ble_evt_iodebug_in(void)
+{
+}
+void ble_evt_iodebug_out(void)
 {
 }
 #endif

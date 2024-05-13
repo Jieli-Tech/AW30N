@@ -33,4 +33,9 @@ extern void tick_timer_init(void);
 			count_down -= pass_jiffies; \
 		} \
 	} while(0);
+
+extern __attribute__((weak)) void tick_timer_set_on(void);
+extern __attribute__((weak)) void tick_timer_set_off(void);
+extern __attribute__((weak)) bool tick_timer_close(void);
+
 #endif

@@ -15,6 +15,8 @@
 
 #if RUN_APP_CUSTOM
 
+//  全双工对讲机功能开关（ram使用比较紧张，需要关掉部分算法）
+#define FULL_DUPLEX_RADIO 0
 
 //  A格式解码
 #define DECODER_A_EN 1

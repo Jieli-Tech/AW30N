@@ -51,7 +51,7 @@
 #include "app_power_mg.h"
 #include "sine_play.h"
 #include "init_app.h"
-#if BLE_EN
+#if defined (BLE_EN) && (BLE_EN)
 #include "bt_ble.h"
 #endif
 #if SYS_TIMER_EN
@@ -82,7 +82,7 @@ extern u8 get_flash_cache_timer(void);
 #endif
 #endif
 extern u8 tick_cnt;
-#if BLE_EN
+#if defined (BLE_EN) && (BLE_EN)
 //蓝牙连接超时处理
 u16 ble_tick_cnt = 0;
 #endif
@@ -93,7 +93,7 @@ void app_timer_loop(void)
     }
 
 #if (TCFG_PC_ENABLE || TCFG_UDISK_ENABLE)
-#if BLE_EN
+#if defined (BLE_EN) && (BLE_EN)
 #if (0 == (RF_REMOTECONTROL_MODE_EN & TRANS_DATA_SPPLE_EN))
     if (0 == (tick_cnt % 25)) {
         void usb_hotplug_detect(void *argv);
@@ -239,7 +239,7 @@ void mbox_flash_main(void)
             /* rtc_timed_wakeup_app(); */
             break;
 #endif
-#if BLE_EN
+#if defined (BLE_EN) && (BLE_EN)
 #if RF_RADIO_EN & BLE_EN & TESTE_BLE_EN
         case RF_RADIO_MODE:
             log_info("-RF Radio Mode\n");

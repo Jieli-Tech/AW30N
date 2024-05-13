@@ -68,7 +68,8 @@ __fat_rec_file_name:
         goto __fat_rec_file_name;
     } else {
         log_info("REC FILE NAME:%s \n", path_buff);
-        err = fs_createfile(obj->pfs, &obj->pfile, (u32 *)&path_buff[0]);
+        void *path = path_buff;
+        err = fs_createfile(obj->pfs, &obj->pfile, (u32 *)&path[0]);
         if (err) {
             log_info("open file error !!! \n");
             fs_fs_close(&obj->pfs);

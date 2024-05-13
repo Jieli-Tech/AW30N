@@ -27,6 +27,7 @@
 #include "gpio.h"
 #include "power_interface.h"
 #include "power_api.h"
+#include "audio_adc.h"
 #if HAS_NORFS_EN
 #include "nor_fs.h"
 #endif
@@ -47,7 +48,7 @@ void app_system_init(void)
     /* UI */
     UI_init();
     SET_UI_MAIN(MENU_POWER_UP);
-    UI_menu(MENU_POWER_UP, NULL);
+    UI_menu(MENU_POWER_UP, 0);
 
 
     /* audio */
@@ -57,6 +58,7 @@ void app_system_init(void)
     audio_init();
     dac_mode_init(16);
     dac_init_api(SR_DEFAULT);
+    auin_mode_init();
 
     /* key */
     adc_init();

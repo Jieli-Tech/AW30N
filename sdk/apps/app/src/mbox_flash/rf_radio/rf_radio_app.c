@@ -5,17 +5,14 @@
 #include "audio.h"
 #include "power_api.h"
 #include "rf_pa_port.h"
+#include "hot_msg.h"
+#include "audio_adc_api.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[rf_radio]"
 #include "log.h"
 
 #if (RF_RADIO_EN & BLE_EN & TESTE_BLE_EN)
-#if APP_SOFTOFF_CNT_TIME_10MS
-#define app_softoff_time_reset(n) (n = maskrom_get_jiffies() + APP_SOFTOFF_CNT_TIME_10MS)
-#else
-#define app_softoff_time_reset(n)
-#endif
 
 #define RADIO_DEFAULT_ROLE_MASTER   0
 
@@ -59,7 +56,7 @@ static int rf_radio_send_api(u8 *data, u16 len)
 static int rf_radio_check_status_api(void)
 {
     int ble_status;
-    vble_smpl_ioctl(VBLE_SMPL_GET_STATUS, &ble_status);
+    vble_smpl_ioctl(VBLE_SMPL_GET_STATUS, (int)&ble_status);
     if ((ble_status == BLE_ST_NOTIFY_IDICATE) || (ble_status == BLE_ST_SEARCH_COMPLETE)) {
         return 1;
     } else {
@@ -102,7 +99,15 @@ static void rrapp_close(void)
 
 void rra_in_idle(void)
 {
-    radio_mge.rra_status = RRA_IDLE;
+    /* radio_mge.rra_status = RRA_IDLE; */
+    /* radio_mge.rra_mode = RRA_IDLE_MODE; */
+#if FULL_DUPLEX_RADIO
+    radio_mge.rra_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理
+#else
+    radio_mge.rra_mode = RRA_RECIVE_MODE; //所有消息都先去到这个分支处理
+#endif
+    radio_mge.rra_enc_status = RRA_ENC_IDLE;
+    radio_mge.rra_dec_status = RRA_DEC_IDLE;
     app_softoff_time_reset(radio_mge.app_softoff_jif_cnt);
     radio_mge.app_standby_jif_cnt = maskrom_get_jiffies() + 10;
 }
@@ -126,7 +131,7 @@ u32 rra_send_ack_cmd(u8 ack_cmd, u8 ack_data)
 {
     u32 res = audio2rf_ack_cmd(ack_cmd, &ack_data, sizeof(ack_data));
     if (0 != res) {
-        log_error("ack can't push in queue, 0x%x!!!\n");
+        log_error("ack can't push in queue, 0x%x!!!\n", res);
     }
     return res;
 }
@@ -163,10 +168,10 @@ static void rf_radio_app_init(void)
     vble_smpl_slave_select();
 #endif
     vble_smpl_init();
-    vble_smpl_recv_register(&radio_mge.packet_recv, unpack_data_deal);
+    vble_smpl_recv_register(&radio_mge.packet_recv, (int (*)(void *, u8 *, u16))unpack_data_deal);
     /* #endif */
     /* 音频传输发送接口注册 */
-    audio2rf_send_register(&rf_radio_ops);
+    audio2rf_send_register((void *)&rf_radio_ops);
     /* audio_adc_init_api(32000, AUDIO_ADC_MIC, 0); */
     dac_off_api();
     decoder_init();
@@ -175,9 +180,10 @@ static void rf_radio_app_init(void)
 
 static void rf_radio_app_uninit(void)
 {
-    if (RRA_ENCODING == radio_mge.rra_status) {
+    if (RRA_ENCODING == radio_mge.rra_enc_status) {
         rra_encode_stop(ENC_NO_WAIT);
-    } else if (RRA_DECODING == radio_mge.rra_status) {
+    }
+    if (RRA_DECODING == radio_mge.rra_dec_status) {
         rra_decode_stop();
     }
     audio_init();
@@ -205,11 +211,19 @@ static void rf_radio_app_uninit(void)
 /*----------------------------------------------------------------------------*/
 static int rrapp_exit_standby(int msg)
 {
-    rra_in_idle();
+#if FULL_DUPLEX_RADIO
+    radio_mge.rra_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理
+#else
+    radio_mge.rra_mode = RRA_RECIVE_MODE; //所有消息都先去到这个分支处理
+#endif
+    radio_mge.rra_enc_status = RRA_ENC_IDLE;
+    radio_mge.rra_dec_status = RRA_DEC_IDLE;
+    app_softoff_time_reset(radio_mge.app_softoff_jif_cnt);
+    radio_mge.app_standby_jif_cnt = maskrom_get_jiffies() + 10;
     rrapp_open();
     return msg;
 }
-int rrapp_standby(void)
+int rrapp_idle(void)
 {
     /* log_info("rf_radio idle, sf_to:%d\n", radio_mge.app_softoff_jif_cnt - maskrom_get_jiffies()); */
     vble_smpl_ioctl(VBLE_SMPL_UPDATE_CONN_INTERVAL, RADIO_STANDBY_INTERVAL);
@@ -229,7 +243,7 @@ int rrapp_standby(void)
         }
 #endif
 
-        vble_smpl_ioctl(VBLE_SMPL_GET_STATUS, &ble_status);
+        vble_smpl_ioctl(VBLE_SMPL_GET_STATUS, (int)&ble_status);
         if ((ble_status != BLE_ST_NOTIFY_IDICATE)/*从机已连接并可发数*/ && \
             (ble_status != BLE_ST_SEARCH_COMPLETE)/*主机已连接并可发数*/) {
             /* 断开连接，退出idle回到活跃状态等待下一次连接 */
@@ -277,35 +291,42 @@ int rrapp_standby(void)
    @note    主函数根据不同状态运行不同子函数；
             蓝牙已连接且应用空闲时，执行standby函数低功耗保持连接
             当外部事件触发时退出standby，运行recevint和sending函数响应消息、事件
-* /
+*/
 /*----------------------------------------------------------------------------*/
 void rf_radio_app(void)
 {
     int msg = NO_MSG;
-
-    u32 flag;
 
     rf_radio_app_init();
 
     rra_in_idle();
 
     rrapp_open();
-
+#if FULL_DUPLEX_RADIO
+    radio_mge.rra_mode = RRA_FULL_DUPLEX;
+#endif
     while (1) {
 
-        switch (radio_mge.rra_status) {
-        case RRA_STANDBY:
+        switch (radio_mge.rra_mode) {
+        case RRA_IDLE_MODE:
             /* 应用休眠闲状态 */
-            msg = rrapp_standby();
+            msg = rrapp_idle();
             break;
-        case RRA_GOTO_ENC:
+        case RRA_SEND_MODE:
             /* 编码发送状态 */
             rrapp_sending(msg);
             break;
-        case RRA_IDLE:
+        case RRA_RECIVE_MODE:
             /* 解码接收状态 */
-            flag = rrapp_receiving(msg);
-            if (!flag) {
+            radio_mge.rra_mode = rrapp_receiving(msg);
+            if (RRA_EXIT == radio_mge.rra_mode) {
+                goto __rf_radio_app_exit;
+            }
+            break;
+        case RRA_FULL_DUPLEX:
+            /* 全双工对讲状态 */
+            radio_mge.rra_mode = fd_rrapp_loop(msg);
+            if (RRA_EXIT == radio_mge.rra_mode) {
                 goto __rf_radio_app_exit;
             }
             break;

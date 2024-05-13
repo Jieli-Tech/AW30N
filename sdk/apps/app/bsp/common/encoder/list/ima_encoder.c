@@ -21,7 +21,7 @@ static u32 obuf_eima_o[1024 / 4]	 AT(.enc_ima_data);
 static u32 ima_encode_buff[820 / 4]	 AT(.enc_ima_data);
 
 static EN_FILE_IO ima_enc_io 		 AT(.enc_ima_data);
-
+const int ima_enc_stream_header = 0;        //编码输出header 0:不输出; 1:输出
 const int ima_enc_stream_max_input = 160;	//样点数 320 byte
 const int ima_enc_stream_max_output = 40 * 2; //byte
 

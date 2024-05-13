@@ -61,7 +61,7 @@ sound_out_obj *auadc_mic_open(uac_mic_read *p_uac_read)
     }
     /* p_curr_sound = &uac_read.mic_out_sound; */
     log_info("usmo ---- 004");
-    regist_audio_adc_channel((void *)&mic_out_sound, kick);
+    regist_audio_adc_channel((void *)&mic_out_sound, NULL, kick);
     log_info("usmo ---- 005");
     if (config_usbslave_ctl_mic) {
         log_info("usmo ---- 006");

@@ -399,7 +399,7 @@ u16 dev_update_check(char *logo)
         }
 
         FS_PARTITION_INFO part_info = {0};
-        res = vfs_ioctl(pfs, FS_IOCTL_GET_PARTITION_INFO, &part_info);
+        res = vfs_ioctl(pfs, (int)FS_IOCTL_GET_PARTITION_INFO, (int)&part_info);
         if (res) {
             log_info(">>>[test]:dev part err!!!\n");
             fs_fs_close(&pfs);

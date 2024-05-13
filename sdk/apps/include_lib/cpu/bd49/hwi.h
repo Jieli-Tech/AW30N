@@ -36,11 +36,12 @@ void bit_set_swi(unsigned char index);
 
 void interrupt_init();
 
-void irq_save(void);
+// void irq_save(void);
+void irq_save(u32 b_index_l, u32 b_index_h);
 void irq_resume(void);
 void irq_enable(u8 index);
 // void irq_list_enable(u32 b_index);
-void irq_list_enable(u32 b_index_l, u32 b_index_h);
+//void irq_list_enable(u32 b_index_l, u32 b_index_h);
 // void HWI_Install(unsigned char index, unsigned int isr, unsigned char priority);
 
 void request_irq(u8 index, u8 priority, void (*handler)(void), u8 chip_id);

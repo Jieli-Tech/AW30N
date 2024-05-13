@@ -7,11 +7,11 @@
 //系统使用到的
 const int IRQ_IRTMR_IP   = 6;
 const int IRQ_AUDIO_IP   = 5;
-const int IRQ_DECODER_IP = 1;
-const int IRQ_WFILE_IP   = 1;
-const int IRQ_RF_QUEUE_IP   = 1;
+const int IRQ_DECODER_IP = 0;
+const int IRQ_WFILE_IP   = 2;
+const int IRQ_RF_QUEUE_IP   = 2;
 const int IRQ_ADC_IP     = 3;
-const int IRQ_ENCODER_IP = 0;
+const int IRQ_ENCODER_IP = 1;
 const int IRQ_TICKTMR_IP = 3;
 const int IRQ_USB_IP	 = 4;
 const int IRQ_SD_IP		 = 3;
@@ -21,6 +21,7 @@ const int IRQ_SPEAKER_IP = 1;
 const int IRQ_LEDC_IP    = 1;
 const int IRQ_SLCD_IP    = 2;
 const int IRQ_PMU_TMR1_IP = 3;
+const int IRQ_ALINK_IP	 = 3;
 //系统还未使用到的
 const int IRQ_UART0_IP   = 3;
 const int IRQ_UART1_IP   = 3;
@@ -73,6 +74,8 @@ const int CONFIG_UPDATE_APP_OTA_EN = 1;
 const int CONFIG_UPDATE_TESTBOX_BLE_EN = 1;
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+const u8 config_no_osc_enable = 0;//bd49//ini:PLL=LRC;
 
 /**
  * @brief Bluetooth Controller Log

@@ -66,7 +66,7 @@ void usb_slave_app(void)
 
     stream_frame_init(IRQ_STREAM_IP);
     SET_UI_MAIN(MENU_PC_MAIN);
-    UI_menu(MENU_PC_MAIN, NULL);
+    UI_menu(MENU_PC_MAIN, 0);
 
     usb_device_mode(0, 0);
 #if TCFG_USB_EXFLASH_UDISK_ENABLE
@@ -130,12 +130,12 @@ void usb_slave_app(void)
         case MSG_VOL_DOWN:
             log_info("DO\n");
             hid_key_api(USB_AUDIO_VOLDOWN, 1);
-            UI_menu(MENU_PC_VOL_DOWN, NULL);
+            UI_menu(MENU_PC_VOL_DOWN, 0);
             break;
         case MSG_VOL_UP:
             log_info("UP\n");
             hid_key_api(USB_AUDIO_VOLUP, 1);
-            UI_menu(MENU_PC_VOL_UP, NULL);
+            UI_menu(MENU_PC_VOL_UP, 0);
             break;
         case MSG_MUTE_UNMUTE:
             log_info("MU\n");
@@ -154,7 +154,7 @@ void usb_slave_app(void)
             usb_pause();
             goto __out_t_usb_slave;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
         /* UI_menu(MENU_HALF_SEC_REFRESH); */
         default:
             ap_handle_hotkey(msg[0]);
@@ -171,7 +171,7 @@ __out_t_usb_slave:
     dac_sr_api(dac_sr);     //还原dac采样率
     clk_set("sys", sys_clk);//还原系统时钟
     SET_UI_MAIN(MENU_POWER_UP);
-    UI_menu(MENU_POWER_UP, NULL);
+    UI_menu(MENU_POWER_UP, 0);
     key_table_sel(NULL);
     stream_frame_uninit();
 }

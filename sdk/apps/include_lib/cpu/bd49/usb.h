@@ -228,9 +228,10 @@ void usb_ep0_Set_ignore(const usb_dev id, u32 addr);
 void usb_recover_io_status(const usb_dev id);
 
 //usb_suspend_resume
+#include "asm/power_interface.h"
 void usb_slave_phy_suspend(const usb_dev usb_id);
 void usb_slave_phy_resume(const usb_dev usb_id);
 void usb_slave_dp_wakeup_enable(const usb_dev usb_id);
 void usb_slave_dp_wakeup_disable(const usb_dev usb_id);
-void usb_slave_dp_wakeup_init(const usb_dev usb_id, void (*dp_wkup_cb)(void *priv));
+void usb_slave_dp_wakeup_init(const usb_dev usb_id, void (*dp_wkup_cb)(P33_IO_WKUP_EDGE edge));
 #endif

@@ -199,7 +199,7 @@ __midikey_channal_sel:
         case MSG_CHANGE_WORK_MODE:
             goto __midi_decode_app_exit;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
             if (0 == midi_keyboard_idle_cnt) {
                 sysmem_pre_erase_api();
                 app_powerdown_deal(0);

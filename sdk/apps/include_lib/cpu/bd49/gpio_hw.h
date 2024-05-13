@@ -93,6 +93,17 @@ enum gpio_port {
     PORTUSB = 14,
     // PORTR = 15,  //bd49 无pr
 };
+#define IS_PORT_ALL_PERIPH(PORT) (((PORT) == PORTA) || \
+                                  ((PORT) == PORTB) || \
+                                  ((PORT) == PORTF) || \
+                                  ((PORT) == PORTUSB))
+
+enum port_op_mode {
+    PORT_SET = 1,
+    PORT_AND,
+    PORT_OR,
+    PORT_XOR,
+};
 
 struct port_reg {
     volatile unsigned int in;
@@ -108,22 +119,22 @@ struct port_reg {
     volatile unsigned int hd1;
     volatile unsigned int spl;
     volatile unsigned int con;
-    volatile unsigned int set;
-    volatile unsigned int clr;
+    volatile unsigned int out_set;
+    volatile unsigned int out_clr;
 };
 #define GPIO_PX_PU_REG_NUM 2
 #define GPIO_PX_PD_REG_NUM 2
 #define GPIO_PX_HD_REG_NUM 2
 #define GPIO_PX_DIEH_REG_NUM 1
 #define GPIO_PX_SPL_REG_NUM  1
-
+#define GPIO_PX_BSR_REG_NUM  1
 #define usb_reg port_reg
 #define GPIO_USB_PU_REG_NUM 1
 #define GPIO_USB_PD_REG_NUM 1
 #define GPIO_USB_HD_REG_NUM 0
 #define GPIO_USB_DIEH_REG_NUM 1
 #define GPIO_USB_SPL_REG_NUM  1
-
+#define GPIO_USB_BSR_REG_NUM  1
 //无PR
 // struct port_pr_reg {
 //     volatile unsigned int in;
@@ -142,6 +153,7 @@ struct port_reg {
 // #define GPIO_PR_HD_REG_NUM 0
 // #define GPIO_PR_DIEH_REG_NUM 0
 // #define GPIO_PR_SPL_REG_NUM  0
+// #define GPIO_PR_BSR_REG_NUM  0
 
 #define GPIO_PU_REG_NUM 2 //max_num
 #define GPIO_PD_REG_NUM 2 //max_num
@@ -396,14 +408,28 @@ enum gpio_function {
 #define __toggle_port(x,y) __PORT##x->out ^= y;
 #define _toggle_port(port,pin) __toggle_port(port,pin)
 
+//log:
+#define GPIO_LOG_FORMAT "0x%04x  0x%04x  0x%04x  0x%04x  0x%04x,0x%04x  0x%04x,0x%04x  0x%04x,0x%04x  0x%04x"
+#define GPIO_NO_SUPPORT_FUN "------"
+#define GPIO_LOG_PORT(x,y) JL_PORT##x->OUT&y,JL_PORT##x->DIR&y,JL_PORT##x->DIE&y,JL_PORT##x->DIEH&y,JL_PORT##x->PU0&y,JL_PORT##x->PU1&y,JL_PORT##x->PD0&y,JL_PORT##x->PD1&y,JL_PORT##x->HD0&y,JL_PORT##x->HD1&y,JL_PORT##x->SPL&y
+#ifdef GPIOP
+#define GPIO_LOG_PORTP JL_PORTP->OUT,JL_PORTP->DIR,JL_PORTP->DIE,JL_PORTP->DIEH,JL_PORTP->PU0,JL_PORTP->PU1,JL_PORTP->PD0,JL_PORTP->PD1,JL_PORTP->HD0,JL_PORTP->HD1
+#endif
+#ifdef GPIOR
+#define GPIO_LOG_FORMAT_R "0x%04x  0x%04x  0x%04x  %s  0x%04x,0x%04x  0x%04x,0x%04x  0x%04x,0x%04x  %s"
+#define GPIO_LOG_PORTR R3_PR_OUT,R3_PR_DIR,R3_PR_DIE,GPIO_NO_SUPPORT_FUN,R3_PR_PU0,R3_PR_PU1,R3_PR_PD0,R3_PR_PD1,R3_PR_HD0,R3_PR_HD1,GPIO_NO_SUPPORT_FUN
+#endif
+#ifdef GPIOUSB
+#define GPIO_LOG_FORMAT_U "0x%04x  0x%04x  0x%04x  0x%04x  0x%04x,%s  0x%04x,%s  %s,%s  0x%04x"
+#define GPIO_LOG_PORTU _portx(PU,out),_portx(PU,dir),_portx(PU,die),_portx(PU,dieh),_portx(PU,pu0),GPIO_NO_SUPPORT_FUN,_portx(PU,pd0),GPIO_NO_SUPPORT_FUN,GPIO_NO_SUPPORT_FUN,GPIO_NO_SUPPORT_FUN,_portx(PU,spl)
+#endif
 /*************************function*************************/
-struct port_reg *gpio2reg(u32 gpio);
 /**
  * @brief usb_iomode
  *
  * @param enable 1，使能；0，关闭
  */
-void usb_iomode(u32 enable);
+void usb_iomode(const u32 enable);
 /**
  * @brief gpio_write
  *
@@ -412,7 +438,7 @@ void usb_iomode(u32 enable);
  *
  * @return
  */
-int gpio_hw_write(u32 gpio, u32 value);//return <0:error
+int gpio_hw_write(const u32 gpio, const u32 value);//return <0:error
 /**
  * @brief gpio_read
  *
@@ -420,12 +446,13 @@ int gpio_hw_write(u32 gpio, u32 value);//return <0:error
  *
  * @return
  */
-int gpio_hw_read(u32 gpio);//return <0:error
+int gpio_hw_read(const u32 gpio);//return <0:error
 
 int get_gpio(const char *p);//return <0:error
 
 /**************************************************************/
 /*********************multi pin interface***************************/
+int gpio_hw_port_pin_judge(const enum gpio_port port, u32 pin);
 /**
  * @brief port_set_direction
  *
@@ -435,7 +462,7 @@ int get_gpio(const char *p);//return <0:error
  *
  * @return <0 :error
  */
-int gpio_hw_set_direction(enum gpio_port port, u32 pin, u32 value);
+int gpio_hw_set_direction(const enum gpio_port port, u32 pin, const u32 value);
 /**
  * @brief port_direction_input
  *
@@ -444,7 +471,7 @@ int gpio_hw_set_direction(enum gpio_port port, u32 pin, u32 value);
  *
  * @return <0 :error
  */
-int gpio_hw_direction_input(enum gpio_port port, u32 pin);
+int gpio_hw_direction_input(const enum gpio_port port, u32 pin);
 /**
  * @brief port_direction_output/port_write_port/port_set_output_value
  *
@@ -453,9 +480,9 @@ int gpio_hw_direction_input(enum gpio_port port, u32 pin);
  * @param value 1，输出1；0，输出0
  * @return <0 :error
  */
-int gpio_hw_direction_output(enum gpio_port port, u32 pin, int value);/////////
-int gpio_hw_write_port(enum gpio_port port, u32 pin, u32 value);
-int gpio_hw_set_output_value(enum gpio_port port, u32 pin, u32 value);
+int gpio_hw_direction_output(const enum gpio_port port, u32 pin, const int value);/////////
+int gpio_hw_write_port(const enum gpio_port port, u32 pin, const u32 value);
+int gpio_hw_set_output_value(const enum gpio_port port, u32 pin, const u32 value);
 /**
  * @brief port_set_pull_up/port_set_pull_down/port_set_hd/
  *
@@ -464,9 +491,9 @@ int gpio_hw_set_output_value(enum gpio_port port, u32 pin, u32 value);
  * @param value 参考枚举gpio_pullup_mode/gpio_pulldown_mode/gpio_drive_strength
  * @return <0 :error
  */
-int gpio_hw_set_pull_up(enum gpio_port port, u32 pin, enum gpio_pullup_mode value);
-int gpio_hw_set_pull_down(enum gpio_port port, u32 pin, enum gpio_pulldown_mode value);//portabcdpr:pd0,pd1,usb:pd0
-int gpio_hw_set_drive_strength(enum gpio_port port, u32 pin, enum gpio_drive_strength value);
+int gpio_hw_set_pull_up(const enum gpio_port port, u32 pin, const enum gpio_pullup_mode value);
+int gpio_hw_set_pull_down(const enum gpio_port port, u32 pin, const enum gpio_pulldown_mode value);//portabcdpr:pd0,pd1,usb:pd0
+int gpio_hw_set_drive_strength(const enum gpio_port port, u32 pin, const enum gpio_drive_strength value);
 /**
  * @brief port_set_die/port_set_dieh
  *
@@ -475,11 +502,11 @@ int gpio_hw_set_drive_strength(enum gpio_port port, u32 pin, enum gpio_drive_str
  * @param value 1，设置1；0，设置0
  * @return <0 :error
  */
-int gpio_hw_set_die(enum gpio_port port, u32 pin, int value);
-int gpio_hw_set_dieh(enum gpio_port port, u32 pin, u32 value);
+int gpio_hw_set_die(const enum gpio_port port, u32 pin, const int value);
+int gpio_hw_set_dieh(const enum gpio_port port, u32 pin, const u32 value);
 
 //iic专用
-int gpio_hw_set_spl(enum gpio_port port, u32 pin, u32 value);
+int gpio_hw_set_spl(const enum gpio_port port, u32 pin, const u32 value);
 /**
  * @brief gpio_hw_read_port/gpio_hw_read_out_level/gpio_hw_read_drive_strength
  *
@@ -488,10 +515,28 @@ int gpio_hw_set_spl(enum gpio_port port, u32 pin, u32 value);
  *
  * @return <0 :error ；other：ok
  */
-int gpio_hw_read_port(enum gpio_port port, u32 pin);
-int gpio_hw_read_out_level(enum gpio_port port, u32 pin);
-u32 gpio_hw_read_drive_strength(enum gpio_port port, u32 pin);//return hd1:高16位,  hd0:低16位
+int gpio_hw_read_port(const enum gpio_port port, u32 pin);
+int gpio_hw_read_out_level(const enum gpio_port port, u32 pin);
+u32 gpio_hw_read_drive_strength(const enum gpio_port port, u32 pin);//return hd1:高16位,  hd0:低16位
 
+/**
+ * @brief:同组多个io配置不同状态接口
+ *
+ * @param port 参考枚举gpio_port：PORTA，PORTB
+ * @param pin 参考宏：PORT_PIN_0，PORT_PIN_1,可以多个io或|
+ * @param value：对应pin的bit有效
+ * @param op：参考枚举port_op_mode ：PORT_SET，PORT_AND,,,
+ *
+ * @return <0 :error ；other：ok
+ */
+int gpio_hw_op_dir(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_out(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_die(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_dieh(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_pu0(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_pu1(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_pd0(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
+int gpio_hw_op_pd1(const enum gpio_port port, u32 pin, u32 value, const enum port_op_mode op);
 
 //=================================================================================//
 //@brief: CrossBar 获取某IO的输出映射寄存器
@@ -631,6 +676,9 @@ u8 gpio_get_unoccupied_gp_ich();
 void gpio_release_gp_ich(u8 value);
 
 u32 get_sfc_port(void);
+//打印指定组别指定pin的crossbar信息
+void gpio_crossbar_fo_dump(char px_name[], u8 max_px_out_num, u16 px_mask, u32 *omap_ptr);
+void gpio_crossbar_fi_dump(char px_name[], u8 max_px_in_num, u16 px_mask, u8 px_in);
 
 #endif  /*GPIO_H*/
 

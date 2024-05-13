@@ -150,7 +150,7 @@ const int config_btctler_le_afh_en = 0;
 #endif
 
 #if CONFIG_BLE_HIGH_SPEED
-const uint64_t config_btctler_le_features = SET_ENCRYPTION_CFG | SET_SELECT_PHY_CFG | LE_DATA_PACKET_LENGTH_EXTENSION | LE_2M_PHY;
+const uint64_t config_btctler_le_features = SET_ENCRYPTION_CFG | SET_SELECT_PHY_CFG | LE_DATA_PACKET_LENGTH_EXTENSION;// | LE_2M_PHY;
 const int config_btctler_le_acl_packet_length = 251;
 #else
 const uint64_t config_btctler_le_features = SET_ENCRYPTION_CFG | SET_SELECT_PHY_CFG;

@@ -58,7 +58,7 @@ void vble_smpl_recv_register(void *priv, int (*callback_func)(void *, u8 *, u16)
     vble_smpl_ops->recv_cb_register(priv, callback_func);
 }
 
-u32 vble_smpl_ioctl(u32 cmd, int arg)
+u32 vble_smpl_ioctl(int cmd, int arg)
 {
     u32 res = 0;
     switch (cmd) {

@@ -85,12 +85,12 @@ CFLAGS := \
 	-flto \
 	-Os \
 	-Wcast-align \
-	-w \
 	-fallow-pointer-null \
 	-Wincompatible-pointer-types \
 	-Wundef \
 	-nostrictpi32 \
 	-fprefer-gnu-section \
+	-w \
 	-Werror=implicit-function-declaration \
 	-Werror=return-type \
 	-Werror=undef \
@@ -142,7 +142,7 @@ DEFINES := \
 	-DHAS_USB_EN=1 \
 	-DHAS_SDMMC_EN=1 \
 	-DHAS_EXTFLASH_EN=1 \
-	-DHAS_BLE_EN \
+	-DHAS_BLE_EN=1 \
 	-DHAS_VFS_EN=1 \
 	-DHAS_NORFS_EN=1 \
 	-DHAS_SYDFS_EN=1 \
@@ -201,6 +201,7 @@ INCLUDES := \
 	-Iapps/include_lib/cpu/bd49 \
 	-Iapps/include_lib/cpu/bd49/asm \
 	-Iapps/include_lib/cpu/bd49/power \
+	-Iapps/include_lib/cpu/bd49/audio_link \
 	-Iapps/include_lib/cpu \
 	-Iapps/include_lib/msg \
 	-Iapps/include_lib/fs \
@@ -236,6 +237,7 @@ INCLUDES := \
 	-Iapps/app/bsp/common/bt_common \
 	-Iapps/app/bsp/common/bt_common/third_party_profile/jieli/gatt_common \
 	-Iapps/app/bsp/common/audio_rf_trans \
+	-Iapps/app/bsp/cpu/bd49/audio_link \
 	-Iapps/include_lib/bt_controller_include \
 	-Iapps/include_lib/bt_controller_include/port/bd49 \
 	-Iapps/include_lib/bt_include \
@@ -415,6 +417,10 @@ c_SRC_FILES := \
 	apps/app/bsp/cpu/bd49/audio_adc_cpu.c \
 	apps/app/bsp/cpu/bd49/audio_dac_api.c \
 	apps/app/bsp/cpu/bd49/audio_dac_cpu.c \
+	apps/app/bsp/cpu/bd49/audio_link/audio_link.c \
+	apps/app/bsp/cpu/bd49/audio_link/audio_link_api.c \
+	apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.c \
+	apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.c \
 	apps/app/bsp/cpu/bd49/device.c \
 	apps/app/bsp/cpu/bd49/gpcnt.c \
 	apps/app/bsp/cpu/bd49/hw_timer.c \
@@ -474,6 +480,7 @@ c_SRC_FILES := \
 	apps/app/src/mbox_flash/remotecontrol/rc_app.c \
 	apps/app/src/mbox_flash/remotecontrol/rc_key.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_app.c \
+	apps/app/src/mbox_flash/rf_radio/rf_radio_full_duplex.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_key.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_receive.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_send.c \

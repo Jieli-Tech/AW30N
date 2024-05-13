@@ -15,7 +15,7 @@ void vble_smpl_init(void);
 void vble_smpl_exit(void);
 int vble_smpl_send_api(u8 *data, u16 len);
 void vble_smpl_recv_register(void *priv, int (*callback_func)(void *, u8 *, u16));
-u32 vble_smpl_ioctl(u32 cmd, int arg);
+u32 vble_smpl_ioctl(int cmd, int arg);
 void ble_module_enable(u8 en);
 void bt_ble_adv_enable(u8 enable);
 void ble_profile_init(void);

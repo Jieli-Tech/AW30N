@@ -86,7 +86,7 @@ enc_obj *audio2rf_encoder_io(u32(*enc_fun)(void *, void *, void *),  AUDIO_FORMA
     if (NULL == obj) {
         return NULL;
     }
-    obj->wait_output_empty = enc_wait_stop_stream;
+    obj->wait_output_empty = (void *)enc_wait_stop_stream;
     /* #if RF_SENDER_USE_QUEUE */
     rf_send_soft_isr_init(obj->p_obuf);
     /* #endif */

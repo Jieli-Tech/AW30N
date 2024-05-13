@@ -28,6 +28,7 @@ u8 efuse_get_cp_pass();
 u8 efuse_get_ft_pass();
 u8 efuse_get_wvdd_level();
 
+u32 efuse_get_lrc_pll_nr();
 
 
 

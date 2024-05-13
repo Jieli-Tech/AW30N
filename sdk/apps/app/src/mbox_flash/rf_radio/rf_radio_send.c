@@ -9,33 +9,21 @@
 
 #if (RF_RADIO_EN & BLE_EN & TESTE_BLE_EN)
 
-#if ENCODER_UMP3_EN
-#define RA_ENC_SR      32000
-#define RA_ENC_TYPE    FORMAT_UMP3
-#define RA_ENC_FUNC    ump3_encode_api
-#elif ENCODER_OPUS_EN
-#define RA_ENC_SR      16000
-#define RA_ENC_TYPE    FORMAT_OPUS
-#define RA_ENC_FUNC    opus_encode_api
-#else
-#define RA_ENC_SR      0
-#define RA_ENC_TYPE    -1
-#define RA_ENC_FUNC    NULL
-#endif
-
-static enc_obj *rra_encode_init(void)
+enc_obj *rra_encode_init(void)
 {
     log_info("rra_enc_init\n");
-    vble_smpl_ioctl(VBLE_SMPL_UPDATE_CONN_INTERVAL, RADIO_WORKING_INTERVAL);
+    if ((RRA_DEC_IDLE == radio_mge.rra_dec_status) && (RRA_ENC_IDLE == radio_mge.rra_enc_status)) {
+        vble_smpl_ioctl(VBLE_SMPL_UPDATE_CONN_INTERVAL, RADIO_WORKING_INTERVAL);
+    }
     audio_adc_init_api(RA_ENC_SR, AUDIO_ADC_MIC, 0);
     return audio2rf_encoder_io(RA_ENC_FUNC, RA_ENC_TYPE);
 }
-static void rra_encode_start(void)
+void rra_encode_start(void)
 {
     log_info("rra_enc_start\n");
     rf_send_soft_isr_init(radio_mge.enc_obj->p_obuf);
-    audio2rf_encoder_start(radio_mge.enc_obj);
-    radio_mge.rra_status = RRA_ENCODING;
+    audio2rf_encoder_start((enc_obj *)radio_mge.enc_obj);
+    radio_mge.rra_enc_status = RRA_ENCODING;
 }
 void rra_encode_stop(ENC_STOP_WAIT wait)
 {
@@ -44,7 +32,11 @@ void rra_encode_stop(ENC_STOP_WAIT wait)
     rf_send_soft_isr_init(NULL);
     radio_mge.enc_obj = NULL;
     audio_adc_off_api();
+#if FULL_DUPLEX_RADIO
+    fd_radio_encode_idle();
+#else
     rra_in_idle();
+#endif
 }
 
 
@@ -99,7 +91,7 @@ bool rrapp_sending(int active_msg)
     radio_mge.enc_obj = rra_encode_init();
     if (NULL != radio_mge.enc_obj) {
         audio2rf_start_cmd(radio_mge.enc_obj->info.sr, radio_mge.enc_obj->info.br, RA_ENC_TYPE);
-        radio_mge.rra_status = RRA_WAITING_START_ACK;
+        radio_mge.rra_enc_status = RRA_ENC_WAITING_START_ACK;
         target_jiff = maskrom_get_jiffies() + 5;
         retry = 5;
     } else {
@@ -109,7 +101,7 @@ bool rrapp_sending(int active_msg)
     }
     while (1) {
 
-        if (RRA_WAITING_START_ACK == radio_mge.rra_status) {
+        if (RRA_ENC_WAITING_START_ACK == radio_mge.rra_enc_status) {
             if (time_after(maskrom_get_jiffies(), target_jiff)) {
                 log_info("resending start packet!\n");
                 audio2rf_start_cmd(radio_mge.enc_obj->info.sr, radio_mge.enc_obj->info.br, RA_ENC_TYPE);
@@ -145,7 +137,7 @@ bool rrapp_sending(int active_msg)
             return true;
         case MSG_500MS:
             wdt_clear();
-            vble_smpl_ioctl(VBLE_SMPL_GET_STATUS, &ble_status);
+            vble_smpl_ioctl(VBLE_SMPL_GET_STATUS, (int)&ble_status);
             if ((ble_status != BLE_ST_NOTIFY_IDICATE)/*从机断开*/ && \
                 (ble_status != BLE_ST_SEARCH_COMPLETE)/*主机断开*/) {
                 rra_encode_stop(ENC_NO_WAIT);

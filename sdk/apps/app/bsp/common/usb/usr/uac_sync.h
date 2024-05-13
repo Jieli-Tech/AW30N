@@ -31,7 +31,9 @@ typedef struct _uac_sync {
     u16 pe5_dec;
     /* u8 pe_cnt; */
     u8 last_pe;
+    u8 baseline_pe;
 } uac_sync;
 void uac_sync_init(uac_sync *sync, s32 sr);
+void uac_inc_sync_one(EFFECT_OBJ *e_obj, u32 percent, uac_sync *sync);
 
 #endif

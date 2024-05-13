@@ -18,6 +18,12 @@
 #include "log.h"
 #include "uart.h"
 
+#define SYNC_RATIO 1
+#define THOUSAND_RATIO 10
+#define HUNDRED_RATIO 1
+
+/* #define sync_debug_char(n) putchar(n) */
+#define sync_debug_char(n)
 
 
 void uac_sync_init(uac_sync *sync, s32 sr)
@@ -34,9 +40,10 @@ void uac_sync_init(uac_sync *sync, s32 sr)
     sync->pe_change_cnt = 0;
     /* sync->pe_inc_data = 0; */
     /* sync->pe_sub_data = 0; */
-    sync->last_pe = 0xff;
+    sync->last_pe = (u8) - 1;
     /* sync->last_sr = 0; */
     sync->x_step = sr * 5 / 10000;
+    sync->baseline_pe = (u8) - 1;
 
     initLowPassFilter(&sync->f_percent, 85);
 
@@ -94,25 +101,33 @@ static void uac_inc_sync_pe_reset(uac_sync *sync)
     /* sync->pe_inc_data = 0; */
     /* sync->pe_sub_data = 0; */
     /* sync->pe_cnt = 0; */
-    sync->last_pe = 0xff;
+    sync->last_pe = (u8) - 1;
 }
 
 void uac_inc_sync_one(EFFECT_OBJ *e_obj, u32 percent, uac_sync *sync)
 {
-    /* if (0 == uac_is_need_sync()) { */
-    /* return; */
-    /* } */
     sound_in_obj *p_src_si = e_obj->p_si;
     SRC_STUCT_API *p_ops =  p_src_si->ops;
 
-    char c = 0;
-    char d = 0;
+    char c = 0;		//大调
+    char d = 0;		//微调
     s32 step = 0;
-
+    /* putchar(percent); */
     percent = applyLowPassFilter(&sync->f_percent, percent);
+
 #if 1
+    if ((u8) - 1 == sync->baseline_pe) {
+        sync->baseline_pe = percent;	//基线赋予初值
+        sync->last_pe = percent;
+        return;
+    }
+
+    sync_debug_char(0x55);
+    sync_debug_char(0xaa);
+    sync_debug_char(percent);
     bool flag_out_range = 1;
-    if (percent > 58) {
+    /* 范围以外，大调 */
+    if (percent > 58 * SYNC_RATIO) {
         if (0 == sync->pe5_cnt) {
             if (0 != sync->pe_cnt) {
                 step = ((s16)sync->pe_inc_data * 8) / sync->pe_cnt;
@@ -123,17 +138,14 @@ void uac_inc_sync_one(EFFECT_OBJ *e_obj, u32 percent, uac_sync *sync)
                 } else {
                     step = step * sync->x_step;
                 }
-
             }
             uac_inc_sync_pe_reset(sync);
             c = 100 + step;
         }
-        /* sync->sync_cnt = 0; */
-    } else if (percent < 42) {
+    } else if (percent < 42 * SYNC_RATIO) {
         if (0 == sync->pe5_cnt) {
             if (0 != sync->pe_cnt) {
                 step = (((s16)sync->pe_sub_data * 8) / sync->pe_cnt);
-
             }
             if (0 == sync->pe_inc_data) {
                 if (0 == step) {
@@ -141,16 +153,16 @@ void uac_inc_sync_one(EFFECT_OBJ *e_obj, u32 percent, uac_sync *sync)
                 } else {
                     step = 0 - (step * sync->x_step);
                 }
-
             }
             uac_inc_sync_pe_reset(sync);
             c = 100 + step;
         }
     } else {
+        /* 范围以内 */
         flag_out_range = 0;
         sync->pe5_step = 0;
     }
-    if ((sync->last_pe < 100) && (percent == sync->last_pe)) {
+    if ((sync->last_pe < 100 * SYNC_RATIO) && (percent == sync->last_pe)) {
         if (2 < sync->pe5_dec) {
             sync->pe5_dec -= 2;
         }
@@ -165,53 +177,62 @@ void uac_inc_sync_one(EFFECT_OBJ *e_obj, u32 percent, uac_sync *sync)
 
 
 #if 1
-    if (sync->last_pe <= 100) {
+    if (sync->last_pe <= 100 * SYNC_RATIO) {
         if (percent < sync->last_pe) {	//降
-            if (0 != sync->pe_inc_data) {
+            if (sync->baseline_pe < sync->last_pe) {		//反转
                 sync->pe_inc_data = 0;
                 sync->pe_cnt = sync->pe_change_cnt;
                 sync->pe_change_cnt = 0;
+                sync->baseline_pe = sync->last_pe;
             }
-            sync->pe_sub_data += (sync->last_pe - percent);
+            sync->pe_sub_data += (sync->last_pe - percent) / SYNC_RATIO;
         } else if (percent > sync->last_pe) {	//升
-
-            if (0 != sync->pe_sub_data) {
-                /* sync->pe_inc_data = 0; */
+            if (sync->baseline_pe > sync->last_pe) {	//反转
                 sync->pe_sub_data = 0;
                 sync->pe_cnt = sync->pe_change_cnt;
                 sync->pe_change_cnt = 0;
+                sync->baseline_pe = percent;
             }
-            sync->pe_inc_data += (percent - sync->last_pe);
+            sync->pe_inc_data += (percent - sync->last_pe) / SYNC_RATIO;
         }
     }
     sync->pe_cnt++;
     sync->pe_change_cnt++;
 
-    if ((sync->last_pe <= 100) && (0 == flag_out_range)) {
-
+    /* 范围以内，微调 */
+    if ((sync->last_pe <= 100 * SYNC_RATIO) && (0 == flag_out_range)) {
         if (sync->pe_sub_data > 1) {
             step = (sync->pe_sub_data * 8) / sync->pe_cnt;
             if (step > 0) {
                 step = (step * sync->x_step);
             } else {
-                step =  1;
+                u32 tmp = sync->baseline_pe - percent;
+                if (tmp > 10) {
+                    step =  tmp / 3 + 1;
+                } else {
+                    step = 1;
+                }
             }
             step =  0 - step;
             d = 100 + step;
-            if (percent > 10) {
+            if (percent > 10 * SYNC_RATIO) {
                 sync->pe_sub_data = 0;
                 sync->pe_cnt = 0;
             }
         } else if (sync->pe_inc_data > 1) {
             step = (sync->pe_inc_data * 8) / sync->pe_cnt;
-            if (step > 0) {
+            if (step > 0) {		//
                 step = (step * sync->x_step);
-            } else {
-                /* step =  sync->x_step / 2; */
-                step =  1;
+            } else {			//数据缓慢增长
+                u32 tmp = percent - sync->baseline_pe;
+                if (tmp > 10) {		//数据持续增长的情况下，与基线相差很大
+                    step =  tmp / 3 + 1;
+                } else {
+                    step = 1;
+                }
             }
             d = 100 + step;
-            if (percent < 90) {
+            if (percent < 90 * SYNC_RATIO) {
                 sync->pe_inc_data = 0;
                 sync->pe_cnt = 0;
             }
@@ -227,15 +248,17 @@ void uac_inc_sync_one(EFFECT_OBJ *e_obj, u32 percent, uac_sync *sync)
                                   SRC_CMD_INSR_INC_SET,
                                   (void *)step
                               );
+        /* log_info("S %d %d\n",step, insmaple_inc); */
     }
+    sync_debug_char(sync->baseline_pe);
     if (c == 0) {
         c = 100;
     }
-    /* log_char(c); */
+    sync_debug_char(c);
     if (d == 0) {
         d = 100;
     }
-    /* log_char(d); */
+    sync_debug_char(d);
 
     sync->last_pe = percent;
 }

@@ -8,6 +8,7 @@
 // #include "system/task.h"
 // #include "cpu/includes.h"
 #include "uart_types.h"
+#include "circular_buf.h"
 
 static inline u32 ut_get_jiffies(void)
 {
@@ -75,7 +76,7 @@ static inline int UT_OSMutexClose(UT_mutex *mutex, u32 block)
 
 #else
 
-typedef volatile u32 UT_Semaphore;
+typedef volatile u8 UT_Semaphore;
 extern void wdt_clear();
 static inline int UT_OSSemCreate(UT_Semaphore *sem, u32 count)
 {
@@ -118,7 +119,7 @@ static inline void ut_sleep()
     wdt_clear();
 }
 
-typedef volatile u32 UT_mutex;
+typedef volatile u8 UT_mutex;
 static inline int UT_OSMutexCreate(UT_mutex *mutex)
 {
     *mutex = 1;
@@ -142,6 +143,7 @@ static inline int UT_OSMutexPend(UT_mutex *mutex, u32 timeout)
             return -1;
         }
         wdt_clear();
+        asm("idle");
     }
     return 0;
 }
@@ -182,42 +184,49 @@ enum uart_state {
     UART_ERROR_TIMEOUT = -6,       //数据帧接收完成
     UART_ERROR_OS_CREATE = -7,       //奇偶校验错误
     UART_ERROR_OS_MUTEX = -8,       //奇偶校验错误
+    UART_ERROR_BAUD = -9,       //baud错误
+    UART_ERROR_RX_BUF_MALLOC = -10,      //rx_buf malloc错误
+    UART_ERROR_TX_BUF_MALLOC = -11,      //tx_buf malloc错误
+    UART_ERROR_FLOWCTRL = -12,      //硬件流初始化不成功
+    UART_ERROR_FLOWCTRL_IO = -13,      //硬件流io错误
 };
 
 
 struct uart_config {
     u32 baud_rate;
-    u16 tx_pin;
-    u16 rx_pin;      //当rx_pin == tx_pin 的时候为单线半双工通讯模式
+    u16 tx_pin; //不使用时配0xffff
+    u16 rx_pin; //不使用时配0xffff,当rx_pin == tx_pin 的时候为单线半双工通讯模式
     enum uart_parity parity;
+    u8 tx_wait_mutex;//1:不支持中断调用,互斥,0:支持中断,不互斥
 };
 
 
 struct uart_dma_config {
+    cbuffer_t cbuf;
     u32 rx_timeout_thresh;//us
-    u32 frame_size;
-    u32 event_mask;
-    u8 tx_wait_mutex;//1:不支持中断调用,互斥,0:支持中断,不互斥
-    u8 irq_priority;//中断优先级
-    void (*irq_callback)(uart_dev uart_num, enum uart_event);      //推送到调用者的线程执行
+    u32 frame_size;//一般配置=rx_cbuffer_size
 
-    void *rx_cbuffer;
     u32 rx_cbuffer_size;
+    void *rx_cbuffer;
+    void (*irq_callback)(uart_dev uart_num, enum uart_event);      //推送到调用者的线程执行
+    u8 irq_priority;//中断优先级
+    enum uart_event event_mask;
+    UT_Semaphore uart_rx;
 };
 
 
 struct uart_flow_ctrl {
-    u16 cts_pin;
-    u16 rts_pin;
+    u16 cts_pin;      //不使用时配0xffff
+    u16 rts_pin;      //不使用时配0xffff
     u8 cts_idle_level;     //0:cts空闲电平为低; 1:cts空闲电平为高
     u8 rts_idle_level;     //0:rts空闲电平为低; 1:rts空闲电平为高
-    u32 rx_thresh;         // 0~100 %
+    u8 rx_thresh;         // 0~100 %
 };
 
 
 //uart_num = -1则自动分配串口号，
 //return 返回值为负数，则初始化失败,>=0:uart号
-s32 uartx_init(uart_dev uart_num, const struct uart_config *config);
+s32 uart_init(uart_dev uart_num, const struct uart_config *config);
 //return <0:error; 0:ok
 s32 uart_deinit(uart_dev uart_num);
 
@@ -256,6 +265,9 @@ s32 uart_send_blocking(uart_dev uart_num, const void *buffer, u32 size, u32 time
 
 //return <0:error; 0:busy,1:idle
 s32 uart_is_send_complete(uart_dev uart_num);//0:busy; 1:idle; -1:error
+
+//return，返回dma接收的长度 <0:error;
+s32 uart_get_recv_len(uart_dev uart_num);
 //从缓冲区读取数据
 //支持中断调用
 //return，返回实际读取的长度 <0:error; 0< <len:ok

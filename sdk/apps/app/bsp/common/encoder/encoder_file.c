@@ -57,7 +57,7 @@ enc_obj *encoder_file(u32(*fun)(void *, void *, void *), void *pfile)
     enc_wfile_init();
     enc_obj *obj = encoder_io(fun, enc_input, enc_output, pfile);
     if (NULL != obj) {
-        enc_hdl->wait_output_empty = enc_wait_stop_wfile;
+        enc_hdl->wait_output_empty = (void *)enc_wait_stop_wfile;
         enc_hdl->enable = B_ENC_ENABLE;
         start_encode();//adc_enable();
         return obj;

@@ -418,7 +418,7 @@ dec_obj *decoder_io(void *pfile, u32 dec_ctl, dp_buff *dbuff, u8 loop)
     dec_obj *p_dec = decoder_list(&t_dstrm, dec_ctl, dbuff, loop, dac_sr_read());
     if (NULL != p_dec) {
         p_dec->p_kick = kick_decoder_api;
-        regist_dac_channel(&p_dec->sound, p_dec->p_kick);
+        regist_dac_channel(NULL, &p_dec->sound, p_dec->p_kick);
         p_dec->sound.enable |= B_DEC_ENABLE | B_DEC_KICK | B_DEC_FIRST;
         kick_decoder_api(NULL, &p_dec->sound);
         log_info("decode succ \n");

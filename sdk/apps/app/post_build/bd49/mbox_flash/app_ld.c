@@ -97,7 +97,12 @@ SECTIONS
     } > ram0
 
 #if RUN_APP_CUSTOM
+#if FULL_DUPLEX_RADIO
+    #include "../post_build/bd49/mbox_flash/app_ld_overlay_fullduplex_radio.c"
+#else
     #include "../post_build/bd49/mbox_flash/app_ld_overlay_custom.c"
+#endif
+
 #elif RUN_APP_RC
     #include "../post_build/bd49/mbox_flash/app_ld_overlay_rc.c"
 #elif RUN_APP_DONGLE

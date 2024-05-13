@@ -28,6 +28,9 @@
 #include "circular_buf.h"
 #include "audio_dac_fade.h"
 #include "app_config.h"
+#include "audio_link/audio_link_sync.h"
+#include "sound_mge.h"
+#include "src.h"
 
 #if HAS_MIO_EN
 #include "mio_api.h"
@@ -107,7 +110,7 @@ DAC_MANAGE dac_mge;
 void dac_mode_init(u16 vol)
 {
     memset(&dac_mge, 0, sizeof(dac_mge));
-#if (0 == AUOUT_USE_RDAC)
+#if (AUOUT_USE_DAC == AUOUT_USE_APA)
     dac_mge.flag |= B_DAC_DIG_VOL;
 #endif
 #if DAC_FADE_ENABLE
@@ -260,7 +263,16 @@ bool dac_mute(bool mute)
     return true;
 }
 
-bool regist_dac_channel(void *psound, void *kick)
+/*----------------------------------------------------------------------------*/
+/**@brief   注册dac缓存函数
+   @param   psound_pre	:DAC前级SOUND
+			psound_later:注册给DAC的SOUND
+			kick		:回调函数
+   @return  TRUE:成功   false:失败
+   @author  note    bool regist_dac_channel(void *psound_pre, void *psound_later, void *kick)
+*/
+/*----------------------------------------------------------------------------*/
+bool regist_dac_channel(void *psound_pre, void *psound_later, void *kick)
 {
     u8 i;
     for (i = 0; i < AUDAC_CHANNEL_TOTAL; i++) {
@@ -269,7 +281,8 @@ bool regist_dac_channel(void *psound, void *kick)
         }
         /* dac_mge.obuf[i] = obuf; */
         dac_mge.kick[i] = kick;
-        dac_mge.sound[i] = psound;
+        dac_mge.sound_pre[i] = psound_pre;
+        dac_mge.sound_later[i] = psound_later;
         dac_mge.ch |= BIT(i);
         /* log_info("dac_channel :0x%x 0x%x\n", i, dac_mge.ch); */
         return true;
@@ -277,6 +290,13 @@ bool regist_dac_channel(void *psound, void *kick)
     return false;
 }
 
+/*----------------------------------------------------------------------------*/
+/**@brief   注销dac缓存函数
+   @param   psound	:注册给DAC的SOUND
+   @return
+   @author  note    bool unregist_dac_channel(void *psound)
+*/
+/*----------------------------------------------------------------------------*/
 bool unregist_dac_channel(void *psound)
 {
     u8 i;
@@ -286,12 +306,12 @@ bool unregist_dac_channel(void *psound)
         if (0 == (dac_mge.ch & BIT(i))) {
             continue;
         }
-
-        if (dac_mge.sound[i] == psound) {
+        if (dac_mge.sound_later[i] == psound) {
             local_irq_disable();
             dac_mge.ch &= ~BIT(i);
             /* dac_mge.obuf[i] = 0; */
-            dac_mge.sound[i] = 0;
+            dac_mge.sound_pre[i] = NULL;
+            dac_mge.sound_later[i] = NULL;
             dac_mge.kick[i] = NULL;
             ps->enable &= ~B_DEC_OBUF_EN;
             local_irq_enable();
@@ -320,5 +340,85 @@ bool dac_cbuff_active(void *sound_hld)
     /* } else { */
     /*     return true; */
     /* } */
+}
+void uac_audio_dac_percent(u8 ch)
+{
+
+    u32 src_ibuf = 0;
+    u32 src_ibuf_size = 0;
+    u32 src_obuf = 0;
+    u32 src_obuf_size = 0;
+    u32 insample = 0;
+    u32 outsample = 0;
+    u32 percent = 0;
+    if (0 == (dac_mge.ch & BIT(ch))) {
+        return;
+    }
+    if ((dac_mge.sound_later[ch] == NULL) || (dac_mge.sound_pre[ch] == NULL)) {
+        return;
+    }
+
+    if (B_DEC_FIRST & dac_mge.sound_later[ch]->enable) {	//是否首次开启
+        return;
+    }
+    EFFECT_OBJ *p_effect = dac_mge.sound_pre[ch]->effect;
+    sound_in_obj *p_src_si = p_effect->p_si;
+    if (NULL == p_src_si) {		//即没有src 或 其他音效
+        return;
+    }
+
+    SRC_STUCT_API *p_ops = p_src_si->ops;
+    /* 1.读ibuf 数据长度 */
+    src_ibuf = cbuf_get_data_size(dac_mge.sound_pre[ch]->p_obuf);
+    src_ibuf_size = cbuf_get_space(dac_mge.sound_pre[ch]->p_obuf);
+    /* 2.前后级采样率	 */
+    insample = p_ops->config(
+                   p_src_si->p_dbuf,
+                   SRC_CMD_GET_INSAMPLE,
+                   (void *)NULL
+               );
+    insample /= 1000;
+
+    outsample = p_ops->config(
+                    p_src_si->p_dbuf,
+                    SRC_CMD_GET_OUTSAMPLE,
+                    (void *)NULL
+                );
+    outsample /= 1000;
+
+
+    /* 3.读src_obuf 数据长度*/
+    src_obuf = cbuf_get_data_size(dac_mge.sound_later[ch]->p_obuf);
+    src_obuf_size = cbuf_get_space(dac_mge.sound_later[ch]->p_obuf);
+    /* log_info("%d %d\n",src_ibuf,src_obuf); */
+    /* 4. 1和2的百分比*/
+    percent = (((src_ibuf * outsample / insample) + src_obuf) * 100) / ((src_ibuf_size * outsample / insample) + src_obuf_size);
+    audio_link_sync_accumulate(ch, percent);
+
+}
+void audio_dac_sync_once(void)
+{
+    u8 i;
+    EFFECT_OBJ *p_effect = NULL;
+    for (i = 0; i < AUDAC_CHANNEL_TOTAL; i++) {
+        if (0 == (dac_mge.ch & BIT(i))) {
+            continue;
+        }
+        if (NULL == dac_mge.sound_later[i]) {
+            continue;
+        }
+        if (B_DEC_FIRST & dac_mge.sound_later[i]->enable) {	//是否首次开启
+            continue;
+        }
+        p_effect = dac_mge.sound_later[i]->effect;
+        if (p_effect == NULL) {
+            log_error("this %d channel no src\n", i);
+            continue;
+        }
+        /* 取同步间隔内百分比平均值,做同步 */
+        audio_link_sync_percent(i, p_effect);
+        audio_link_sync_reset(i);
+    }
+
 }
 

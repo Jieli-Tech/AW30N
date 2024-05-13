@@ -1,7 +1,7 @@
 #ifndef _TESTBOX_UART_UPDATE_H_
 #define _TESTBOX_UART_UPDATE_H_
 #include "typedef.h"
-#include "gpio_hw.h"
+#include "gpio.h"
 
 // #define DMA_BUF_LEN			32
 
@@ -20,7 +20,7 @@ enum {
 
 u8 uart_update_get_step(void);
 void uart_update_maskrom_start(void *buf, u32 len);
-u8 uart_update_ota_loop(u8 *buf, u32 len);
+int uart_update_ota_loop(u8 *buf, u32 len);
 
 
 void uart_update_data_deal(u8 *data, u8 len);

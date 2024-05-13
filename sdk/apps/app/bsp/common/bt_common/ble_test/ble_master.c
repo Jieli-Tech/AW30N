@@ -25,9 +25,9 @@
 
 //------
 #if CONFIG_BT_LITTLE_BUFFER_MODE
-#define ATT_LOCAL_MTU_SIZE        (247)
+#define ATT_LOCAL_MTU_SIZE        (137)
 //ATT缓存的buffer支持缓存数据包个数
-#define ATT_PACKET_NUMS_MAX       (2)
+#define ATT_PACKET_NUMS_MAX       (3)
 #define ATT_SEND_CBUF_SIZE        (ATT_PACKET_NUMS_MAX * (ATT_PACKET_HEAD_SIZE + ATT_LOCAL_MTU_SIZE))
 #else
 #define ATT_LOCAL_MTU_SIZE        (512)/*(64*2)*/                    //note: need >= 20
@@ -103,6 +103,9 @@ static opt_handle_t opt_handle_table[OPT_HANDLE_MAX];
 static u8 opt_handle_used_cnt;
 static u8 force_seach_onoff = 0;
 static s8 force_seach_rssi = -127;
+
+extern const int config_le_sm_support_enable;
+extern const uint64_t config_btctler_le_features;
 
 static void bt_ble_create_connection(u8 *conn_addr, u8 addr_type);
 static int bt_ble_scan_enable(void *priv, u32 en);
@@ -1173,6 +1176,17 @@ static void cbk_packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *p
             if (client_config->security_en) {
                 client_search_profile_start();
             }
+
+            //TODO 从机已添加
+            /* if (config_le_sm_support_enable) { */
+            /*     if (config_btctler_le_features & LE_DATA_PACKET_LENGTH_EXTENSION) { */
+            /*         log_info(">>>>>>>>s1--request DLE\n"); */
+            /*         set_connection_data_length(251, 2120); */
+            /*     } else if (config_btctler_le_features & LE_2M_PHY) { */
+            /*         log_info(">>>>>>>>s1--request 2M\n"); */
+            /*         set_connection_data_phy(CONN_SET_2M_PHY, CONN_SET_2M_PHY); */
+            /*     } */
+            /* } */
             break;
         }
         break;

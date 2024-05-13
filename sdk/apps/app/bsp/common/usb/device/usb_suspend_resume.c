@@ -29,7 +29,7 @@ void usb_slave_suspend_resume_init(const usb_dev usb_id)
     usb_slave_dp_wakeup_disable(usb_id);
 #endif
 }
-u32 usb_slave_status_get(const usb_dev usb_id)
+u8 usb_slave_status_get()
 {
     return (u32)usb_status;
 }
@@ -75,7 +75,7 @@ void usb_slave_resume(const usb_dev usb_id)
 void usb_remote_wakeup(const usb_dev usb_id)
 {
 #if USB_REMOTE_WAKEUP_EN
-    if (usb_slave_status_get(usb_id) == USB_SLAVE_SUSPEND) {
+    if (usb_slave_status_get() == USB_SLAVE_SUSPEND) {
         usb_slave_resume(usb_id);
         u32 reg = usb_read_power(usb_id);
         usb_write_power(usb_id, reg | BIT(2));
@@ -106,7 +106,7 @@ void usb_slave_dp_wakeup_disable(const usb_dev usb_id)
     log_debug("__WEAK__ func:%s()\n", __func__);
 }
 _WEAK_
-void usb_slave_dp_wakeup_init(const usb_dev usb_id, void (*dp_wkup_cb)(void *priv))
+void usb_slave_dp_wakeup_init(const usb_dev usb_id, void (*dp_wkup_cb)(P33_IO_WKUP_EDGE edge))
 {
     log_debug("__WEAK__ func:%s()\n", __func__);
 }

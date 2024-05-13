@@ -30,7 +30,7 @@ static ENC_OPS sbc_enc_ops             	AT(.enc_sbc_data);
 
 static EN_FILE_IO sbc_enc_io AT(.enc_sbc_data);
 
-const u8 sbc_sr_tab[] = {
+const u16 sbc_sr_tab[] = {
     16000, 32000, 44100, 48000
 };
 
@@ -100,7 +100,7 @@ u32 sbc_encode_api(void *p_file, void *input_func, void *output_func)
     sbc_enc_ops.run = ops->run;
     enc_sbc_hdl.enc_ops = &sbc_enc_ops;
 
-    if (ops->open((void *)&sbc_encode_buff[0], &sbc_enc_io, &sbc_para_set)) { //传入io接口
+    if (ops->open((void *)&sbc_encode_buff[0], (SBC_ENC_FILE_IO *)&sbc_enc_io, &sbc_para_set)) { //传入io接口
         log_error("open fail\n");
         return 0;
     } else {

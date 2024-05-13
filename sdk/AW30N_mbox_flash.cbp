@@ -17,12 +17,12 @@
 <Add option="-flto" />
 <Add option="-Os" />
 <Add option="-Wcast-align" />
-<Add option="-w" />
 <Add option="-fallow-pointer-null" />
 <Add option="-Wincompatible-pointer-types" />
 <Add option="-Wundef" />
 <Add option="-nostrictpi32" />
 <Add option="-fprefer-gnu-section" />
+<Add option="-w" />
 <Add option="-D__FPGA=0" />
 <Add option="-Werror=implicit-function-declaration" />
 <Add option="-Werror=return-type" />
@@ -65,7 +65,7 @@
 <Add option="-DHAS_USB_EN=1" />
 <Add option="-DHAS_SDMMC_EN=1" />
 <Add option="-DHAS_EXTFLASH_EN=1" />
-<Add option="-DHAS_BLE_EN" />
+<Add option="-DHAS_BLE_EN=1" />
 <Add option="-DHAS_VFS_EN=1" />
 <Add option="-DHAS_NORFS_EN=1" />
 <Add option="-DHAS_SYDFS_EN=1" />
@@ -119,6 +119,7 @@
 <Add directory="apps/include_lib/cpu/bd49" />
 <Add directory="apps/include_lib/cpu/bd49/asm" />
 <Add directory="apps/include_lib/cpu/bd49/power" />
+<Add directory="apps/include_lib/cpu/bd49/audio_link" />
 <Add directory="apps/include_lib/cpu" />
 <Add directory="apps/include_lib/msg" />
 <Add directory="apps/include_lib/fs" />
@@ -154,6 +155,7 @@
 <Add directory="apps/app/bsp/common/bt_common" />
 <Add directory="apps/app/bsp/common/bt_common/third_party_profile/jieli/gatt_common" />
 <Add directory="apps/app/bsp/common/audio_rf_trans" />
+<Add directory="apps/app/bsp/cpu/bd49/audio_link" />
 <Add directory="apps/include_lib/bt_controller_include" />
 <Add directory="apps/include_lib/bt_controller_include/port/bd49" />
 <Add directory="apps/include_lib/bt_include" />
@@ -446,6 +448,10 @@
 <Unit filename="apps/app/bsp/cpu/bd49/audio_adc_cpu.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/audio_dac_api.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/audio_dac_cpu.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link_api.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/device.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/gpcnt.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/hw_timer.c"><Option compilerVer="CC"/></Unit>
@@ -533,6 +539,7 @@
 <Unit filename="apps/app/src/mbox_flash/remotecontrol/rc_key.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_app.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_app.h" />
+<Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_full_duplex.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_key.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_receive.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_rs.h" />
@@ -628,6 +635,9 @@
 <Unit filename="apps/include_lib/cpu/bd49/audac.h" />
 <Unit filename="apps/include_lib/cpu/bd49/audio_adc.h" />
 <Unit filename="apps/include_lib/cpu/bd49/audio_dac.h" />
+<Unit filename="apps/include_lib/cpu/bd49/audio_link/audio_link.h" />
+<Unit filename="apps/include_lib/cpu/bd49/audio_link/audio_link_api.h" />
+<Unit filename="apps/include_lib/cpu/bd49/audio_link/audio_link_sync.h" />
 <Unit filename="apps/include_lib/cpu/bd49/bd49.h" />
 <Unit filename="apps/include_lib/cpu/bd49/bt_includes.h" />
 <Unit filename="apps/include_lib/cpu/bd49/bt_log.h" />
@@ -642,6 +652,7 @@
 <Unit filename="apps/include_lib/cpu/bd49/gpio_hw.h" />
 <Unit filename="apps/include_lib/cpu/bd49/gptimer_hw.h" />
 <Unit filename="apps/include_lib/cpu/bd49/hwi.h" />
+<Unit filename="apps/include_lib/cpu/bd49/iis.h" />
 <Unit filename="apps/include_lib/cpu/bd49/io_imap.h" />
 <Unit filename="apps/include_lib/cpu/bd49/io_omap.h" />
 <Unit filename="apps/include_lib/cpu/bd49/irq.h" />

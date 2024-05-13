@@ -25,7 +25,7 @@
 
 #if LOUDSPEAKER_EN
 
-#define LOUDSPK_SR  48000
+#define LOUDSPK_SR  SR_DEFAULT
 
 void loudspeaker_app(void)
 {
@@ -63,7 +63,7 @@ void loudspeaker_app(void)
         case MSG_CHANGE_WORK_MODE:
             goto __loudspk_app_exit;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
         default:
             ap_handle_hotkey(msg[0]);
             break;

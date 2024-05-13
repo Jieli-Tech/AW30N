@@ -134,7 +134,7 @@ void record_app(void)
         case MSG_CHANGE_WORK_MODE:
             goto __record_app_exit;
         case MSG_500MS:
-            UI_menu(MENU_MAIN, NULL);
+            UI_menu(MENU_MAIN, 0);
             if (record_obj.enc_status == ENC_ING) {
                 log_char('R');
             }

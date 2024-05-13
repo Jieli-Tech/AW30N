@@ -171,9 +171,11 @@ enum {
     MSG_TIME_WAKEUP,
     MSG_ALARM,
     MSG_POWER_DOWN,
-
+    /* 注释start */
+    /* 应用为了节省代码将插U盘和插卡消息分支写在一起，注释包含的两个消息中间不可插入其他消息，否则影响设备升级 */
     MSG_USB_DISK_IN,          //以下顺序不可随意调整
     MSG_SDMMCA_IN,
+    /* 注释end */
     MSG_SDMMCB_IN,
     MSG_EXTFLSH_IN,
     MSG_USB_DISK_OUT,

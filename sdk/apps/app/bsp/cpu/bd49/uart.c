@@ -14,8 +14,9 @@
 
 
 
-#if 1
+#if 0
 //old uart driver
+/*{{{*/
 #define     DEBUG_UART          JL_UART0
 #define     DEBUG_UART_OUTMAP   PORT_FUNC_UART0_TX
 #define     DEBUG_UART_INMAP    PORT_FUNC_UART0_RX
@@ -55,7 +56,7 @@ char ut_getchar(void)
     return c;
 }
 
-void uart_init(u32 fre)
+void debug_uart_init(u32 fre)
 {
     if (FALSE == libs_debug) {
         return;
@@ -72,6 +73,7 @@ void uart_init(u32 fre)
         gpio_set_function(IO_PORT_SPILT(TCFG_UART_RX_PORT), DEBUG_UART_INMAP);
     }
 #endif
+    SFR(JL_CLOCK->PRP_CON0, 12, 3, 1);//uart std48
     DEBUG_UART->BAUD = (clk_get("uart") / fre) / 4 - 1;
     DEBUG_UART->CON0 = BIT(13) | BIT(12) | BIT(10) | BIT(1) | BIT(0);
     /* DEBUG_UART->CON0 = BIT(13) | BIT(12) | BIT(0); */
@@ -79,7 +81,7 @@ void uart_init(u32 fre)
     DEBUG_UART->CON0 |= BIT(13) | BIT(12);  //清Tx pending
 }
 
-
+/*}}}*/
 #else
 
 //new uart driver
@@ -103,25 +105,28 @@ static void uart_irq(uart_dev uart_num, enum uart_event event)
     pos = 0;
 }
 #endif
-void uart_init(u32 freq)
+void debug_uart_init(u32 freq)
 {
     if (FALSE == libs_debug) {
         return;
     }
-    struct uart_config debug_uart_config = {
-        .baud_rate = freq/*TCFG_UART_BAUDRATE*/,
+    const struct uart_config debug_uart_config = {
+        .baud_rate = TCFG_UART_BAUDRATE,
         .tx_pin = TCFG_UART_TX_PORT,
 #ifdef TCFG_UART_RX_PORT
         .rx_pin = TCFG_UART_RX_PORT,
 #else
         .rx_pin = -1,
 #endif
+        .tx_wait_mutex = 0,//1:不支持中断调用,互斥,0:支持中断,不互斥
     };
-    uartx_init(DEBUG_UART_NUM, &debug_uart_config);
+    SFR(JL_CLOCK->PRP_CON0, 12, 3, 1);//uart std48
+    uart_init(DEBUG_UART_NUM, &debug_uart_config);
 
 #if DEBUG_UART_DMA_EN
     struct uart_dma_config dma_config = {
         .event_mask = UART_EVENT_TX_DONE,
+        .irq_priority = 0,
         .irq_callback = uart_irq,
     };
     uart_dma_init(DEBUG_UART_NUM, &dma_config);

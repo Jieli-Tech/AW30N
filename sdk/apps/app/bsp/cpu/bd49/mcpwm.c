@@ -17,6 +17,15 @@
 #define MCPWM_CLK   clk_get("mcpwm")
 /* DEFINE_SPINLOCK(mcpwm_lock); */
 
+const static u16 mcpwm_fixed_io_table[6] = {
+    IO_PORTA_03,
+    IO_PORTA_04,
+    IO_PORTA_12,
+    IO_PORTA_13,
+    IO_PORTB_03,
+    IO_PORTB_04,
+};
+
 static struct mcpwm_info_t *mcpwm_info[MCPWM_NUM_MAX] = {NULL};
 
 static MCPWM_TIMERx_REG *mcpwm_get_timerx_reg(mcpwm_ch_type ch)
@@ -128,17 +137,28 @@ static void mcpwm_cfg_info_load(int mcpwm_cfg_id)
     }
     ch_con1 &= ~(0b111 << MCPWM_CH_TMRSEL);
     ch_con1 |= (ch << MCPWM_CH_TMRSEL); //sel mctmr
-    //H:
-    if (mcpwm_info[id]->cfg.h_pin < IO_MAX_NUM) {      //任意引脚
+
+    u16 fixed_h_pin = mcpwm_fixed_io_table[ch * 2];
+    u16 fixed_l_pin = mcpwm_fixed_io_table[ch * 2 + 1];
+    if ((mcpwm_info[id]->cfg.h_pin == fixed_h_pin) && (mcpwm_info[id]->cfg.l_pin == fixed_l_pin)) {
+        JL_IOMC->IOMC0 &= BIT(ch + 11);
         ch_con0 |= BIT(MCPWM_CH_H_EN);     //H_EN
         gpio_set_mode(IO_PORT_SPILT(mcpwm_info[id]->cfg.h_pin), PORT_OUTPUT_LOW);
-        gpio_set_function(IO_PORT_SPILT(mcpwm_info[id]->cfg.h_pin), PORT_FUNC_MCPWM0_H + 2 * ch);
-    }
-    //L:
-    if (mcpwm_info[id]->cfg.l_pin < IO_MAX_NUM) {      //任意引脚
         ch_con0 |= BIT(MCPWM_CH_L_EN);     //L_EN
         gpio_set_mode(IO_PORT_SPILT(mcpwm_info[id]->cfg.l_pin), PORT_OUTPUT_LOW);
-        gpio_set_function(IO_PORT_SPILT(mcpwm_info[id]->cfg.l_pin), PORT_FUNC_MCPWM0_L + 2 * ch);
+    } else {
+        JL_IOMC->IOMC0 |= BIT(ch + 11);
+        if (mcpwm_info[id]->cfg.h_pin < IO_MAX_NUM) {      //任意引脚
+            ch_con0 |= BIT(MCPWM_CH_H_EN);     //H_EN
+            gpio_set_mode(IO_PORT_SPILT(mcpwm_info[id]->cfg.h_pin), PORT_OUTPUT_LOW);
+            gpio_set_function(IO_PORT_SPILT(mcpwm_info[id]->cfg.h_pin), PORT_FUNC_MCPWM0_H + 2 * ch);
+        }
+        //L:
+        if (mcpwm_info[id]->cfg.l_pin < IO_MAX_NUM) {      //任意引脚
+            ch_con0 |= BIT(MCPWM_CH_L_EN);     //L_EN
+            gpio_set_mode(IO_PORT_SPILT(mcpwm_info[id]->cfg.l_pin), PORT_OUTPUT_LOW);
+            gpio_set_function(IO_PORT_SPILT(mcpwm_info[id]->cfg.l_pin), PORT_FUNC_MCPWM0_L + 2 * ch);
+        }
     }
 
     if (mcpwm_info[id]->cfg.detect_port != (u16) - 1) { //需要开启故障保护功能
@@ -230,10 +250,22 @@ void mcpwm_deinit(int mcpwm_cfg_id)
     /* spin_lock(&mcpwm_lock); */
     JL_MCPWM->MCPWM_CON0 = mcpwm_con;
     /* spin_unlock(&mcpwm_lock); */
-    gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin), PORT_FUNC_MCPWM0_H + 2 * ch);
-    gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin), PORT_FUNC_MCPWM0_L + 2 * ch);
-    gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin), PORT_HIGHZ);
-    gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin), PORT_HIGHZ);
+
+    u16 fixed_h_pin = mcpwm_fixed_io_table[ch * 2];
+    u16 fixed_l_pin = mcpwm_fixed_io_table[ch * 2 + 1];
+    if ((mcpwm_info[id]->cfg.h_pin == fixed_h_pin) && (mcpwm_info[id]->cfg.l_pin == fixed_l_pin)) {
+    } else {
+        if (mcpwm_info[id]->cfg.h_pin < IO_MAX_NUM) {      //任意引脚
+            gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin), PORT_FUNC_MCPWM0_H + 2 * ch);
+            gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin), PORT_HIGHZ);
+        }
+        //L:
+        if (mcpwm_info[id]->cfg.l_pin < IO_MAX_NUM) {      //任意引脚
+            gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin), PORT_FUNC_MCPWM0_L + 2 * ch);
+            gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin), PORT_HIGHZ);
+        }
+    }
+
     if (mcpwm_info[id]->cfg.detect_port != (u16) - 1) { //需要开启故障保护功能
         gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.detect_port), PORT_FUNC_MCPWM0_FP + ch);
         gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.detect_port), PORT_HIGHZ);
@@ -241,8 +273,9 @@ void mcpwm_deinit(int mcpwm_cfg_id)
         ch_reg->ch_con1 = BIT(MCPWM_CH_FCLR);
         /* spin_unlock(&mcpwm_lock); */
     }
-    free(mcpwm_info[mcpwm_cfg_id]);
+    /* free(mcpwm_info[mcpwm_cfg_id]); */
     memset(mcpwm_info[mcpwm_cfg_id], 0, sizeof(struct mcpwm_info_t));
+    mcpwm_info[mcpwm_cfg_id] = NULL;
 }
 
 void mcpwm_start(int mcpwm_cfg_id)
@@ -401,30 +434,30 @@ void mcpwm_test(void)
     struct mcpwm_config  usr_mcpwm_cfg;
 
 #if PWM_CH0_ENABLE
-    /* usr_mcpwm_cfg.ch = MCPWM_CH0;                        //通道号 */
-    /* usr_mcpwm_cfg.aligned_mode = MCPWM_EDGE_ALIGNED;         //边沿对齐 */
-    /* usr_mcpwm_cfg.frequency = 1000;                            //1KHz */
-    /* usr_mcpwm_cfg.duty = 5000;                                 //占空比50% */
-    /* usr_mcpwm_cfg.h_pin = IO_PORTB_00;                         //任意引脚 */
-    /* usr_mcpwm_cfg.l_pin = IO_PORTB_01;                                  //任意引脚,不需要就填-1 */
-    /* usr_mcpwm_cfg.complementary_en = 1;                        //两个引脚的波形, 0: 同步,  1: 互补，互补波形的占空比体现在H引脚上 */
-    /* usr_mcpwm_cfg.detect_port = IO_PORTA_02;                   //任意引脚,不需要就填-1 */
-    /* usr_mcpwm_cfg.edge = MCPWM_EDGE_FAILL; */
-    /* usr_mcpwm_cfg.irq_cb = usr_mcpwm_detect_test_func; */
-    /* usr_mcpwm_cfg.irq_priority = 1;                 //优先级默认为1 */
-    /* int ch0_id0 = mcpwm_init(&usr_mcpwm_cfg); */
-
     usr_mcpwm_cfg.ch = MCPWM_CH0;                        //通道号
     usr_mcpwm_cfg.aligned_mode = MCPWM_EDGE_ALIGNED;         //边沿对齐
     usr_mcpwm_cfg.frequency = 1000;                            //1KHz
     usr_mcpwm_cfg.duty = 5000;                                 //占空比50%
-    usr_mcpwm_cfg.h_pin = IO_PORTA_03;                         //任意引脚
-    usr_mcpwm_cfg.l_pin = IO_PORTA_04;                                  //任意引脚,不需要就填-1
-    usr_mcpwm_cfg.complementary_en = 0;                        //两个引脚的波形, 0: 同步,  1: 互补，互补波形的占空比体现在H引脚上
-    usr_mcpwm_cfg.detect_port = IO_PORTA_02;                   //任意引脚,不需要就填-1
-    usr_mcpwm_cfg.irq_cb = NULL;
+    usr_mcpwm_cfg.h_pin = IO_PORTB_00;                         //任意引脚
+    usr_mcpwm_cfg.l_pin = IO_PORTB_01;                                  //任意引脚,不需要就填-1
+    usr_mcpwm_cfg.complementary_en = 1;                        //两个引脚的波形, 0: 同步,  1: 互补，互补波形的占空比体现在H引脚上
+    usr_mcpwm_cfg.detect_port = -1;//IO_PORTA_02;                   //任意引脚,不需要就填-1
+    usr_mcpwm_cfg.edge = MCPWM_EDGE_FAILL;
+    usr_mcpwm_cfg.irq_cb = usr_mcpwm_detect_test_func;
     usr_mcpwm_cfg.irq_priority = 1;                 //优先级默认为1
-    int ch0_id1 = mcpwm_init(&usr_mcpwm_cfg);
+    int ch0_id0 = mcpwm_init(&usr_mcpwm_cfg);
+
+    /* usr_mcpwm_cfg.ch = MCPWM_CH0;                        //通道号 */
+    /* usr_mcpwm_cfg.aligned_mode = MCPWM_EDGE_ALIGNED;         //边沿对齐 */
+    /* usr_mcpwm_cfg.frequency = 1000;                            //1KHz */
+    /* usr_mcpwm_cfg.duty = 5000;                                 //占空比50% */
+    /* usr_mcpwm_cfg.h_pin = IO_PORTA_03;                         //任意引脚 */
+    /* usr_mcpwm_cfg.l_pin = IO_PORTA_04;                                  //任意引脚,不需要就填-1 */
+    /* usr_mcpwm_cfg.complementary_en = 0;                        //两个引脚的波形, 0: 同步,  1: 互补，互补波形的占空比体现在H引脚上 */
+    /* usr_mcpwm_cfg.detect_port = IO_PORTA_02;                   //任意引脚,不需要就填-1 */
+    /* usr_mcpwm_cfg.irq_cb = NULL; */
+    /* usr_mcpwm_cfg.irq_priority = 1;                 //优先级默认为1 */
+    /* int ch0_id1 = mcpwm_init(&usr_mcpwm_cfg); */
 #endif
 #if PWM_CH1_ENABLE
     usr_mcpwm_cfg.ch = MCPWM_CH1;                        //通道号
@@ -441,7 +474,9 @@ void mcpwm_test(void)
     int ch1_id0 = mcpwm_init(&usr_mcpwm_cfg);
 #endif
 
+
     mcpwm_start(ch0_id0);
+    /* mcpwm_start(ch0_id1); */
     /* mcpwm_start(ch1_id0); */
     /* mcpwm_start(ch1_id0); */
     /* extern void wdt_clear(); */
