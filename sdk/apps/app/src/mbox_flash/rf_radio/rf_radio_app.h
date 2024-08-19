@@ -16,11 +16,16 @@
 #define RA_ENC_SR      16000
 #define RA_ENC_TYPE    FORMAT_SBC
 #define RA_ENC_FUNC    sbc_encode_api
+#elif ENCODER_JLA_LW_EN
+#define RA_ENC_SR      32000
+#define RA_ENC_TYPE    FORMAT_JLA_LW
+#define RA_ENC_FUNC    jla_lw_encode_api
 #else
 #define RA_ENC_SR      0
 #define RA_ENC_TYPE    -1
 #define RA_ENC_FUNC    NULL
 #endif
+
 
 extern void bt_init_api(void);
 extern void app_ble_recv_callback_register(int (*callback_func)(u8 *, u16));

@@ -20,6 +20,7 @@ typedef enum {
     LIB_SYSMEM_VIR_RTC_TIME     = 8,
     LIB_SYSMEM_VIR_RTC_ALM      = 9,
     LIB_SYSMEM_VIR_RTC_CNT      = 10,
+    LIB_SYSMEM_SDK_LASTEST 		= 11,
     LIB_SYSMEM_END = 32,
 
     // 用户可以使用
@@ -145,6 +146,7 @@ int sysmem_init_api(u32 mem_addr, u32 mem_size);
 int sysmem_read_api(u32 id, u8 *data_buf, u16 len);
 int sysmem_write_api(u32 id, u8 *data_buf, u16 len);
 void sysmem_pre_erase_api(void);
+void sysmem_delete_api(u32 *delete_map, u32 delete_bits);
 
 // 蓝牙vm使用接口
 int syscfg_write(u16 item_id, const void *buf, u16 len);

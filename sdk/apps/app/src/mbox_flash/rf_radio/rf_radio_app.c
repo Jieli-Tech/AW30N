@@ -82,10 +82,20 @@ const audio2rf_send_mge_ops rf_radio_ops = {
     .get_valid_len = rf_radio_get_valid_len_api,
 };
 
+static void rra_timeout_reset(void)
+{
+    app_softoff_time_reset(radio_mge.app_softoff_jif_cnt);
+    radio_mge.app_standby_jif_cnt = maskrom_get_jiffies() + 10;
+}
 static u16 rf_radio_key_filter(u8 key_status, u8 key_num, u8 key_type)
 {
-    radio_mge.rra_event_occur = 1;
-    return rf_radio_key_msg_filter(key_status, key_num, key_type);
+    u16 msg = rf_radio_key_msg_filter(key_status, key_num, key_type);
+    if (msg != NO_MSG) {
+        radio_mge.rra_event_occur = 1;
+        rra_timeout_reset();
+    }
+    return msg;
+
 }
 
 static void rrapp_open(void)
@@ -101,17 +111,22 @@ void rra_in_idle(void)
 {
     /* radio_mge.rra_status = RRA_IDLE; */
     /* radio_mge.rra_mode = RRA_IDLE_MODE; */
-#if FULL_DUPLEX_RADIO
-    radio_mge.rra_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理
-#else
-    radio_mge.rra_mode = RRA_RECIVE_MODE; //所有消息都先去到这个分支处理
-#endif
     radio_mge.rra_enc_status = RRA_ENC_IDLE;
     radio_mge.rra_dec_status = RRA_DEC_IDLE;
-    app_softoff_time_reset(radio_mge.app_softoff_jif_cnt);
-    radio_mge.app_standby_jif_cnt = maskrom_get_jiffies() + 10;
+    rra_timeout_reset();
 }
 
+void rra_rx_in_idle(void)
+{
+    radio_mge.rra_dec_status = RRA_DEC_IDLE;
+    rra_timeout_reset();
+}
+
+void rra_tx_in_idle(void)
+{
+    radio_mge.rra_enc_status = RRA_ENC_IDLE;
+    rra_timeout_reset();
+}
 
 /*----------------------------------------------------------------------------*/
 /**@brief   void rrapp_send_queue_init(void)
@@ -124,7 +139,7 @@ void rra_in_idle(void)
 void rrapp_send_queue_init(void)
 {
     cbuf_init(&radio_mge.ack_cbuf, &radio_ack_buff[0], sizeof(radio_ack_buff));
-    rf_send_soft_isr_init(&radio_mge.ack_cbuf);
+    rf_send_soft_isr_init(&radio_mge.ack_cbuf, 1);
 }
 
 u32 rra_send_ack_cmd(u8 ack_cmd, u8 ack_data)
@@ -136,6 +151,24 @@ u32 rra_send_ack_cmd(u8 ack_cmd, u8 ack_data)
     return res;
 }
 
+static void rf_radio_bt_init()
+{
+
+    ble_clock_init();
+#if RF_PA_EN
+    rf_pa_io_sel();
+#endif
+#if RADIO_DEFAULT_ROLE_MASTER
+    vble_smpl_master_select();
+#else
+    vble_smpl_slave_select();
+#endif
+    vble_smpl_init();
+    vble_smpl_recv_register(&radio_mge.packet_recv, (int (*)(void *, u8 *, u16))unpack_data_deal);
+    /* #endif */
+    /* 音频传输发送接口注册 */
+    audio2rf_send_register((void *)&rf_radio_ops);
+}
 
 static void rf_radio_app_init(void)
 {
@@ -158,24 +191,16 @@ static void rf_radio_app_init(void)
     /*     vble_master_init_api(); */
     /*     vble_master_recv_cb_register(ATT_SLV2MSTR_RF_RADIO_IDX, rf_receiver_deal); */
     /* #elif TESTE_BLE_EN */
-    ble_clock_init();
-#if RF_PA_EN
-    rf_pa_io_sel();
-#endif
-#if RADIO_DEFAULT_ROLE_MASTER
-    vble_smpl_master_select();
-#else
-    vble_smpl_slave_select();
-#endif
-    vble_smpl_init();
-    vble_smpl_recv_register(&radio_mge.packet_recv, (int (*)(void *, u8 *, u16))unpack_data_deal);
-    /* #endif */
-    /* 音频传输发送接口注册 */
-    audio2rf_send_register((void *)&rf_radio_ops);
     /* audio_adc_init_api(32000, AUDIO_ADC_MIC, 0); */
     dac_off_api();
     decoder_init();
     key_table_sel(rf_radio_key_filter);
+}
+
+static void rf_radio_bt_uninit(void)
+{
+    vble_smpl_recv_register(NULL, NULL);
+    vble_smpl_exit();
 }
 
 static void rf_radio_app_uninit(void)
@@ -194,8 +219,6 @@ static void rf_radio_app_uninit(void)
     /* #elif TRANS_DATA_SPPLE_EN */
     /*     vble_master_recv_cb_register(ATT_SLV2MSTR_RF_RADIO_IDX, NULL); */
     /* #elif TESTE_BLE_EN */
-    vble_smpl_recv_register(NULL, NULL);
-    vble_smpl_exit();
     /* #endif */
     key_table_sel(NULL);
 }
@@ -209,17 +232,17 @@ static void rf_radio_app_uninit(void)
             当有连接、系统、应用事件触发时，退出standby状态
 */
 /*----------------------------------------------------------------------------*/
-static int rrapp_exit_standby(int msg)
+static int rrapp_exit_standby(int msg, u8 mode)
 {
-#if FULL_DUPLEX_RADIO
-    radio_mge.rra_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理
-#else
-    radio_mge.rra_mode = RRA_RECIVE_MODE; //所有消息都先去到这个分支处理
-#endif
+    /* #if FULL_DUPLEX_RADIO */
+    /* radio_mge.rra_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理 */
+    /* #else */
+    /* radio_mge.rra_mode = RRA_RECIVE_MODE; //所有消息都先去到这个分支处理 */
+    /* #endif */
+    radio_mge.rra_mode = mode; //所有消息都先去到这个分支处理
     radio_mge.rra_enc_status = RRA_ENC_IDLE;
     radio_mge.rra_dec_status = RRA_DEC_IDLE;
-    app_softoff_time_reset(radio_mge.app_softoff_jif_cnt);
-    radio_mge.app_standby_jif_cnt = maskrom_get_jiffies() + 10;
+    rra_timeout_reset();
     rrapp_open();
     return msg;
 }
@@ -229,6 +252,13 @@ int rrapp_idle(void)
     vble_smpl_ioctl(VBLE_SMPL_UPDATE_CONN_INTERVAL, RADIO_STANDBY_INTERVAL);
     rrapp_close();
     radio_mge.rra_event_occur = 0;
+#if FULL_DUPLEX_RADIO
+    u8 tx_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理
+    u8 rx_mode = RRA_FULL_DUPLEX; //所有消息都先去到这个分支处理
+#else
+    u8 tx_mode = RRA_SEND_MODE;
+    u8 rx_mode = RRA_RECIVE_MODE;
+#endif
 
     bool has_event = 0;
     int ble_status, err, msg[2];
@@ -239,7 +269,7 @@ int rrapp_idle(void)
 #if APP_SOFTOFF_CNT_TIME_10MS
         /* 判断定时关机 */
         if (time_after(maskrom_get_jiffies(), radio_mge.app_softoff_jif_cnt)) {
-            return rrapp_exit_standby(MSG_POWER_OFF);
+            return rrapp_exit_standby(MSG_POWER_OFF, rx_mode);
         }
 #endif
 
@@ -248,22 +278,22 @@ int rrapp_idle(void)
             (ble_status != BLE_ST_SEARCH_COMPLETE)/*主机已连接并可发数*/) {
             /* 断开连接，退出idle回到活跃状态等待下一次连接 */
             log_info("ble conn status :%d\n", ble_status);
-            return rrapp_exit_standby(NO_MSG);
+            return rrapp_exit_standby(NO_MSG, rx_mode);
         }
 
         has_event = has_sys_event(); //系统事件发生，退出idle
         if (has_event) {
             log_info("has sys_event\n");
-            return rrapp_exit_standby(NO_MSG);
+            return rrapp_exit_standby(NO_MSG, rx_mode);
         }
         if (radio_mge.rra_event_occur) { //应用事件发生，退出idle
             log_info("rf_radio event occur\n");
             radio_mge.rra_event_occur = 0;
-            return rrapp_exit_standby(NO_MSG);
+            return rrapp_exit_standby(NO_MSG, rx_mode);
         }
         rev_fsm_mge *p_recv_ops = &radio_mge.packet_recv;
         if (cbuf_get_data_size(p_recv_ops->cmd_pool)) {
-            return rrapp_exit_standby(NO_MSG);
+            return rrapp_exit_standby(NO_MSG, rx_mode);
         }
 
         err = get_msg_phy(2, &msg[0], 0);//获取到指定消息，退出idle
@@ -273,40 +303,89 @@ int rrapp_idle(void)
         /*     log_info("has msg:0x%x\n", msg[0]); */
         /*     return rrapp_exit_standby(msg[0]); */
 
-        /* 不需要响应的消息 */
+        case MSG_SENDER_START:
+        case MSG_SENDER_STOP:
+            return rrapp_exit_standby(msg[0], tx_mode);
+        case MSG_BLE_ROLE_SWITCH:
+        case MSG_CHANGE_WORK_MODE:
+            goto __rrapp_idle_exit_;
         case MSG_500MS:
         default:
             msg[0] = NO_MSG;
             break;
         }
     }
-    return rrapp_exit_standby(msg[0]);
+__rrapp_idle_exit_:
+    return rrapp_exit_standby(msg[0], rx_mode);
 }
 
 /*----------------------------------------------------------------------------*/
-/**@brief   对讲机应用主函数
+/**@brief   全双工对讲机应用主函数
    @param
    @return
    @author
    @note    主函数根据不同状态运行不同子函数；
-            蓝牙已连接且应用空闲时，执行standby函数低功耗保持连接
-            当外部事件触发时退出standby，运行recevint和sending函数响应消息、事件
+            蓝牙已连接且应用空闲时，执行rrapp_idle函数低功耗保持连接
 */
 /*----------------------------------------------------------------------------*/
-void rf_radio_app(void)
+void rf_radio_full_duplex_app()
 {
+
     int msg = NO_MSG;
 
     rf_radio_app_init();
-
+    rf_radio_bt_init();
     rra_in_idle();
 
     rrapp_open();
-#if FULL_DUPLEX_RADIO
     radio_mge.rra_mode = RRA_FULL_DUPLEX;
-#endif
     while (1) {
 
+        switch (radio_mge.rra_mode) {
+        case RRA_IDLE_MODE:
+            /* 应用休眠闲状态 */
+            msg = rrapp_idle();
+            break;
+        case RRA_FULL_DUPLEX:
+            /* 全双工对讲状态 */
+            radio_mge.rra_mode = fd_rrapp_loop(msg);
+            if (RRA_EXIT == radio_mge.rra_mode) {
+                goto __rf_radio_full_duplex_app_exit;
+            }
+            break;
+        default:
+            break;
+        }
+
+    }
+__rf_radio_full_duplex_app_exit:
+    rf_radio_bt_uninit();
+    rf_radio_app_uninit();
+    return;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/**@brief   半双工对讲机应用主函数
+   @param
+   @return
+   @author
+   @note    主函数根据不同状态运行不同子函数；
+            蓝牙已连接且应用空闲时，执行rrapp_idle函数低功耗保持连接
+*/
+/*----------------------------------------------------------------------------*/
+void rf_radio_half_duplex_app()
+{
+
+    int msg = NO_MSG;
+
+    rf_radio_app_init();
+    rf_radio_bt_init();
+
+    rra_in_idle();
+    radio_mge.rra_mode = RRA_RECIVE_MODE; //所有消息都先去到这个分支处理
+    rrapp_open();
+    while (1) {
         switch (radio_mge.rra_mode) {
         case RRA_IDLE_MODE:
             /* 应用休眠闲状态 */
@@ -315,26 +394,88 @@ void rf_radio_app(void)
         case RRA_SEND_MODE:
             /* 编码发送状态 */
             rrapp_sending(msg);
+            msg = NO_MSG;
             break;
         case RRA_RECIVE_MODE:
             /* 解码接收状态 */
             radio_mge.rra_mode = rrapp_receiving(msg);
+            msg = NO_MSG;
             if (RRA_EXIT == radio_mge.rra_mode) {
-                goto __rf_radio_app_exit;
+                goto __rf_radio_half_duplex_app_exit;
             }
             break;
-        case RRA_FULL_DUPLEX:
-            /* 全双工对讲状态 */
-            radio_mge.rra_mode = fd_rrapp_loop(msg);
-            if (RRA_EXIT == radio_mge.rra_mode) {
-                goto __rf_radio_app_exit;
-            }
+        default:
             break;
+
         }
 
     }
-__rf_radio_app_exit:
+
+__rf_radio_half_duplex_app_exit:
+    rf_radio_bt_uninit();
     rf_radio_app_uninit();
     return;
 }
+
+void rf_radio_padv_init(void)
+{
+    ble_clock_init();
+#if RF_PA_EN
+    rf_pa_io_sel();
+#endif
+    vble_adv_init();
+}
+
+static void rf_radio_padv_uninit(void)
+{
+    vble_adv_uninit();
+
+}
+/*----------------------------------------------------------------------------*/
+/**@brief   周期广播式对讲机应用主函数
+   @param
+   @return
+   @author
+   @note    主函数根据不同状态运行不同子函数；
+            蓝牙已连接且应用空闲时，执行rrapp_idle函数低功耗保持连接
+*/
+/*----------------------------------------------------------------------------*/
+void rf_radio_padv_app()
+{
+
+    rf_radio_app_init();
+    rf_radio_padv_init();
+    padv_app_init();
+
+    rrapp_open();
+
+    padv_rrapp_loop();
+    rf_radio_padv_uninit();
+    rf_radio_app_uninit();
+    return;
+}
+
+/*----------------------------------------------------------------------------*/
+/**@brief   对讲机应用主函数
+   @param
+   @return
+   @author
+   @note    主函数根据选择不同方案运行不同的子函数；
+
+*/
+/*----------------------------------------------------------------------------*/
+void rf_radio_app(void)
+{
+#if PADVB_WL_MODE
+    rf_radio_padv_app();
+#else
+#if	FULL_DUPLEX_RADIO
+    rf_radio_full_duplex_app();
+#else
+    rf_radio_half_duplex_app();
+#endif
+#endif
+}
+
+/* #endif */
 #endif

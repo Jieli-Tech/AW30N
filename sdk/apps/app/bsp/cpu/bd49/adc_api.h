@@ -17,6 +17,7 @@
 #define ADC_CH_TYPE_PLL  	(0x5<<16)
 #define ADC_CH_TYPE_CLASSD  (0x6<<16)
 #define ADC_CH_TYPE_IO		(0x10<<16)
+#define ADC_CH_TYPE_DIFF    (0x11<<16)
 
 #define ADC_CH_BT_			(ADC_CH_TYPE_BT | 0x0)
 #define ADC_CH_AUDIO_VADADC	(ADC_CH_TYPE_AUDIO | BIT(0))
@@ -57,6 +58,7 @@
 #define ADC_CH_IO_PA15      (ADC_CH_TYPE_IO | 0x5)
 #define ADC_CH_IO_DP        (ADC_CH_TYPE_IO | 0x6)
 #define ADC_CH_IO_DM        (ADC_CH_TYPE_IO | 0x7)
+#define ADC_CH_DIFF_IO      (ADC_CH_TYPE_DIFF | 0x0)
 
 #define     ADC_VBG_CENTER  800 //VBG基准值
 #define     ADC_VBG_TRIM_STEP     0   //
@@ -105,6 +107,8 @@ enum AD_CH {
     AD_CH_IO_PA15,
     AD_CH_IO_DP,
     AD_CH_IO_DM,
+
+    AD_CH_DIFF_IO = ADC_CH_DIFF_IO,
 
     AD_CH_IOVDD = 0xffffffff,
 };

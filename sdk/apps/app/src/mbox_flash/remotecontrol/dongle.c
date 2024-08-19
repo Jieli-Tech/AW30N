@@ -45,6 +45,7 @@
 #include "vble_complete.h"
 #include "update.h"
 #include "trans_unpacket.h"
+#include "spple_app_config.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[rf_controller]"
@@ -203,6 +204,8 @@ u32 dongle_rf_loop(void)
 
 void dongle_app()
 {
+#if CONFIG_IOT_ENABLE
+
     int msg[2];
     u32 err;
     clk_set("sys", 120000000);
@@ -224,7 +227,7 @@ void dongle_app()
     decoder_init();
 
     cbuf_init(&dongle_mge.ack_cbuf, &dongle_ack_buff[0], sizeof(dongle_ack_buff));
-    rf_send_soft_isr_init(&dongle_mge.ack_cbuf);
+    rf_send_soft_isr_init(&dongle_mge.ack_cbuf, 1);
     audio2rf_send_register((void *)&dongle_ops);
     u32 ble_status = 0;
     u32 app_event = 0;
@@ -256,6 +259,10 @@ void dongle_app()
             break;
         }
     }
+#else
+    extern void spple_app_main();
+    spple_app_main();
+#endif
 }
 int rf_dongle_hid_callback(void *priv, u8 *rf_packet, u16 packet_len)
 {

@@ -71,6 +71,8 @@ typedef enum _mm_type {
     MM_EQ,
     MM_CFG,
     MM_SYS_TMR,
+    MM_PADVB_TX,
+    MM_PADVB_RX,
 } mm_type;
 
 

@@ -254,6 +254,9 @@ enum {
     MSG_BLE_APP_UPDATE_START,       /*APP_BLE升级*/
     MSG_UART_TESTBOX_UPDATE_START, /*蓝牙测试盒UART升级*/
     MSG_COMMON_MAX,//common最大消息
+
+    //提示音播放消息
+    MSG_TEST_DEMO,
     NO_MSG = 0x0fff,
 };
 
@@ -293,7 +296,12 @@ enum {
 #define MSG_TYPE_BIT_LEN        12
 #define MSG_PARAM_BIT_LEN       (MSG_HEADER_BYTE_LEN*8-MSG_TYPE_BIT_LEN)
 
+#ifdef CUT_RAM_BUF_ENABLE
+#define MAX_POOL			32
+#else
 #define MAX_POOL			128
+#endif
+
 
 #define NO_EVENT			0xffff
 

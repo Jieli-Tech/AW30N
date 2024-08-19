@@ -57,6 +57,7 @@ enum {
 };
 static PARM_DECODE_CHV parm_nchv SEC(.mp3_st_data);
 
+const int MP3_REPEAT_USE_BP_CONTINUE = 1;
 
 
 typedef enum {

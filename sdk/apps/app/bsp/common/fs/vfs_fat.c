@@ -1,11 +1,11 @@
 #include "vfs_fat.h"
 #include "vfs.h"
 #include "errno-base.h"
+#include "device.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[normal]"
 #include "log.h"
-
 
 int vfs_ftell(void *pvfile, void *parm)
 {
@@ -264,4 +264,63 @@ int vfs_get_encfolder_info(void *pvfs, char *folder, char *ext, u32 *last_num, u
 /*     } */
 /*     return 0; */
 /* } */
+
+int vfs_format(void **ppvfs, const char *dev_name, const char *type, u32 clust_size, u8 create_new)
+{
+    if ((void *)NULL == *ppvfs) {
+        if (clust_size == 0) {
+            return E_NO_VFS;
+        }
+        *ppvfs = vfs_hdl_malloc();
+        if ((void *)NULL == *ppvfs) {
+            return E_NO_VFS;
+        }
+    }
+    int err;
+    void *device = dev_open(dev_name, NULL);
+    if (device == NULL) {
+        log_info("dev null !!!! \n");
+        return E_DEV_NULL;
+    }
+
+    struct vfs_operations *ops;
+    struct imount *pvfs = *ppvfs;
+    list_for_each_vfs_operation(ops) {
+        //log_info("%s, %s", ops->fs_type, type);
+        if (0 == strcmp(ops->fs_type, type)) {
+            pvfs->ops = ops;
+            break;
+        }
+    }
+    if (pvfs->ops == NULL) {
+        return E_NO_FS;
+    }
+
+    ops = pvfs->ops;
+    if (NULL != ops->format) {
+        err = ops->format(&(pvfs->pfs), device, clust_size, create_new);
+    } else {
+        err = E_VFS_OPS;
+    }
+    if (err) {
+        log_info("f_format: err = %x\n", err);
+    }
+
+    if (device) {
+        dev_ioctl(device, IOCTL_FLUSH, 0);
+    }
+
+    //全部释放，format之后需要使用mount
+    if (pvfs->pfs) {
+        pvfs->pfs = fat_fshdl_free(pvfs->pfs);
+    }
+    if (pvfs->pfile) {
+        pvfs->pfile = fat_fhdl_free(pvfs->pfile);
+    }
+    *ppvfs = vfs_fhdl_free(*ppvfs);
+    dev_close(device);
+    return err;
+}
+
+
 

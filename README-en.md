@@ -42,13 +42,15 @@ Documentation
 
 * Chipset brief : [SoC datasheet](./doc)
 
-* Product Select Guide : [SoC Select Guide.pdf](doc/杰理科技AW30N系列芯片选型表_20240508.pdf)
+* Product Select Guide : [SoC Select Guide.pdf](doc/杰理科技AW30N系列芯片选型表_20240816.pdf)
+
+* Chip Guide : [SoC Select Guide.pdf](doc/AW30N_芯片手册_V1.1.pdf)
 
 * SDK Version: [SDK History](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.4.pdf)
+* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.6.pdf)
 
-* Hardware Design Guide : [Hardware Design Guide](./doc/AW30N硬件设计指南V1.1.pdf)
+* Hardware Design Guide : [Hardware Design Guide](./doc/AW30N硬件设计指南V1.2.pdf)
 
 * SDK Online documentation : [SDK Online documentation](https://doc.zh-jieli.com/AW30/zh-cn/master/index.html)
 
@@ -91,7 +93,7 @@ Packing tool & audio file conversion tool
   
 SDK function
 -------------
-*Supports single-mode 5.4 version of Bluetooth BLE;
+* Supports single-mode 5.4 version of Bluetooth BLE;
 * Supports complete GATT service functions and simple GATT service functions
 * The complete GATT service is based on the standard GATT protocol and has a complete GATT profile;
 * Simple GATT service is tailored according to the standard GATT protocol and supports simple data sending and receiving;
@@ -100,8 +102,8 @@ SDK function
 * Support U disk/SD card device upgrade;
 * Support test box serial port upgrade;
 * Support test box Bluetooth upgrade;
-*Support mobile phone Bluetooth OTA upgrade
-*Support mobile phone USB upgrade
+* Support mobile phone Bluetooth OTA upgrade
+* Support mobile phone USB upgrade
 * Supports decoding, playback and encoding recording of system FLASH, resource FLASH, SDMMC, U disk and other devices, and supports up to three simultaneous decodings;
 * Supports seven decoding playbacks of a/b/e, ump3, f1a/f1b/f1c/f1x, midi, standard mp3, wav, and opus;
 * Supports four encoding recordings of standard mp2, a, ump2, and opus;

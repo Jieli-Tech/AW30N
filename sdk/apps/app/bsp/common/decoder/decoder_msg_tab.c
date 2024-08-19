@@ -178,3 +178,18 @@ const u8 sbc_evt[10] = {
 };
 #endif
 
+#if DECODER_JLA_LW_EN
+const u8 jla_lw_evt[10] = {
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+};
+#endif
+

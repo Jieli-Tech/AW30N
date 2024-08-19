@@ -5,13 +5,18 @@
 
 #define _ADDR_RAM0_END    0x3f10000
 #define _ADDR_RAM0_START  (0x3f00000 + MAX_IRQ_ENTRY_NUM * 4 + 0x200)
+#define _ADDR_CACHE_RAM_START 0x3f30000
 
 UPDATA_SIZE     = 0x80;
 UPDATA_BEG      = _ADDR_RAM0_END - UPDATA_SIZE;
+ICACHE_RAM_SIZE = 0x4000;
 
 //config
 MEMORY
 {
+#if ICACHE_RAM_TO_RAM_ENABLE
+	cache_ram			: ORIGIN =  _ADDR_CACHE_RAM_START + ICACHE_RAM_SIZE - ICACHE_RAM_TO_RAM,   LENGTH = ICACHE_RAM_TO_RAM
+#endif
     // app_code: LENGTH = 32M-0x100, 超过32M运行代码需要使用长跳转;
     app_code(rx)        : ORIGIN = _SFC_MEMORY_START_ADDR + 0x100,  LENGTH = 32M-0x100
     irq_vec(rx)         : ORIGIN = _IRQ_MEM_ADDR,                   LENGTH = MAX_IRQ_ENTRY_NUM * 4
@@ -22,6 +27,14 @@ ENTRY(_start)
 
 SECTIONS
 {
+#if ICACHE_RAM_TO_RAM_ENABLE
+    . = ORIGIN(cache_ram);
+    .cache_ram ALIGN(4):
+	{
+		*(*.usr_data)
+        . = ALIGN(4);
+	} > cache_ram
+#endif
 
 	. = ORIGIN(boot_ram);
 	.boot_data ALIGN(4):
@@ -38,6 +51,7 @@ SECTIONS
         *(.data)
         *(.*.data)
         *(.common)
+        *(.ble_app_data)
 
 		cache_Lx_code_text_begin = .;
         *iumoddi3.o(.text .rodata*)
@@ -89,11 +103,19 @@ SECTIONS
         *(.non_volatile_ram)
         *(.msd.keep_ram)
         *(.usb_hid.keep_ram)
+        *(.ble_app_bss)
 
         #include "bt_include/btstack_lib_bss.ld"
         #include "bt_controller_include/btctler_lib_bss.ld"
 
         _system_data_end = .;
+    } > ram0
+
+    .nv_ram_malloc ALIGN(4)://for bt
+    {
+        PROVIDE(_nv_ram_malloc_start = .);
+        KEEP(*(.sec_bt_nv_ram))
+        PROVIDE(_nv_ram_malloc_end = .);
     } > ram0
 
 #if RUN_APP_CUSTOM
@@ -212,6 +234,15 @@ SECTIONS
 		phw_end = .;
 
 
+
+		. = ALIGN(4);
+        bt_app_start = .;
+		PROVIDE(bt_app_begin = .);
+		KEEP(*(.ble_app_text))
+		KEEP(*(.ble_app_text_const))
+		PROVIDE(bt_app_end = .);
+        bt_app_end = .;
+
 		. = ALIGN(4);
         #include "bt_include/btstack_lib_text.ld"
 		. = ALIGN(4);
@@ -243,6 +274,13 @@ data_addr  = ADDR(.data) ;
 data_begin = text_end ;
 data_size =  SIZEOF(.data) + SIZEOF(.debug_data);
 
+#if ICACHE_RAM_TO_RAM_ENABLE
+cache_ram_addr = ADDR(.cache_ram);
+cache_ram_begin = data_begin + data_size;
+cache_ram_size = SIZEOF(.cache_ram);
+ASSERT((cache_ram_size % 4) == 0,"!!! cache_ram_size Not Align 4 Bytes !!!");
+#endif
+
 /* overlay_a_size = __overlay_a_end - __overlay_a_start; */
 /* overlay_b_size = __overlay_b_end - __overlay_b_start; */
 /* music_play_size = mode_music_overlay_data_end - mode_music_overlay_data_start; */
@@ -254,4 +292,5 @@ data_size =  SIZEOF(.data) + SIZEOF(.debug_data);
 /* rf_radio_size = rf_radio_data_end - rf_radio_data_start; */
 /* opus_enc_size = enc_opus_data_end - rec_data_start; */
 /* mp3_enc_size = enc_mp3_data_end - rec_data_start; */
+bt_app_size = bt_app_end - bt_app_start;
 heap_size = _free_end - _free_start;

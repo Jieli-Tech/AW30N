@@ -22,6 +22,9 @@ const u8 audio_codec_list[][2] = {
 #if DECODER_SPEEX_EN
     {FORMAT_SPEEX,  INDEX_SPEEX},
 #endif
+#if DECODER_JLA_LW_EN
+    {FORMAT_JLA_LW,  INDEX_JLA_LW},
+#endif
 };
 
 u32 select_codec(AUDIO_FORMAT enc_type)

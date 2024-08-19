@@ -1,3 +1,9 @@
+#pragma bss_seg(".key.data.bss")
+#pragma data_seg(".key.data")
+#pragma const_seg(".key.text.const")
+#pragma code_seg(".key.text")
+#pragma str_literal_override(".key.text.const")
+
 #include "key.h"
 #include "msg.h"
 #include "app_config.h"

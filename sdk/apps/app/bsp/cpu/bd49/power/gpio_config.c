@@ -56,8 +56,6 @@ void sleep_exit_callback(u32 usec)
 static void __gpio_uninit();
 void board_set_soft_poweroff(void)
 {
-    printf("%s, app", __FUNCTION__);
-
     __gpio_uninit();
     /* do_platform_uninitcall(); */
 }

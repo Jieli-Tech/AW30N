@@ -15,9 +15,6 @@
             PROVIDE(ar_trans_data_start = .);
             *(.ar_trans_data);
             PROVIDE(ar_trans_data_end = .);
-        }
-        .d_rec {
-            . = ar_trans_data_end;
             rec_data_start = .;
             *(.rec_data)
             rec_data_end = .;
@@ -46,6 +43,11 @@
             . = rec_data_end;
             *(.enc_sbc_data)
             enc_sbc_data_end = .;
+        }
+        .d_enc_jla_lw {
+            . = rec_data_end;
+            *(.enc_jla_lw_data)
+            enc_jla_lw_data_end = .;
         }
 
         .update_tmp_buf {

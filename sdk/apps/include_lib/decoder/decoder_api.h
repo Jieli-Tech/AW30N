@@ -25,6 +25,7 @@ typedef enum {
     D_TYPE_IMA,
     D_TYPE_SPEEX,
     D_TYPE_SBC,
+    D_TYPE_JLA_LW,
 } DECOER_TYPE ;
 
 

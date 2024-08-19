@@ -257,17 +257,20 @@ void mcpwm_deinit(int mcpwm_cfg_id)
     } else {
         if (mcpwm_info[id]->cfg.h_pin < IO_MAX_NUM) {      //任意引脚
             gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin), PORT_FUNC_MCPWM0_H + 2 * ch);
+            gpio_deinit(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin));
             gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.h_pin), PORT_HIGHZ);
         }
         //L:
         if (mcpwm_info[id]->cfg.l_pin < IO_MAX_NUM) {      //任意引脚
             gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin), PORT_FUNC_MCPWM0_L + 2 * ch);
+            gpio_deinit(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin));
             gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.l_pin), PORT_HIGHZ);
         }
     }
 
     if (mcpwm_info[id]->cfg.detect_port != (u16) - 1) { //需要开启故障保护功能
         gpio_disable_function(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.detect_port), PORT_FUNC_MCPWM0_FP + ch);
+        gpio_deinit(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.detect_port));
         gpio_set_mode(IO_PORT_SPILT(mcpwm_info[mcpwm_cfg_id]->cfg.detect_port), PORT_HIGHZ);
         /* spin_lock(&mcpwm_lock); */
         ch_reg->ch_con1 = BIT(MCPWM_CH_FCLR);

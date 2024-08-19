@@ -42,6 +42,9 @@ enum {
 #if DECODER_SBC_EN
     INDEX_SBC,
 #endif
+#if DECODER_JLA_LW_EN
+    INDEX_JLA_LW,
+#endif
 
     INDEX_E_SPEED   = 12,
     INDEX_E_EQ      = 13,
@@ -261,6 +264,23 @@ enum {
 #define SBC_PARM_SET
 #define SBC_HLD     (u32)NULL
 #define BIT_SBC      0
+#endif
+
+#if DECODER_JLA_LW_EN
+#include "jla_lw_api.h"
+#define JLA_LW_HLD      (u32)&dec_jla_lw_hld
+#define JLA_LW_LST      JLA_LW_HLD,
+#define JLA_LW_API      (u32)jla_lw_decode_api,
+#define JLA_LW_MUT_TAB  (u32)jla_lw_buff_api,
+#define JLA_LW_PARM_SET (u32)NULL,
+#define BIT_JLA_LW      BIT(INDEX_JLA_LW)
+#else
+#define JLA_LW_HLD      (u32)NULL
+#define JLA_LW_LST
+#define JLA_LW_API
+#define JLA_LW_MUT_TAB
+#define JLA_LW_PARM_SET
+#define BIT_JLA_LW      0
 #endif
 
 // #define MAX_F1A_CHANNEL 1

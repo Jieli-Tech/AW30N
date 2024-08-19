@@ -1,3 +1,9 @@
+#pragma bss_seg(".encoder_api.data.bss")
+#pragma data_seg(".encoder_api.data")
+#pragma const_seg(".encoder_api.text.const")
+#pragma code_seg(".encoder_api.text")
+#pragma str_literal_override(".encoder_api.text.const")
+
 #include "encoder_mge.h"
 #include "encoder_file.h"
 #include "audio_adc_api.h"

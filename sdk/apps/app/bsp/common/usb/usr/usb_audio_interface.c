@@ -223,7 +223,7 @@ void usb_mic_init(void)
 
     //16k 采样,单声道
     err = audio_adc_init_api(MIC_AUDIO_RATE, ADC_MIC, BIT(0)); //PA13 -> mic
-    regist_audio_adc_channel(&usb_mic_sound, NULL); //注册到ADC;
+    regist_audio_adc_channel(&usb_mic_sound, NULL, NULL); //注册到ADC;
     audio_adc_enable(14);
     usb_mic_sound.enable |= B_DEC_RUN_EN;
 }

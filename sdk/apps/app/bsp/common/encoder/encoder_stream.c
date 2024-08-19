@@ -1,3 +1,9 @@
+#pragma bss_seg(".encoder_api.data.bss")
+#pragma data_seg(".encoder_api.data")
+#pragma const_seg(".encoder_api.text.const")
+#pragma code_seg(".encoder_api.text")
+#pragma str_literal_override(".encoder_api.text.const")
+
 #include "encoder_mge.h"
 #include "audio_adc_api.h"
 #include "cpu.h"
@@ -88,7 +94,7 @@ enc_obj *audio2rf_encoder_io(u32(*enc_fun)(void *, void *, void *),  AUDIO_FORMA
     }
     obj->wait_output_empty = (void *)enc_wait_stop_stream;
     /* #if RF_SENDER_USE_QUEUE */
-    rf_send_soft_isr_init(obj->p_obuf);
+    rf_send_soft_isr_init(obj->p_obuf, 1);
     /* #endif */
     /* audio2rf_start_cmd(obj->info.sr, obj->info.br, enc_type); */
     return obj;

@@ -1,6 +1,7 @@
 #include "iic_api.h"
 #include "wdt.h"
 
+#define LOG_TAG_CONST       IIC
 #define LOG_TAG             "[iic_api]"
 #include "log.h"
 

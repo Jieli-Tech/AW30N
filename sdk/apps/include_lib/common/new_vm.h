@@ -88,6 +88,7 @@ u32 nvm_format_anotheri_api(void);
 u32 nvm_read_api(u32 id, u8 *buf, u32 len);
 u32 nvm_write_api(u32 id, u8 *buf, u32 len);
 void nvm_erasure_next_api(void);
+void nvm_format_another_ignore_api(u32 *delete_map, u32 delete_bits);
 
 #endif
 

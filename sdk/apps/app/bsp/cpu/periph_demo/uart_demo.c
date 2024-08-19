@@ -2,7 +2,7 @@
 #include "uart_v2.h"
 #include "gpio.h"
 
-/* #define LOG_TAG_CONST   UART */
+#define LOG_TAG_CONST   UART
 #define LOG_TAG         "[uart_demo]"
 #include "log.h"
 

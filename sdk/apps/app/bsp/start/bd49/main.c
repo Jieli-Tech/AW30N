@@ -43,6 +43,7 @@
 
 #include "my_malloc.h"
 #include "sys_timer.h"
+#include "icache.h"
 
 #define LOG_TAG_CONST       MAIN
 #define LOG_TAG             "[main]"
@@ -69,12 +70,28 @@
 /* } */
 
 extern const u8 config_no_osc_enable;
+
+#if ICACHE_RAM_TO_RAM_ENABLE
+extern int cache_ram_addr[];
+extern int cache_ram_begin[];
+extern int cache_ram_size[];
+#endif
+
+AT(.common)
+void change_icache(void)
+{
+#if ICACHE_RAM_TO_RAM_ENABLE
+    IcuSetWayNum(4 - ICACHE_RAM_TO_RAM / 4096);
+    IcuFlushinvAll();
+    memcpy((void *)cache_ram_addr, (void *)cache_ram_begin, (unsigned long)cache_ram_size);
+#endif
+}
+
 __attribute__((noreturn))
-
-//void audio_adc_demo(void);
-
 void c_main(int cfg_addr)
 {
+    change_icache();
+
     log_init(TCFG_UART_BAUDRATE);
 
     log_info("1 hello word bd49\n");
@@ -117,9 +134,9 @@ void c_main(int cfg_addr)
     //==============TODO: reinit uart
     //port_init();
 
-    log_info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    log_info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     log_info("       bd49 setup %s-%s", __DATE__, __TIME__);
-    log_info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    log_info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     efuse_dump();
 
     my_malloc_init();
@@ -145,7 +162,6 @@ void c_main(int cfg_addr)
     //fat测试
     /* void fat_demo(void); */
     /* fat_demo(); */
-
 
     //设备升级测试
     /* y_printf("\n >>>[test]:func = %s,line= %d\n",__FUNCTION__, __LINE__); */

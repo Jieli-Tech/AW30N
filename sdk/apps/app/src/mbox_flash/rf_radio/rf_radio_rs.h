@@ -22,38 +22,56 @@
 #include "bt_ble.h"
 #include "vble_complete.h"
 #include "vble_simple.h"
+#include "vble_adv.h"
 
-#define APP_SOFTOFF_CNT_TIME_10MS  3000 //3000 * 10ms
+// #define PERIODIC_ADV_MODE 0 //周期广播模式，仅支持同一时刻单向收发
+#define APP_SOFTOFF_CNT_TIME_10MS  TCFG_HID_AUTO_SHUTDOWN_TIME //5000 * 10ms
 
 #if APP_SOFTOFF_CNT_TIME_10MS
 #define app_softoff_time_reset(n) (n = maskrom_get_jiffies() + APP_SOFTOFF_CNT_TIME_10MS)
 #else
 #define app_softoff_time_reset(n)
 #endif
-//interval >= 4000配置为私有连接参数,interval=4000,实际连接间隔为4000us
-//interval <  600 配置为标准连接参数,interval=30,实际连接间隔为30*1.25ms=37.5ms
-#define RADIO_WORKING_INTERVAL      4000
-#define RADIO_STANDBY_INTERVAL      50000
 
 typedef enum {
     RRA_IDLE_MODE = 0,
     RRA_SEND_MODE,
     RRA_RECIVE_MODE,
     RRA_FULL_DUPLEX, //全双工模式
+    RRA_PERIOD_ADV, //周期广播模式
     RRA_EXIT,
 } RRA_MODE; //对讲机工作模式
 
-typedef enum {
+typedef enum __attribute__((packed))
+{
     RRA_ENC_IDLE = 0,
     RRA_ENCODING,
     RRA_ENC_WAITING_START_ACK,
-} ENC_STATUS; //编码状态
+}
+ENC_STATUS; //编码状态
 
-typedef enum {
+typedef enum __attribute__((packed))
+{
     RRA_DEC_IDLE = 0,
     RRA_DECODING,
     RRA_DEC_WAITING_START_ACK,
-} DEC_STATUS; //解码状态
+}
+DEC_STATUS; //解码状态
+
+typedef enum __attribute__((packed))
+{
+    PADV_RX_IDLE = 0,
+    PADV_RX_READY,
+}
+PADV_RX_STATUS;
+
+typedef enum __attribute__((packed))
+{
+    PADV_TX_IDLE = 0,
+    PADV_TX_READY,
+}
+PADV_TX_STATUS; //RX状态
+
 
 typedef struct __radio_mge_struct {
     rev_fsm_mge packet_recv;
@@ -65,8 +83,14 @@ typedef struct __radio_mge_struct {
     u32 app_softoff_jif_cnt;
     u32 app_standby_jif_cnt;
     // volatile u8 rra_status;
-    volatile u8 rra_enc_status;
-    volatile u8 rra_dec_status;
+    union {
+        volatile PADV_RX_STATUS padv_rx_status;
+        volatile DEC_STATUS rra_dec_status;
+    };
+    union {
+        volatile PADV_TX_STATUS padv_tx_status;
+        volatile ENC_STATUS rra_enc_status;
+    };
     volatile u8 rra_mode;
     volatile u8 rra_event_occur;
 } radio_mge_struct;
@@ -75,6 +99,8 @@ extern radio_mge_struct radio_mge;
 extern u8 rra_packet[16];
 
 void rra_in_idle(void);
+void rra_tx_in_idle(void);
+void rra_rx_in_idle(void);
 u32 rra_send_ack_cmd(u8 ack_cmd, u8 ack_data);
 void rrapp_send_queue_init(void);
 
@@ -89,6 +115,7 @@ void fd_radio_encode_idle();
 
 
 /*********************  ****************************/
+dec_obj *rra_decode_phy(RF_RADIO_ENC_HEAD *p_enc_head);
 dec_obj *rra_decode_start(RF_RADIO_ENC_HEAD *p_enc_head);
 void rra_decode_stop(void);
 u8 rrapp_receiving(int active_msg);
@@ -97,5 +124,9 @@ void fd_radio_encode_idle();
 
 u8 fd_rrapp_loop(int active_msg);
 
+void rf_radio_padv_init(void);
+u8 padv_rrapp_loop();
+u16 padv_radio_key_msg_filter(u8 key_status, u8 key_num, u8 key_type);
+void padv_app_init(void);
 #endif
 

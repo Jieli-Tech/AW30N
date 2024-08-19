@@ -33,11 +33,9 @@
             PROVIDE(ar_trans_data_start = .);
             *(.ar_trans_data);
             PROVIDE(ar_trans_data_end = .);
-        }
-        .app_rf_radio {
-            . = ar_trans_data_end;
             PROVIDE(rf_radio_data_start = .);
             *(.rf_radio_data);
+            *(.padv_trans_data);
             PROVIDE(rf_radio_data_end = .);
         }
 
@@ -45,7 +43,7 @@
     __overlay_a_end = .;
 
     __overlay_b_start = .;
-    OVERLAY :
+    OVERLAY . :
     AT(0xB0000000) SUBALIGN(4)
     {
         .d_fat_tmp {
@@ -104,16 +102,23 @@
         }
         .d_speex {
             . = a_buf_end;
-			PROVIDE(speex_buf_start = .);
-			*(.speex_dec_data);
-			PROVIDE(speex_buf_end = .);
-		}
-		.d_sbc {
-			. = a_buf_end;
-			PROVIDE(sbc_buf_start = .);
-			*(.sbc_dec_data);
-			PROVIDE(sbc_buf_end = .);
-		}
+            PROVIDE(speex_buf_start = .);
+            *(.speex_dec_data);
+            PROVIDE(speex_buf_end = .);
+        }
+        .d_sbc {
+            . = a_buf_end;
+            PROVIDE(sbc_buf_start = .);
+            *(.sbc_dec_data);
+            PROVIDE(sbc_buf_end = .);
+        }
+        .d_jla_lw {
+            . = a_buf_end;
+            PROVIDE(jla_lw_buf_start = .);
+            *(.jla_lw_dec_data);
+            PROVIDE(jla_lw_buf_end = .);
+        }
+
         .d_midi {
             . = a_buf_end;
             PROVIDE(midi_buf_start = .);
@@ -167,7 +172,7 @@
             . = rec_data_end;
             *(.enc_speex_data)
             enc_speex_data_end = .;
-		}
+        }
         .d_enc_ima {
             . = rec_data_end;
             *(.enc_ima_data)
@@ -177,6 +182,11 @@
             . = rec_data_end;
             *(.enc_sbc_data)
             enc_sbc_data_end = .;
+        }
+        .d_enc_jla_lw {
+            . = rec_data_end;
+            *(.enc_jla_lw_data)
+            enc_jla_lw_data_end = .;
         }
 
         .d_linein {

@@ -6,6 +6,7 @@
 #include "speex_encoder.h"
 #include "sbc_encoder.h"
 #include "ima_stream_enc_api.h"
+#include "jla_lw_encoder.h"
 #include "circular_buf.h"
 
 typedef union {
@@ -34,6 +35,7 @@ typedef enum {
     AUDIO2RF_ACK            = 0x80,
 } RADIO_PACKET_TYPE;
 
+#define PACKET_USE_TOTAL_INDEX 0 //是否统计总包数
 #define PACKET_HEAD (0xaa55)
 
 typedef struct _RF_RADIO_PACK {
@@ -41,7 +43,10 @@ typedef struct _RF_RADIO_PACK {
     u8 crc8_l;
     u8 type;    //RADIO_PACKET_TYPE
     u16 data_length;
+#if PACKET_USE_TOTAL_INDEX
     u32 packet_index;
+#endif
+    u16 packet_type_cnt[2];
     u8 data[0];
 } _GNU_PACKED_ RF_RADIO_PACKET;
 
@@ -61,10 +66,16 @@ typedef enum {
     REV_TYPE,
     REV_LEN_L,
     REV_LEN_H,
+#if PACKET_USE_TOTAL_INDEX
     REV_PINDEX_0,
     REV_PINDEX_1,
     REV_PINDEX_2,
     REV_PINDEX_3,
+#endif
+    REV_PTCNT_0,
+    REV_PTCNT_1,
+    REV_PTCNT_2,
+    REV_PTCNT_3,
     REV_DATA,
 } rev_status;
 
@@ -77,7 +88,10 @@ typedef struct __rev_fsm_mge {
     data_cache_mge cache;
     cbuffer_t *cmd_pool;
     void *dec_obj;
+#if PACKET_USE_TOTAL_INDEX
     u32 packet_index;
+#endif
+    u16 packet_type_cnt[2];
     rev_status status;
     u16 crc_bk;
     u16 length;

@@ -68,7 +68,7 @@ void alink_phy_vol(u16 dac_l, u16 dac_r)
 u32 alink_rx_buf[ALINK_DMA_LEN / 4];
 void alink_rx_cb(u8 ch, u8 *buf, u32 len)
 {
-    fill_audio_adc_fill_phy(buf, len);
+    fill_audio_adc_fill(buf, len);
     uac_audio_adc_percent(ch);
 }
 

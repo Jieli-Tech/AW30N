@@ -16,6 +16,7 @@
 #include "sys_timer.h"
 #include "app_modules.h"
 #include "flash_init.h"
+#include "update.h"
 #if defined(UPDATE_V2_EN) && (1 == UPDATE_V2_EN)
 #include "code_v2/update.h"
 #endif

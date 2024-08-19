@@ -52,8 +52,6 @@ void power_early_flowing()
 
     init_boot_rom();
 
-    printf("get_boot_rom(): %d", get_boot_rom());
-
     p33_mclr_sw(0);
     // 默认关闭长按复位0，由key_driver配置
     gpio_longpress_pin0_reset_config(IO_PORTA_03, 0, 0, 1, 1);

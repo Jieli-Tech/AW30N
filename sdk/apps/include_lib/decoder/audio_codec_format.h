@@ -11,6 +11,7 @@ typedef enum {
     FORMAT_IMA = 4,
     FORMAT_SBC = 5,
     FORMAT_SPEEX = 6,
+    FORMAT_JLA_LW = 7,
 } AUDIO_FORMAT;
 
 u32 select_codec(AUDIO_FORMAT enc_type);

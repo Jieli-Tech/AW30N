@@ -81,3 +81,6 @@ const int support_norflash_update_en  = 0;
 
 //支持从外挂flash读取ufw文件升级使能
 const int support_norflash_ufw_update_en = 0;
+
+//是否支持syd文件系统直接读取根目录资源文件（如bin文件）
+const u8 syd_read_root_doc = 1;

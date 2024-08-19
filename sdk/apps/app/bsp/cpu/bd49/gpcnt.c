@@ -122,6 +122,7 @@ u32 gpcnt_trim_outside_clk(gpcnt_dev gpcnt, u32 test_time_ms, u32 test_clk_freq,
     }
     /* log_info("knowm_clk:%d,n:%d, num:%d,x_clk:%d", knowm_clk, n, num, x_clk); */
     gpio_disable_function(IO_PORT_SPILT(test_gpio), PORT_FUNC_CLK_PIN);
+    gpio_deinit(IO_PORT_SPILT(test_gpio));
     return x_clk;
 }
 
@@ -138,22 +139,22 @@ void wdt_clear();
 #define GPCNTX GPCNT0
 void gpcnt_test()
 {
-    printf("***********gpcnt test**********\n");
+    log_info("***********gpcnt test**********");
 #if 1//内部测试
 
-    printf("*****RC16M:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_RC16M));
-    printf("*****RC250k:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_RC250K));
-    printf("*****LRC_CLK:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_LRC_CLK));
-    printf("*****OSC24M:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_BTOSC_24M));
-    printf("*****OSC48M:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_BTOSC_48M));
-    printf("*****STD24M:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_STD_24M));
-    printf("*****STD48M:%d\n", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_STD_48M));
+    log_info("*****RC16M:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_RC16M));
+    log_info("*****RC250k:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_RC250K));
+    log_info("*****LRC_CLK:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_LRC_CLK));
+    log_info("*****OSC24M:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_BTOSC_24M));
+    log_info("*****OSC48M:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_BTOSC_48M));
+    log_info("*****STD24M:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_STD_24M));
+    log_info("*****STD48M:%d", gpcnt_trim_inside_clk(GPCNTX, 400, GPCNT_SRC_STD_48M));
     /* #else//外部测试 */
     u32 cal_clk = 0, old_clk = 0;
     while (1) {
         cal_clk = gpcnt_trim_outside_clk(GPCNTX, 200, 0, IO_PORTB_04);
         if (cal_clk != old_clk) {
-            printf("---------%d\n", cal_clk);
+            log_info("---------%d", cal_clk);
         }
         old_clk = cal_clk;
         mdelay(200);

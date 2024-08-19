@@ -4,6 +4,12 @@
   Email: liujie@zh-jieli.com
   date : 2022-12-26
 ********************************************************************************************/
+#pragma bss_seg(".new_vm.data.bss")
+#pragma data_seg(".new_vm.data")
+#pragma const_seg(".new_vm.text.const")
+#pragma code_seg(".new_vm.text")
+#pragma str_literal_override(".new_vm.text.const")
+
 #include "typedef.h"
 #include "errno-base.h"
 #include "new_vm.h"
@@ -108,6 +114,19 @@ u32 nvm_write_api(u32 id, u8 *buf, u32 len)
 void nvm_erasure_next_api(void)
 {
     nvm_pre_erasure_next(&g_nvm_obj, 1, 1);
+}
+
+
+/******************************************************
+ * @brief nvm_format_another_ignore_api
+ *
+ * @param delete_map 要删除的 id_map，ID对应的Bit位置1为删除
+ * @param delete_bits 要处理的 id_map 长度
+ * @return
+ * */
+void nvm_format_another_ignore_api(u32 *delete_map, u32 delete_bits)
+{
+    nvm_format_another_ignore(&g_nvm_obj, delete_map, delete_bits);
 }
 
 u32 nvm_get_half_addr_api()

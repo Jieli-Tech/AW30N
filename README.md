@@ -44,13 +44,15 @@ AW30N 系列通用MCU SDK 固件程序
 
 * 芯片简介 : [SoC 数据手册扼要](./doc)
 
-* 芯片选型号手册 : [SoC 选型手册](doc/杰理科技AW30N系列芯片选型表_20240508.pdf)
+* 芯片选型号手册 : [SoC 选型手册](doc/杰理科技AW30N系列芯片选型表_20240816.pdf)
+
+* 芯片手册 : [SoC 选型手册](doc/AW30N_芯片手册_V1.1.pdf)
 
 * SDK 版本信息 : [SDK 历史版本](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.4.pdf)
+* SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.6.pdf)
 
-* 硬件设计指南 : [硬件设计指南](./doc/AW30N硬件设计指南V1.1.pdf)
+* 硬件设计指南 : [硬件设计指南](./doc/AW30N硬件设计指南V1.2.pdf)
 
 * SDK 在线文档 : [SDK 在线文档](https://doc.zh-jieli.com/AW30/zh-cn/master/index.html)
 

@@ -7,10 +7,13 @@
 
 #define DAC_PACKET_SIZE     (32*8)
 
-// #define DAC_DECODER_KICK_SIZE     (DAC_PACKET_SIZE * 4)
+//#define DAC_DECODER_KICK_SIZE     (DAC_PACKET_SIZE * 4)
 
+#ifdef CUT_RAM_BUF_ENABLE
+#define DAC_DECODER_BUF_SIZE     (DAC_PACKET_SIZE * 4)
+#else
 #define DAC_DECODER_BUF_SIZE     (DAC_PACKET_SIZE * 5)
-
+#endif
 
 void audac_clr_buf(void);
 // void dac_trim_api(void);

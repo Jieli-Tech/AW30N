@@ -56,6 +56,9 @@
 #if DECODER_SBC_EN
 #include "sbc_api.h"
 #endif
+#if DECODER_JLA_LW_EN
+#include "jla_lw_api.h"
+#endif
 /* #include "msg.h" */
 /* #include "src_api.h" */
 #include "decoder_mge.h"
@@ -102,6 +105,7 @@ u32 dec_hld_tab[] = {
     IMA_LST
     SPEEX_LST
     SBC_LST
+    JLA_LW_LST
     /* 0, */
 };
 
@@ -119,6 +123,7 @@ const u32 decoder_tab[] = {
     IMA_API
     SPEEX_API
     SBC_API
+    JLA_LW_API
     /* 0, */
 };
 
@@ -136,6 +141,7 @@ const u32 decoder_mutual[] = {
     IMA_MUT_TAB
     SPEEX_MUT_TAB
     SBC_MUT_TAB
+    JLA_LW_MUT_TAB
     /* 0, */
 };
 
@@ -153,6 +159,7 @@ const u32 decoder_parm_set[] = {
     IMA_PARM_SET
     SPEEX_PARM_SET
     SBC_PARM_SET
+    JLA_LW_PARM_SET
 };
 
 const u8 decoder_channel = sizeof(dec_hld_tab) / 4;
@@ -376,7 +383,6 @@ dec_obj *decoder_list(dec_data_stream *p_strm, u32 dec_ctl, dp_buff *dbuff, u8 l
 
         /* clear_dp(dbuff); */
 
-#if DECODER_LOOP_EN
         if (0 != loop) { // (dec_ctl & BIT_LOOP)
             p_dec->loop = loop;
             //log_info("get loop dp\n");
@@ -387,7 +393,6 @@ dec_obj *decoder_list(dec_data_stream *p_strm, u32 dec_ctl, dp_buff *dbuff, u8 l
                 /* log_info(" -loop save fail!\n"); */
             }
         }
-#endif
         log_info("decode succ \n");
     } else {
         log_info("decode err : 0x%x\n", res);
@@ -714,3 +719,4 @@ u32 decoder_get_flen(void *priv)
     flen = fattr.fsize;
     return flen;
 }
+

@@ -49,7 +49,6 @@ void rf_send_queue_isr(void)
         log_char('B');
         return;
     }
-
     void *rptr;
     u32 wlen, can_send_len, data_len, tlen, len;
     int err = 0;
@@ -95,17 +94,63 @@ u32 rf_send_push2queue(u8 *packet_data, u16 packet_len)
         }
         cbuf_write(p_queue_cbuf, packet_data, packet_len);
     } else {
-        log_error("send_cache full!\n");
+        putchar('E');
+        /* log_error("send_cache full!\n"); */
         res = E_AU2RF_SNED_QUEUE_FULL;
     }
     kick_rf_queue_isr();
     return res;
 }
 
-void rf_send_soft_isr_init(void *p_cbuf)
+void rf_send_soft_isr_init(void *p_cbuf, u8 use_queue_isr)
 {
     p_queue_cbuf = p_cbuf;
     /* cbuf_init(p_queue_cbuf, &send_queue_buf[0], sizeof(send_queue_buf)); */
-    HWI_Install(IRQ_RF_QUEUE_IDX, (u32)rf_send_queue_isr,  IRQ_RF_QUEUE_IP) ;
+    if (use_queue_isr) {
+        HWI_Install(IRQ_RF_QUEUE_IDX, (u32)rf_send_queue_isr,  IRQ_RF_QUEUE_IP);
+    }
 }
+void rf_send_soft_isr_uninit(void)
+{
+    p_queue_cbuf = NULL;
+    HWI_Uninstall(IRQ_RF_QUEUE_IDX);
+}
+
+u32 read_data_from_queue(u8 *buf, u32 len)
+{
+    if (NULL == p_queue_cbuf) {
+        return 0;
+    }
+    void *rptr;
+    u32 olen, data_len, rlen;
+    rlen = len; //剩余的读取长度
+    memset(buf, 0, len);
+    /* putchar('z'); */
+    data_len = cbuf_get_data_size(p_queue_cbuf);
+    /* log_info("dlen1 %d\n", data_len); */
+    /* u32 rcnt = 0; */
+    u32 all_got_len = 0;
+    while ((rlen != 0) && (data_len != 0)) {
+        /* log_info("%d, %d, %d\n", rlen, data_len, rcnt++); */
+        rptr = cbuf_read_alloc(p_queue_cbuf, &olen);
+        if (0 == rptr) {
+            log_char('C');
+            break;
+        }
+        u32 glen = olen > rlen ? rlen : olen;
+        /* log_info("glen %d\n", glen); */
+        memcpy(buf, rptr, glen);
+        rlen -= glen;
+        cbuf_read_updata(p_queue_cbuf, glen);
+        data_len = cbuf_get_data_size(p_queue_cbuf);
+        buf += glen;
+        all_got_len += glen;
+    }
+    data_len = cbuf_get_data_size(p_queue_cbuf);
+    /* log_info("dlen2 %d\n", data_len); */
+    return all_got_len;
+
+}
+
+
 #endif

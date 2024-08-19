@@ -12,7 +12,7 @@
 #include "app_config.h"
 #include "errno-base.h"
 
-#define LOG_TAG_CONST   NORM
+#define LOG_TAG_CONST   SPI
 #define LOG_TAG         "[SPI]"
 #include "log.h"
 
@@ -176,23 +176,31 @@ static void spi_io_crossbar_uninit(hw_spi_dev spi)
     u8 *port = spix_p_data_cache[spi].port;
     if (spi == HW_SPI1) { //spi1
         gpio_disable_function(IO_PORT_SPILT(port[0]), PORT_FUNC_SPI1_CLK);
+        gpio_deinit(IO_PORT_SPILT(port[0]));
         gpio_disable_function(IO_PORT_SPILT(port[1]), PORT_FUNC_SPI1_DA0);
+        gpio_deinit(IO_PORT_SPILT(port[1]));
         if (port[2] != (u8) - 1) {
             gpio_disable_function(IO_PORT_SPILT(port[2]), PORT_FUNC_SPI1_DA1);
+            gpio_deinit(IO_PORT_SPILT(port[2]));
         }
         if (port[3] != (u8) - 1) {
             gpio_disable_function(IO_PORT_SPILT(port[3]), PORT_FUNC_SPI1_DA2);
+            gpio_deinit(IO_PORT_SPILT(port[3]));
         }
         if (port[4] != (u8) - 1) {
             gpio_disable_function(IO_PORT_SPILT(port[4]), PORT_FUNC_SPI1_DA3);
+            gpio_deinit(IO_PORT_SPILT(port[4]));
         }
     } else { //spi2
 
 #if SUPPORT_SPI2
         gpio_disable_function(IO_PORT_SPILT(port[0]), PORT_FUNC_SPI2_CLK);
+        gpio_deinit(IO_PORT_SPILT(port[0]));
         gpio_disable_function(IO_PORT_SPILT(port[1]), PORT_FUNC_SPI2_DA0);
+        gpio_deinit(IO_PORT_SPILT(port[1]));
         if (port[2] != (u8) - 1) {
             gpio_disable_function(IO_PORT_SPILT(port[2]), PORT_FUNC_SPI2_DA1);
+            gpio_deinit(IO_PORT_SPILT(port[2]));
         }
 #endif
     }
@@ -371,9 +379,9 @@ int spi_open(hw_spi_dev spi, spi_hardware_info *spi_info)
     log_debug("spi%d cs_pin  = %d", spi, port[5]);
     log_debug("spi%d CON     = %04x", spi, spi_r_reg_con(spi_regs[spi]));
     log_debug("spi%d CON1    = %04x", spi, spi_r_reg_con1(spi_regs[spi]));
-    printf("spi%d BAUD    = 0x%08x\n", spi, spi_r_reg_baud(spi_regs[spi]));
-    printf("spi%d dma-adr = 0x%08x\n", spi, (spi_regs[spi])->ADR);
-    printf("spi%d dma-cnt = 0x%08x\n", spi, spi_r_reg_dma_cnt(spi_regs[spi]));
+    log_debug("spi%d BAUD    = 0x%08x", spi, spi_r_reg_baud(spi_regs[spi]));
+    log_debug("spi%d dma-adr = 0x%08x", spi, (spi_regs[spi])->ADR);
+    log_debug("spi%d dma-cnt = 0x%08x", spi, spi_r_reg_dma_cnt(spi_regs[spi]));
 #endif
     return 0;
 }
@@ -800,7 +808,7 @@ static void hw_spix_isr_func(hw_spi_dev spi)
         } else {
             spi_isr_data_len[spi]++;
         }
-        /* printf("%d,%d,%d.\t", isr_addr_inc[spi], spi_isr_txrx_state[spi], spi_isr_data_len[spi]); */
+        /* log_noinfo("%d,%d,%d.\t", isr_addr_inc[spi], spi_isr_txrx_state[spi], spi_isr_data_len[spi]); */
         if (hw_spi_irq_cbfun[spi]) {
             hw_spi_irq_cbfun[spi](spi, spi_isr_txrx_state[spi]);
         }

@@ -3,6 +3,7 @@
 #include "wdt.h"
 #include "spi.h"
 
+#define LOG_TAG_CONST       SPI
 #define LOG_TAG             "[spi_demo]"
 #include "log.h"
 
@@ -289,8 +290,8 @@ void gpio_irq_callback_p_test(enum gpio_port port, u32 pin, enum gpio_irq_edge e
         spi_finish_flag = 1;
         spi_s_dma_data_len_test = -hw_spix_slave_get_dma_len(1);
     }
-    /* printf("port%d.%d:%d-cb1\n", port, pin, edge); */
-    /* printf("flag:%d,len:%d\n", spi_finish_flag, spi_s_dma_data_len_test); */
+    /* log_info("port%d.%d:%d-cb1", port, pin, edge); */
+    /* log_info("flag:%d,len:%d", spi_finish_flag, spi_s_dma_data_len_test); */
 }
 void spi_slave_cs_test(hw_spi_dev spi)
 {
@@ -337,7 +338,7 @@ void spi_slave_cs_test(hw_spi_dev spi)
     log_info("spi(%d) slave dma rx test:", spi);
     while (1) { //rx
         spi_dma_transmit_for_isr(spi, spi_rx_buf_test, 1000000, 1); //rw:1-rx; 0-tx
-        printf("spi_cnt:%d\n", spi_r_reg_dma_cnt(spi_regs[1]));
+        log_info("spi_cnt:%d", spi_r_reg_dma_cnt(spi_regs[1]));
         while (spi_finish_flag == 0) {
             wdt_clear();
         }
@@ -355,7 +356,7 @@ void spi_slave_cs_test(hw_spi_dev spi)
     }
     while (1) { //tx
         spi_dma_transmit_for_isr(spi, spi_tx_buf_test, 1000000, 0); //rw:1-rx; 0-tx
-        printf("spi_cnt:%d\n", spi_r_reg_dma_cnt(spi_regs[1]));
+        log_info("spi_cnt:%d", spi_r_reg_dma_cnt(spi_regs[1]));
         while (spi_finish_flag == 0) {
             wdt_clear();
         }

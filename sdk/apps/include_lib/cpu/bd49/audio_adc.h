@@ -95,7 +95,7 @@ typedef enum __AUMIC_INPUT_MODE {
     mic_input_ana1_pa4 = 1,          //PA4单端mic输入
     mic_input_ana2_pa5 = 2,          //PA5单端mic输入(PA5为模拟DAC输出,仅当模拟DAC关闭时可使用该I/O输入)
     mic_input_ana3_pa6 = 3,          //PA6单端mic输入(PA6为差分mic的固定N端,使用差分mic时P端输入不可选择PA6)
-    mic_input_ana4_pa7 = 4,          //PA7单端mic输入(PA7为micldo/midbias输出,仅当使用外部电源+偏置时可使用该I/O输入)
+    mic_input_ana4_pa7 = 4,          //PA7省电容mic输入(PA7同时固定为micldo/midbias输出,不可用作差分)
 } AUDIO_MIC_INPUT_MODE;
 extern AUDIO_MIC_INPUT_MODE const audio_adc_mic_input_mode;
 
@@ -166,7 +166,7 @@ void set_auadc_aux_pga(AUDIO_MICPGA_G pga);
 
 
 #include "audio_link/audio_link.h"
-extern void fill_audio_adc_fill_phy(u8 *buf, u32 len);
+extern void fill_audio_adc_fill(u8 *buf, u32 len);
 
 
 #define AUIN_USE_ADC     	1

@@ -37,7 +37,7 @@ static void adc_adjust_div(void)
 {
     adc_clk_div = 0x7f; //adc_clk_div 占7bit
     const u32 lsb_clk = clk_get("lsb");
-    printf("lsb %d\n", lsb_clk);
+    log_info("lsb %d\n", lsb_clk);
     for (int i = 1; i < 0x80; i++) {
         if (((lsb_clk / i) / 2) <= 12000000) {
             adc_clk_div = i;
@@ -55,7 +55,7 @@ u32 adc_io2ch(int gpio)   //根据传入的GPIO，返回对应的ADC_CH
             return (ADC_CH_TYPE_IO | i);
         }
     }
-    printf("add_adc_ch io error!!! change other io_port!!!\n");
+    log_error("add_adc_ch io error!!! change other io_port!!!\n");
     return 0xffffffff; //未找到支持ADC的IO
 }
 
@@ -108,7 +108,7 @@ u32 adc_add_sample_ch(enum AD_CH ch)   //添加一个指定的通道到采集队
 {
     u32 adc_type_sel = ch & ADC_CH_MASK_TYPE_SEL;
     u16 adc_ch_sel = ch & ADC_CH_MASK_CH_SEL;
-    printf("type = %x,ch = %x\n", adc_type_sel, adc_ch_sel);
+    log_info("type = %x,ch = %x\n", adc_type_sel, adc_ch_sel);
     u32 i = 0;
     for (i = 0; i < ADC_MAX_CH; i++) {
         if (adc_queue[i].ch == ch) {
@@ -185,6 +185,9 @@ void adc_sample(enum AD_CH ch, u32 ie) //启动一次cpu模式的adc采样
         /* adc_audio_ch_select(adc_ch_sel); */
         break;
     case ADC_CH_TYPE_X32K:
+        break;
+    case ADC_CH_TYPE_DIFF:
+        SFR(adc_con, 3, 3, 0b100); //cpu adc diff sel en
         break;
     default:
         SFR(adc_con, 6, 4, adc_ch_sel);
@@ -338,20 +341,20 @@ void adc_hw_init(void)    //adc初始化子函数
 
     vbg_adc_value /= (AD_CH_PMU_VBG_TRIM_NUM - 2);
     adc_queue[0].v.value = vbg_adc_value;
-    printf("LDOREF = %d\n", vbg_adc_value);
+    log_info("LDOREF = %d\n", vbg_adc_value);
 
     u32 voltage = adc_get_voltage_blocking(AD_CH_PMU_VBAT);
     adc_queue[1].v.voltage = voltage;
-    printf("vbat = %d mv\n", adc_get_voltage(AD_CH_PMU_VBAT) * 4);
+    log_info("vbat = %d mv\n", adc_get_voltage(AD_CH_PMU_VBAT) * 4);
 
     voltage = adc_get_voltage_blocking(AD_CH_PMU_VTEMP);
     adc_queue[2].v.voltage = voltage;
-    printf("dtemp = %d mv\n", voltage);
+    log_info("dtemp = %d mv\n", voltage);
 
 #if AD_CH_IO_VBAT_PORT
     voltage = adc_get_voltage_blocking(adc_io2ch(AD_CH_IO_VBAT_PORT));
     adc_queue[3].v.voltage = voltage;
-    printf("io_vbat = %d mv\n", voltage);
+    log_info("io_vbat = %d mv\n", voltage);
 #endif
 
     request_irq(IRQ_GPADC_IDX, IRQ_ADC_IP, adc_isr, 0);//注册中断函数

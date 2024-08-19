@@ -1,6 +1,7 @@
 #include "clock.h"
 #include "wdt.h"
 
+#define LOG_TAG_CONST       IIC
 #define LOG_TAG             "[iic_demo]"
 #include "log.h"
 

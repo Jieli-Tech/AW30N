@@ -109,7 +109,7 @@ void audio_adc_off_api(void)
 /* } */
 /* AT(.adc_oput_code) */
 AT(.audio_isr_text)
-void fill_audio_adc_fill_phy(u8 *buf, u32 len)
+void fill_audio_adc_fill(u8 *buf, u32 len)
 {
     u32 i;
     for (i = 0; i < AUDIO_ADC_CHANNEL_TOTAL; i++) {
@@ -194,11 +194,6 @@ bool unregist_audio_adc_channel(void *psound)
     return true;
 }
 
-void fill_audio_adc_fill(u8 *buf, u32 len)
-{
-    fill_audio_adc_fill_phy(buf, len);
-
-}
 
 
 

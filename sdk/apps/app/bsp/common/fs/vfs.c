@@ -18,13 +18,6 @@
 
 
 
-extern struct vfs_operations vfs_ops_begin[];
-extern struct vfs_operations vfs_ops_end[];
-
-#define list_for_each_vfs_operation(ops) \
-	for (ops=vfs_ops_begin; ops<vfs_ops_end; ops++)
-
-
 
 void vfs_init(void)
 {
@@ -519,7 +512,7 @@ void vfs_demo(void)
     {
         err = vfs_read(pvfile, demo_buff, 512);
         if (err != 512) {
-            printf("error!!!!!!!!!!!!!!!!!!");
+            log_info("error!!!!!!!!!!!!!!!!!!");
             dev_close(device);
 
             while (1) {
@@ -549,7 +542,7 @@ void vfs_demo(void)
     while (1) {
         err = vfs_read(pvfile, demo_buff, 512);
         if (err != 512) {
-            printf("error!!!!!!!!!!!!!!!!!!");
+            log_info("error!!!!!!!!!!!!!!!!!!");
             dev_close(device);
             return;
             /* while (1); */
@@ -650,7 +643,7 @@ void norfs_test_demo(void)
             log_info_hexdump((u8 *)tmp_rbuf, TEST_LEN);
             while (1);
         }
-        putchar('\n');
+        log_char('\n');
     }
 }
 #endif

@@ -1,7 +1,7 @@
 #ifndef  __GPTIMER_HW_H__
 #define  __GPTIMER_HW_H__
 
-#define TIMER_MAX_NUM   6
+#define TIMER_MAX_NUM   4
 #define TIMER_BASE_ADDR JL_TIMER0
 #define TIMER_OFFSET    (JL_TIMER1 - JL_TIMER0)
 #define TIMER_PRD_SIZE  0xFFFF

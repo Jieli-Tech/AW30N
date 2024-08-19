@@ -121,6 +121,10 @@
 #define E_PACKET_WRITE     (0x8520 + 0x02)
 #define E_PACKET_NULL      (0x8520 + 0x01)
 
+#define E_REMAIN_OPS_NULL      (0x8600 + 0x00)
+#define E_REMAIN_NOT_EMPTY     (0x8600 + 0x01)
+#define E_REMAIN_OVER_SIZE     (0x8600 + 0x02)
+
 #define E_F1A_INDEX	    (0X9000 + 0)
 #define E_F1A_DBUF	    (0X9000 + 1)
 #define E_F1A_FORMAT    (0X9000 + 2)

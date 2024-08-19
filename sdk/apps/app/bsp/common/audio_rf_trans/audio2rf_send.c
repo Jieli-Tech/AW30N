@@ -34,6 +34,7 @@
 
 /* 内部变量定义 */
 volatile u32 rf_send_cnt AT(.ar_trans_data);
+volatile u16 packet_type_cnt[2] AT(.ar_trans_data);
 /* 外部变量/函数声明 */
 extern enc_obj *enc_hdl;
 
@@ -49,10 +50,9 @@ extern enc_obj *enc_hdl;
 /*----------------------------------------------------------------------------*/
 u32 audio2rf_start_cmd(u32 sr, u32 br, AUDIO_FORMAT enc_type)
 {
-    rf_send_cnt = 0;
+    /* rf_send_cnt = 0; */
 
-    u8 tmp_buf[(sizeof(RF_RADIO_PACKET) + sizeof(RF_RADIO_ENC_HEAD))];
-    memset(&tmp_buf[0], 0, sizeof(tmp_buf));
+    /* memset((u8 *)&packet_type_cnt[0], 0, sizeof(packet_type_cnt)); */
 
     RF_RADIO_ENC_HEAD enc_head = {0};
     enc_head.enc_type = enc_type;

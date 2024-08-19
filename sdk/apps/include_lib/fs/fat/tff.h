@@ -154,6 +154,7 @@ struct _FATFS {
     char 	*ext_type;
     char    *lfn;
     u8      lfn_len;
+    u32     free_space; //空闲空间
 };
 typedef struct _FATFS FATFS;
 

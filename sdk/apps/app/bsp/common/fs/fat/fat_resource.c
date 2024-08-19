@@ -63,9 +63,9 @@ static char lfn_buffer[LFN_MAX_SIZE] AT(.fat_buf);
 static FAT_SCANDEV scan_buffer AT(.fat_buf);
 /* static char ff_apis_buffer[sizeof(FF_APIS)]; */
 #if FOPEN_LONG || RENAME_ENABLE || W_WOL_ENABLE
-static char tmp_buf[512 + 260 + 256 + 6] AT(.fat_tmp_buf);
+static char fatfs_tmp_buf[512 + 260 + 256 + 6] AT(.fat_tmp_buf);
 #else
-static char tmp_buf[512] AT(.fat_tmp_buf);
+static char fatfs_tmp_buf[512] AT(.fat_tmp_buf);
 #endif
 
 #define FS_USE_MALLOC 1 //是否有malloc
@@ -74,7 +74,7 @@ static char tmp_buf[512] AT(.fat_tmp_buf);
 #else
 FATFS g_fat_fs;
 FIL g_fat_f;
-SWIN_BUF tmp_wbuf;
+SWIN_BUF fatfs_tmp_wbuf;
 #endif
 
 FATFS *fat_fshdl_alloc(void)
@@ -133,13 +133,13 @@ void fat_lfn_free(void *lfn_buffer)
 void *fat_tmp_alloc(void)
 {
     /* return  my_malloc(sizeof(FIL) + 1024, MM_FAT_TMP); */
-    memset((u8 *)&tmp_buf, 0x00, sizeof(tmp_buf));
-    return &tmp_buf;
+    memset((u8 *)&fatfs_tmp_buf, 0x00, sizeof(fatfs_tmp_buf));
+    return &fatfs_tmp_buf;
 }
 
-void *fat_tmp_free(void *tmp_buf)
+void *fat_tmp_free(void *fatfs_tmp_buf)
 {
-    /* return my_free(tmp_buf); */
+    /* return my_free(fatfs_tmp_buf); */
     return 0;
 }
 
@@ -163,15 +163,15 @@ SWIN_BUF *fat_wbuf_alloc(void)
 #if FS_USE_MALLOC
     return  my_malloc(sizeof(SWIN_BUF), MM_SWIN_BUF);
 #else
-    memset((u8 *)&tmp_wbuf, 0x00, sizeof(SWIN_BUF));
-    return &tmp_wbuf;
+    memset((u8 *)&fatfs_tmp_wbuf, 0x00, sizeof(SWIN_BUF));
+    return &fatfs_tmp_wbuf;
 #endif
 }
 
-SWIN_BUF *fat_wbuf_free(SWIN_BUF *tmp_wbuf)
+SWIN_BUF *fat_wbuf_free(SWIN_BUF *fatfs_tmp_wbuf)
 {
 #if FS_USE_MALLOC
-    return my_free(tmp_wbuf);
+    return my_free(fatfs_tmp_wbuf);
 #else
     return NULL;
 #endif
@@ -370,6 +370,11 @@ u32 fat_openbyclust_api(void *pfs, void **ppfile, u32 clust, void *parm)
     return fat_fsel((struct vfscan *)parm, pfs, FSEL_BY_SCLUST, ppfile, clust);
 }
 
+int fat_format_api(void **p_fs_hdl, void *device, u32 clust_size, u8 create_new)
+{
+    return fat_format_deal(p_fs_hdl, device, clust_size, create_new);
+}
+
 int fat_ioctl_api(void *pfile, int cmd, int arg)
 {
     switch (cmd) {
@@ -395,6 +400,7 @@ const struct vfs_operations fat_vfs_ops sec_used(.vfs_operations) = {
     .createfile  = fat_openW_api,
     .write       = fat_write_api,
     .fdelete     = fat_delete_file_api,
+    .format      = fat_format_api,
 #endif
     .read        = fat_read_api,
     .seek        = fat_seek_api,

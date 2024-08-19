@@ -231,9 +231,9 @@ dec_obj *rf2audio_decoder_start(RF_RADIO_ENC_HEAD *p_enc_head, sound_stream_obj 
    @note
 */
 /*----------------------------------------------------------------------------*/
-void rf2audio_decoder_stop(dec_obj *p_recv_dec_obj, bool(*unregist_func)(void *))
+bool rf2audio_decoder_stop(dec_obj *p_recv_dec_obj, bool(*unregist_func)(void *))
 {
-    decoder_stop_phy(p_recv_dec_obj, NO_WAIT, 0, 1, unregist_func);
+    return decoder_stop_phy(p_recv_dec_obj, NO_WAIT, 0, 1, unregist_func);
 }
 
 sound_out_obj *usb_mic_get_stream_info(uac_mic_read *p_uac_read)

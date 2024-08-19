@@ -1,6 +1,10 @@
 #include "iic_soft.h"
 #include "clock.h"
 
+#define LOG_TAG_CONST       IIC
+#define LOG_TAG             "[iic_soft]"
+#include "log.h"
+
 static u8 soft_iic_state[MAX_SOFT_IIC_NUM] = {0, 0, 0};
 static struct iic_master_config soft_iic_cfg_cache[MAX_SOFT_IIC_NUM];
 
@@ -49,15 +53,15 @@ struct iic_master_config *get_soft_iic_config(soft_iic_dev iic)
 enum iic_state_enum soft_iic_init(soft_iic_dev iic, struct iic_master_config *i2c_config)
 {
     if (i2c_config == NULL) {
-        printf("error: soft iic%d param error!\n", iic);
+        log_error("soft iic%d param error!\n", iic);
         return IIC_ERROR_PARAM_ERROR;
     }
     if (iic >= MAX_SOFT_IIC_NUM) {
-        printf("error: soft iic index:%d error!\n", iic);
+        log_error("soft iic index:%d error!\n", iic);
         return IIC_ERROR_INDEX_ERROR;
     }
     if ((soft_iic_state[iic]&BIT(7)) != 0) {
-        printf("error: soft iic%d has been occupied!\n", iic);
+        log_error("soft iic%d has been occupied!\n", iic);
         return IIC_ERROR_INIT_FAIL;
     }
     soft_iic_state[iic] = BIT(7);//init ok
@@ -75,7 +79,7 @@ enum iic_state_enum soft_iic_init(soft_iic_dev iic, struct iic_master_config *i2
 enum iic_state_enum soft_iic_uninit(soft_iic_dev iic)
 {
     if (soft_iic_state[iic] == 0) {
-        printf("error: soft iic%d has been no init!\n", iic);
+        log_error("soft iic%d has been no init!\n", iic);
         return IIC_ERROR_NO_INIT;
     }
     soft_iic_state[iic] = 0;//no init
@@ -90,11 +94,11 @@ enum iic_state_enum soft_iic_uninit(soft_iic_dev iic)
 enum iic_state_enum soft_iic_suspend(soft_iic_dev iic)
 {
     if ((soft_iic_state[iic] & 0xc0) != 0x80) {
-        printf("error: soft iic%d is no init or suspend!\n", iic);
+        log_error("soft iic%d is no init or suspend!\n", iic);
         return IIC_ERROR_SUSPEND_FAIL;
     }
     if ((soft_iic_state[iic] & 0x3f) != 0) {
-        printf("error: soft iic%d is busy!\n", iic);
+        log_error("soft iic%d is busy!\n", iic);
         return IIC_ERROR_BUSY;
     }
     soft_iic_state[iic] |= BIT(6);//suspend ok
@@ -108,7 +112,7 @@ enum iic_state_enum soft_iic_suspend(soft_iic_dev iic)
 enum iic_state_enum soft_iic_resume(soft_iic_dev iic)
 {
     if ((soft_iic_state[iic] & 0xc0) != 0xc0) {
-        printf("error: soft iic%d is no init or no suspend!\n", iic);
+        log_error("soft iic%d is no init or no suspend!\n", iic);
         return IIC_ERROR_RESUME_FAIL;
     }
     soft_iic_state[iic] &= ~ BIT(6); //resume ok
@@ -138,7 +142,7 @@ void soft_iic_start(soft_iic_dev iic)
 {
     u32 delay_cnt;
     u32 dly_t = iic_get_delay(iic);
-    /* printf("soft_iic_init hsb clock:%d, delay cnt:%d\n",clk_get("sys"),dly_t); */
+    /* log_info("soft_iic_init hsb clock:%d, delay cnt:%d\n",clk_get("sys"),dly_t); */
 
     IIC_SDA_H(soft_iic_cfg_cache[iic].sda_io);
     soft_iic_delay(dly_t);

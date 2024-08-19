@@ -8,6 +8,7 @@
 #include "typedef.h"
 #include "crc16.h"
 #include "errno-base.h"
+#include "decoder_api.h"
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[au2rf_upack]"
@@ -35,7 +36,9 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
             if (0x55 == buff[stream_index]) {
                 /* memset((u8 *)ops, 0, sizeof(rev_fsm_mge)); */
                 ops->type = 0;
+#if PACKET_USE_TOTAL_INDEX
                 ops->packet_index = 0;
+#endif
                 ops->got_length = 0;
                 ops->length = 0;
                 ops->crc_bk = 0;
@@ -83,6 +86,7 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
             /* } */
         }
         break;
+#if PACKET_USE_TOTAL_INDEX
         case REV_PINDEX_0:
         case REV_PINDEX_1:
         case REV_PINDEX_2:
@@ -97,6 +101,25 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
             /*     log_debug("ridx:%d t:%d s:%d l:%d crc:0x%x 0x%x\n", ops->packet_index, ops->type, ops->status, ops->length, ops->crc_bk, ops->crc); */
             /*     log_debug("b:0x%x %d %d", buff, len, stream_index); */
             /* } */
+            if ((ops->length == 0) && ((ops->crc_bk & 0xff) == ops->crc)) {
+                ops->status = REV_HEADER_0x55;
+                stream_index++;
+                res = TUR_DATA_CORRECT;
+                goto __recv_data_exit;
+            }
+            stream_index++;
+        }
+        break;
+#endif
+        case REV_PTCNT_0:
+        case REV_PTCNT_1:
+        case REV_PTCNT_2:
+        case REV_PTCNT_3: {
+            u8 ptcnt_num = ops->status - REV_PTCNT_0;
+            u8 *ptcnt = (u8 *)&ops->packet_type_cnt;
+            ptcnt[ptcnt_num] = buff[stream_index];
+            ops->status++;
+            ops->crc_bk = CRC16_with_initval(&buff[stream_index], 1, ops->crc_bk);
             if ((ops->length == 0) && ((ops->crc_bk & 0xff) == ops->crc)) {
                 ops->status = REV_HEADER_0x55;
                 stream_index++;
@@ -182,6 +205,33 @@ bool ar_trans_unpack(rev_fsm_mge *ops, void *input, u16 inlen,  u16 *offset)
     return res;
 }
 
+#include "rf2audio_recv.h"
+static u16 rfp_last_index = 0;
+static void fill_empty_frames(rev_fsm_mge *ops, u8 *data, u16 len)
+{
+    dec_obj *p_obj = ops->dec_obj;
+    u8 dec_type = p_obj->type;
+    u16 lost_packet_num = ops->packet_type_cnt[ops->type] - rfp_last_index - 1; //实际丢包数
+    /* if (lost_packet_num != 0) { */
+    /* log_error("%d\n", lost_packet_num); */
+    /* } */
+    lost_packet_num = lost_packet_num > 5 ? 5 : lost_packet_num;//空包写入限制
+    if ((lost_packet_num != 0) && (dec_type == D_TYPE_JLA_LW)) {
+        /* log_error("%d, %d, %d\n", lost_packet_num, rfp_last_index, ops->packet_type_cnt[ops->type]); */
+        u16 header_buf[1];
+        header_buf[0] = 0x55aa;
+        u16 unp_buf[1]; //暂存被替换的数据，填完空包之后填回data，确保当前包不会被改为空包
+        /* putchar('i'); */
+        memcpy((u8 *)unp_buf, data, sizeof(unp_buf));
+        memcpy(data, (u8 *)header_buf, sizeof(header_buf));
+        for (u8 num = 0; num < lost_packet_num; num++) {
+            /* putchar('l'); */
+            rf2audio_receiver_write_data(ops->dec_obj, data, len);
+        }
+        memcpy(data, (u8 *)unp_buf, sizeof(unp_buf));
+    }
+}
+
 /*----------------------------------------------------------------------------*/
 /**@brief   应用接收数据分发处理
   @param   ops         :状态机管理句柄
@@ -192,12 +242,20 @@ packet_len  :本次接收数据长度
 @note
 */
 /*----------------------------------------------------------------------------*/
-#include "rf2audio_recv.h"
 static void packet_2_app(rev_fsm_mge *ops, RADIO_PACKET_TYPE type, u8 *data, u16 len)
 {
+    dec_obj *p_obj = ops->dec_obj;
     switch (type) {
     case AUDIO2RF_DATA_PACKET:
+        if (NULL == p_obj) {
+            rfp_last_index = ops->packet_type_cnt[ops->type];
+            /* 防止解码刚启动时，因为记录的序号不连续，填入大量空包 */
+            break;
+        }
+        /* putchar('j'); */
+        fill_empty_frames(ops, data, len);
         rf2audio_receiver_write_data(ops->dec_obj, data, len);
+        rfp_last_index = ops->packet_type_cnt[ops->type];
         break;
     default:
         packet_cmd_post(ops->cmd_pool, type, data, len);

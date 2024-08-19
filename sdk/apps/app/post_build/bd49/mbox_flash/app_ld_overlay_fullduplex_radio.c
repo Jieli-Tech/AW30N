@@ -21,7 +21,7 @@
             PROVIDE(mode_music_overlay_data_end = .);
         }
         .d_fat_tmp {
-			. = mode_music_overlay_data_end;
+            . = mode_music_overlay_data_end;
             *(.fat_tmp_buf)
         }
 
@@ -36,14 +36,11 @@
             PROVIDE(ar_trans_data_start = .);
             *(.ar_trans_data);
             PROVIDE(ar_trans_data_end = .);
-        }
-        .app_rf_radio {
-            . = ar_trans_data_end;
             PROVIDE(rf_radio_data_start = .);
             *(.rf_radio_data);
             PROVIDE(rf_radio_data_end = .);
         }
-		.d_rec {
+        .d_rec {
             . = rf_radio_data_end;
             rec_data_start = .;
             *(.rec_data)
@@ -53,7 +50,7 @@
     __overlay_app_handle_end = .;
 
     __overlay_enc_data_start = .;
-	OVERLAY :
+    OVERLAY . :
     AT(0xB0000000) SUBALIGN(4)
     {
         .d_enc_a {
@@ -83,6 +80,11 @@
         .d_enc_sbc {
             *(.enc_sbc_data)
             enc_sbc_data_end = .;
+        }
+        .d_enc_jla_lw {
+            . = rec_data_end;
+            *(.enc_jla_lw_data)
+            enc_jla_lw_data_end = .;
         }
     } > ram0
     __overlay_enc_data_end = .;
@@ -212,15 +214,21 @@
             PROVIDE(ima_buf_end = .);
         }
         .d_speex {
-			PROVIDE(speex_buf_start = .);
-			*(.speex_dec_data);
-			PROVIDE(speex_buf_end = .);
-		}
-		.d_sbc {
-			PROVIDE(sbc_buf_start = .);
-			*(.sbc_dec_data);
-			PROVIDE(sbc_buf_end = .);
-		}
+            PROVIDE(speex_buf_start = .);
+            *(.speex_dec_data);
+            PROVIDE(speex_buf_end = .);
+        }
+        .d_sbc {
+            PROVIDE(sbc_buf_start = .);
+            *(.sbc_dec_data);
+            PROVIDE(sbc_buf_end = .);
+        }
+        .d_jla_lw {
+            . = a_buf_end;
+            PROVIDE(jla_lw_buf_start = .);
+            *(.jla_lw_dec_data);
+            PROVIDE(jla_lw_buf_end = .);
+        }
         .d_midi {
             PROVIDE(midi_buf_start = .);
             *(.midi_buf);

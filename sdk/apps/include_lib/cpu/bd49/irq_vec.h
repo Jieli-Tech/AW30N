@@ -33,6 +33,7 @@
 #define IRQ_MCPWM_CHX_IDX       27
 #define IRQ_SPI2_IDX            28
 #define IRQ_CAN_IDX             29
+#define IRQ_PWM_LED_IDX         30
 
 #define IRQ_UDMA_CH0_IDX        34
 #define IRQ_UDMA_CH1_IDX        35

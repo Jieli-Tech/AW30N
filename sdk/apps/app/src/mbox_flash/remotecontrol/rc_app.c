@@ -173,6 +173,7 @@ u32 rc_rf_loop(void)
             log_info("no ack enc stop\n");
             audio2rf_encoder_stop(ENC_NO_WAIT);
             audio_adc_off_api();
+            audio_off();
             speaker_status = SPEAKER_STOP;
         }
         break;
@@ -319,15 +320,14 @@ void rf_rc_app()
     vble_slave_recv_cb_register(ATT_MSTR2SLV_RF_RADUI_IDX, &rc_recv_ops, (int (*)(void *, u8 *, u16))unpack_data_deal);
 #endif
 
+    audio_off();
     log_info("rf_controller\n");
 
     while (1) {
         if (SPEAKER_STOP == speaker_status) {
             /* putchar('s'); */
             /* u32 sr = dac_sr_read(); */
-            audio_off();
             sys_power_down(2000000);
-            audio_init();
             /* dac_power_on(sr); */
         }
 
@@ -336,6 +336,7 @@ void rf_rc_app()
         if ((!ble_status) && (SPEAKER_START == speaker_status)) {
             audio2rf_encoder_stop(ENC_NO_WAIT);
             audio_adc_off_api();
+            audio_off();
             clk_set("sys", IDLE_SYS_CLK);
             delay_10ms(30);
             set_speaker_status(SPEAKER_STOP);
@@ -352,6 +353,7 @@ void rf_rc_app()
                     log_info("no ack enc stop\n");
                     audio2rf_encoder_stop(ENC_NO_WAIT);
                     audio_adc_off_api();
+                    audio_off();
                     speaker_status = SPEAKER_STOP;
                 }
             }
@@ -403,6 +405,7 @@ void rf_rc_app()
             }
             if (SPEAKER_STOP == speaker_status) {
                 log_info("SPEAKER_START\n");
+                audio_init();
                 ret = audio_adc_init_api(RC_ENC_SR, AUDIO_ADC_MIC, 0);
                 if (ret != 0) {
                     log_error("audio_adc_init err 0x%x\n", ret);
@@ -415,36 +418,16 @@ void rf_rc_app()
                     retry = 3;
                     speaker_status = SPEAKER_WAIT_START_ACK;
                 }
-                break;
-#if 0
-                u8 retry = 3;
-                do {
-                    audio2rf_start_cmd(gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
-                    delay_10ms(10);
-                    retry--;
-                    log_info("retry %d\n", retry);
-                } while ((0 != retry) && (SPEAKER_STOP == speaker_status));
-                if (SPEAKER_START == speaker_status) {
-                    clk_set("sys", SEND_AUDIO_SYS_CLK);
-                    delay_10ms(30);
-                    audio2rf_encoder_start(gp_rc_enc_obj);
-                } else {
-                    log_info("no ack enc stop\n");
-                    audio2rf_encoder_stop(ENC_NO_WAIT);
-                    audio_adc_off_api();
-                }
-                //send_audio_data
-#endif
             } else {
                 //send_audio_data
                 audio2rf_encoder_stop(ENC_NEED_WAIT);
                 audio_adc_off_api();
+                audio_off();
                 clk_set("sys", IDLE_SYS_CLK);
                 delay_10ms(30);
                 set_speaker_status(SPEAKER_STOP);
                 log_info("SPEAKER_STOP\n");
             }
-
             break;
         case MSG_BLE_APP_UPDATE_START:
         /* 手机APP升级 */

@@ -98,6 +98,8 @@ u32 fat_io_ctrl(void *f_p, u32 cmd, int arg);
 
 void fs_ext_setting(const char *str);  //AT(FF_API_C_API)
 
+int fat_format_deal(void **p_fs_hdl, void *device, u32 clust_size, u8 create_new);
+
 //base init
 void fat_init(void);
 // void fat_set_lfn_buf(void *buf);

@@ -16,6 +16,7 @@
 
 audio2rf_send_mge_ops *g_send_ops AT(.ar_trans_data);
 extern volatile u32 rf_send_cnt;
+extern volatile u16 packet_type_cnt[2] AT(.ar_trans_data);
 static u8 g_pack_buf[SENDER_BUF_SIZE] AT(.ar_trans_data);
 
 /*----------------------------------------------------------------------------*/
@@ -53,7 +54,13 @@ u16 ar_trans_pack(RADIO_PACKET_TYPE type, u8 *data, u16 data_len, u8 *packet_buf
     packet.header      = PACKET_HEAD;
     packet.type        = type;
     packet.data_length = data_len;
+#if PACKET_USE_TOTAL_INDEX
     packet.packet_index = rf_send_cnt++;
+#endif
+    if (type < ARRAY_SIZE(packet.packet_type_cnt)) {
+        packet.packet_type_cnt[type] = packet_type_cnt[type]++;
+    }
+
     crc16_tmp = CRC16_with_initval(&(packet.type), RADIO_PACKET_CRC_LEN, 0);
     if (NULL != data) {
         crc16_tmp = CRC16_with_initval(data, data_len, crc16_tmp);

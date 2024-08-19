@@ -37,8 +37,11 @@ static void sd_gpio_init_0(const struct sdmmc_platform_data *data)
 static void sd_gpio_uninit_3(const struct sdmmc_platform_data *data)
 {
     gpio_disable_function(IO_PORT_SPILT(data->port[0]), PORT_FUNC_SD0_CMD);
+    gpio_deinit(IO_PORT_SPILT(data->port[0]));
     gpio_disable_function(IO_PORT_SPILT(data->port[1]), PORT_FUNC_SD0_CLK);
+    gpio_deinit(IO_PORT_SPILT(data->port[1]));
     gpio_disable_function(IO_PORT_SPILT(data->port[2]), PORT_FUNC_SD0_DA0);
+    gpio_deinit(IO_PORT_SPILT(data->port[2]));
     for (u8 i = 0; i < 3; i ++) {
         gpio_set_mode(IO_PORT_SPILT(data->port[i]), PORT_HIGHZ);
     }
@@ -47,8 +50,11 @@ static void sd_gpio_uninit_3(const struct sdmmc_platform_data *data)
 static void sd_gpio_suspend_4(const struct sdmmc_platform_data *data)
 {
     gpio_disable_function(IO_PORT_SPILT(data->port[0]), PORT_FUNC_SD0_CMD);
+    gpio_deinit(IO_PORT_SPILT(data->port[0]));
     gpio_disable_function(IO_PORT_SPILT(data->port[1]), PORT_FUNC_SD0_CLK);
+    gpio_deinit(IO_PORT_SPILT(data->port[1]));
     gpio_disable_function(IO_PORT_SPILT(data->port[2]), PORT_FUNC_SD0_DA0);
+    gpio_deinit(IO_PORT_SPILT(data->port[2]));
 }
 
 static void sd_gpio_resume_5(const struct sdmmc_platform_data *data)

@@ -7,10 +7,33 @@
 //  注意事项：不要在库文件中包含
 
 
+
+
 //  APP方案选择
 #define RUN_APP_CUSTOM 1
 #define RUN_APP_RC 0
 #define RUN_APP_DONGLE 0
+
+
+
+//  ble trans_data app select
+#if (RUN_APP_CUSTOM)
+#define TESTE_BLE_EN 1
+#define TRANS_DATA_HID_EN 0
+#define TRANS_DATA_SPPLE_EN 0
+
+#elif (RUN_APP_RC)
+#define TESTE_BLE_EN 0
+#define TRANS_DATA_HID_EN 1
+#define TRANS_DATA_SPPLE_EN 0
+
+#elif (RUN_APP_DONGLE)
+#define TESTE_BLE_EN 0
+#define TRANS_DATA_HID_EN 0
+#define TRANS_DATA_SPPLE_EN 1
+#endif
+
+
 
 
 #if RUN_APP_CUSTOM
@@ -52,6 +75,9 @@
 //  SBC格式解码
 #define DECODER_SBC_EN 1
 
+//  JLA_LW格式解码
+#define DECODER_JLA_LW_EN 1
+
 //  mp3格式压缩
 #define ENCODER_MP3_EN 1
 #define ENCODER_MP3_STEREO 0
@@ -73,6 +99,9 @@
 
 //  SBC格式压缩
 #define ENCODER_SBC_EN 1
+
+//  JLA_LW格式压缩
+#define ENCODER_JLA_LW_EN 1
 
 //  MIO功能使能
 #define HAS_MIO_EN 0
@@ -168,6 +197,9 @@
 //  SBC格式解码
 #define DECODER_SBC_EN 1
 
+//  JLA_LW格式解码
+#define DECODER_JLA_LW_EN 1
+
 //  OPUS格式解码
 #define DECODER_OPUS_EN 1
 
@@ -179,6 +211,9 @@
 
 //  SBC格式压缩
 #define ENCODER_SBC_EN 1
+
+//  JLA_LW格式压缩
+#define ENCODER_JLA_LW_EN 1
 
 //  手机APP应用升级
 #define CONFIG_APP_OTA_EN 1
@@ -194,9 +229,6 @@
 #define RF_REMOTECONTROL_MODE_EN 1 //  遥控器模式
 
 #endif
-
-//  无缝循环使能
-#define DECODER_LOOP_EN 0
 
 //  定时任务注册功能使能
 #define SYS_TIMER_EN 1
@@ -218,6 +250,5 @@
 
 //  U盘设备升级
 #define UDISK_UPDATE_EN 1
-
 
 #endif

@@ -39,7 +39,7 @@
 //IR KEY
 #define IR_KEY_IO			                IO_PORTA_06
 // #define IR_KEY_IRQ_IDX  	                IRQ_TIME2_IDX
-#define IR_KEY_TIMER_IDX		            3
+#define IR_KEY_TIMER_IDX		            0
 //TOUCH KEY
 #define TOUCH_KEY_IO_SEL		           {IO_PORTA_07,IO_PORTA_08}
 //LPTOUCH KEY
@@ -66,6 +66,17 @@
 #else
 #define RTC_CLK_SEL                         0//无RTC功能
 #endif
+
+
+//*********************************************************************************//
+//                                  低功耗配置                                     //
+//*********************************************************************************//
+#define TCFG_LOWPOWER_LOWPOWER_SEL          ENABLE
+
+//*********************************************************************************//
+//                                  软关机配置                                     //
+//*********************************************************************************//
+#define TCFG_HID_AUTO_SHUTDOWN_TIME         5000 //uint:ms
 
 /*---------charge Configuration-------------*/
 #define TCFG_CHARGE_ENABLE		            0//ENABLE
@@ -241,5 +252,9 @@
 #endif
 #endif
 #endif
+
+/*---------ICACHE RAM 相关配置-----------------*/
+#define ICACHE_RAM_TO_RAM_ENABLE			DISABLE//1//ICACHE RAM用作普通RAM使能位
+#define ICACHE_RAM_TO_RAM					8192//将多少ICACHE RAM用作普通RAM----配置大小：4K、8K
 
 #endif

@@ -14,6 +14,7 @@
 #define sysmem_phy_read(id, buf, len)       nvm_read_api(id, buf, len)
 #define sysmem_phy_write(id, buf, len)      nvm_write_api(id, buf, len)
 #define sysmem_phy_pre_erase()              nvm_erasure_next_api()
+#define sysmem_phy_delete(buf, len)         nvm_format_another_ignore_api(buf, len)
 #elif (SYS_MEMORY_SELECT == USE_OLD_VM)
 /* 旧版vm */
 #include "vm.h"
@@ -21,11 +22,13 @@
 #define sysmem_phy_read(id, buf, len)       vm_read_phy(id, buf, len)
 #define sysmem_phy_write(id, buf, len)      vm_write_phy(id, buf, len)
 #define sysmem_phy_pre_erase(...)
+#define sysmem_phy_delete(buf, len)
 #else
 #define sysmem_phy_init(addr, size)         -1
 #define sysmem_phy_read(id, buf, len)       -1
 #define sysmem_phy_write(id, buf, len)      -1
 #define sysmem_phy_pre_erase(...)
+#define sysmem_phy_delete(buf, len)         -1
 #endif
 
 
@@ -49,6 +52,10 @@ void sysmem_pre_erase_api(void)
     sysmem_phy_pre_erase();
 }
 
+void sysmem_delete_api(u32 *delete_map, u32 delete_bits)
+{
+    sysmem_phy_delete(delete_map, delete_bits);
+}
 // 蓝牙存储使用接口
 int syscfg_write(u16 item_id, const void *buf, u16 len)
 {

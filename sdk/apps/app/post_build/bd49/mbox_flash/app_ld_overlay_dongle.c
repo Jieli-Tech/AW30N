@@ -54,7 +54,13 @@
             PROVIDE(sbc_buf_start = .);
             *(.sbc_dec_data)
             PROVIDE(sbc_buf_end = .);
-		}
+        }
+        .d_jla_lw {
+            . = ar_trans_data_end;
+            PROVIDE(jla_lw_buf_start = .);
+            *(.jla_lw_dec_data);
+            PROVIDE(jla_lw_buf_end = .);
+        }
         .d_speex {
             . = ar_trans_data_end;
             PROVIDE(speex_buf_start = .);

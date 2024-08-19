@@ -33,11 +33,6 @@ extern AUDIO_MIC_INPUT_MODE const audio_adc_aux_input_mode;
 
 static bool auadc_mutex_check(void)
 {
-    /* micbias/micldo固定占用PA7，使用期间micin不可选择PA7输入 */
-    if ((mic_rs_null != audio_adc_mic_rs_mode) && (mic_input_ana4_pa7 == audio_adc_mic_input_mode)) {
-        log_error("ADC micin can't select to PA7 while using micbias/micldo!");
-        return false;
-    }
     /* 差分mic N端固定占用PA6，使能差分mic时mic P端不可选择PA6输入 */
     if (audio_adc_diff_mic_mode && (mic_input_ana3_pa6 == audio_adc_mic_input_mode)) {
         log_error("ADC diff micin_p can't select to PA6 while micin_n defaultly using PA6!");
