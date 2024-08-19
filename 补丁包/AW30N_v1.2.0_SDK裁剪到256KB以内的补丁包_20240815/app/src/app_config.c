@@ -81,8 +81,7 @@ const u8 config_no_osc_enable = 0;//bd49//ini:PLL=LRC;
  * @brief Bluetooth Controller Log
  */
 /*-----------------------------------------------------------*/
-//const char libs_debug AT(.LOG_TAG_CONST) = TRUE; //打印总开关
-const char libs_debug AT(.LOG_TAG_CONST) = FALSE; //打印总开关
+const char libs_debug AT(.LOG_TAG_CONST) = FALSE;//TRUE; //打印总开关
 
 #define  CONFIG_DEBUG_LIBS(X)   (X & libs_debug)
 
