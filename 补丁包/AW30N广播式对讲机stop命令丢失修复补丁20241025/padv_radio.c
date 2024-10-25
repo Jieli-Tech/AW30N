@@ -30,10 +30,10 @@
 #define PADV_ENC_FUNC    NULL
 #endif
 
-#define MSG_SET_RX_STATUS MSG_BLE_ROLE_SWITCH //èŠ‚çœèµ„æºï¼Œç›´æ¥ä½¿ç”¨ä¼ ç»Ÿå¯¹è®²æœºçš„æŒ‰é”®åˆ†å¸ƒ
+#define MSG_SET_RX_STATUS MSG_BLE_ROLE_SWITCH //½ÚÊ¡×ÊÔ´£¬Ö±½ÓÊ¹ÓÃ´«Í³¶Ô½²»úµÄ°´¼ü·Ö²¼
 
-/* ä½¿ç”¨åŒæ–¹çº¦å®šå¥½çš„ç¼–ç å‚æ•°åšè§£ç  */
-/* è¯¥æ–¹å¼åœ¨åŒæ­¥åå¯ä»¥ç«‹åˆ»å¼€å¯è§£ç ï¼Œä½†æ˜¯å‚æ•°é…ç½®æ–¹é¢ä¸å¤Ÿçµæ´»*/
+/* Ê¹ÓÃË«·½Ô¼¶¨ºÃµÄ±àÂë²ÎÊı×ö½âÂë */
+/* ¸Ã·½Ê½ÔÚÍ¬²½ºó¿ÉÒÔÁ¢¿Ì¿ªÆô½âÂë£¬µ«ÊÇ²ÎÊıÅäÖÃ·½Ãæ²»¹»Áé»î*/
 /* void padv_radio_post_start_cmd() */
 /* { */
 /* RF_RADIO_ENC_HEAD enc_head = {0}; */
@@ -79,11 +79,11 @@ void padv_radio_post_stop_cmd()
 }
 
 /*----------------------------------------------------------------------------*/
-/**@brief   å¹¿æ’­rxæ¥æ”¶çŠ¶æ€å¤„ç†
+/**@brief   ¹ã²¥rx½ÓÊÕ×´Ì¬´¦Àí
    @param
    @return
    @author
-   @note    æ¥æ”¶çŠ¶æ€ä¸‹å“åº”æ¥æ”¶äº‹ä»¶
+   @note    ½ÓÊÕ×´Ì¬ÏÂÏìÓ¦½ÓÊÕÊÂ¼ş
 **/
 /*----------------------------------------------------------------------------*/
 u32 radio_padv_receiving_loop(void)
@@ -106,7 +106,7 @@ u32 radio_padv_receiving_loop(void)
         }
         RF_RADIO_ENC_HEAD *p_enc_head = (RF_RADIO_ENC_HEAD *)&rra_packet[2];
         if (NULL != radio_mge.packet_recv.dec_obj) {
-            u32 res = memcmp(p_enc_head, &s_enc_head, sizeof(s_enc_head));//é˜²æ­¢æ²¡æœ‰stopåŒ…
+            u32 res = memcmp(p_enc_head, &s_enc_head, sizeof(s_enc_head));//·ÀÖ¹Ã»ÓĞstop°ü
             if (0 == res) {
                 break;
             }
@@ -147,7 +147,7 @@ void padv_exit_tx(ENC_STOP_WAIT wait)
         audio2rf_encoder_stop(wait);
         u32 retry = 50;
         while ((0 != get_queue_data_size()) && (0 != retry)) {
-            /* è®¾ç½®çš„å¹¿æ’­é—´éš”å¯èƒ½è¾ƒé•¿ */
+            /* ÉèÖÃµÄ¹ã²¥¼ä¸ô¿ÉÄÜ½Ï³¤ */
             delay_10ms(2);
             retry--;
         }		
@@ -157,20 +157,20 @@ void padv_exit_tx(ENC_STOP_WAIT wait)
     }
     audio_adc_off_api();
 
-    vble_adv_tx_close(); //ä¸ºäº†æ¶ˆè€—å®Œç¼–ç æ•°æ®,txæ”¾æœ€åå…³
+    vble_adv_tx_close(); //ÎªÁËÏûºÄÍê±àÂëÊı¾İ,tx·Å×îºó¹Ø
     vble_adv_tx_uninit();
 
     radio_mge.padv_tx_status = PADV_TX_IDLE;
 }
 
 /*----------------------------------------------------------------------------*/
-/**@brief   å¯¹è®²æœºåº”ç”¨ä¸»å‡½æ•°
+/**@brief   ¶Ô½²»úÓ¦ÓÃÖ÷º¯Êı
    @param
    @return
    @author
-   @note    ä¸»å‡½æ•°æ ¹æ®ä¸åŒçŠ¶æ€è¿è¡Œä¸åŒå­å‡½æ•°ï¼›
-            è“ç‰™å·²è¿æ¥ä¸”åº”ç”¨ç©ºé—²æ—¶ï¼Œæ‰§è¡Œstandbyå‡½æ•°ä½åŠŸè€—ä¿æŒè¿æ¥
-            å½“å¤–éƒ¨äº‹ä»¶è§¦å‘æ—¶é€€å‡ºstandbyï¼Œè¿è¡Œrecevintå’Œsendingå‡½æ•°å“åº”æ¶ˆæ¯ã€äº‹ä»¶
+   @note    Ö÷º¯Êı¸ù¾İ²»Í¬×´Ì¬ÔËĞĞ²»Í¬×Óº¯Êı£»
+            À¶ÑÀÒÑÁ¬½ÓÇÒÓ¦ÓÃ¿ÕÏĞÊ±£¬Ö´ĞĞstandbyº¯ÊıµÍ¹¦ºÄ±£³ÖÁ¬½Ó
+            µ±Íâ²¿ÊÂ¼ş´¥·¢Ê±ÍË³östandby£¬ÔËĞĞrecevintºÍsendingº¯ÊıÏìÓ¦ÏûÏ¢¡¢ÊÂ¼ş
 */
 /*----------------------------------------------------------------------------*/
 bool padv_rrapp_loop()
@@ -199,7 +199,7 @@ bool padv_rrapp_loop()
             }
             padv_exit_rx();
             vble_adv_tx_init(&u_pa_tx);
-            vble_adv_tx_open(); //æ‰“å¼€å¹¿æ’­tx
+            vble_adv_tx_open(); //´ò¿ª¹ã²¥tx
             ret = audio_adc_init_api(PADV_ENC_SR, AUDIO_ADC_MIC, 0);
             if (ret != 0) {
                 log_error("audio_adc_init err 0x%x\n", ret);
@@ -217,11 +217,11 @@ bool padv_rrapp_loop()
                 log_error("tx_encoder_init_err\n");
             }
             break;
-        case MSG_SENDER_STOP: //æŒ‰é”®æ¾å¼€
+        case MSG_SENDER_STOP: //°´¼üËÉ¿ª
             log_info("MSG_SENDER_STOP\n");
             padv_exit_tx(ENC_NEED_WAIT);
             break;
-        case MSG_SET_RX_STATUS: //å¼€å…³æ‰«æ
+        case MSG_SET_RX_STATUS: //¿ª¹ØÉ¨Ãè
             if (PADV_TX_READY == radio_mge.padv_tx_status) {
                 padv_exit_tx(ENC_NEED_WAIT);
             }
@@ -272,7 +272,7 @@ __padv_radio_loop_exit:
 void padv_app_init(void)
 {
     memset(&s_enc_head, 0, sizeof(s_enc_head));
-    radio_mge.rra_mode = RRA_PERIOD_ADV; //æ‰€æœ‰æ¶ˆæ¯éƒ½å…ˆå»åˆ°è¿™ä¸ªåˆ†æ”¯å¤„ç†
+    radio_mge.rra_mode = RRA_PERIOD_ADV; //ËùÓĞÏûÏ¢¶¼ÏÈÈ¥µ½Õâ¸ö·ÖÖ§´¦Àí
     radio_mge.padv_tx_status = PADV_TX_IDLE;
     radio_mge.padv_rx_status = PADV_RX_IDLE;
 }
