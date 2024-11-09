@@ -1,0 +1,1321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AW30N_mbox_flash" />
+		<Option compiler="pi32_lto_compiler" />
+		<Build>
+			<Target title="Release">
+				<Option output="./platform/aw30sdk/apps/app/post_build/bd49/sdk.elf" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="pi32_lto_compiler" />
+				<Compiler>
+					<Add option="-flto" />
+					<Add option="-Os" />
+					<Add option="-Wcast-align" />
+					<Add option="-Wundef" />
+					<Add option="-g" />
+					<Add option="-integrated-as" />
+					<Add option="-O0" />
+					<Add option="-fallow-pointer-null" />
+					<Add option="-Wincompatible-pointer-types" />
+					<Add option="-nostrictpi32" />
+					<Add option="-fprefer-gnu-section" />
+					<Add option="-Werror=implicit-function-declaration" />
+					<Add option="-Werror=return-type" />
+					<Add option="-Werror=undef" />
+					<Add option="-Wno-format" />
+					<Add option="-D__FPGA=0" />
+					<Add option="-DCONFIG_CPU_BD49=1" />
+					<Add option="-DAPP_BT_BLE=1" />
+					<Add option="-DSUPPORT_MS_EXTENSIONS" />
+					<Add option="-DD_MASKROM_CODE=0" />
+					<Add option="-DD_IS_FLASH_SYSTEM" />
+					<Add option="-DD_SFC_DEVICE_EN" />
+					<Add option="-DHAVE_MODULES_PRIVATE_C" />
+					<Add option="-DHAS_SRC_EN=1" />
+					<Add option="-DHAS_MIO_PLAYER" />
+					<Add option="-DHAS_MP3_ST_DECODER" />
+					<Add option="-DHAS_WAV_DECODER" />
+					<Add option="-DHAS_F1A_DECODER" />
+					<Add option="-DHAS_MAX_F1A_NUMBER=2" />
+					<Add option="-DHAS_UMP3_DECODER" />
+					<Add option="-DHAS_A_DECODER" />
+					<Add option="-DHAS_IMA_DECODER" />
+					<Add option="-DHAS_MIDI_DECODER" />
+					<Add option="-DHAS_MIDI_KEYBOARD_DECODER" />
+					<Add option="-DHAS_OPUS_DECODER" />
+					<Add option="-DHAS_SPEEX_DECODER" />
+					<Add option="-DHAS_SBC_DECODER" />
+					<Add option="-DHAS_JLA_LW_DECODER" />
+					<Add option="-DHAS_MP3_ENCODER" />
+					<Add option="-DMP3_ENCODER_SUPPORT_CH=1" />
+					<Add option="-DHAS_UMP3_ENCODER" />
+					<Add option="-DHAS_A_ENCODER" />
+					<Add option="-DHAS_OPUS_ENCODER" />
+					<Add option="-DHAS_SPEEX_ENCODER" />
+					<Add option="-DHAS_IMA_ENCODER" />
+					<Add option="-DHAS_SBC_ENCODER" />
+					<Add option="-DHAS_JLA_LW_ENCODER" />
+					<Add option="-DHAS_SPEED_EFFECT" />
+					<Add option="-DHAS_SONG_SPEED_EFFECT" />
+					<Add option="-DHAS_HOWLING_EFFECT" />
+					<Add option="-DHAS_ECHO_EFFECT" />
+					<Add option="-DHAS_VOICE_PITCH_EFFECT" />
+					<Add option="-DHAS_VOICE_CHANGER_EFFECT" />
+					<Add option="-DHAS_PCM_SW_EQ_EFFECT" />
+					<Add option="-DHAS_USB_EN=1" />
+					<Add option="-DHAS_SDMMC_EN=1" />
+					<Add option="-DHAS_EXTFLASH_EN=1" />
+					<Add option="-DHAS_BLE_EN=1" />
+					<Add option="-DHAS_VFS_EN=1" />
+					<Add option="-DHAS_NORFS_EN=1" />
+					<Add option="-DHAS_SYDFS_EN=1" />
+					<Add option="-DHAS_FATFS_EN=1" />
+					<Add option="-DHAS_SYS_TIMER_EN=1" />
+					<Add option="-DHAS_UPDATE_V1_EN=0" />
+					<Add option="-DHAS_UPDATE_V2_EN=1" />
+					<Add option="-DHAS_SD_UPDATE_EN=1" />
+					<Add option="-DHAS_UDISK_UPDATE_EN=1" />
+					<Add option="-DHAS_TESTBOX_BT_UPDATE_EN=1" />
+					<Add option="-DHAS_TESTBOX_UART_UPDATE_EN=1" />
+					<Add option="-DHAS_CONFIG_APP_OTA_EN=1" />
+					<Add option="-DHAS_LINEIN_MODE" />
+					<Add option="-DHAS_SIMPLE_DEC_MODE" />
+					<Add option="-DHAS_RECORD_MODE" />
+					<Add option="-DHAS_MUSIC_MODE" />
+					<Add option="-DHAS_USB_SLAVE_MODE" />
+					<Add option="-DHAS_LOUDSPEAKER_MODE" />
+					<Add option="-DHAS_RTC_MODE" />
+					<Add option="-DHAS_RF_RADIO_MODE" />
+					<Add option="-DHAS_RF_REMOTECONTROL_MODE" />
+					<Add option="-DHAS_VM_EN" />
+					<Add option="-DHAS_NEW_VM_MODE" />
+					<Add option="-DNOFLOAT" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/fs/sydf" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/fs/nor_fs" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/fs/fat" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/decoder/mio" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/encoder" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/encoder/list" />
+					<Add directory="./platform/aw30sdk/apps/app/src" />
+					<Add directory="./platform/aw30sdk/apps/app/post_build/bd49" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/key" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/power_manage" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/usb/usr" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/lib" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/cpu/bd49" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/device" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/rf" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/start" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/start/bd49" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/bd49" />
+					<Add directory="./platform/aw30sdk/apps/include_lib" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/common" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/audio" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/audio_eq" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/cpu/bd49" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/cpu/bd49/asm" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/cpu/bd49/power" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/cpu/bd49/audio_link" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/cpu" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/msg" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/fs" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/dev_mg" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/decoder" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/decoder/list" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/sound_mge" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/device" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/device/sdmmc" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/device/usb" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/device/usb/device" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/device/usb/host" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/device/norflash" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/update/code_v2" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/config" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/sound_effect_list" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/pcm_eq" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/common" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/common/ui" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/music" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/usb_slave" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/linein" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/record" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/simple_decode" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/midi_dec" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/rtc" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/softoff_app" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/rf_radio" />
+					<Add directory="./platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/third_party_profile/jieli/gatt_common" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/audio_rf_trans" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/bt_controller_include" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/bt_controller_include/port/bd49" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/bt_include" />
+					<Add directory="./platform/aw30sdk/apps/lib/bt_controller" />
+					<Add directory="./platform/aw30sdk/apps/lib/bt_protocol" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/usb" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/usb/device" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/usb/host" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/update" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_hid" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/third_party_profile/common" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/bt_include/third_party/rcsp" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/bt_controller_include/ble" />
+					<Add directory="./platform/aw30sdk/apps/include_lib/bt_controller_include/adapter/include/common" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/hid" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/hid/include" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/hid/example/hid_only_scan" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/include" />
+					<Add directory="./platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/example/reduce_ram" />
+				</Compiler>
+				<Linker>
+					<Add option="-flto" />
+					<Add option="--plugin-opt=-inline-threshold=5" />
+					<Add option="--plugin-opt=save-temps" />
+					<Add option="--plugin-opt=-inline-normal-into-special-section=true" />
+					<Add option="--plugin-opt=-dont-used-symbol-list=malloc,free,sprintf,printf,puts,putchar" />
+					<Add option="--plugin-opt=-mattr=+no-constpool" />
+					<Add option="--sort-common" />
+					<Add option="--start-group" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_wav_decoder.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_f1a_decode.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_a_decode.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_ima_stream_decode.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/ump3_dec_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/opus_dec_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_speex_decode_encode.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/sbc_stddec_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_jla_lw_codec_pi32.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_media_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_midi_decode.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/encoder_mge_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_mp2_code.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/ump2_enc_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_a_code.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/opus_enc_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_speex_decode_encode.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_ima_stream_enc.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/sbc_stdenc_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_jla_lw_codec_pi32.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_media_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_speed_pitch.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/ps_song_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/howling.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_howling_fs.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_echo_cal.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_vopitch_cal.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_voiceChanger_va.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_pcm_eq.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/ae_pcm_eq_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/malloc_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/decoder_mge_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sound_mge_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/src_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sdmmc_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sys_timer_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/periphy_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/rtc_mge_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/new_vm_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/printf_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/dev_mg_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/iir_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/remain_output_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/agreement.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a" />
+					<Add option="./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a" />
+					<Add option="--end-group" />
+					<Add option="-T./platform/aw30sdk/apps/app/post_build/bd49/app.ld" />
+					<Add option="-M=./platform/aw30sdk/apps/app/post_build/bd49/app.map" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="$compiler $options $includes -D__LD__ -E -P platform\aw30sdk\apps\app\post_build\bd49\mbox_flash\app_ld.c -o platform\aw30sdk\apps\app\post_build\bd49\app.ld" />
+					<Add before="$compiler $options $includes -D__LD__ -E -P platform\aw30sdk\apps\app\post_build\bd49\mbox_flash\download_bat.c -o platform\aw30sdk\apps\app\post_build\bd49\download.bat" />
+					<Add before="platform\aw30sdk\tools\utils\fixbat.exe platform\aw30sdk\apps\app\post_build\bd49\download.bat" />
+					<Add before="$compiler $options $includes -D__LD__ -E -P platform\aw30sdk\apps\app\post_build\bd49\mbox_flash\download_sh.c -o platform\aw30sdk\apps\app\post_build\bd49\download.sh" />
+					<Add before="$compiler $options $includes -D__LD__ -E -P platform\aw30sdk\apps\app\post_build\bd49\mbox_flash\isd_config_ini.c -o platform\aw30sdk\apps\app\post_build\bd49\isd_config.ini" />
+					<Add after="platform\aw30sdk\apps\app\post_build\bd49\download.bat sdk" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio/audio_adc_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio/audio_dac_fade.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio/fill_audac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio/sound_kick.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio2rf_send.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio2rf_send.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio_rf_mge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio_rf_mge.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf2audio_recv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf2audio_recv.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_pa_port.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_pa_port.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_send_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_send_queue.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_packet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_packet.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_unpacket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_unpacket.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/app_action.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/ble_master.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/ble_slave.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/bt_ble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_btctrler_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_btstack_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_profile_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/test_app_config.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/bt_ble.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/bt_profile_cfg.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/app_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_btctrler_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_btstack_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_driver_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_profile_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_system_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_update_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/log_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/hid_only_scan/ble_only_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/hid_only_scan/ble_only_scan.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/keyboard/app_hid_comm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/include/app_comm_bt.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/include/app_main.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/include/hid_app_config.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/include/standard_hid.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/include/user_cfg.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/app_comm_ble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/ble_hogp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/ble_hogp_profile.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/user_cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/hid/version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/app_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_btctrler_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_btstack_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_driver_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_profile_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_system_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_update_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/log_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/app_dongle_comm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/ble_dg_central.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/ota_dg_central.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/usb_hid_devices.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/usb_second_hid_devices.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/app_multi_conn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_central.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_peripheral.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_profile.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/noconn_24g/app_nonconn_24g.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/noconn_24g/ble_24g_deal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/app_reduce_ram.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/ble_reduce_ram.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/ble_reduce_ram.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/include/spple_app_config.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/modules/bt/app_comm_ble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/modules/user_cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv_trans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_complete.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_complete.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_simple.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_simple.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/audio_codec_format.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/decoder_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/decoder_msg_tab.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/decoder_point.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/a_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/f1a_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/f1x_parsing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/ima_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/jla_lw_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/midi_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/midi_ctrl_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/mp3_standard_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/opus_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/sbc_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/speex_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/ump3_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/list/wav_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/mio/mio_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/mio/mio_phy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/decoder/mp_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/encoder_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/encoder_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/a_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/ima_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/jla_lw_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/mp3_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/opus_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/sbc_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/speex_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/encoder/list/ump3_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/fs/fat/fat_resource.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/fs/nor_fs/nor_fs_resource.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/fs/sydf/sydf_resource.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/fs/vfs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/fs/vfs_fat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/fs/vfs_resource.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/ir/ir_decoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/ir/ir_encoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_drv_ad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_drv_ad.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_drv_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_drv_io.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_drv_matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_drv_matrix.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_ir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_ir.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_lptouch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_lptouch.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_touch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/key/key_touch.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/msg/custom_event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/msg/msg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/my_malloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/norflash/norflash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/power_manage/app_power_mg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/power_manage/app_power_mg.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/reserved_area/reserved_area.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/reserved_area/reserved_area.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/echo_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/notch_howling_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pcm_eq_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pitchshift_howling_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/song_speed_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/speed_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/vo_pitch_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sound_effect_list/voicechanger_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/speaker/speak_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/sys_memory/sys_memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/tab_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/common/custom_cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/common/custom_cfg.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_bluetooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_bluetooth.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_hid/rcsp_hid_inter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_hid/rcsp_hid_inter.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_msg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_msg.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_ch_loader_download.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_ch_loader_download.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_user_update.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_user_update.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_common.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/update/dev_update.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/update/testbox_uart_update.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/update/testbox_update.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/update/update.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/cdc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/cdc.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/cdc_defs.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/custom_hid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/descriptor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/hid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/msd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/task_pc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/uac1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/uac_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/uac_stream.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/usb_suspend_resume.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/device/user_setup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/host/usb_bulk_transfer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/host/usb_ctrl_transfer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/host/usb_host.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/host/usb_host_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/host/usb_storage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usb_common_def.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usb_config.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usb_std_class_def.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usb_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/auadc_2_usbmic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/auadc_2_usbmic.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/source_pcm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/uac_sync.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/uac_sync.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_audio_interface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_audio_interface.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_mic_interface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_mic_interface.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/vm/nvm_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/common/vm/vm_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/adc_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/adc_api.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/apa_cpu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_adc_cpu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_dac_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_dac_cpu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/device.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/gpcnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer_capture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer_pwm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_soft.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/led/led_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/led/led_api_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/led/pwm_led.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/lpctmu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/mcpwm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/my_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/pl_cnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/pl_cnt.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/power/gpio_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/power_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/rtc_app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/sd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/spi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/tick_timer_sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/cpu/bd49/uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/device/device_app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/device/device_app.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/device/device_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/rf/rf_soft.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/bd49/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/bsp_loop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/bsp_loop.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/flash_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/flash_init.h" />
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/bsp/start/init.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/app.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/app_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/app_config.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/bd49/app_modules.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/bd49/cpu_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/hot_msg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/hot_msg.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/idle_check.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/pa_mute.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/pa_mute.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/simple_play_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/simple_play_file.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/ui/led5x7_driver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/ui/led5x7_driver.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_api.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_common.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/init_app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/init_app.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_prog.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/break_point.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/break_point.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/music_device.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/music_device.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/music_key_table.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/music_play.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/music_play.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/play_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/music/play_file.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_fatfs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_norfs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/dongle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_app.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/full_duplex/rf_radio_full_duplex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_receive.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_send.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/padv/padv_radio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_app.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_app.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_rs.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/softoff_app/softoff_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/softoff_app/softoff_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode_key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="platform/aw30sdk/apps/include_lib/asm_type.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audac_basic.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audio.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audio_adc_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audio_analog.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audio_dac_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audio_dac_fade.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/audio_energy_detect.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio/sound_kick.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio_eq/audio_eq.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/audio_eq/hw_eq.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/adapter/include/common/cbuf.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/ble/hci_ll.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/ble/ll_config.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/btcontroller_mode.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/btcontroller_modules.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/btctrler_task.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/classic/hci_lmp.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/classic/lmp_config.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/hci_transport.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_controller_include/port/bd49/btcontroller_config.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/avctp_user.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/bluetooth.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/btstack_event.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/btstack_task.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/btstack_typedef.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/att.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/ble_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/ble_data_types.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/gatt.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/le_common_define.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/le_user.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/le/sm.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/common/ble_user.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/padvb_intercom/padvb.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/rcsp/JL_rcsp_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/rcsp/JL_rcsp_packet.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/rcsp/JL_rcsp_protocol.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/rcsp/attr.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/bt_include/third_party/rcsp/rcsp_auth.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/boot.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/circular_buf.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/common.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/config.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/errno-base.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/flash_wp.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/iir.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/includes.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/ir_decoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/ir_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/jiffies.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/list.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/log.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/my_malloc.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/new_vm.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/printf.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/sys_memory.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/tab_read.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/vm.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/common/vm_sfc.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/apa.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/p33/charge_hw.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/p33/p33_access.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/p33/p33_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/p33/p33_interface.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/p33/p33_sfr.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/p33/wdt.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/pmu_flag.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_app.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_compat.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_manage.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_port.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_reset.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_trim.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/power_wakeup.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power/vbat_det_trim.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/asm/power_interface.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/audac.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/audio_adc.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/audio_dac.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/audio_link/audio_link.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/audio_link/audio_link_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/audio_link/audio_link_sync.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/bd49.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/bt_includes.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/bt_log.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/clock.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/clock_hw.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/cpu.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/crc16.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/csfr.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/dma.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/efuse.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/gpcnt.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/gpio_hw.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/gptimer_hw.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/hwi.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/icache.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/iis.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/io_imap.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/io_omap.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/irq.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/irq_vec.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/led_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/lpctmu.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/maskrom.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/mcpwm.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/power_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/power_interface.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/pwm_led.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/sd_port.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/spi.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/spinlock.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/src.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/sys_timer.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/tick_timer_driver.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/typedef.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/uart_types.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/usb.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/bd49/wdt.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/gpio.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/gptimer.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/iic_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/iic_hw_v2.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/iic_soft.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/rtc.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/src_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/src_para.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/uart.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/cpu/uart_v2.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/audio_codec_format.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/decoder_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/decoder_mge.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/decoder_msg_tab.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/if_decoder_ctrl.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/a_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/f1a_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/ima_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/jla_lw_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/midi_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/midi_ctrl.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/mp3_standard_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/opus_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/sbc_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/speex_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/ump3_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/list/wav_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/mio_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/decoder/sine_play.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/dev_mg/atomic.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/dev_mg/device.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/dev_mg/ioctl_cmds.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/device_drive.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/ioctl.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/norflash/norflash.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/sdmmc/sd.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/ch9.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/custom_hid.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/descriptor.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/hid.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/msd.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/uac_audio.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/usb_stack.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/device/usb_suspend_resume.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/host/usb_bulk_transfer.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/host/usb_ctrl_transfer.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/host/usb_host.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/host/usb_storage.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/otg.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/scsi.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/device/usb/usb_phy.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/encoder_file.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/encoder_mge.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/encoder_stream.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/a_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/ima_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/jla_lw_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/mp3_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/opus_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/sbc_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/speex_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/encoder/list/ump3_encoder.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/fat/fat_io_new.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/fat/fat_resource.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/fat/ff_opr.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/fat/fs_file_name.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/fat/mbr.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/fat/tff.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/nor_fs/nor_fs.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/sydf/sydf_resource.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/sydf/sydfile.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/vfs.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/fs/vfs_fat.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/MIDI_CTRL_API.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/MIDI_DEC_API.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/a_encode_lib.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/audio_enc_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/howling_pitchshifter_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/ima_stream_decode_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/ima_stream_enc_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/jla_lw_codec_ctrl.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_a.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_enc_a.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_f1a.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_midi.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_mp3_st.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_speed_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_ump3.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/lib_wav.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/mp2_encode_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/notch_howling_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/opus_decode_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/ps_for69_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/reverb_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/sbc_stddec_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/sbc_stdenc_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/speex_encode_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/ump2_encode_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/vo_pitch_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/header/voiceChanger_av_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/msg/custom_event.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/msg/msg.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/pcm_eq/pcm_eq_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_effect_list/echo_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_effect_list/howling_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_effect_list/midi_file0_h.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_effect_list/song_speed_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_effect_list/speed_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_effect_list/voicechanger_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_mge/sound_mge.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/sound_mge/stream_frame.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v1/update_v1.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v2/dev_update.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v2/dual_bank_updata_api.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v2/testbox_uart_update.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v2/uart_update.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v2/update.h" />
+		<Unit filename="platform/aw30sdk/apps/include_lib/update/code_v2/update_loader_download.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

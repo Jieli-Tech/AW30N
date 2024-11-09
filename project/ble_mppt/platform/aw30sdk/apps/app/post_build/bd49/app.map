@@ -1,0 +1,2228 @@
+Archive member included to satisfy reference by file (symbol)
+
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(mtst_mp3.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/mp3_standard_api.o (symbol from plugin) (get_mp3_ops)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(ID3tag_skip.o)
+                              mtst_mp3.o (symbol from plugin) (id3_tag_query)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(mpeg_synth.o)
+                              mtst_mp3.o (symbol from plugin) (mpegaudio_synth_full)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(mpegaudio.o)
+                              mtst_mp3.o (symbol from plugin) (reset_bit_stream)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(layer12.o)
+                              mpegaudio.o (symbol from plugin) (mad_layer_I)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(layer3.o)
+                              mpegaudio.o (symbol from plugin) (III_sideinfo)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a(huffman.o)
+                              layer3.o (symbol from plugin) (mad_huff_quad_table)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/encoder_mge_lib.a(encoder_mge.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.o (symbol from plugin) (enc_soft1_isr)
+./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_howling_fs.a(shift_anysrh.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pitchshift_howling_api.o (symbol from plugin) (get_howling_ps_func_api)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(tick_timer_cpu.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/start/init.o (symbol from plugin) (tick_timer_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(gpio_hw.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/sd.o (symbol from plugin) (gpio2crossbar_outreg)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(gpio_func.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/gpcnt.o (symbol from plugin) (gpio_set_function)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(gpio.o)
+                              obj/Release/application/app_main.o (symbol from plugin) (gpio_set_mode)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(uart_v2.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/uart.o (symbol from plugin) (uart_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(iic_hw_v2.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_api.o (symbol from plugin) (hw_iic_check_busy)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(clock.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.o (symbol from plugin) (delay)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(dma.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/lpctmu.o (symbol from plugin) (dma_busy_check)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(crc16.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_point.o (symbol from plugin) (CRC16)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(gptimer_utils.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/ir/ir_encoder.o (symbol from plugin) (gptimer_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(gptimer.o)
+                              gptimer_utils.o (symbol from plugin) (timer_hw_tid2timer)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(efuse_otp.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/start/bd49/main.o (symbol from plugin) (efuse_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(hwi.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_send_queue.o (symbol from plugin) (bit_set_swi)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(debug.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/start/bd49/main.o (symbol from plugin) (exception_analyze)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(boot_flash.o)
+                              obj/Release/application/app_main.o (symbol from plugin) (get_up_suc_flag)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(vm_sfc.o)
+                              obj/Release/application/app_main.o (symbol from plugin) (vm_isr_response_index_register)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(spinlock.o)
+                              gpio_hw.o (symbol from plugin) (spin_lock)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(usb.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_ctrl_transfer.o (symbol from plugin) (usb_get_jiffies)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(inside_flash.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/start/flash_init.o (symbol from plugin) (norflash_set_write_protect)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(cpu_common.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/reserved_area/reserved_area.o (symbol from plugin) (get_flash_alignsize)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(power_hw.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/gpio_config.o (symbol from plugin) (mask_softflag_config)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(power_driver.o)
+                              power_hw.o (symbol from plugin) (is_low_power_mode)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(power_trim.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.o (symbol from plugin) (pmu_trim)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(power_compat.o)
+                              obj/Release/application/app_main.o (symbol from plugin) (wdt_close)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(power_debug.o)
+                              power_hw.o (symbol from plugin) (lp_dump_ram)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(basic_funt.o)
+                              power_hw.o (symbol from plugin) (lrc_tmr2_udelay)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(port.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.o (symbol from plugin) (init_boot_rom)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(reset.o)
+                              power_hw.o (symbol from plugin) (is_reset_source)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(system.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power_api.o (symbol from plugin) (vPortSuppressTicksAndSleep)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(peripherals.o)
+                              power_hw.o (symbol from plugin) (get_sfc_read_mode_t)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(lrc.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/pwm_led.o (symbol from plugin) (__get_lrc_hz)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(lptmr.o)
+                              power_hw.o (symbol from plugin) (__lp_timer_is_running)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(p33.o)
+                              clock.o (symbol from plugin) (p33_control)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(pmu_wakeup.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power_api.o (symbol from plugin) (is_wakeup_source)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(wdt.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power_api.o (symbol from plugin) (wdt_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(p33_io_edge.o)
+                              pmu_wakeup.o (symbol from plugin) (__p33_io_edge_wakeup_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(p33_io_pinr.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.o (symbol from plugin) (gpio_longpress_pin0_reset_config)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(p33_io_mclr.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.o (symbol from plugin) (p33_mclr_sw)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(vddio_lvd.o)
+                              power_hw.o (symbol from plugin) (lvd_en)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+                              (_start)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(fat_io_new.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/fat/fat_resource.o (symbol from plugin) (fat_drive_close)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(ff_opr.o)
+                              fat_io_new.o (symbol from plugin) (ff_fast_scan_files)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(mbr.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/fat/fat_resource.o (symbol from plugin) (__dev_read)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(tff.o)
+                              mbr.o (symbol from plugin) (ld_word_func)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(ASCII_lib.o)
+                              ff_opr.o (symbol from plugin) (ASCII_ToUpper)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(ffunicode.o)
+                              tff.o (symbol from plugin) (ff_wtoupper)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(sydfile.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/sydf/sydf_resource.o (symbol from plugin) (sydf_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(sydf_ex.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/sydf/sydf_resource.o (symbol from plugin) (sydf_file_crc)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a(nor_fs.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/nor_fs/nor_fs_resource.o (symbol from plugin) (norfs_seek)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/malloc_lib.a(heap_2.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/my_malloc.o (symbol from plugin) (vPortInit)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_adc_cpu.o (symbol from plugin) (audio_clk_open_check)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_apa.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/apa_cpu.o (symbol from plugin) (apa_resource_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_digital.o)
+                              audio.o (symbol from plugin) (audio_clock_open)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_analog.o)
+                              audio.o (symbol from plugin) (audio_analog_open)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_apa_analog.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/apa_cpu.o (symbol from plugin) (apa_analog_open)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_adc_analog.o)
+                              audio.o (symbol from plugin) (auadc_analog_variate_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_adc.o)
+                              audio.o (symbol from plugin) (audio_adc_clr_pnd)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_dac.o)
+                              audio.o (symbol from plugin) (audio_dac_clr_pnd)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a(audio_dac_analog.o)
+                              audio.o (symbol from plugin) (audac_analog_variate_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/decoder_mge_lib.a(decoder_mge.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_api.o (symbol from plugin) (decoder_soft0_isr)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sound_mge_lib.a(sound_mge.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mp_io.o (symbol from plugin) (sound_output)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sound_mge_lib.a(stream_frame.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/speaker/speak_api.o (symbol from plugin) (stream_frame_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/src_lib.a(src_phy.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_api.o (symbol from plugin) (src_hld_malloc)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/src_lib.a(src.o)
+                              src_phy.o (symbol from plugin) (get_src_context)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sys_timer_lib.a(sys_timer.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/start/bd49/main.o (symbol from plugin) (sys_timer_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/periphy_lib.a(usb_phy.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_ctrl_transfer.o (symbol from plugin) (usb_host_timeout)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/periphy_lib.a(otg.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_storage.o (symbol from plugin) (usb_otg_set_state)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/periphy_lib.a(usb_setup.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/hid.o (symbol from plugin) (usb_device2id)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/periphy_lib.a(descriptor.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device.o (symbol from plugin) (usb_add_desc_config)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/rtc_mge_lib.a(rtc.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/rtc_app.o (symbol from plugin) (rtc_read_time)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/rtc_mge_lib.a(vir_rtc.o)
+                              rtc.o (symbol from plugin) (vir_write_alarm)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/rtc_mge_lib.a(rtc_common.o)
+                              vir_rtc.o (symbol from plugin) (get_day_of_month)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/new_vm_lib.a(new_vm.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/vm/nvm_api.o (symbol from plugin) (nvm_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/new_vm_lib.a(nvm_rw.o)
+                              new_vm.o (symbol from plugin) (nvm_write_check)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/new_vm_lib.a(nvm_cache.o)
+                              new_vm.o (symbol from plugin) (nvm_write_cache)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/printf_lib.a(printf-stdarg.o)
+                              gpio_hw.o (symbol from plugin) (puts)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/dev_mg_lib.a(device_api.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs_fat.o (symbol from plugin) (dev_open)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/iir_lib.a(iir.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/uac_sync.o (symbol from plugin) (initLowPassFilter)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a(update_main.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/update/dev_update.o (symbol from plugin) (app_active_update_task_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a(download_loop.o)
+                              update_main.o (symbol from plugin) (update_get_err_code)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a(ble_ll_ch_update.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/update/testbox_update.o (symbol from plugin) (ble_ll_ch_update_op)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a(encrypt_api.o)
+                              download_loop.o (symbol from plugin) (decode_data_by_user_key)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a(flash_fs_api.o)
+                              download_loop.o (symbol from plugin) (jl_file_head_valid_check)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_vendor_jl.o)
+                              ble_ll_ch_update.o (symbol from plugin) (ll_update_send_data_handle)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_slave.o)
+                              ble_ll_ch_update.o (symbol from plugin) (unregister_ll_update_handle)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_phy_update.o)
+                              ll_slave.o (symbol from plugin) (llcp_slv_phy_update_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_events.o)
+                              ll_slave.o (symbol from plugin) (le_connection_complete_event_emit)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_data_extension.o)
+                              ll_slave.o (symbol from plugin) (llcp_slv_data_extension_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(hci_ll_cmds.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (le_param)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_periodic_advertising.o)
+                              hci_ll_cmds.o (symbol from plugin) (le_cmd_set_periodic_adv)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_ext_adv.o)
+                              ll_periodic_advertising.o (symbol from plugin) (ll_find_adv_set_by_handle)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_link.o)
+                              llcp_sm_vendor_jl.o (symbol from plugin) (__ble_ops)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_conn.o)
+                              bb_le_link.o (symbol from plugin) (__set_latency_hold_cnt)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_clk.o)
+                              ll_periodic_advertising.o (symbol from plugin) (bb_le_clk_get_time_us)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_regs.o)
+                              bb_le_link.o (symbol from plugin) (__get_ble_anchor_con)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_power.o)
+                              bb_le_conn.o (symbol from plugin) (ble_power_get)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_link.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (__ble5_ops)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_pdu.o)
+                              bb_le_link.o (symbol from plugin) (hw_alloc_rx)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_frame.o)
+                              bb_le_ext_link.o (symbol from plugin) (TXPTR_SET)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_dut.o)
+                              bb_le_link.o (symbol from plugin) (le_hw_send_single_carrier)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_encrypt.o)
+                              bb_le_link.o (symbol from plugin) (bb_le_set_receive_encrypted)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_regs.o)
+                              bb_le_conn.o (symbol from plugin) (__get_reg_ext_format)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(analog_ble.o)
+                              bb_le_frame.o (symbol from plugin) (ble_agc_normal_set)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_adv.o)
+                              bb_le_link.o (symbol from plugin) (le_hw_set_adv_data)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_cis.o)
+                              bb_le_link.o (symbol from plugin) (bb_le_create_cis)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_pdu.o)
+                              bb_le_ext_link.o (symbol from plugin) (hw_alloc_ext_tx)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(direct_test_dut.o)
+                              hci_ll_cmds.o (symbol from plugin) (le_receive_test_handle)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_scan.o)
+                              bb_le_link.o (symbol from plugin) (bb_le_scan_set_window_us)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_scan.o)
+                              ll_periodic_advertising.o (symbol from plugin) (__period_scan_ops)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_adv.o)
+                              bb_le_ext_pdu.o (symbol from plugin) (le_get_ext_adv_packet_len_us)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(hw_bt_api.o)
+                              bb_le_frame.o (symbol from plugin) (get_bta_pll_bank)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(misc_hw.o)
+                              hci_ll_cmds.o (symbol from plugin) (pseudo_random_genrate)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(aes_hw.o)
+                              bb_le_encrypt.o (symbol from plugin) (ccm_memory_v2)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(RF.o)
+                              bb_le_dut.o (symbol from plugin) (bt_pll_reset)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(btcontroller_heap.o)
+                              direct_test_dut.o (symbol from plugin) (btctler_nv_memory_apply)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(btcontroller_util.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (btctler_little_endian_read_16)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(hw_dma.o)
+                              bb_le_link.o (symbol from plugin) (hw_dma_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(aes128.o)
+                              hci_ll_cmds.o (symbol from plugin) (aes128_start)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(sys_timer.o)
+                              ll_periodic_advertising.o (symbol from plugin) (sys_timer_register)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(vsprintf.o)
+                              direct_test_dut.o (symbol from plugin) (__vsprintf_len)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(lbuf.o)
+                              btcontroller_heap.o (symbol from plugin) (lbuf_init_btctrler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(baseband.o)
+                              hw_bt_api.o (symbol from plugin) (bredr_frame_suspend_control)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(slot_timer.o)
+                              baseband.o (symbol from plugin) (slot_timer_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(btctrler_task.o)
+                              direct_test_dut.o (symbol from plugin) (h4_transport)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(hci_controller.o)
+                              llcp_sm_vendor_jl.o (symbol from plugin) (hci_send_event)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(device_manager.o)
+                              hci_controller.o (symbol from plugin) (set_bt_afh_classs_enc)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(link_task.o)
+                              hci_controller.o (symbol from plugin) (link_task_close_all)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(vendor_manager.o)
+                              hci_controller.o (symbol from plugin) (hci_vendor_cmd_handler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_cce.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_per_start_cce_process)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_isoal.o)
+                              hci_controller.o (symbol from plugin) (hci_push_iso_sdu)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_resolve_list.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_resolving_list_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_pc.o)
+                              ll_slave.o (symbol from plugin) (llcp_slv_pc_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_cis.o)
+                              ll_isoal.o (symbol from plugin) (ll_cis_by_handle)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_sm_acad.o)
+                              ll_ext_adv.o (symbol from plugin) (ll_acad_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_sca.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_modify_sleep_clock_accuracy)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_encrypt.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_enable_encryption)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_init.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_init_open)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(link_layer.o)
+                              bb_le_conn.o (symbol from plugin) (bb_get_clock_accuracy)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_vendor.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (ll_set_code_type)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_clk.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (ll_clk_event_oneshot_add)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_white_list.o)
+                              ll_init.o (symbol from plugin) (ll_white_list_match)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_ping.o)
+                              link_layer.o (symbol from plugin) (ll_calc_ping_ms)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_msg.o)
+                              link_layer.o (symbol from plugin) (ll_msg_queue_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_common.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (llcp_is_collison)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_data_extension.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_read_maximum_data_length)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_afh.o)
+                              llcp_sm_common.o (symbol from plugin) (ll_update_ch_done_afh_callback)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_cis.o)
+                              ll_cis.o (symbol from plugin) (ll_cis_create_fail_msg_send)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_multiple_phys.o)
+                              llcp_sm_phy_update.o (symbol from plugin) (llValidatePhyPreferences)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_cis_terminate.o)
+                              ll_cis.o (symbol from plugin) (ll_cis_termination)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_cis_slave.o)
+                              ll_cis.o (symbol from plugin) (ll_cis_slave_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_cis_master.o)
+                              ll_cis.o (symbol from plugin) (ll_cis_master_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_keys.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_read_local_p256_public_key)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_cte.o)
+                              ll_slave.o (symbol from plugin) (llcp_slv_connection_cte_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_conn_update.o)
+                              hci_ll_cmds.o (symbol from plugin) (ll_connection_update)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_pc.o)
+                              link_layer.o (symbol from plugin) (link_power_control_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_extended_advertising.o)
+                              ll_periodic_advertising.o (symbol from plugin) (__new_ext_link)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(llcp_sm_conn_subrate.o)
+                              ll_slave.o (symbol from plugin) (llcp_slv_conn_subrate_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_scan.o)
+                              ll_events.o (symbol from plugin) (le_scan_filter_duplicates)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_common_iso.o)
+                              ll_isoal.o (symbol from plugin) (ll_iso_rt_cfg)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_adv.o)
+                              link_layer.o (symbol from plugin) (adv_rx_post_handler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_bis.o)
+                              ll_isoal.o (symbol from plugin) (ll_bis_by_handle)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(hci_ll.o)
+                              ll_isoal.o (symbol from plugin) (nonstandard_pop_iso_dtata)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_master.o)
+                              link_layer.o (symbol from plugin) (master_rx_conn_post_handler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_sm_bis.o)
+                              ll_bis.o (symbol from plugin) (ll_bis_slave_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_ext_scan.o)
+                              bb_le_ext_scan.o (symbol from plugin) (ll_ext_adv_header_parser)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_ext_init.o)
+                              ll_extended_advertising.o (symbol from plugin) (destroy_le_ext_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_strings.o)
+                              llcp_sm_common.o (symbol from plugin) (ll_msg_string_dump)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(sch_ble.o)
+                              link_layer.o (symbol from plugin) (ll_mult_sch_get_interface)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_frame.o)
+                              bb_le_ext_pdu.o (symbol from plugin) (EXT_TXPTR_GET)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_init.o)
+                              bb_le_adv.o (symbol from plugin) (rf_set_bdaddr)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_phy.o)
+                              bb_le_ext_link.o (symbol from plugin) (__get_data_phy)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_schedule.o)
+                              bb_le_scan.o (symbol from plugin) (le_hw_suspend_isr)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_ext_init.o)
+                              ll_ext_init.o (symbol from plugin) (__ext_init_ops)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(bb_le_iso_pdu.o)
+                              ll_isoal.o (symbol from plugin) (bb_le_cis_alloc_tx_pdu)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(audio_codec.o)
+                              ll_common_iso.o (symbol from plugin) (PalCodecDataStartStream)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(thread.o)
+                              hci_controller.o (symbol from plugin) (thread_owner_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(ll_bis_slave.o)
+                              ll_bis.o (symbol from plugin) (ll_bis_tx_post_handler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(btstack_task.o)
+                              hci_controller.o (symbol from plugin) (update_to_user_bt_init_cmd)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(hci_vendor.o)
+                              btstack_task.o (symbol from plugin) (hci_event_handler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(btstack_memory.o)
+                              hci_vendor.o (symbol from plugin) (btstack_memory_le_hci_connection_get)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(btstack_linked_list.o)
+                              hci_vendor.o (symbol from plugin) (btstack_linked_list_empty)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(utils.o)
+                              hci_vendor.o (symbol from plugin) (little_endian_read_16)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(run_loop.o)
+                              btstack_task.o (symbol from plugin) (bt_profile_loop)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(l2cap.o)
+                              hci_vendor.o (symbol from plugin) (bt_remote_dev_company_ioctrl)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(l2cap_signaling.o)
+                              l2cap.o (symbol from plugin) (l2cap_outgoing_acl_len)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(btstack_main.o)
+                              hci_vendor.o (symbol from plugin) (updata_last_link_key)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(padvb_tx.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv.o (symbol from plugin) (padvb_tx_op)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(padvb_rx.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv.o (symbol from plugin) (padvb_rx_op)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(user_interface.o)
+                              l2cap.o (symbol from plugin) (profile_function_status_handle_register)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(bt_configs.o)
+                              hci_vendor.o (symbol from plugin) (a2dp_source_bqb_support)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(att_dispatch.o)
+                              btstack_main.o (symbol from plugin) (att_global_info_init)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(att_server.o)
+                              btstack_main.o (symbol from plugin) (att_server_send_request)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(sm.o)
+                              att_server.o (symbol from plugin) (sm_add_event_handler)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(btstack_sys_timer.o)
+                              att_server.o (symbol from plugin) (btstack_set_timer)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(att_send.o)
+                              btstack_main.o (symbol from plugin) (user_data_cbuf_is_write_able)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(client_user.o)
+                              att_send.o (symbol from plugin) (user_client_gatt_event)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(remote_device_list.o)
+                              sm.o (symbol from plugin) (ble_list_get_conn_addr_item)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(le_device_db_memory.o)
+                              sm.o (symbol from plugin) (le_device_db_remove)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(gatt_client.o)
+                              att_send.o (symbol from plugin) (gatt_client_request_can_send_now_event)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a(att_db.o)
+                              att_server.o (symbol from plugin) (att_set_db)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(lptmr_rtc.o)
+                              vir_rtc.o (symbol from plugin) (rtc_get_alm_wkup)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(h4_controller_interface.o)
+                              btstack_task.o (symbol from plugin) (hci_transport_h4_controller_instance)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(h4_uart_interface_loop.o)
+                              btstack_task.o (symbol from plugin) (hci_transport_uart_instance)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(hci_device_manager.o)
+                              hci_vendor.o (symbol from plugin) (dev_hci_set_event_mask)
+./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a(h4_uart_hw.o)
+                              h4_uart_interface_loop.o (symbol from plugin) (__uart_tx)
+C:\JL\pi32\lib\libc.a(lib_a-memcmp.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/update/update.o (symbol from plugin) (memcmp)
+C:\JL\pi32\lib\libc.a(lib_a-memcpy.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_send_queue.o (symbol from plugin) (memcpy)
+C:\JL\pi32\lib\libc.a(lib_a-memset.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_adc_api.o (symbol from plugin) (memset)
+C:\JL\pi32\lib\libc.a(lib_a-strcat.o)
+                              obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_fatfs.o (symbol from plugin) (strcat)
+C:\JL\pi32\lib\libc.a(lib_a-strchr.o)
+                              obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_fatfs.o (symbol from plugin) (strchr)
+C:\JL\pi32\lib\libc.a(lib_a-strcmp.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs.o (symbol from plugin) (strcmp)
+C:\JL\pi32\lib\libc.a(lib_a-strcpy.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/msd.o (symbol from plugin) (strcpy)
+C:\JL\pi32\lib\libc.a(lib_a-strlen.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/common/update/dev_update.o (symbol from plugin) (strlen)
+C:\JL\pi32\lib\libc.a(lib_a-strncmp.o)
+                              obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/device.o (symbol from plugin) (strncmp)
+C:\JL\pi32\lib\libc.a(lib_a-strrchr.o)
+                              ff_opr.o (symbol from plugin) (strrchr)
+C:\JL\pi32\lib\libm.a(lib_a-s_ceil.o)
+                              ll_cis_master.o (symbol from plugin) (ceil)
+C:\JL\pi32\lib\libcompiler-rt.a(adddf3.o)
+                              C:\JL\pi32\lib\libm.a(lib_a-s_ceil.o) (__adddf3)
+C:\JL\pi32\lib\libcompiler-rt.a(ashldi3.o)
+                              C:\JL\pi32\lib\libcompiler-rt.a(adddf3.o) (__ashldi3)
+C:\JL\pi32\lib\libcompiler-rt.a(comparedf2.o)
+                              C:\JL\pi32\lib\libm.a(lib_a-s_ceil.o) (__gtdf2)
+C:\JL\pi32\lib\libcompiler-rt.a(lshrdi3.o)
+                              C:\JL\pi32\lib\libcompiler-rt.a(adddf3.o) (__lshrdi3)
+
+Allocating common symbols
+Common symbol       size              file
+
+alink_tx_buf        0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.o (symbol from plugin)
+etm_point_r_32      0x0               debug.o (symbol from plugin)
+palCodecScratch     0x0               audio_codec.o (symbol from plugin)
+alink_rx_buf        0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.o (symbol from plugin)
+enc_hdl             0x0               obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.o (symbol from plugin)
+ll_set_code_type    0x0               ll_vendor.o (symbol from plugin)
+rec_sound           0x0               obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.o (symbol from plugin)
+norfs_info          0x0               nor_fs.o (symbol from plugin)
+alink_sync_mge      0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.o (symbol from plugin)
+alink_sync_timer_id
+                    0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_api.o (symbol from plugin)
+etm_point_r_16      0x0               debug.o (symbol from plugin)
+p_alink_parm        0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link.o (symbol from plugin)
+exit_critical_hook  0x0               hwi.o (symbol from plugin)
+enter_critical_hook
+                    0x0               hwi.o (symbol from plugin)
+bsp_event           0x0               obj/Release/platform/aw30sdk/apps/app/bsp/start/bsp_loop.o (symbol from plugin)
+music_ext_table     0x0               fat_io_new.o (symbol from plugin)
+adc_isr_ext_buf     0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_adc_cpu.o (symbol from plugin)
+device_otg          0x0               otg.o (symbol from plugin)
+adc_queue           0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/adc_api.o (symbol from plugin)
+etm_point_w_16      0x0               debug.o (symbol from plugin)
+etm_point_w_32      0x0               debug.o (symbol from plugin)
+iic_lock            0x0               iic_hw_v2.o (symbol from plugin)
+audio_adc_mge       0x0               obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_adc_api.o (symbol from plugin)
+lock                0x0               gpio_hw.o (symbol from plugin)
+etm_point_w_8       0x0               debug.o (symbol from plugin)
+audio_adc_buf       0x0               obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_adc_api.o (symbol from plugin)
+g_aumic_sfr         0x0               audio_adc_analog.o (symbol from plugin)
+p_apa_ctl           0x0               audio_apa.o (symbol from plugin)
+alink_chnl          0x0               obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_api.o (symbol from plugin)
+etm_point_r_8       0x0               debug.o (symbol from plugin)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 obj/Release/application/app_main.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_adc_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_dac_fade.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/fill_audac.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/sound_kick.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio2rf_send.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio_rf_mge.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf2audio_recv.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_pa_port.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_send_queue.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_packet.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_unpacket.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/ble_master.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/ble_slave.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/bt_ble.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_btctrler_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_btstack_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_profile_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/app_main.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_btctrler_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_btstack_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_driver_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_profile_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_system_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_update_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/log_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/hid_only_scan/ble_only_scan.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/keyboard/app_hid_comm.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/app_comm_ble.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/ble_hogp.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/user_cfg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/version.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/app_main.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_btctrler_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_btstack_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_driver_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_profile_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_system_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_update_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/log_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/app_dongle_comm.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/ble_dg_central.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/ota_dg_central.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/usb_hid_devices.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/usb_second_hid_devices.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/app_multi_conn.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_central.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_peripheral.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/noconn_24g/app_nonconn_24g.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/noconn_24g/ble_24g_deal.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/app_reduce_ram.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/ble_reduce_ram.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/modules/bt/app_comm_ble.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/modules/user_cfg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/version.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv_trans.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_complete.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_simple.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/audio_codec_format.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_msg_tab.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_point.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/a_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/f1a_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/f1x_parsing.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/ima_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/jla_lw_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/midi_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/midi_ctrl_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/mp3_standard_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/opus_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/sbc_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/speex_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/ump3_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/wav_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mio/mio_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mio/mio_phy.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mp_io.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_file.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_stream.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/a_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/ima_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/jla_lw_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/mp3_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/opus_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/sbc_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/speex_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/ump3_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/fat/fat_resource.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/nor_fs/nor_fs_resource.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/sydf/sydf_resource.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs_fat.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs_resource.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/ir/ir_decoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/ir/ir_encoder.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_drv_ad.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_drv_io.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_drv_matrix.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_ir.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_lptouch.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_touch.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/msg/custom_event.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/msg/msg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/my_malloc.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/norflash/norflash.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/power_manage/app_power_mg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/reserved_area/reserved_area.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/echo_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/notch_howling_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pcm_eq_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pitchshift_howling_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/song_speed_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/speed_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/vo_pitch_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/voicechanger_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/speaker/speak_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/sys_memory/sys_memory.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/tab_read.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/common/custom_cfg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_client.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_common.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_server.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_bluetooth.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_hid/rcsp_hid_inter.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_msg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_ch_loader_download.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_user_update.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/update/dev_update.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/update/testbox_uart_update.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/update/testbox_update.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/update/update.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/cdc.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/custom_hid.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/descriptor.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/hid.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/msd.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/task_pc.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/uac1.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/uac_stream.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_suspend_resume.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/user_setup.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_bulk_transfer.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_ctrl_transfer.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_host.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_host_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_storage.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usb_test.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/auadc_2_usbmic.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/source_pcm.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/uac_sync.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_audio_interface.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_mic_interface.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/vm/nvm_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/common/vm/vm_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/adc_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/apa_cpu.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_adc_cpu.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_dac_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_dac_cpu.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/device.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/gpcnt.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer_capture.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer_pwm.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_soft.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/led_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/led_api_test.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/pwm_led.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/lpctmu.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/mcpwm.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/my_print.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/pl_cnt.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/gpio_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/rtc_app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/sd.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/spi.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/tick_timer_sys.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/uart.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/device/device_app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/device/device_list.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/rf/rf_soft.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/start/bd49/main.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/start/bsp_loop.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/start/flash_init.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/bsp/start/init.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/app_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/bd49/cpu_config.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/hot_msg.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/idle_check.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/pa_mute.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/simple_play_file.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/ui/led5x7_driver.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_api.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_common.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/init_app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/break_point.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/music_device.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/music_key_table.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/music_play.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/play_file.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_fatfs.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_norfs.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/dongle.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/full_duplex/rf_radio_full_duplex.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_receive.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_send.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/padv/padv_radio.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_app.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/softoff_app/softoff_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode.o (symbol from plugin)
+ .text          0x00000000        0x0 obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode_key.o (symbol from plugin)
+ .text          0x00000000        0x0 mtst_mp3.o (symbol from plugin)
+ .text          0x00000000        0x0 ID3tag_skip.o (symbol from plugin)
+ .text          0x00000000        0x0 mpeg_synth.o (symbol from plugin)
+ .text          0x00000000        0x0 mpegaudio.o (symbol from plugin)
+ .text          0x00000000        0x0 layer12.o (symbol from plugin)
+ .text          0x00000000        0x0 layer3.o (symbol from plugin)
+ .text          0x00000000        0x0 huffman.o (symbol from plugin)
+ .text          0x00000000        0x0 encoder_mge.o (symbol from plugin)
+ .text          0x00000000        0x0 shift_anysrh.o (symbol from plugin)
+ .text          0x00000000        0x0 tick_timer_cpu.o (symbol from plugin)
+ .text          0x00000000        0x0 gpio_hw.o (symbol from plugin)
+ .text          0x00000000        0x0 gpio_func.o (symbol from plugin)
+ .text          0x00000000        0x0 gpio.o (symbol from plugin)
+ .text          0x00000000        0x0 uart_v2.o (symbol from plugin)
+ .text          0x00000000        0x0 iic_hw_v2.o (symbol from plugin)
+ .text          0x00000000        0x0 clock.o (symbol from plugin)
+ .text          0x00000000        0x0 dma.o (symbol from plugin)
+ .text          0x00000000        0x0 crc16.o (symbol from plugin)
+ .text          0x00000000        0x0 gptimer_utils.o (symbol from plugin)
+ .text          0x00000000        0x0 gptimer.o (symbol from plugin)
+ .text          0x00000000        0x0 efuse_otp.o (symbol from plugin)
+ .text          0x00000000        0x0 hwi.o (symbol from plugin)
+ .text          0x00000000        0x0 debug.o (symbol from plugin)
+ .text          0x00000000        0x0 boot_flash.o (symbol from plugin)
+ .text          0x00000000        0x0 vm_sfc.o (symbol from plugin)
+ .text          0x00000000        0x0 spinlock.o (symbol from plugin)
+ .text          0x00000000        0x0 usb.o (symbol from plugin)
+ .text          0x00000000        0x0 inside_flash.o (symbol from plugin)
+ .text          0x00000000        0x0 cpu_common.o (symbol from plugin)
+ .text          0x00000000        0x0 power_hw.o (symbol from plugin)
+ .text          0x00000000        0x0 power_driver.o (symbol from plugin)
+ .text          0x00000000        0x0 power_trim.o (symbol from plugin)
+ .text          0x00000000        0x0 power_compat.o (symbol from plugin)
+ .text          0x00000000        0x0 power_debug.o (symbol from plugin)
+ .text          0x00000000        0x0 basic_funt.o (symbol from plugin)
+ .text          0x00000000        0x0 port.o (symbol from plugin)
+ .text          0x00000000        0x0 reset.o (symbol from plugin)
+ .text          0x00000000        0x0 system.o (symbol from plugin)
+ .text          0x00000000        0x0 peripherals.o (symbol from plugin)
+ .text          0x00000000        0x0 lrc.o (symbol from plugin)
+ .text          0x00000000        0x0 lptmr.o (symbol from plugin)
+ .text          0x00000000        0x0 p33.o (symbol from plugin)
+ .text          0x00000000        0x0 pmu_wakeup.o (symbol from plugin)
+ .text          0x00000000        0x0 wdt.o (symbol from plugin)
+ .text          0x00000000        0x0 p33_io_edge.o (symbol from plugin)
+ .text          0x00000000        0x0 p33_io_pinr.o (symbol from plugin)
+ .text          0x00000000        0x0 p33_io_mclr.o (symbol from plugin)
+ .text          0x00000000        0x0 vddio_lvd.o (symbol from plugin)
+ .text          0x00000000        0x0 fat_io_new.o (symbol from plugin)
+ .text          0x00000000        0x0 ff_opr.o (symbol from plugin)
+ .text          0x00000000        0x0 mbr.o (symbol from plugin)
+ .text          0x00000000        0x0 tff.o (symbol from plugin)
+ .text          0x00000000        0x0 ASCII_lib.o (symbol from plugin)
+ .text          0x00000000        0x0 ffunicode.o (symbol from plugin)
+ .text          0x00000000        0x0 sydfile.o (symbol from plugin)
+ .text          0x00000000        0x0 sydf_ex.o (symbol from plugin)
+ .text          0x00000000        0x0 nor_fs.o (symbol from plugin)
+ .text          0x00000000        0x0 heap_2.o (symbol from plugin)
+ .text          0x00000000        0x0 audio.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_apa.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_digital.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_analog.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_apa_analog.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_adc_analog.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_adc.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_dac.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_dac_analog.o (symbol from plugin)
+ .text          0x00000000        0x0 decoder_mge.o (symbol from plugin)
+ .text          0x00000000        0x0 sound_mge.o (symbol from plugin)
+ .text          0x00000000        0x0 stream_frame.o (symbol from plugin)
+ .text          0x00000000        0x0 src_phy.o (symbol from plugin)
+ .text          0x00000000        0x0 src.o (symbol from plugin)
+ .text          0x00000000        0x0 sys_timer.o (symbol from plugin)
+ .text          0x00000000        0x0 usb_phy.o (symbol from plugin)
+ .text          0x00000000        0x0 otg.o (symbol from plugin)
+ .text          0x00000000        0x0 usb_setup.o (symbol from plugin)
+ .text          0x00000000        0x0 descriptor.o (symbol from plugin)
+ .text          0x00000000        0x0 rtc.o (symbol from plugin)
+ .text          0x00000000        0x0 vir_rtc.o (symbol from plugin)
+ .text          0x00000000        0x0 rtc_common.o (symbol from plugin)
+ .text          0x00000000        0x0 new_vm.o (symbol from plugin)
+ .text          0x00000000        0x0 nvm_rw.o (symbol from plugin)
+ .text          0x00000000        0x0 nvm_cache.o (symbol from plugin)
+ .text          0x00000000        0x0 printf-stdarg.o (symbol from plugin)
+ .text          0x00000000        0x0 device_api.o (symbol from plugin)
+ .text          0x00000000        0x0 iir.o (symbol from plugin)
+ .text          0x00000000        0x0 update_main.o (symbol from plugin)
+ .text          0x00000000        0x0 download_loop.o (symbol from plugin)
+ .text          0x00000000        0x0 ble_ll_ch_update.o (symbol from plugin)
+ .text          0x00000000        0x0 encrypt_api.o (symbol from plugin)
+ .text          0x00000000        0x0 flash_fs_api.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_vendor_jl.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_slave.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_phy_update.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_events.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_data_extension.o (symbol from plugin)
+ .text          0x00000000        0x0 hci_ll_cmds.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_periodic_advertising.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_ext_adv.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_link.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_conn.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_clk.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_regs.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_power.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_link.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_pdu.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_frame.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_dut.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_encrypt.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_regs.o (symbol from plugin)
+ .text          0x00000000        0x0 analog_ble.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_adv.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_cis.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_pdu.o (symbol from plugin)
+ .text          0x00000000        0x0 direct_test_dut.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_scan.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_scan.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_adv.o (symbol from plugin)
+ .text          0x00000000        0x0 hw_bt_api.o (symbol from plugin)
+ .text          0x00000000        0x0 misc_hw.o (symbol from plugin)
+ .text          0x00000000        0x0 aes_hw.o (symbol from plugin)
+ .text          0x00000000        0x0 RF.o (symbol from plugin)
+ .text          0x00000000        0x0 btcontroller_heap.o (symbol from plugin)
+ .text          0x00000000        0x0 btcontroller_util.o (symbol from plugin)
+ .text          0x00000000        0x0 hw_dma.o (symbol from plugin)
+ .text          0x00000000        0x0 aes128.o (symbol from plugin)
+ .text          0x00000000        0x0 sys_timer.o (symbol from plugin)
+ .text          0x00000000        0x0 vsprintf.o (symbol from plugin)
+ .text          0x00000000        0x0 lbuf.o (symbol from plugin)
+ .text          0x00000000        0x0 baseband.o (symbol from plugin)
+ .text          0x00000000        0x0 slot_timer.o (symbol from plugin)
+ .text          0x00000000        0x0 btctrler_task.o (symbol from plugin)
+ .text          0x00000000        0x0 hci_controller.o (symbol from plugin)
+ .text          0x00000000        0x0 device_manager.o (symbol from plugin)
+ .text          0x00000000        0x0 link_task.o (symbol from plugin)
+ .text          0x00000000        0x0 vendor_manager.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_cce.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_isoal.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_resolve_list.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_pc.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_cis.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_sm_acad.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_sca.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_encrypt.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_init.o (symbol from plugin)
+ .text          0x00000000        0x0 link_layer.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_vendor.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_clk.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_white_list.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_ping.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_msg.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_common.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_data_extension.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_afh.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_cis.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_multiple_phys.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_cis_terminate.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_cis_slave.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_cis_master.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_keys.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_cte.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_conn_update.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_pc.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_extended_advertising.o (symbol from plugin)
+ .text          0x00000000        0x0 llcp_sm_conn_subrate.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_scan.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_common_iso.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_adv.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_bis.o (symbol from plugin)
+ .text          0x00000000        0x0 hci_ll.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_master.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_sm_bis.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_ext_scan.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_ext_init.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_strings.o (symbol from plugin)
+ .text          0x00000000        0x0 sch_ble.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_frame.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_init.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_phy.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_schedule.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_ext_init.o (symbol from plugin)
+ .text          0x00000000        0x0 bb_le_iso_pdu.o (symbol from plugin)
+ .text          0x00000000        0x0 audio_codec.o (symbol from plugin)
+ .text          0x00000000        0x0 thread.o (symbol from plugin)
+ .text          0x00000000        0x0 ll_bis_slave.o (symbol from plugin)
+ .text          0x00000000        0x0 btstack_task.o (symbol from plugin)
+ .text          0x00000000        0x0 hci_vendor.o (symbol from plugin)
+ .text          0x00000000        0x0 btstack_memory.o (symbol from plugin)
+ .text          0x00000000        0x0 btstack_linked_list.o (symbol from plugin)
+ .text          0x00000000        0x0 utils.o (symbol from plugin)
+ .text          0x00000000        0x0 run_loop.o (symbol from plugin)
+ .text          0x00000000        0x0 l2cap.o (symbol from plugin)
+ .text          0x00000000        0x0 l2cap_signaling.o (symbol from plugin)
+ .text          0x00000000        0x0 btstack_main.o (symbol from plugin)
+ .text          0x00000000        0x0 padvb_tx.o (symbol from plugin)
+ .text          0x00000000        0x0 padvb_rx.o (symbol from plugin)
+ .text          0x00000000        0x0 user_interface.o (symbol from plugin)
+ .text          0x00000000        0x0 bt_configs.o (symbol from plugin)
+ .text          0x00000000        0x0 att_dispatch.o (symbol from plugin)
+ .text          0x00000000        0x0 att_server.o (symbol from plugin)
+ .text          0x00000000        0x0 sm.o (symbol from plugin)
+ .text          0x00000000        0x0 btstack_sys_timer.o (symbol from plugin)
+ .text          0x00000000        0x0 att_send.o (symbol from plugin)
+ .text          0x00000000        0x0 client_user.o (symbol from plugin)
+ .text          0x00000000        0x0 remote_device_list.o (symbol from plugin)
+ .text          0x00000000        0x0 le_device_db_memory.o (symbol from plugin)
+ .text          0x00000000        0x0 gatt_client.o (symbol from plugin)
+ .text          0x00000000        0x0 att_db.o (symbol from plugin)
+ .text          0x00000000        0x0 lptmr_rtc.o (symbol from plugin)
+ .text          0x00000000        0x0 h4_controller_interface.o (symbol from plugin)
+ .text          0x00000000        0x0 h4_uart_interface_loop.o (symbol from plugin)
+ .text          0x00000000        0x0 hci_device_manager.o (symbol from plugin)
+ .text          0x00000000        0x0 h4_uart_hw.o (symbol from plugin)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+app_code         0x04000100         0x01ffff00         xr
+irq_vec          0x03f00000         0x00000100         xr
+ram0             0x03f00300         0x0000fcdc         rw
+boot_ram         0x03f0ffdc         0x00000024         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD obj/Release/application/app_main.o
+LOAD .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_adc_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/audio_dac_fade.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/fill_audac.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio/sound_kick.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio2rf_send.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/audio_rf_mge.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf2audio_recv.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_pa_port.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/rf_send_queue.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_packet.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/audio_rf_trans/trans_unpacket.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/ble_master.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/ble_slave.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/bt_ble.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_btctrler_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_btstack_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/ble_test/lib_profile_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/app_main.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_btctrler_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_btstack_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_driver_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_profile_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_system_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/lib_update_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/config/log_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/hid_only_scan/ble_only_scan.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/examples/keyboard/app_hid_comm.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/app_comm_ble.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/bt/ble_hogp.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/modules/user_cfg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/hid/version.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/app_main.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_btctrler_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_btstack_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_driver_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_profile_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_system_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/lib_update_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/config/log_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/app_dongle_comm.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/ble_dg_central.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/ota_dg_central.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/usb_hid_devices.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/dongle/usb_second_hid_devices.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/app_multi_conn.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_central.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/multi_conn/ble_multi_peripheral.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/noconn_24g/app_nonconn_24g.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/noconn_24g/ble_24g_deal.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/app_reduce_ram.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/examples/reduce_ram/ble_reduce_ram.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/modules/bt/app_comm_ble.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/modules/user_cfg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_common/spp_and_le/version.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_adv/vble_adv_trans.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_complete.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/bt_user/vble_gatt/vble_simple.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/audio_codec_format.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_msg_tab.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/decoder_point.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/a_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/f1a_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/f1x_parsing.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/ima_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/jla_lw_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/midi_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/midi_ctrl_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/mp3_standard_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/opus_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/sbc_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/speex_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/ump3_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/list/wav_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mio/mio_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mio/mio_phy.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/decoder/mp_io.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_file.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/encoder_stream.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/a_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/ima_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/jla_lw_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/mp3_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/opus_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/sbc_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/speex_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/encoder/list/ump3_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/fat/fat_resource.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/nor_fs/nor_fs_resource.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/sydf/sydf_resource.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs_fat.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/fs/vfs_resource.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/ir/ir_decoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/ir/ir_encoder.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_drv_ad.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_drv_io.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_drv_matrix.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_ir.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_lptouch.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/key/key_touch.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/msg/custom_event.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/msg/msg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/my_malloc.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/norflash/norflash.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/power_manage/app_power_mg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/reserved_area/reserved_area.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/echo_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/notch_howling_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pcm_eq_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/pitchshift_howling_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/song_speed_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/speed_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/vo_pitch_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sound_effect_list/voicechanger_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/speaker/speak_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/sys_memory/sys_memory.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/tab_read.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/common/custom_cfg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_client.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_common.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/gatt_common/le_gatt_server.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_bluetooth.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_hid/rcsp_hid_inter.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_msg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_ch_loader_download.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/third_party_profile/jieli/JL_rcsp/rcsp_update/rcsp_user_update.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/update/dev_update.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/update/testbox_uart_update.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/update/testbox_update.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/update/update.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/cdc.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/custom_hid.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/descriptor.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/hid.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/msd.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/task_pc.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/uac1.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/uac_stream.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_device_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/usb_suspend_resume.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/device/user_setup.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_bulk_transfer.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_ctrl_transfer.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_host.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_host_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/host/usb_storage.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usb_test.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/auadc_2_usbmic.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/source_pcm.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/uac_sync.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_audio_interface.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/usb/usr/usb_mic_interface.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/vm/nvm_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/common/vm/vm_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/adc_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/apa_cpu.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_adc_cpu.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_dac_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_dac_cpu.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/device.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/gpcnt.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer_capture.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/hw_timer_pwm.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/iic_soft.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/led_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/led_api_test.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/led/pwm_led.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/lpctmu.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/mcpwm.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/my_print.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/pl_cnt.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/gpio_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power/power_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/power_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/rtc_app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/sd.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/spi.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/tick_timer_sys.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/cpu/bd49/uart.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/device/device_app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/device/device_list.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/rf/rf_soft.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/start/bd49/main.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/start/bsp_loop.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/start/flash_init.o
+LOAD obj/Release/platform/aw30sdk/apps/app/bsp/start/init.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/app_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/bd49/cpu_config.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/hot_msg.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/idle_check.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/pa_mute.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/simple_play_file.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/ui/led5x7_driver.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_api.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/common/ui/ui_common.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/init_app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/linein/linein_mode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/loudspeaker/loudspk_mode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_dec/midi_dec_mode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/midi_keyboard/midi_keyboard_mode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/break_point.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/music_device.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/music_key_table.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/music_play.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/music/play_file.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_fatfs.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/enc_in_norfs.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/record/record_mode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/dongle.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/remotecontrol/rc_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/full_duplex/rf_radio_full_duplex.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_receive.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_send.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/padv/padv_radio.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_app.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rf_radio/rf_radio_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/rtc/rtc_mode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/simple_decode/simple_decode_key.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/softoff_app/softoff_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode.o
+LOAD obj/Release/platform/aw30sdk/apps/app/src/mbox_flash/usb_slave/usb_slave_mode_key.o
+START GROUP
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_wav_decoder.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_f1a_decode.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_a_decode.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_ima_stream_decode.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/ump3_dec_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/opus_dec_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_speex_decode_encode.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/sbc_stddec_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_jla_lw_codec_pi32.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_media_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_midi_decode.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/encoder_mge_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_mp2_code.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/ump2_enc_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_a_code.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/opus_enc_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_speex_decode_encode.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_ima_stream_enc.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/sbc_stdenc_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_jla_lw_codec_pi32.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_media_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_speed_pitch.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/ps_song_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/howling.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_howling_fs.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_echo_cal.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_vopitch_cal.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_voiceChanger_va.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/ARCH/pi32_lto/lib_pcm_eq.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/ae_pcm_eq_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/fs_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/malloc_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/audio_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/decoder_mge_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sound_mge_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/src_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sdmmc_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/sys_timer_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/periphy_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/rtc_mge_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/new_vm_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/printf_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/dev_mg_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/iir_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/remain_output_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/agreement.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/update_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_controller_lib.a
+LOAD ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/bt_protocol_lib.a
+END GROUP
+                0x03f43eb0                __local_irq_enable = 0x3f43eb0
+                0x03f43eb4                __local_irq_disable = 0x3f43eb4
+                0x03f43eb8                request_irq = 0x3f43eb8
+                0x03f43ebc                p33_buf = 0x3f43ebc
+                0x03f43ec0                p33_xor_1byte = 0x3f43ec0
+                0x03f43ec4                p33_and_1byte = 0x3f43ec4
+                0x03f43ec8                p33_or_1byte = 0x3f43ec8
+                0x03f43ecc                p33_tx_1byte = 0x3f43ecc
+                0x03f43ed0                p33_rx_1byte = 0x3f43ed0
+                0x03f43ed4                p33_rx_nbyte = 0x3f43ed4
+                0x03f43ed8                P33_CON_SET = 0x3f43ed8
+                0x03f43edc                memcpy = 0x3f43edc
+                0x03f43ee0                memmove = 0x3f43ee0
+                0x03f43ee4                memcmp = 0x3f43ee4
+                0x03f43ee8                memset = 0x3f43ee8
+                0x03f43eec                strcmp = 0x3f43eec
+                0x03f43ef0                strcpy = 0x3f43ef0
+                0x03f43ef4                strlen = 0x3f43ef4
+                0x03f43ef8                strncmp = 0x3f43ef8
+                0x03f43efc                strchr = 0x3f43efc
+                0x03f43f00                ic_pll_init = 0x3f43f00
+                0x03f43f04                sfc_suspend = 0x3f43f04
+                0x03f43f08                sfc_resume = 0x3f43f08
+                0x03f43f0c                sfc_drop_cache = 0x3f43f0c
+                0x03f43f10                sfc_boot = 0x3f43f10
+                0x03f43f14                sfc_entry_continue_mode = 0x3f43f14
+                0x03f43f18                ota_jump_mode = 0x3f43f18
+                0x03f43f1c                IcuCmdKst = 0x3f43f1c
+                0x03f43f20                IcuCmdSend = 0x3f43f20
+                0x03f43f24                IcuEnable = 0x3f43f24
+                0x03f43f28                IcuDisable = 0x3f43f28
+                0x03f43f2c                IcuInitial = 0x3f43f2c
+                0x03f43f30                IcuLockRegion = 0x3f43f30
+                0x03f43f34                IcuFlushinvAll = 0x3f43f34
+                0x03f43f38                chip_crc16 = 0x3f43f38
+                0x03f43f3c                CrcDecode = 0x3f43f3c
+                0x03f43f40                mask_init = 0x3f43f40
+                0x03f43f44                wdt_clear = 0x3f43f44
+                0x03f43f48                nvram_set_boot_state = 0x3f43f48
+                0x03f43f4c                chip_reset = 0x3f43f4c
+                0x03f43f50                flash_poweron = 0x3f43f50
+                0x03f43f54                flash_poweron_base = 0x3f43f54
+                0x03f43f58                flash_poweroff = 0x3f43f58
+                0x03f43f5c                flash_poweroff_base = 0x3f43f5c
+                0x03f43f60                spi_io_mount = 0x3f43f60
+                0x03f43f64                spi_io_unmount = 0x3f43f64
+                0x03f43f68                get_sfc_read_mode = 0x3f43f68
+                0x03f43f6c                spi_port_io_init = 0x3f43f6c
+                0x03f43f70                spi_port_io_uninit = 0x3f43f70
+                0x03f43f74                usb_slave_mode = 0x3f43f74
+                0x03f43f78                doe = 0x3f43f78
+                0x03f43f7c                LZ4_setStreamDecode = 0x3f43f7c
+                0x03f43f80                LZ4_decompress_safe_continue = 0x3f43f80
+                0x03f43f84                LZ4_decompress_generic = 0x3f43f84
+                0x03f43f88                LZ4_decompress_safe_usingDict = 0x3f43f88
+                0x03f43f8c                dec_isd_cfg_ini = 0x3f43f8c
+                0x03f43f90                cbuf_read = 0x3f43f90
+                0x03f43f94                cbuf_write = 0x3f43f94
+                0x03f43f98                cbuf_is_write_able = 0x3f43f98
+                0x03f43f9c                cbuf_write_alloc = 0x3f43f9c
+                0x03f43fa0                cbuf_write_updata = 0x3f43fa0
+                0x03f43fa4                cbuf_read_alloc = 0x3f43fa4
+                0x03f43fa8                cbuf_read_updata = 0x3f43fa8
+                0x03f43fac                cbuf_init = 0x3f43fac
+                0x03f43fb0                cbuf_clear = 0x3f43fb0
+                0x03f43fb4                cbuf_rewrite = 0x3f43fb4
+                0x03f43fb8                tab_read = 0x3f43fb8
+                0x03f43fbc                lbuf_init = 0x3f43fbc
+                0x03f43fc0                lbuf_avaliable = 0x3f43fc0
+                0x03f43fc4                lbuf_state = 0x3f43fc4
+                0x03f43fc8                lbuf_dump = 0x3f43fc8
+                0x03f43fcc                lbuf_free_space = 0x3f43fcc
+                0x03f43fd0                lbuf_alloc = 0x3f43fd0
+                0x03f43fd4                lbuf_remain_space = 0x3f43fd4
+                0x03f43fd8                lbuf_realloc = 0x3f43fd8
+                0x03f43fdc                lbuf_empty = 0x3f43fdc
+                0x03f43fe0                lbuf_clear = 0x3f43fe0
+                0x03f43fe4                lbuf_real_size = 0x3f43fe4
+                0x03f43fe8                lbuf_inc_ref = 0x3f43fe8
+                0x03f43fec                lbuf_push = 0x3f43fec
+                0x03f43ff0                lbuf_traversal = 0x3f43ff0
+                0x03f43ff4                lbuf_pop = 0x3f43ff4
+                0x03f43ff8                lbuf_free_check = 0x3f43ff8
+                0x03f43ffc                lbuf_free = 0x3f43ffc
+                0x03f00000                _IRQ_MEM_ADDR = 0x3f00000
+                0x03f00000                _RAM_LIMIT_L = 0x3f00000
+                0x03f00bc4                _MASK_USED_MEM_END = 0x3f00bc4
+                0x03f00100                _MASK_EXPORT_MEM_BEGIN = 0x3f00100
+                0x000000a4                _MASK_EXPORT_MEM_SIZE = 0xa4
+                0x04000000                _SFC_MEMORY_START_ADDR = 0x4000000
+                0x03f00100                g_boot_soft_flag = 0x3f00100
+                0x03f0017c                efuse_page0 = 0x3f0017c
+                0x03f00184                efuse_page1 = 0x3f00184
+                0x03f0010c                nvram_list = 0x3f0010c
+                0x03f4003a                exception_irq_handler = 0x3f4003a
+                0x00000080                UPDATA_SIZE = 0x80
+                0x03f0ff80                UPDATA_BEG = (0x3f10000 - UPDATA_SIZE)
+                0x00004000                ICACHE_RAM_SIZE = 0x4000
+                0x03f0ffdc                . = ORIGIN (boot_ram)
+
+.boot_data      0x03f0ffdc       0x24
+ *(.boot_info)
+ .boot_info     0x03f0ffdc       0x24 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x03f00300                . = ORIGIN (ram0)
+
+.data           0x03f00300      0x5f8
+                [!provide]                PROVIDE (data_buf_start, .)
+ *(.data_magic)
+ *(.data)
+ .data          0x03f00300       0x2c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .data          0x03f0032c        0x0 C:\JL\pi32\lib\libcompiler-rt.a(adddf3.o)
+ .data          0x03f0032c        0x0 C:\JL\pi32\lib\libcompiler-rt.a(ashldi3.o)
+ .data          0x03f0032c        0x0 C:\JL\pi32\lib\libcompiler-rt.a(comparedf2.o)
+ .data          0x03f0032c        0x0 C:\JL\pi32\lib\libcompiler-rt.a(lshrdi3.o)
+ *(.*.data)
+ .key.data      0x03f0032c        0x4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .ttmr_sys.data
+                0x03f00330        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .ttmr_cpu.data
+                0x03f00338        0x1 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x03f00339        0x3 
+ .heep_2.data   0x03f0033c        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .sys_mem.data  0x03f00344        0x2 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x03f00346        0x2 
+ .new_vm.data   0x03f00348        0x4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *(.common)
+ *(.ble_app_data)
+                0x03f0034c                cache_Lx_code_text_begin = .
+ *iumoddi3.o(.text .rodata*)
+ *(.audio_isr_text)
+ *(.*.text.cache.L1)
+ .power_driver.text.cache.L1
+                0x03f0034c      0x154 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .debug.text.cache.L1
+                0x03f004a0       0x1c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .clock.text.cache.L1
+                0x03f004bc       0xe0 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .hwi.text.cache.L1
+                0x03f0059c       0xb4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .common.text.cache.L1
+                0x03f00650       0xc4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *(.*.text.cache.L2)
+ .gpio.text.cache.L2
+                0x03f00714      0x14e .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .log_ut.text.cache.L2
+                0x03f00862       0x4c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x03f008ae        0x2 
+ .tick_timer.text.cache.L2
+                0x03f008b0       0x40 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *(.*.text.cache.L3)
+ *(.log_ut_text)
+ .log_ut_text   0x03f008f0        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x03f008f8                . = (((. + 0x3) / 0x4) * 0x4)
+                0x03f008f8                cache_Lx_code_text_end = .
+                0x03f008f8                btstack_data_start = .
+ *(.bt_stack_data)
+ *(.ble_db_data)
+ *(.ble_sm_data)
+ *(.ble_att_data)
+ *(.ble_gatt_data)
+                0x03f008f8                BTSTACK_LE_HOST_MESH_DATA_START = .
+                0x03f008f8                . = ((. + 0x3) & 0xfffffffc)
+                0x03f008f8                _net_buf_pool_list = .
+ *(._net_buf_pool.static.*)
+ *(.ble_mesh_data)
+ *(.ble_mesh_tinycrypt_data)
+                0x00000000                BTSTACK_LE_HOST_MESH_DATA_SIZE = ABSOLUTE ((. - BTSTACK_LE_HOST_MESH_DATA_START))
+                0x03f008f8                btstack_data_end = .
+                0x03f008f8                btctler_data_start = .
+                0x03f008f8                BTCTLER_CONTROLLER_DATA_START = .
+ *(.bt_rf_data)
+ *(.vendor_manager_data)
+ *(.hci_controller_data)
+                0x00000000                BTCTLER_CONTROLLER_DATA_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_DATA_START))
+                0x03f008f8                BTCTLER_LE_CONTROLLER_DATA_START = .
+ *(.ble_ll_data)
+ *(.ble_rf_data)
+ *(.ble_hci_data)
+                0x00000000                BTCTLER_LE_CONTROLLER_DATA_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_DATA_START))
+                0x03f008f8                BTCTLER_CL_DATA_START = .
+                0x00000000                BTCTLER_CL_DATA_SIZE = ABSOLUTE ((. - BTCTLER_CL_DATA_START))
+                0x03f008f8                btctler_data_end = .
+                0x03f008f8                update_data_start = .
+                0x03f008f8                update_data_end = .
+
+.usb_ep0_dma    0x03f008f8       0x44
+ .usb_ep0_dma   0x03f008f8       0x44 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+
+.debug_data     0x03f0093c        0x0
+                [!provide]                PROVIDE (debug_buf_start, .)
+ *(.debug.data.bss)
+ *(.debug.data)
+                0x03f0093c                . = (((. + 0x3) / 0x4) * 0x4)
+
+.bss            0x03f00940     0x13d4
+                [!provide]                PROVIDE (bss_buf_start, .)
+                0x03f00940                . = ALIGN (0x20)
+                0x03f00940                _cpu0_sstack_begin = .
+                [!provide]                PROVIDE (cpu0_sstack_begin, .)
+                0x03f00940                . = ALIGN (0x20)
+ *(.intr_stack)
+                0x03f00940                . = ALIGN (0x20)
+ *(.stack_magic)
+                0x03f00940                . = ALIGN (0x20)
+ *(.stack)
+ .stack         0x03f00940      0xc00 ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+                0x03f01540                _sstack
+                0x03f01540                . = ALIGN (0x20)
+ *(.stack_magic0)
+                0x03f01540                . = ALIGN (0x20)
+                0x03f01540                _cpu0_sstack_end = .
+                [!provide]                PROVIDE (cpu0_sstack_end, .)
+                0x03f01540                . = ALIGN (0x20)
+                0x03f01540                _system_data_begin = .
+ *(.bss)
+ .bss           0x03f01540      0x17c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .bss           0x03f016bc        0x0 C:\JL\pi32\lib\libcompiler-rt.a(adddf3.o)
+ .bss           0x03f016bc        0x0 C:\JL\pi32\lib\libcompiler-rt.a(ashldi3.o)
+ .bss           0x03f016bc        0x0 C:\JL\pi32\lib\libcompiler-rt.a(comparedf2.o)
+ .bss           0x03f016bc        0x0 C:\JL\pi32\lib\libcompiler-rt.a(lshrdi3.o)
+ *(.*.data.bss)
+ .msg.data.bss  0x03f016bc      0x228 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .new_vm.data.bss
+                0x03f018e4      0x118 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .ttmr_sys.data.bss
+                0x03f019fc        0x1 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x03f019fd        0x3 
+ .dev_lst.data.bss
+                0x03f01a00       0x28 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .finit.data.bss
+                0x03f01a28       0x18 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .uart.data.bss
+                0x03f01a40       0x30 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .power_driver.data.bss
+                0x03f01a70      0x26c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .heep_2.data.bss
+                0x03f01cdc       0x18 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .sys_mem.data.bss
+                0x03f01cf4        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *(.non_volatile_ram)
+ *(.msd.keep_ram)
+ *(.usb_hid.keep_ram)
+ *(.ble_app_bss)
+                0x03f01cfc                btstack_bss_start = .
+ *(.bt_stack_bss)
+ *(.ble_db_bss)
+ *(.ble_sm_bss)
+ *(.ble_att_bss)
+ *(.ble_gatt_bss)
+ *(.btstack_pool)
+                0x03f01cfc                BTSTACK_LE_HOST_MESH_BSS_START = .
+ *(.ble_mesh_bss)
+ *(.ble_mesh_tinycrypt_bss)
+                0x00000000                BTSTACK_LE_HOST_MESH_BSS_SIZE = ABSOLUTE ((. - BTSTACK_LE_HOST_MESH_BSS_START))
+                0x03f01cfc                btstack_bss_end = .
+                0x03f01cfc                btctler_bss_start = .
+                0x03f01cfc                BTCTLER_CONTROLLER_BSS_START = .
+ *(.bt_rf_data_bss)
+ *(.hci_controller_data_bss)
+ *(.vendor_manager_data_bss)
+                0x00000000                BTCTLER_CONTROLLER_BSS_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_BSS_START))
+                0x03f01cfc                BTCTLER_LE_CONTROLLER_BSS_START = .
+ *(.ble_hci_data_bss)
+ *(.ble_ll_data_bss)
+ *(.ble_rf_data_bss)
+                0x00000000                BTCTLER_LE_CONTROLLER_BSS_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_BSS_START))
+                0x03f01cfc                BTCTLER_CL_BSS_START = .
+                0x00000000                BTCTLER_CL_BSS_SIZE = ABSOLUTE ((. - BTCTLER_CL_BSS_START))
+                0x03f01cfc                btctler_bss_end = .
+                0x03f01cfc                _system_data_end = .
+                0x03f01cfc                update_bss_start = .
+ *(.update_bss)
+ .update_bss    0x03f01cfc       0x18 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x03f01d14                update_bss_end = .
+
+.nv_ram_malloc  0x03f01d14        0x0
+                0x03f01d14                PROVIDE (_nv_ram_malloc_start, .)
+ *(.sec_bt_nv_ram)
+                0x03f01d14                PROVIDE (_nv_ram_malloc_end, .)
+                0x03f01d14                __overlay_a_start = .
+
+.startup_data   0x03f01d14        0x0 load address 0xa0000000
+                0x03f01d14                . = ALIGN (0x4)
+                [!provide]                PROVIDE (startup_data_start, .)
+ *(.cache_way_setting_text)
+                0x03f01d14                . = (((. + 0x3) / 0x4) * 0x4)
+                [!provide]                PROVIDE (startup_data_end, .)
+                [!provide]                PROVIDE (__load_start_startup_data, LOADADDR (.startup_data))
+                [!provide]                PROVIDE (__load_stop_startup_data, (LOADADDR (.startup_data) + SIZEOF (.startup_data)))
+
+.d_music_play   0x03f01d14        0x0 load address 0xa0000000
+                [!provide]                PROVIDE (mode_music_overlay_data_start, .)
+ *(.mode_music_overlay_data)
+ *(.fat_buf)
+                [!provide]                PROVIDE (mode_music_overlay_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_music_play, LOADADDR (.d_music_play))
+                [!provide]                PROVIDE (__load_stop_d_music_play, (LOADADDR (.d_music_play) + SIZEOF (.d_music_play)))
+
+.d_simple_decode
+                0x03f01d14        0x0 load address 0xa0000000
+                [!provide]                PROVIDE (mode_smpl_dec_ovly_start, .)
+ *(.mode_smpl_dec_data)
+                [!provide]                PROVIDE (mode_smpl_dec_ovly_end, .)
+                [!provide]                PROVIDE (__load_start_d_simple_decode, LOADADDR (.d_simple_decode))
+                [!provide]                PROVIDE (__load_stop_d_simple_decode, (LOADADDR (.d_simple_decode) + SIZEOF (.d_simple_decode)))
+
+.ar_trans_module
+                0x03f01d14        0x0 load address 0xa0000000
+                0x03f01d14                PROVIDE (ar_trans_data_start, .)
+ *(.ar_trans_data)
+                0x03f01d14                PROVIDE (ar_trans_data_end, .)
+                [!provide]                PROVIDE (rf_radio_data_start, .)
+ *(.rf_radio_data)
+ *(.padv_trans_data)
+                [!provide]                PROVIDE (rf_radio_data_end, .)
+                [!provide]                PROVIDE (__load_start_ar_trans_module, LOADADDR (.ar_trans_module))
+                [!provide]                PROVIDE (__load_stop_ar_trans_module, (LOADADDR (.ar_trans_module) + SIZEOF (.ar_trans_module)))
+                0x03f01d14                __overlay_a_end = .
+                0x03f01d14                __overlay_b_start = .
+
+.d_fat_tmp      0x03f01d14        0x0 load address 0xb0000000
+ *(.fat_tmp_buf)
+                [!provide]                PROVIDE (__load_start_d_fat_tmp, LOADADDR (.d_fat_tmp))
+                [!provide]                PROVIDE (__load_stop_d_fat_tmp, (LOADADDR (.d_fat_tmp) + SIZEOF (.d_fat_tmp)))
+
+.d_song_speed   0x03f01d14        0x0 load address 0xb0000000
+                [!provide]                PROVIDE (song_speed_buf_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.song_sp_data)
+                0x03f01d14                PROVIDE (song_speed_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_song_speed, LOADADDR (.d_song_speed))
+                [!provide]                PROVIDE (__load_stop_d_song_speed, (LOADADDR (.d_song_speed) + SIZEOF (.d_song_speed)))
+
+.d_voicechanger
+                0x03f01d14        0x0 load address 0xb0000000
+                [!provide]                PROVIDE (voicechanger_buf_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.voicechanger_data)
+                0x03f01d14                PROVIDE (voicechanger_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_voicechanger, LOADADDR (.d_voicechanger))
+                [!provide]                PROVIDE (__load_stop_d_voicechanger, (LOADADDR (.d_voicechanger) + SIZEOF (.d_voicechanger)))
+
+.d_a            0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = MAX (voicechanger_buf_end, song_speed_buf_end)
+                [!provide]                PROVIDE (a_buf_start, .)
+ *(.a_data)
+                0x03f01d14                PROVIDE (a_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_a, LOADADDR (.d_a))
+                [!provide]                PROVIDE (__load_stop_d_a, (LOADADDR (.d_a) + SIZEOF (.d_a)))
+
+.d_f1a          0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (f1a_1_buf_start, .)
+ *(.f1a_1_buf)
+                [!provide]                PROVIDE (f1a_1_buf_end, .)
+                [!provide]                PROVIDE (f1a_2_buf_start, .)
+ *(.f1a_2_buf)
+                [!provide]                PROVIDE (f1a_2_buf_end, .)
+                [!provide]                PROVIDE (f1a_buf_start, .)
+ *(.f1a_data)
+                [!provide]                PROVIDE (f1a_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_f1a, LOADADDR (.d_f1a))
+                [!provide]                PROVIDE (__load_stop_d_f1a, (LOADADDR (.d_f1a) + SIZEOF (.d_f1a)))
+
+.d_ump3         0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (ump3_buf_start, .)
+ *(.ump3_data)
+                [!provide]                PROVIDE (ump3_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_ump3, LOADADDR (.d_ump3))
+                [!provide]                PROVIDE (__load_stop_d_ump3, (LOADADDR (.d_ump3) + SIZEOF (.d_ump3)))
+
+.d_opus         0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (opus_buf_start, .)
+ *(.opus_dec_data)
+                [!provide]                PROVIDE (opus_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_opus, LOADADDR (.d_opus))
+                [!provide]                PROVIDE (__load_stop_d_opus, (LOADADDR (.d_opus) + SIZEOF (.d_opus)))
+
+.d_ima          0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (ima_buf_start, .)
+ *(.ima_dec_data)
+                [!provide]                PROVIDE (ima_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_ima, LOADADDR (.d_ima))
+                [!provide]                PROVIDE (__load_stop_d_ima, (LOADADDR (.d_ima) + SIZEOF (.d_ima)))
+
+.d_speex        0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (speex_buf_start, .)
+ *(.speex_dec_data)
+                [!provide]                PROVIDE (speex_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_speex, LOADADDR (.d_speex))
+                [!provide]                PROVIDE (__load_stop_d_speex, (LOADADDR (.d_speex) + SIZEOF (.d_speex)))
+
+.d_sbc          0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (sbc_buf_start, .)
+ *(.sbc_dec_data)
+                [!provide]                PROVIDE (sbc_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_sbc, LOADADDR (.d_sbc))
+                [!provide]                PROVIDE (__load_stop_d_sbc, (LOADADDR (.d_sbc) + SIZEOF (.d_sbc)))
+
+.d_jla_lw       0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (jla_lw_buf_start, .)
+ *(.jla_lw_dec_data)
+                [!provide]                PROVIDE (jla_lw_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_jla_lw, LOADADDR (.d_jla_lw))
+                [!provide]                PROVIDE (__load_stop_d_jla_lw, (LOADADDR (.d_jla_lw) + SIZEOF (.d_jla_lw)))
+
+.d_midi         0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (midi_buf_start, .)
+ *(.midi_buf)
+                [!provide]                PROVIDE (midi_buf_end, .)
+                [!provide]                PROVIDE (midi_ctrl_buf_start, .)
+ *(.midi_ctrl_buf)
+                [!provide]                PROVIDE (midi_ctrl_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_midi, LOADADDR (.d_midi))
+                [!provide]                PROVIDE (__load_stop_d_midi, (LOADADDR (.d_midi) + SIZEOF (.d_midi)))
+
+.d_mp3_st       0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                PROVIDE (mp3_st_buf_start, .)
+ *(.mp3_st_data)
+                0x03f01d14                PROVIDE (mp3_st_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_mp3_st, LOADADDR (.d_mp3_st))
+                [!provide]                PROVIDE (__load_stop_d_mp3_st, (LOADADDR (.d_mp3_st) + SIZEOF (.d_mp3_st)))
+
+.d_wav          0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = a_buf_end
+                [!provide]                PROVIDE (wav_buf_start, .)
+ *(.wav_data)
+                [!provide]                PROVIDE (wav_buf_end, .)
+                [!provide]                PROVIDE (__load_start_d_wav, LOADADDR (.d_wav))
+                [!provide]                PROVIDE (__load_stop_d_wav, (LOADADDR (.d_wav) + SIZEOF (.d_wav)))
+
+.d_rec          0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                rec_data_start = .
+ *(.rec_data)
+                0x03f01d14                rec_data_end = .
+                [!provide]                PROVIDE (__load_start_d_rec, LOADADDR (.d_rec))
+                [!provide]                PROVIDE (__load_stop_d_rec, (LOADADDR (.d_rec) + SIZEOF (.d_rec)))
+
+.d_enc_a        0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_a_data)
+                0x03f01d14                enc_a_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_a, LOADADDR (.d_enc_a))
+                [!provide]                PROVIDE (__load_stop_d_enc_a, (LOADADDR (.d_enc_a) + SIZEOF (.d_enc_a)))
+
+.d_enc_mp3      0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_mp3_data)
+                0x03f01d14                enc_mp3_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_mp3, LOADADDR (.d_enc_mp3))
+                [!provide]                PROVIDE (__load_stop_d_enc_mp3, (LOADADDR (.d_enc_mp3) + SIZEOF (.d_enc_mp3)))
+
+.d_enc_ump3     0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_ump3_data)
+                0x03f01d14                enc_ump3_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_ump3, LOADADDR (.d_enc_ump3))
+                [!provide]                PROVIDE (__load_stop_d_enc_ump3, (LOADADDR (.d_enc_ump3) + SIZEOF (.d_enc_ump3)))
+
+.d_enc_opus     0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_opus_data)
+                0x03f01d14                enc_opus_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_opus, LOADADDR (.d_enc_opus))
+                [!provide]                PROVIDE (__load_stop_d_enc_opus, (LOADADDR (.d_enc_opus) + SIZEOF (.d_enc_opus)))
+
+.d_enc_speex    0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_speex_data)
+                0x03f01d14                enc_speex_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_speex, LOADADDR (.d_enc_speex))
+                [!provide]                PROVIDE (__load_stop_d_enc_speex, (LOADADDR (.d_enc_speex) + SIZEOF (.d_enc_speex)))
+
+.d_enc_ima      0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_ima_data)
+                0x03f01d14                enc_ima_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_ima, LOADADDR (.d_enc_ima))
+                [!provide]                PROVIDE (__load_stop_d_enc_ima, (LOADADDR (.d_enc_ima) + SIZEOF (.d_enc_ima)))
+
+.d_enc_sbc      0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_sbc_data)
+                0x03f01d14                enc_sbc_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_sbc, LOADADDR (.d_enc_sbc))
+                [!provide]                PROVIDE (__load_stop_d_enc_sbc, (LOADADDR (.d_enc_sbc) + SIZEOF (.d_enc_sbc)))
+
+.d_enc_jla_lw   0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = rec_data_end
+ *(.enc_jla_lw_data)
+                0x03f01d14                enc_jla_lw_data_end = .
+                [!provide]                PROVIDE (__load_start_d_enc_jla_lw, LOADADDR (.d_enc_jla_lw))
+                [!provide]                PROVIDE (__load_stop_d_enc_jla_lw, (LOADADDR (.d_enc_jla_lw) + SIZEOF (.d_enc_jla_lw)))
+
+.d_linein       0x03f01d14        0x0 load address 0xb0000000
+                [!provide]                PROVIDE (mode_linein_overlay_data_start, .)
+ *(.digital_linein_data)
+                [!provide]                PROVIDE (mode_linein_overlay_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_linein, LOADADDR (.d_linein))
+                [!provide]                PROVIDE (__load_stop_d_linein, (LOADADDR (.d_linein) + SIZEOF (.d_linein)))
+
+.d_usb_slave    0x03f01d14        0x0 load address 0xb0000000
+                [!provide]                PROVIDE (mode_pc_overlay_data_start, .)
+ *(.uac_var)
+ *(.uac_rx)
+ *(.uac_spk)
+ *(.mass_storage)
+ *(.hid_config_var)
+ *(.usb_msd_dma)
+ *(.usb_hid_dma)
+ *(.usb_iso_dma)
+ *(.usb_cdc_data)
+ *(.usb_descriptor)
+ *(.usb_config_var)
+                0x03f01d14                PROVIDE (mode_pc_overlay_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_usb_slave, LOADADDR (.d_usb_slave))
+                [!provide]                PROVIDE (__load_stop_d_usb_slave, (LOADADDR (.d_usb_slave) + SIZEOF (.d_usb_slave)))
+
+.d_norflash_cache
+                0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = mode_pc_overlay_data_end
+ *(.norflash_cache_buf)
+                0x03f01d14                norflash_cache_buf_end = .
+                [!provide]                PROVIDE (__load_start_d_norflash_cache, LOADADDR (.d_norflash_cache))
+                [!provide]                PROVIDE (__load_stop_d_norflash_cache, (LOADADDR (.d_norflash_cache) + SIZEOF (.d_norflash_cache)))
+
+.update_tmp_buf
+                0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = ALIGN (0x4)
+ *(.uart_update_buf0)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.uart_update_buf1)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.rcsp_buf)
+                [!provide]                PROVIDE (__load_start_update_tmp_buf, LOADADDR (.update_tmp_buf))
+                [!provide]                PROVIDE (__load_stop_update_tmp_buf, (LOADADDR (.update_tmp_buf) + SIZEOF (.update_tmp_buf)))
+
+.d_loud_speaker
+                0x03f01d14        0x0 load address 0xb0000000
+                [!provide]                PROVIDE (mode_loud_spk_overlay_data_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.speaker_data)
+                0x03f01d14                PROVIDE (mode_loud_spk_overlay_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_loud_speaker, LOADADDR (.d_loud_speaker))
+                [!provide]                PROVIDE (__load_stop_d_loud_speaker, (LOADADDR (.d_loud_speaker) + SIZEOF (.d_loud_speaker)))
+
+.d_howling      0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = mode_loud_spk_overlay_data_end
+                [!provide]                PROVIDE (howling_data_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.howling_data)
+                0x03f01d14                PROVIDE (howling_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_howling, LOADADDR (.d_howling))
+                [!provide]                PROVIDE (__load_stop_d_howling, (LOADADDR (.d_howling) + SIZEOF (.d_howling)))
+
+.d_realtime_sp  0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = howling_data_end
+                [!provide]                PROVIDE (realtime_sp_data_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.sp_data)
+                [!provide]                PROVIDE (realtime_sp_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_realtime_sp, LOADADDR (.d_realtime_sp))
+                [!provide]                PROVIDE (__load_stop_d_realtime_sp, (LOADADDR (.d_realtime_sp) + SIZEOF (.d_realtime_sp)))
+
+.d_echo         0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = howling_data_end
+                [!provide]                PROVIDE (echo_data_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.echo_data)
+                [!provide]                PROVIDE (echo_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_echo, LOADADDR (.d_echo))
+                [!provide]                PROVIDE (__load_stop_d_echo, (LOADADDR (.d_echo) + SIZEOF (.d_echo)))
+
+.d_voice_pitch  0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = howling_data_end
+                [!provide]                PROVIDE (vp_data_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.vp_data)
+                [!provide]                PROVIDE (vp_data_end, .)
+                [!provide]                PROVIDE (__load_start_d_voice_pitch, LOADADDR (.d_voice_pitch))
+                [!provide]                PROVIDE (__load_stop_d_voice_pitch, (LOADADDR (.d_voice_pitch) + SIZEOF (.d_voice_pitch)))
+
+.d_pcm_eq       0x03f01d14        0x0 load address 0xb0000000
+                0x03f01d14                . = howling_data_end
+                [!provide]                PROVIDE (pcm_eq_start, .)
+                0x03f01d14                . = ALIGN (0x4)
+ *(.pcm_eq_data)
+                [!provide]                PROVIDE (pcm_eq_end, .)
+                [!provide]                PROVIDE (__load_start_d_pcm_eq, LOADADDR (.d_pcm_eq))
+                [!provide]                PROVIDE (__load_stop_d_pcm_eq, (LOADADDR (.d_pcm_eq) + SIZEOF (.d_pcm_eq)))
+                0x03f01d14                __overlay_b_end = .
+
+.heap_buf       0x03f01d14     0xe2c7
+                0x03f01d14                PROVIDE (_free_start, .)
+                0x03f0ffdb                . = ((LENGTH (ram0) + ORIGIN (ram0)) - 0x1)
+ *fill*         0x03f01d14     0xe2c7 
+                0x03f0ffdb                PROVIDE (_free_end, .)
+                0x03f0ffdb                _ram_end = .
+                0x04000100                . = ORIGIN (app_code)
+
+.app_code       0x04000100     0xc35c
+                0x04000100                app_code_text_begin = .
+ *(.chip_entry_text)
+ .chip_entry_text
+                0x04000100       0x7e ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+                0x04000100                _start
+ *(.start.text)
+ *(.*.text.const)
+ .app.text.const
+                0x0400017e       0x41 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .vfs.text.const
+                0x040001bf        0x6 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .key.text.const
+                0x040001c5        0x4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .new_vm.text.const
+                0x040001c9      0x2a6 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x0400046f        0x1 
+ .dev_lst.text.const
+                0x04000470       0x44 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .main.text.const
+                0x040004b4       0x85 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .finit.text.const
+                0x04000539      0x1ee .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .ttmr_cpu.text.const
+                0x04000727       0x20 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .usb.text.const
+                0x04000747       0x9b .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .power_driver.text.const
+                0x040007e2      0x839 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .sys_mem.text.const
+                0x0400101b       0x36 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .nvm_cache.text.const
+                0x04001051       0x29 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *(.*.text)
+ *fill*         0x0400107a        0x2 
+ .uart.text     0x0400107c      0x31c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .heep_2.text   0x04001398      0x25a .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .malloc.text   0x040015f2       0x46 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .key.text      0x04001638      0x12c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .usb.text      0x04001764      0x458 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .msg.text      0x04001bbc       0xb4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .ttmr_sys.text
+                0x04001c70       0x7e .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x04001cee        0x2 
+ .power_driver.text
+                0x04001cf0     0x13c6 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .sys_mem.text  0x040030b6      0x254 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x0400330a        0x2 
+ .ttmr_cpu.text
+                0x0400330c       0x9c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .dev_lst.text  0x040033a8       0x16 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .vfs.text      0x040033be      0x17c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .audio_dac_api.text
+                0x0400353a        0xc .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *fill*         0x04003546        0x2 
+ .new_vm.text   0x04003548      0xc00 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .nvm_cache.text
+                0x04004148      0x16e .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .finit.text    0x040042b6      0x296 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .init.text     0x0400454c       0x18 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .app.text      0x04004564       0x90 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .main.text     0x040045f4      0x134 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x040045f4                c_main
+ *(.version)
+ *(.debug)
+ *(.debug.text.const)
+ *(.debug.text)
+ *(.debug.string)
+ *(.text)
+ .text          0x04004728     0x4e5e .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x04009204                boot_info_init
+ *fill*         0x04009586        0x2 
+ .text          0x04009588        0x0 ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+ .text          0x04009588       0x3e C:\JL\pi32\lib\libc.a(lib_a-memcmp.o)
+ *fill*         0x040095c6        0x2 
+ .text          0x040095c8      0x11a C:\JL\pi32\lib\libc.a(lib_a-memcpy.o)
+ *fill*         0x040096e2        0x2 
+ .text          0x040096e4       0x48 C:\JL\pi32\lib\libc.a(lib_a-memset.o)
+ .text          0x0400972c       0x1a C:\JL\pi32\lib\libc.a(lib_a-strcat.o)
+                0x0400972c                strcat
+ *fill*         0x04009746        0x2 
+ .text          0x04009748       0x16 C:\JL\pi32\lib\libc.a(lib_a-strchr.o)
+ *fill*         0x0400975e        0x2 
+ .text          0x04009760       0x16 C:\JL\pi32\lib\libc.a(lib_a-strcmp.o)
+ *fill*         0x04009776        0x2 
+ .text          0x04009778       0x10 C:\JL\pi32\lib\libc.a(lib_a-strcpy.o)
+ .text          0x04009788        0xc C:\JL\pi32\lib\libc.a(lib_a-strlen.o)
+ .text          0x04009794       0x22 C:\JL\pi32\lib\libc.a(lib_a-strncmp.o)
+ *fill*         0x040097b6        0x2 
+ .text          0x040097b8       0x22 C:\JL\pi32\lib\libc.a(lib_a-strrchr.o)
+                0x040097b8                strrchr
+ *fill*         0x040097da        0x2 
+ .text          0x040097dc      0x108 C:\JL\pi32\lib\libm.a(lib_a-s_ceil.o)
+                0x040097dc                ceil
+ .text          0x040098e4      0x344 C:\JL\pi32\lib\libcompiler-rt.a(adddf3.o)
+                0x040098e4                __adddf3
+ .text          0x04009c28       0x10 C:\JL\pi32\lib\libcompiler-rt.a(ashldi3.o)
+                0x04009c28                __ashldi3
+ .text          0x04009c38      0x1bc C:\JL\pi32\lib\libcompiler-rt.a(comparedf2.o)
+                0x04009c38                __ledf2
+                0x04009cf8                __gedf2
+                0x04009dac                __unorddf2
+                0x04009dec                __eqdf2
+                0x04009dee                __ltdf2
+                0x04009df0                __nedf2
+                0x04009df2                __gtdf2
+ .text          0x04009df4       0x10 C:\JL\pi32\lib\libcompiler-rt.a(lshrdi3.o)
+                0x04009df4                __lshrdi3
+                0x04009e04                _SPI_CODE_START = .
+ *(.vm_sfc.text.cache)
+ .vm_sfc.text.cache
+                0x04009e04      0x8a6 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400a6ac                . = ALIGN (0x4)
+ *fill*         0x0400a6aa        0x2 
+                0x0400a6ac                _SPI_CODE_END = .
+ *(.rodata*)
+ .rodata.str1.1
+                0x0400a6ac     0x146a .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                               0x147a (size before relaxing)
+ *fill*         0x0400bb16        0x2 
+ .rodata.cst16  0x0400bb18       0x30 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .rodata        0x0400bb48      0x7c0 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .rodata.cst4   0x0400c308       0x10 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .rodata.str4.4
+                0x0400c318        0xc .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ *(.ins)
+                0x0400c324                app_code_text_end = .
+                0x0400c324                . = ALIGN (0x4)
+                0x0400c324                vfs_ops_begin = .
+ *(.vfs_operations)
+ .vfs_operations
+                0x0400c324       0x60 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c324                sydf_vfs_ops
+                0x0400c384                vfs_ops_end = .
+                0x0400c384                . = ALIGN (0x4)
+                0x0400c384                app_main_begin = .
+ *(.app_main)
+                0x0400c384                app_main_end = .
+                0x0400c384                . = ALIGN (0x4)
+                0x0400c384                PROVIDE (device_node_begin, .)
+ *(.device)
+ .device        0x0400c384       0x24 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c384                device_table
+                0x0400c3a8                PROVIDE (device_node_end, .)
+                0x0400c3a8                . = ALIGN (0x4)
+                0x0400c3a8                hsb_critical_handler_begin = .
+ *(.hsb_critical_txt)
+ .hsb_critical_txt
+                0x0400c3a8        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c3a8                hsb_ticktmr
+                0x0400c3b0                hsb_critical_handler_end = .
+                0x0400c3b0                . = ALIGN (0x4)
+                0x0400c3b0                lsb_critical_handler_begin = .
+ *(.lsb_critical_txt)
+ .lsb_critical_txt
+                0x0400c3b0        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c3b0                lsb_saradc
+                0x0400c3b8                lsb_critical_handler_end = .
+                0x0400c3b8                . = ALIGN (0x4)
+                0x0400c3b8                loop_detect_handler_begin = .
+ *(.loop_detect_region)
+ .loop_detect_region
+                0x0400c3b8        0x8 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c3b8                systimer_schedule
+                0x0400c3c0                loop_detect_handler_end = .
+                0x0400c3c0                . = ALIGN (0x4)
+                0x0400c3c0                lp_target_begin = .
+                [!provide]                PROVIDE (lp_target_begin, .)
+ *(.lp_target)
+ .lp_target     0x0400c3c0       0x48 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c3c0                key_lp_target
+                0x0400c3cc                usb_slave_lp_target
+                0x0400c3d8                usb_a
+                0x0400c3e4                uart_driver_target
+                0x0400c3f0                ble_multlp_target
+                0x0400c3fc                btstack_lowpower_target
+                0x0400c408                lp_target_end = .
+                [!provide]                PROVIDE (lp_target_end, .)
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                lp_request_begin = .
+                [!provide]                PROVIDE (lp_request_begin, .)
+ *(.lp_request)
+                0x0400c408                lp_request_end = .
+                [!provide]                PROVIDE (lp_request_end, .)
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                deepsleep_target_begin = .
+                [!provide]                PROVIDE (deepsleep_target_begin, .)
+ *(.deepsleep_target)
+                0x0400c408                deepsleep_target_end = .
+                [!provide]                PROVIDE (deepsleep_target_end, .)
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                p2m_msg_handler_begin = .
+                [!provide]                PROVIDE (p2m_msg_handler_begin, .)
+ *(.p2m_msg_handler)
+                0x0400c408                PROVIDE (p2m_msg_handler_end, .)
+                0x0400c408                p2m_msg_handler_end = .
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                phw_begin = .
+                [!provide]                PROVIDE (phw_begin, .)
+ *(.phw_operation)
+                0x0400c408                PROVIDE (phw_end, .)
+                0x0400c408                phw_end = .
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                bt_app_start = .
+                [!provide]                PROVIDE (bt_app_begin, .)
+ *(.ble_app_text)
+ *(.ble_app_text_const)
+                0x0400c408                PROVIDE (bt_app_end, .)
+                0x0400c408                bt_app_end = .
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                btstack_code_start = .
+                0x0400c408                . = ALIGN (0x4)
+                0x0400c408                a2dp_source_media_codec_begin = .
+ *(.a2dp_source_media_codec)
+                0x0400c408                a2dp_source_media_codec_end = .
+                0x0400c408                a2dp_sink_media_probe_begin = .
+ *(.a2dp_sink_media_probe)
+                0x0400c408                a2dp_sink_media_probe_end = .
+                0x0400c408                a2dp_sink_media_codec_begin = .
+ *(.a2dp_sink_media_codec)
+                0x0400c408                a2dp_sink_media_codec_end = .
+                0x0400c408                a2dp_event_handler_begin = .
+ *(.a2dp_event_handler)
+                0x0400c408                a2dp_event_handler_end = .
+                0x0400c408                sdp_record_item_begin = .
+ *(.sdp_record_item)
+                0x0400c408                sdp_record_item_end = .
+                0x0400c408                bt_sleep_begin = .
+ *(.bt_sleep)
+                0x0400c408                bt_sleep_end = .
+                0x0400c408                BTSTACK_LE_CODE_START = .
+ *(.bt_stack_const)
+ *(.bt_stack_code)
+ .bt_stack_code
+                0x0400c408        0x4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x00000004                BTSTACK_LE_CODE_SIZE = ABSOLUTE ((. - BTSTACK_LE_CODE_START))
+                0x0400c40c                BTSTACK_LE_DB_CODE_START = .
+ *(.ble_db_const)
+ *(.ble_db_code)
+                0x00000000                BTSTACK_LE_DB_CODE_SIZE = ABSOLUTE ((. - BTSTACK_LE_DB_CODE_START))
+                0x0400c40c                BTSTACK_LE_ATT_CODE_START = .
+ *(.ble_att_const)
+ *(.ble_att_code)
+ *(.ble_gatt_const)
+ *(.ble_gatt_code)
+                0x00000000                BTSTACK_LE_ATT_CODE_SIZE = ABSOLUTE ((. - BTSTACK_LE_ATT_CODE_START))
+                0x0400c40c                BTSTACK_LE_SM_CODE_START = .
+ *(.ble_sm_const)
+ *(.ble_sm_code)
+                0x00000000                BTSTACK_LE_SM_CODE_SIZE = ABSOLUTE ((. - BTSTACK_LE_SM_CODE_START))
+                0x0400c40c                BTSTACK_LE_HOST_MESH_CODE_START = .
+ *(.ble_mesh_code)
+ *(.ble_mesh_tinycrypt_code)
+ *(.ble_mesh_const)
+ *(.ble_mesh_tinycrypt_const)
+                0x00000000                BTSTACK_LE_HOST_MESH_CODE_SIZE = ABSOLUTE ((. - BTSTACK_LE_HOST_MESH_CODE_START))
+                0x0400c40c                btstack_code_end = .
+                0x0400c40c                . = ALIGN (0x4)
+                0x00000004                BTSTACK_CODE_TOTAL_SIZE = (btstack_code_end - btstack_code_start)
+                0x0400c40c                . = ALIGN (0x4)
+                0x0400c40c                btctler_code_start = .
+                0x0400c40c                BTCTLER_CONTROLLER_CODE_START = .
+ *(.bt_rf_text_const)
+ *(.bt_rf_text)
+                0x00000000                BTCTLER_CONTROLLER_CODE_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_CODE_START))
+                0x0400c40c                BTCTLER_CONTROLLER_HCI_CODE_START = .
+ *(.vendor_manager_text_const)
+ *(.vendor_manager_text)
+ *(.hci_controller_text_const)
+ *(.hci_controller_text)
+                0x00000000                BTCTLER_CONTROLLER_HCI_CODE_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_HCI_CODE_START))
+                0x0400c40c                BTCTLER_LE_CONTROLLER_BLE_RF_CODE_START = .
+ *(.ble_rf_text_const)
+ *(.ble_rf_text)
+                0x00000000                BTCTLER_LE_CONTROLLER_BLE_RF_CODE_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_BLE_RF_CODE_START))
+                0x0400c40c                BTCTLER_LE_CONTROLLER_BLE_LL_CODE_START = .
+ *(.ble_ll_text_const)
+ *(.ble_ll_text)
+ .ble_ll_text   0x0400c40c        0x4 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x00000004                BTCTLER_LE_CONTROLLER_BLE_LL_CODE_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_BLE_LL_CODE_START))
+                0x0400c410                BTCTLER_LE_CONTROLLER_BLE_HCI_CODE_START = .
+ *(.ble_hci_text_const)
+ *(.ble_hci_text)
+                0x0400c410                btctler_code_end = .
+                0x00000000                BTCTLER_LE_CONTROLLER_BLE_HCI_CODE_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_BLE_HCI_CODE_START))
+                0x00000004                BTCTLER_LE_CONTROLLER_CODE_SIZE = ((BTCTLER_LE_CONTROLLER_BLE_RF_CODE_SIZE + BTCTLER_LE_CONTROLLER_BLE_LL_CODE_SIZE) + BTCTLER_LE_CONTROLLER_BLE_HCI_CODE_SIZE)
+                0x0400c410                BTCTLER_CL_CODE_START = .
+                0x00000000                BTCTLER_CL_CODE_SIZE = ABSOLUTE ((. - BTCTLER_CL_CODE_START))
+                0x00000004                BTCTLER_CODE_TOTAL = (btctler_code_end - btctler_code_start)
+                0x0400c420                . = ALIGN (0x20)
+ *fill*         0x0400c410       0x10 
+                0x0400c420                update_code_start = .
+ *(.bt_updata_ram_code)
+ *(.update_const)
+ *(.update_code)
+ .update_code   0x0400c420       0x3c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                0x0400c45c                update_code_end = .
+                0x0400c45c                . = ALIGN (0x4)
+                0x0000003c                UPDATE_CODE_TOTAL_SIZE = (update_code_end - update_code_start)
+                0x03f00940                bss_begin = ADDR (.bss)
+                0x000013d4                bss_size = SIZEOF (.bss)
+                0x000007bc                bss_size1 = (_system_data_end - _system_data_begin)
+                0x03f01540                bss_begin1 = _system_data_begin
+                0x04000100                text_begin = ADDR (.app_code)
+                0x0000c35c                text_size = SIZEOF (.app_code)
+                0x0400c45c                text_end = (text_begin + text_size)
+                0x03f00300                data_addr = ADDR (.data)
+                0x0400c45c                data_begin = text_end
+                0x000005f8                data_size = (SIZEOF (.data) + SIZEOF (.debug_data))
+                0x00000000                bt_app_size = (bt_app_end - bt_app_start)
+                0x0000e2c7                heap_size = (_free_end - _free_start)
+LOAD C:\JL\pi32\lib\libc.a
+LOAD C:\JL\pi32\lib\libm.a
+LOAD C:\JL\pi32\lib\libcompiler-rt.a
+OUTPUT(.\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf elf32-pi32)
+
+.debug_str      0x00000000    0x2c835
+ .debug_str     0x00000000    0x2c835 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+                              0x2ee58 (size before relaxing)
+
+.debug_loc      0x00000000     0x6045
+ .debug_loc     0x00000000     0x6045 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+
+.debug_abbrev   0x00000000      0xe12
+ .debug_abbrev  0x00000000      0xdea .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .debug_abbrev  0x00000dea       0x28 ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+
+.debug_info     0x00000000    0x72a77
+ .debug_info    0x00000000    0x7299c .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .debug_info    0x0007299c       0xdb ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+
+.debug_ranges   0x00000000      0xc80
+ .debug_ranges  0x00000000      0xc80 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+
+.debug_macinfo  0x00000000        0x1
+ .debug_macinfo
+                0x00000000        0x1 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+
+.debug_pubnames
+                0x00000000     0x965f
+ .debug_pubnames
+                0x00000000     0x965f .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+
+.debug_pubtypes
+                0x00000000     0xffe7
+ .debug_pubtypes
+                0x00000000     0xffe7 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+
+.debug_line     0x00000000    0x1a201
+ .debug_line    0x00000000    0x1a155 .\platform\aw30sdk\apps\app\post_build\bd49\sdk.elf.o
+ .debug_line    0x0001a155       0xac ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)
+
+.debug_aranges  0x00000000       0x20
+ .debug_aranges
+                0x00000000       0x20 ./platform/aw30sdk/apps/include_lib/liba/bd49/mbox_flash/cpu_lib.a(startup.o)

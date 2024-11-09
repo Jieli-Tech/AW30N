@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Release" />
+	<File name="apps\app\bsp\cpu\bd49\tick_timer_sys.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="593" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\rf_radio\half_duplex\rf_radio_send.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4552" topLine="92" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\hid\include\hid_app_config.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="769" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\bt_ble.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1255" topLine="31" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\ble_test\lib_profile_config.c" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1322" topLine="25" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\rf_radio\full_duplex\rf_radio_full_duplex.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6721" topLine="136" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_user\vble_adv\vble_adv_trans.c" open="1" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1242" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\app_config.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9026" topLine="192" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\audio_rf_trans\audio2rf_send.c" open="1" top="0" tabpos="29" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1535" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\spp_and_le\include\spple_app_config.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5530" topLine="60" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_user\vble_gatt\vble_complete.c" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="827" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\hid\config\lib_profile_config.c" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="661" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\init_app.c" open="1" top="0" tabpos="28" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="988" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\ble_test\ble_master.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="425" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\audio_rf_trans\trans_unpacket.c" open="1" top="0" tabpos="30" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9908" topLine="197" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\app_config.c" open="1" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\norflash\norflash.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="555" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\cpu\bd49\adc_api.c" open="1" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12695" topLine="395" />
+		</Cursor>
+	</File>
+	<File name="apps\include_lib\update\code_v1\update_v1.h" open="1" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2901" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="apps\include_lib\device\norflash\norflash.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="459" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\app.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2174" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\ble_test\test_app_config.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="91" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\include_lib\cpu\uart_v2.h" open="1" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="309" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\remotecontrol\dongle.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8492" topLine="214" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\update\testbox_update.c" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2511" topLine="65" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\loudspeaker\loudspk_mode.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1642" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\cpu\bd49\adc_api.h" open="1" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5039" topLine="99" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_common\bt_profile_cfg.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1815" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\src\mbox_flash\bd49\app_modules.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="509" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\msg\msg.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5934" topLine="202" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\common\bt_user\vble_gatt\vble_simple.c" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="596" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps\app\bsp\start\bd49\main.c" open="1" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3618" topLine="97" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

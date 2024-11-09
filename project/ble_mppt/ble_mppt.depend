@@ -1,0 +1,4091 @@
+# depslib dependency file v1.0
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio\audio_adc_api.c
+	"circular_buf.h"
+	"string.h"
+	"uart.h"
+	"config.h"
+	"audio.h"
+	"audio_adc.h"
+	"audio_adc_api.h"
+	"audio_link/audio_link_sync.h"
+	"audio_link/audio_link_api.h"
+	"sound_mge.h"
+	"uac_sync.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\circular_buf.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\typedef.h
+	"cpu.h"
+	"string.h"
+	"cpu.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\cpu.h
+	"bd49.h"
+	"typedef.h"
+	"csfr.h"
+	<stdarg.h>
+	"asm/power/power_reset.h"
+	"irq.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\bd49.h
+	"io_omap.h"
+	"io_imap.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\io_omap.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\io_imap.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\csfr.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_reset.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\irq.h
+	"hwi.h"
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\hwi.h
+	"irq_vec.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\irq_vec.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\uart.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\config.h
+	"includes.h"
+	"common.h"
+	"errno-base.h"
+	"uart.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\includes.h
+	"sys_memory.h"
+	"typedef.h"
+	"csfr.h"
+	"hwi.h"
+	"cpu.h"
+	"jiffies.h"
+	"dev_mg/atomic.h"
+	"cpu/uart.h"
+	"list.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\sys_memory.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\jiffies.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\dev_mg\atomic.h
+	"cpu.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\list.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\common.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\errno-base.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audio.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\audio_adc.h
+	"typedef.h"
+	"audio_link/audio_link.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\audio_link\audio_link.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audio_adc_api.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\audio_link\audio_link_sync.h
+	"typedef.h"
+	"sound_mge/sound_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_mge\sound_mge.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\audio_link\audio_link_api.h
+	"typedef.h"
+	"audio_link.h"
+	"sound_mge/sound_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\uac_sync.h
+	"typedef.h"
+	"src.h"
+	"src_api.h"
+	"audio_dac_api.h"
+	"sound_mge.h"
+	"circular_buf.h"
+	"app_config.h"
+	"iir.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\src.h
+	"typedef.h"
+	"src_para.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\src_para.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\src_api.h
+	"typedef.h"
+	"src_para.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audio_dac_api.h
+	"typedef.h"
+	"audio_dac.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\audio_dac.h
+	"typedef.h"
+	"apa.h"
+	"audac.h"
+	"audio_link/audio_link_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\apa.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\audac.h
+	"typedef.h"
+
+1731118995 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\app_config.h
+	"app_modules.h"
+	"usb_std_class_def.h"
+	"usb_common_def.h"
+
+1731119095 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\bd49\app_modules.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usb_std_class_def.h
+	"usb_common_def.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usb_common_def.h
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\iir.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\log.h
+	"cpu.h"
+	"typedef.h"
+	"uart.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio\audio_dac_fade.c
+	"audio_dac_fade.h"
+	"audio_dac.h"
+	"wdt.h"
+	"audio_dac_api.h"
+	"app_config.h"
+	"audac_basic.h"
+	"tick_timer_driver.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audio_dac_fade.h
+	"typedef.h"
+	"audio_dac.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\wdt.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audac_basic.h
+	"typedef.h"
+	"audio_dac.h"
+	"sound_mge.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\tick_timer_driver.h
+	"config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio\fill_audac.c
+	"audac_basic.h"
+	"audio_dac_api.h"
+	"sine_play.h"
+	"circular_buf.h"
+	"app_modules.h"
+	"sound_kick.h"
+	"mio_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\sine_play.h
+	"typedef.h"
+	"tab_read.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\tab_read.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\sound_kick.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\mio_api.h
+	"typedef.h"
+	"app_modules.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio\sound_kick.c
+	"circular_buf.h"
+	"app_modules.h"
+	"sound_mge.h"
+	"sound_kick.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\audio2rf_send.c
+	"audio2rf_send.h"
+	"audio_rf_mge.h"
+	"app_modules.h"
+	"circular_buf.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"vfs.h"
+	"msg.h"
+	"crc16.h"
+	"trans_packet.h"
+	"rf_send_queue.h"
+	"encoder_mge.h"
+	"app.h"
+	"audio.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"audio_dac.h"
+	"ump3_encoder.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\audio2rf_send.h
+	"typedef.h"
+	"audio_rf_mge.h"
+	"audio_codec_format.h"
+	"encoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\audio_rf_mge.h
+	"typedef.h"
+	"ump3_encoder.h"
+	"opus_encoder.h"
+	"speex_encoder.h"
+	"sbc_encoder.h"
+	"ima_stream_enc_api.h"
+	"jla_lw_encoder.h"
+	"circular_buf.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\ump3_encoder.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\opus_encoder.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\speex_encoder.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\sbc_encoder.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\ima_stream_enc_api.h
+	"audio_enc_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\audio_enc_api.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\jla_lw_encoder.h
+	"typedef.h"
+	"audio_enc_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\audio_codec_format.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\encoder_mge.h
+	"typedef.h"
+	"audio_enc_api.h"
+	"sound_mge.h"
+	"audio_adc.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\vfs.h
+	"vfs_fat.h"
+	"typedef.h"
+	"config.h"
+	"fat/ff_opr.h"
+	"fat/fat_resource.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\vfs_fat.h
+	"fat/ff_opr.h"
+	"fat/fat_resource.h"
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\fat\ff_opr.h
+	"typedef.h"
+	"tff.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\fat\tff.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\fat\fat_resource.h
+	"fat/ff_opr.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\msg\msg.h
+	"typedef.h"
+	"uart.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\crc16.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\trans_packet.h
+	"typedef.h"
+	"audio_rf_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\rf_send_queue.h
+	"typedef.h"
+	"circular_buf.h"
+	"hwi.h"
+	"audio_rf_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\app.h
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\audio_rf_mge.c
+	"audio_rf_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"vfs.h"
+	"msg.h"
+	"crc16.h"
+	"circular_buf.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\rf2audio_recv.c
+	"rf2audio_recv.h"
+	"audio_rf_mge.h"
+	"app_modules.h"
+	"circular_buf.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"vfs.h"
+	"msg.h"
+	"crc16.h"
+	"usb_mic_interface.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"audio_codec_format.h"
+	"sound_mge.h"
+	"app.h"
+	"audio.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"audio_dac_api.h"
+	"audio_dac.h"
+	"src_api.h"
+	"hwi.h"
+	"ump3_api.h"
+	"opus_api.h"
+	"log.h"
+	"hwi.h"
+	"irq.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\rf2audio_recv.h
+	"typedef.h"
+	"decoder_mge.h"
+	"audio_rf_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\decoder_mge.h
+	"if_decoder_ctrl.h"
+	"sound_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\if_decoder_ctrl.h
+	"string.h"
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\usb_mic_interface.h
+	"typedef.h"
+	"src.h"
+	"src_api.h"
+	"audio_adc_api.h"
+	"sound_mge.h"
+	"circular_buf.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\decoder_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+	"sound_mge.h"
+	"app_modules.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\ump3_api.h
+	"if_decoder_ctrl.h"
+	"lib_ump3.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_ump3.h
+	"if_decoder_ctrl.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\opus_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\rf_pa_port.c
+	"app_config.h"
+	"rf_pa_port.h"
+	"gpio.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\rf_pa_port.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\gpio.h
+	"gpio_hw.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\gpio_hw.h
+	"typedef.h"
+	"power_interface.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\power_interface.h
+	"asm/power_interface.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power_interface.h
+	"typedef.h"
+	"power/p33/p33_sfr.h"
+	"power/p33/p33_access.h"
+	"power/p33/charge_hw.h"
+	"power/p33/p33_api.h"
+	"power/p33/wdt.h"
+	"power/power_api.h"
+	"power/power_wakeup.h"
+	"power/power_reset.h"
+	"power/power_port.h"
+	"power/vbat_det_trim.h"
+	"power/power_trim.h"
+	"power/power_app.h"
+	"power/power_compat.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\p33\p33_sfr.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\p33\p33_access.h
+	"p33_interface.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\p33\p33_interface.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\p33\charge_hw.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\p33\p33_api.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\p33\wdt.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_api.h
+	"power_manage.h"
+	"pmu_flag.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_manage.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\pmu_flag.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_wakeup.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_port.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\vbat_det_trim.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_trim.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_app.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\asm\power\power_compat.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\rf_send_queue.c
+	"rf_send_queue.h"
+	"crc16.h"
+	"errno-base.h"
+	"circular_buf.h"
+	"audio_rf_mge.h"
+	"trans_packet.h"
+	"encoder_mge.h"
+	"msg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\trans_packet.c
+	"trans_packet.h"
+	"crc16.h"
+	"errno-base.h"
+	"audio2rf_send.h"
+	"rf_send_queue.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\trans_unpacket.c
+	"trans_unpacket.h"
+	"typedef.h"
+	"crc16.h"
+	"errno-base.h"
+	"decoder_api.h"
+	"log.h"
+	"rf2audio_recv.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\audio_rf_trans\trans_unpacket.h
+	"typedef.h"
+	"audio_rf_mge.h"
+	"trans_packet.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\ble_master.c
+	"includes.h"
+	"bt_ble.h"
+	"test_app_config.h"
+	"clock.h"
+	"ll_config.h"
+	"le_gatt_common.h"
+	"log.h"
+
+1731119431 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\bt_ble.h
+	"btcontroller_mode.h"
+	"app_modules.h"
+	"app_config.h"
+	"btstack_task.h"
+	"bluetooth.h"
+	"btcontroller_modules.h"
+	"le/le_common_define.h"
+	"le/ble_api.h"
+	"btstack_typedef.h"
+	"third_party/common/ble_user.h"
+	"app_modules.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\btcontroller_mode.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\btstack_task.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\bluetooth.h
+	"typedef.h"
+	"le/ble_data_types.h"
+	"le/ble_api.h"
+	"le/le_user.h"
+	"le/att.h"
+	"le/gatt.h"
+	"le/sm.h"
+	"btstack_event.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\ble_data_types.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\ble_api.h
+	"typedef.h"
+	"bt_include/btstack_typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\btstack_typedef.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\le_user.h
+	"typedef.h"
+	"bt_include/btstack_typedef.h"
+	"ble_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\att.h
+	"typedef.h"
+	"bt_include/btstack_typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\gatt.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\sm.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\btstack_event.h
+	"bt_include/btstack_typedef.h"
+	<stdint.h>
+	"le/gatt.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\btcontroller_modules.h
+	"hci_transport.h"
+	"btcontroller_mode.h"
+	"ble/hci_ll.h"
+	"classic/hci_lmp.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\hci_transport.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\ble\hci_ll.h
+	<stdint.h>
+	<stdlib.h>
+	<stdarg.h>
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\classic\hci_lmp.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\le\le_common_define.h
+	"typedef.h"
+	<stdint.h>
+	"bt_include/bluetooth.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\common\ble_user.h
+	"typedef.h"
+
+1731119521 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\test_app_config.h
+	"bt_ble.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\clock.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\ble\ll_config.h
+	<stdint.h>
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\gatt_common\le_gatt_common.h
+	<stdint.h>
+	"btcontroller_config.h"
+	"bt_ble.h"
+	"hid_app_config.h"
+	"spple_app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\port\bd49\btcontroller_config.h
+	"btcontroller_modules.h"
+	"ble/ll_config.h"
+	"bt_includes.h"
+	"classic/lmp_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\bt_includes.h
+	"cpu.h"
+	"crc16.h"
+	"clock.h"
+	"bt_log.h"
+	"hwi.h"
+	"clock_hw.h"
+	"spinlock.h"
+	"power_interface.h"
+	"wdt.h"
+	"tick_timer_driver.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\bt_log.h
+	"common/printf.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\printf.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\clock_hw.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\spinlock.h
+	"typedef.h"
+	"cpu.h"
+	"irq.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\classic\lmp_config.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\hid_app_config.h
+	"bt_ble.h"
+	"btcontroller_mode.h"
+	"user_cfg_id.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\user_cfg_id.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\include\spple_app_config.h
+	"bt_ble.h"
+	"btcontroller_mode.h"
+	"user_cfg_id.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\include\user_cfg_id.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\ble_slave.c
+	"includes.h"
+	"bt_ble.h"
+	"test_app_config.h"
+	"clock.h"
+	"ll_config.h"
+	"rcsp_bluetooth.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_bluetooth.h
+	"bt_ble.h"
+	"app_modules.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\bt_ble.c
+	"bt_ble.h"
+	"test_app_config.h"
+	"msg/msg.h"
+	"user_cfg.h"
+	"includes.h"
+	"vm.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\user_cfg.h
+	"typedef.h"
+	"hid_app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\vm.h
+	"dev_mg/device.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\dev_mg\device.h
+	"typedef.h"
+	"atomic.h"
+	"ioctl_cmds.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\dev_mg\ioctl_cmds.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\lib_btctrler_config.c
+	"bt_ble.h"
+	"test_app_config.h"
+	"bt_includes.h"
+	"btcontroller_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\lib_btstack_config.c
+	"bt_ble.h"
+	"test_app_config.h"
+	"btcontroller_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\ble_test\lib_profile_config.c
+	"includes.h"
+	"bt_includes.h"
+	"bt_ble.h"
+	"test_app_config.h"
+	"btcontroller_config.h"
+	"bt_include/btstack_typedef.h"
+	"bt_profile_cfg.h"
+
+1731119495 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\bt_profile_cfg.h
+	"bt_ble.h"
+	"btcontroller_modules.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\app_main.c
+	"includes.h"
+	"hid_app_config.h"
+	"app_action.h"
+	"app_main.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\app_action.h
+	"app_main.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\app_main.h
+	"list.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\lib_btctrler_config.c
+	"hid_app_config.h"
+	"includes.h"
+	"btcontroller_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\lib_btstack_config.c
+	"hid_app_config.h"
+	"includes.h"
+	"btcontroller_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\lib_driver_config.c
+	"hid_app_config.h"
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\lib_profile_config.c
+	"includes.h"
+	"hid_app_config.h"
+	"btcontroller_config.h"
+	"bt_profile_cfg.h"
+	"avctp_user.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\avctp_user.h
+	"typedef.h"
+	"btstack_typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\lib_system_config.c
+	"hid_app_config.h"
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\lib_update_config.c
+	"hid_app_config.h"
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\config\log_config.c
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\examples\hid_only_scan\ble_only_scan.c
+	"msg.h"
+	"includes.h"
+	"app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_power_mg.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"gpio.h"
+	<stdlib.h>
+	"app_modules.h"
+	"ble_only_scan.h"
+	"user_cfg.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\btctrler_task.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\power_manage\app_power_mg.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\app_comm_bt.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\sys_timer.h
+	"typedef.h"
+	"list.h"
+	"jiffies.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\examples\hid_only_scan\ble_only_scan.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\examples\keyboard\app_hid_comm.c
+	"includes.h"
+	"hid_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"edr_hid_user.h"
+	<stdlib.h>
+	"standard_hid.h"
+	"app_comm_bt.h"
+	"vble_complete.h"
+	"sys_timer.h"
+	"msg.h"
+	"rcsp_bluetooth.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\edr_hid_user.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\standard_hid.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_gatt\vble_complete.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\modules\bt\app_comm_ble.c
+	"includes.h"
+	"hid_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"edr_hid_user.h"
+	<stdlib.h>
+	"standard_hid.h"
+	"app_comm_bt.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\modules\bt\ble_hogp.c
+	"includes.h"
+	"hid_app_config.h"
+	"app_action.h"
+	"bt_include/btstack_task.h"
+	"bt_include/bluetooth.h"
+	"user_cfg.h"
+	"vm.h"
+	"btcontroller_modules.h"
+	"standard_hid.h"
+	"custom_cfg.h"
+	"rcsp_bluetooth.h"
+	"JL_rcsp_api.h"
+	"code_v2/update_loader_download.h"
+	"ble_hogp_profile.h"
+	"le_gatt_common.h"
+	"app_comm_bt.h"
+	"bt_ble.h"
+	"sys_timer.h"
+	"vble_complete.h"
+	"rcsp_bluetooth.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\common\custom_cfg.h
+	"typedef.h"
+	<string.h>
+	"app_modules.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\rcsp\jl_rcsp_api.h
+	"typedef.h"
+	"uart.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v2\update_loader_download.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\modules\bt\ble_hogp_profile.h
+	<stdint.h>
+	"hid_app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\modules\user_cfg.c
+	"hid_app_config.h"
+	"user_cfg.h"
+	"string.h"
+	"includes.h"
+	"vm.h"
+	"btcontroller_config.h"
+	"app_main.h"
+	"app_power_mg.h"
+	"sys_memory.h"
+	"audio_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\version.c
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\app_main.c
+	"includes.h"
+	"spple_app_config.h"
+	"app_config.h"
+	"app_action.h"
+	"app_main.h"
+	"jl_kws/jl_kws_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\lib_btctrler_config.c
+	"spple_app_config.h"
+	"includes.h"
+	"btcontroller_config.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\lib_btstack_config.c
+	"spple_app_config.h"
+	"includes.h"
+	"btcontroller_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\lib_driver_config.c
+	"spple_app_config.h"
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\lib_profile_config.c
+	"includes.h"
+	"spple_app_config.h"
+	"btcontroller_config.h"
+	"bt_common/bt_profile_cfg.h"
+	"avctp_user.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\lib_system_config.c
+	"spple_app_config.h"
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\lib_update_config.c
+	"spple_app_config.h"
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\config\log_config.c
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\dongle\app_dongle_comm.c
+	"bt_ble.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"usb/device/hid.h"
+	"usb/device/cdc.h"
+	"vble_complete.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\hid.h
+	"typedef.h"
+	"usb.h"
+	"usb/device/usb_stack.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\usb.h
+	"typedef.h"
+	"asm/power_interface.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\usb_stack.h
+	"typedef.h"
+	"usb.h"
+	"usb/ch9.h"
+	"usb/usb_phy.h"
+	"usb/otg.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\ch9.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\usb_phy.h
+	"typedef.h"
+	"usb.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\otg.h
+	"usb.h"
+	"device.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\cdc.h
+	"usb/device/usb_stack.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\dongle\ble_dg_central.c
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"user_cfg.h"
+	"vm.h"
+	"btcontroller_modules.h"
+	"bt_include/btstack_event.h"
+	"le_gatt_common.h"
+	"usb/usb_phy.h"
+	"usb/usb_std_class_def.h"
+	"sys_timer.h"
+	"modules/bt/ble_hogp_profile.h"
+	"vble_complete.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\dongle\ota_dg_central.c
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"usb/device/hid.h"
+	"app_comm_bt.h"
+	"le_gatt_common.h"
+	"cbuf.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_controller_include\adapter\include\common\cbuf.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\dongle\usb_hid_devices.c
+	"app_config.h"
+	"spple_app_config.h"
+	"usb/device/usb_stack.h"
+	"usb/device/hid.h"
+	"usb/usb_config.h"
+	"bt_ble.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usb_config.h
+	"typedef.h"
+	<string.h>
+	"app_config.h"
+	"device_drive.h"
+	"jiffies.h"
+	"usb.h"
+	"usb/device/usb_stack.h"
+	"usb/host/usb_host.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\device_drive.h
+	"typedef.h"
+	"errno-base.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\host\usb_host.h
+	"dev_mg/device.h"
+	"usb.h"
+	"usb/ch9.h"
+	"usb/usb_phy.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\dongle\usb_second_hid_devices.c
+	"app_config.h"
+	"spple_app_config.h"
+	"usb/device/usb_stack.h"
+	"usb/device/hid.h"
+	"usb/usb_config.h"
+	"bt_ble.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\multi_conn\app_multi_conn.c
+	"msg.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_power_mg.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"gpio.h"
+	<stdlib.h>
+	"app_modules.h"
+	"le_gatt_common.h"
+	"user_cfg.h"
+	"ble_multi.h"
+	"rcsp_bluetooth.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\multi_conn\ble_multi.h
+	<stdint.h>
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\multi_conn\ble_multi.c
+	<stdlib.h>
+	"msg.h"
+	"bt_ble.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_power_mg.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"gpio.h"
+	"app_modules.h"
+	"le_gatt_common.h"
+	"ble_multi.h"
+	"user_cfg.h"
+	"btcontroller_modules.h"
+	"rcsp_bluetooth.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\multi_conn\ble_multi_central.c
+	<stdlib.h>
+	"msg.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_power_mg.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"gpio.h"
+	"my_malloc.h"
+	"app_modules.h"
+	"le_gatt_common.h"
+	"rcsp_bluetooth.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\my_malloc.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\multi_conn\ble_multi_peripheral.c
+	"msg.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_power_mg.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"gpio.h"
+	<stdlib.h>
+	"app_modules.h"
+	"le_gatt_common.h"
+	"ble_multi.h"
+	"ble_multi_profile.h"
+	"rcsp_bluetooth.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\multi_conn\ble_multi_profile.h
+	<stdint.h>
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\noconn_24g\app_nonconn_24g.c
+	"bt_ble.h"
+	"includes.h"
+	"app_action.h"
+	"spple_app_config.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\noconn_24g\ble_24g_deal.c
+	"bt_ble.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/btstack_task.h"
+	"bt_include/bluetooth.h"
+	"user_cfg.h"
+	"vm.h"
+	"btcontroller_modules.h"
+	"le_gatt_common.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\reduce_ram\app_reduce_ram.c
+	"bt_ble.h"
+	"includes.h"
+	"app_action.h"
+	"spple_app_config.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\reduce_ram\ble_reduce_ram.c
+	"bt_ble.h"
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/btstack_task.h"
+	"bt_include/bluetooth.h"
+	"user_cfg.h"
+	"vm.h"
+	"btcontroller_modules.h"
+	"le_gatt_common.h"
+	"app_comm_bt.h"
+	"sys_timer.h"
+	"msg.h"
+	"ble_reduce_ram.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\examples\reduce_ram\ble_reduce_ram.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\modules\bt\app_comm_ble.c
+	"includes.h"
+	"spple_app_config.h"
+	"app_action.h"
+	"btcontroller_config.h"
+	"bt_controller_include/btctrler_task.h"
+	"bt_include/avctp_user.h"
+	"bt_include/btstack_task.h"
+	<stdlib.h>
+	"standard_hid.h"
+	"app_comm_bt.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\modules\user_cfg.c
+	"spple_app_config.h"
+	"user_cfg.h"
+	"string.h"
+	"includes.h"
+	"vm.h"
+	"btcontroller_config.h"
+	"app_main.h"
+	"app_power_mg.h"
+	"sys_memory.h"
+	"audio_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\spp_and_le\version.c
+	"includes.h"
+	"bt_ble.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_adv\vble_adv.c
+	"vble_adv.h"
+	"bt_ble.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_adv\vble_adv.h
+	"typedef.h"
+	"test_app_config.h"
+	"rf_send_queue.h"
+	"third_party/padvb_intercom/padvb.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\padvb_intercom\padvb.h
+	"my_malloc.h"
+	"jiffies.h"
+	"common.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_adv\vble_adv_trans.c
+	"vble_adv.h"
+	"log.h"
+
+1731119588 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_gatt\vble_complete.c
+	"bt_ble.h"
+	"test_app_config.h"
+	"hid_app_config.h"
+	"spple_app_config.h"
+	"vble_complete.h"
+	"modules/bt/ble_hogp_profile.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_gatt\vble_simple.c
+	"vble_simple.h"
+	"bt_ble.h"
+	"test_app_config.h"
+	"hid_app_config.h"
+	"spple_app_config.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_user\vble_gatt\vble_simple.h
+	"typedef.h"
+	"bt_ble.h"
+	"test_app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\audio_codec_format.c
+	"audio_codec_format.h"
+	"decoder_msg_tab.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\decoder_msg_tab.h
+	"typedef.h"
+	"app_modules.h"
+	"mp3_standard_api.h"
+	"ump3_api.h"
+	"wav_api.h"
+	"f1a_api.h"
+	"midi_api.h"
+	"midi_ctrl.h"
+	"a_api.h"
+	"opus_api.h"
+	"ima_api.h"
+	"speex_api.h"
+	"sbc_api.h"
+	"jla_lw_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\mp3_standard_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\wav_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\f1a_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+	"app_modules.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\midi_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+	"MIDI_DEC_API.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\midi_dec_api.h
+	"if_decoder_ctrl.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\midi_ctrl.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+	"MIDI_CTRL_API.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\midi_ctrl_api.h
+	"MIDI_DEC_API.h"
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\a_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\ima_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\speex_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\sbc_api.h
+	"if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\decoder\list\jla_lw_api.h
+	"typedef.h"
+	"decoder/if_decoder_ctrl.h"
+	"decoder_mge.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\decoder_api.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"vfs.h"
+	"circular_buf.h"
+	"audio.h"
+	"audio_dac.h"
+	"audio_dac_api.h"
+	"app_modules.h"
+	"audio_dac_fade.h"
+	"f1a_api.h"
+	"ump3_api.h"
+	"a_api.h"
+	"song_speed_api.h"
+	"midi_api.h"
+	"midi_ctrl.h"
+	"mp3_standard_api.h"
+	"wav_api.h"
+	"opus_api.h"
+	"ima_api.h"
+	"speex_api.h"
+	"sbc_api.h"
+	"jla_lw_api.h"
+	"decoder_mge.h"
+	"decoder_api.h"
+	"string.h"
+	"errno-base.h"
+	"decoder_msg_tab.h"
+	"audio_eq.h"
+	"pcm_eq_api.h"
+	"mio_api.h"
+	"app_config.h"
+	"src_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_effect_list\song_speed_api.h
+	"typedef.h"
+	"app_modules.h"
+	"ps_for69_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\ps_for69_api.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio_eq\audio_eq.h
+	"typedef.h"
+	"hw_eq.h"
+	"sound_mge.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio_eq\hw_eq.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\pcm_eq\pcm_eq_api.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\decoder_msg_tab.c
+	"app_modules.h"
+	"typedef.h"
+	"msg.h"
+	"decoder_msg_tab.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\decoder_point.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"decoder_api.h"
+	"crc16.h"
+	"errno-base.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\a_api.c
+	"a_api.h"
+	"cpu.h"
+	"app_modules.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"errno-base.h"
+	"msg.h"
+	"decoder_msg_tab.h"
+	"app_config.h"
+	"audio_dac_api.h"
+	"lib_a.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_a.h
+	"if_decoder_ctrl.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\f1a_api.c
+	"f1a_api.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"audio_dac_api.h"
+	"msg.h"
+	"errno-base.h"
+	"decoder_msg_tab.h"
+	"app_config.h"
+	"lib_f1a.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_f1a.h
+	"if_decoder_ctrl.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\f1x_parsing.c
+	"f1a_api.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"errno-base.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\ima_api.c
+	"app_modules.h"
+	"circular_buf.h"
+	"typedef.h"
+	"errno-base.h"
+	"if_decoder_ctrl.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"audio_dac_api.h"
+	"ima_api.h"
+	"ima_stream_decode_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\ima_stream_decode_api.h
+	"if_decoder_ctrl.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\jla_lw_api.c
+	"app_modules.h"
+	"circular_buf.h"
+	"typedef.h"
+	"errno-base.h"
+	"if_decoder_ctrl.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"audio_dac_api.h"
+	"jla_lw_codec_ctrl.h"
+	"jla_lw_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\jla_lw_codec_ctrl.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\midi_api.c
+	"lib_midi.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"msg.h"
+	"errno-base.h"
+	"midi_api.h"
+	"MIDI_CTRL_API.h"
+	"MIDI_DEC_API.h"
+	"boot.h"
+	"decoder_msg_tab.h"
+	"audio_dac_api.h"
+	"audio_dac.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_midi.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\boot.h
+	"asm_type.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\asm_type.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\midi_ctrl_api.c
+	"lib_midi.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"audio_dac.h"
+	"audio_dac_api.h"
+	"msg.h"
+	"errno-base.h"
+	"midi_ctrl.h"
+	"MIDI_CTRL_API.h"
+	"MIDI_DEC_API.h"
+	"boot.h"
+	"decoder_msg_tab.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\mp3_standard_api.c
+	"app_modules.h"
+	"cpu.h"
+	"lib_mp3_st.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"errno-base.h"
+	"msg.h"
+	"decoder_msg_tab.h"
+	"audio_dac_api.h"
+	"app_config.h"
+	"tick_timer_driver.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_mp3_st.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\opus_api.c
+	"config.h"
+	"app_modules.h"
+	"typedef.h"
+	"cpu.h"
+	"opus_api.h"
+	"opus_decode_api.h"
+	"decoder_api.h"
+	"audio_dac_api.h"
+	"decoder_msg_tab.h"
+	"app_config.h"
+	"circular_buf.h"
+	"errno-base.h"
+	"msg.h"
+	"vfs.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\opus_decode_api.h
+	"if_decoder_ctrl.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\sbc_api.c
+	"app_modules.h"
+	"circular_buf.h"
+	"typedef.h"
+	"errno-base.h"
+	"if_decoder_ctrl.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"audio_dac_api.h"
+	"sbc_api.h"
+	"sbc_stddec_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\sbc_stddec_api.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\speex_api.c
+	"app_modules.h"
+	"circular_buf.h"
+	"typedef.h"
+	"errno-base.h"
+	"if_decoder_ctrl.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"audio_dac_api.h"
+	"speex_api.h"
+	"speex_encode_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\speex_encode_api.h
+	"if_decoder_ctrl.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\ump3_api.c
+	"cpu.h"
+	"config.h"
+	"app_modules.h"
+	"typedef.h"
+	"hwi.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"errno-base.h"
+	"msg.h"
+	"decoder_msg_tab.h"
+	"app_config.h"
+	"audio_dac_api.h"
+	"ump3_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\list\wav_api.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"decoder_api.h"
+	"vfs.h"
+	"circular_buf.h"
+	"errno-base.h"
+	"msg.h"
+	"audio_dac_api.h"
+	"decoder_msg_tab.h"
+	"app_config.h"
+	"lib_wav.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_wav.h
+	"if_decoder_ctrl.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\mio\mio_api.c
+	"mio_api.h"
+	"vfs.h"
+	"gpio.h"
+	"clock.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\mio\mio_phy.c
+	"cpu.h"
+	"mio_api.h"
+	"my_malloc.h"
+	"vfs.h"
+	"decoder_api.h"
+	"app_config.h"
+	"audio_dac_api.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\decoder\mp_io.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"sound_mge.h"
+	"circular_buf.h"
+	"decoder_mge.h"
+	"decoder_api.h"
+	"vfs.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\encoder_api.c
+	"encoder_mge.h"
+	"audio_adc_api.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"vfs.h"
+	"circular_buf.h"
+	"a_encoder.h"
+	"mp3_encoder.h"
+	"clock.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\a_encoder.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\mp3_encoder.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\encoder_file.c
+	"encoder_mge.h"
+	"encoder_file.h"
+	"audio_adc_api.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"vfs.h"
+	"circular_buf.h"
+	"a_encoder.h"
+	"mp3_encoder.h"
+	"clock.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\encoder_file.h
+	"typedef.h"
+	"encoder_mge.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\encoder_stream.c
+	"encoder_mge.h"
+	"audio_adc_api.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"circular_buf.h"
+	"clock.h"
+	"trans_packet.h"
+	"rf_send_queue.h"
+	"audio2rf_send.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\a_encoder.c
+	"app_modules.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"a_encode_lib.h"
+	"lib_enc_a.h"
+	"circular_buf.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\a_encode_lib.h
+	"audio_enc_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_enc_a.h
+	"audio_enc_api.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\ima_encoder.c
+	"app_modules.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"circular_buf.h"
+	"ima_stream_enc_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\jla_lw_encoder.c
+	"app_modules.h"
+	"circular_buf.h"
+	"encoder_mge.h"
+	"audio_enc_api.h"
+	"jla_lw_codec_ctrl.h"
+	"jla_lw_encoder.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\mp3_encoder.c
+	"app_modules.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"mp2_encode_api.h"
+	"circular_buf.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\mp2_encode_api.h
+	"audio_enc_api.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\opus_encoder.c
+	"app_modules.h"
+	"opus_encoder.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"circular_buf.h"
+	"opus_enc_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\opus_enc_api.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\sbc_encoder.c
+	"app_modules.h"
+	"sbc_encoder.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"circular_buf.h"
+	"sbc_stdenc_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\sbc_stdenc_api.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\speex_encoder.c
+	"app_modules.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"speex_encode_api.h"
+	"circular_buf.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\encoder\list\ump3_encoder.c
+	"app_modules.h"
+	"encoder_mge.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"hwi.h"
+	"circular_buf.h"
+	"ump2_encode_api.h"
+	"ump3_encoder.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\ump2_encode_api.h
+	"audio_enc_api.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\fs\fat\fat_resource.c
+	"common.h"
+	"errno-base.h"
+	"fs/vfs.h"
+	"fat/tff.h"
+	"fat/ff_opr.h"
+	"fat/fat_io_new.h"
+	"ioctl_cmds.h"
+	"device.h"
+	"fs_file_name.h"
+	"fat/mbr.h"
+	"app_modules.h"
+	"log.h"
+	"my_malloc.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\fat\fat_io_new.h
+	"typedef.h"
+	"stdarg.h"
+	"vfs.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\fat\fs_file_name.h
+	"config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\fat\mbr.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\fs\nor_fs\nor_fs_resource.c
+	"nor_fs/nor_fs.h"
+	"common.h"
+	"uart.h"
+	"errno-base.h"
+	"vfs.h"
+	"boot.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\nor_fs\nor_fs.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\fs\sydf\sydf_resource.c
+	"sydf_resource.h"
+	"vfs.h"
+	"my_malloc.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\sydf\sydf_resource.h
+	"typedef.h"
+	"sydfile.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\fs\sydf\sydfile.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\fs\vfs.c
+	"vfs.h"
+	"errno-base.h"
+	"string.h"
+	"log.h"
+	"device.h"
+	"device.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\fs\vfs_fat.c
+	"vfs_fat.h"
+	"vfs.h"
+	"errno-base.h"
+	"device.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\fs\vfs_resource.c
+	"vfs.h"
+	"log.h"
+	"my_malloc.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\ir\ir_decoder.c
+	"ir_decoder.h"
+	"gptimer.h"
+	"sys_timer.h"
+	"key_ir.h"
+	"key.h"
+	"tick_timer_driver.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\ir_decoder.h
+	"cpu.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\gptimer.h
+	"cpu.h"
+	"gptimer_hw.h"
+	"gpio.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\gptimer_hw.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_ir.h
+	"app_config.h"
+	"key.h"
+	"gpio.h"
+	"ir_decoder.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\ir\ir_encoder.c
+	"ir_encoder.h"
+	"gptimer.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\ir_encoder.h
+	"cpu.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key.c
+	"key.h"
+	"msg.h"
+	"app_config.h"
+	"sine_play.h"
+	"log.h"
+	"key_drv_io.h"
+	"key_drv_matrix.h"
+	"key_drv_ad.h"
+	"key_drv_mic.h"
+	"key_ir.h"
+	"key_touch.h"
+	"key_lptouch.h"
+	"power_interface.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_io.h
+	"gpio.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_matrix.h
+	"gpio.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_ad.h
+	"key.h"
+	"gpio.h"
+	"config.h"
+	"clock.h"
+	"app_config.h"
+	"adc_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\adc_api.h
+	"typedef.h"
+	"asm/power/power_manage.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_mic.h
+	"gpio.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_touch.h
+	"key.h"
+	"gpio.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_lptouch.h
+	"key.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_ad.c
+	"key_drv_ad.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_io.c
+	"key_drv_io.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_drv_matrix.c
+	"key_drv_matrix.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_ir.c
+	"key_ir.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_lptouch.c
+	"key_lptouch.h"
+	"app_config.h"
+	"lpctmu.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\lpctmu.h
+	"gpio.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\key\key_touch.c
+	"key_touch.h"
+	"app_config.h"
+	"pl_cnt.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\pl_cnt.h
+	"gpio.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\msg\custom_event.c
+	"custom_event.h"
+	"common.h"
+	"config.h"
+	"msg.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\msg\custom_event.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\msg\msg.c
+	"msg.h"
+	"irq.h"
+	"common.h"
+	"circular_buf.h"
+	"uart.h"
+	<stdarg.h>
+	"config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\my_malloc.c
+	"my_malloc.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\norflash\norflash.c
+	"norflash.h"
+	"clock.h"
+	"cpu.h"
+	"device.h"
+	"typedef.h"
+	"gpio.h"
+	"errno-base.h"
+	"app_config.h"
+	"log.h"
+	"sdmmc/sd_host_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\norflash\norflash.h
+	"device.h"
+	"ioctl_cmds.h"
+	"printf.h"
+	"gpio.h"
+	"device_drive.h"
+	"malloc.h"
+	"app_config.h"
+	"tick_timer_driver.h"
+	"spi.h"
+	"jiffies.h"
+	"wdt.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\spi.h
+	"typedef.h"
+	"ioctl.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\ioctl.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\power_manage\app_power_mg.c
+	"power_interface.h"
+	"app_power_mg.h"
+	"app_config.h"
+	"adc_api.h"
+	"key.h"
+	"msg.h"
+	"clock.h"
+	"log.h"
+	"charge.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\reserved_area\reserved_area.c
+	"device.h"
+	"crc16.h"
+	"boot.h"
+	"reserved_area.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\reserved_area\reserved_area.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\echo_api.c
+	"echo_api.h"
+	"decoder_api.h"
+	"config.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_effect_list\echo_api.h
+	"typedef.h"
+	"reverb_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\reverb_api.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\notch_howling_api.c
+	"app_modules.h"
+	"decoder_api.h"
+	"circular_buf.h"
+	"howling_api.h"
+	"notch_howling_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_effect_list\howling_api.h
+	"notch_howling_api.h"
+	"howling_pitchshifter_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\notch_howling_api.h
+	"typedef.h"
+	"app_modules.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\howling_pitchshifter_api.h
+	"typedef.h"
+	"app_modules.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\pcm_eq_api.c
+	"pcm_eq_api.h"
+	"decoder_api.h"
+	"sound_mge.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\pitchshift_howling_api.c
+	"app_modules.h"
+	"decoder_api.h"
+	"circular_buf.h"
+	"howling_pitchshifter_api.h"
+	"howling_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\song_speed_api.c
+	"app_modules.h"
+	"ps_for69_api.h"
+	"song_speed_api.h"
+	"sound_mge.h"
+	"typedef.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\speed_api.c
+	"app_modules.h"
+	"lib_speed_api.h"
+	"speed_api.h"
+	"typedef.h"
+	"decoder_api.h"
+	"config.h"
+	"sound_mge.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\lib_speed_api.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_effect_list\speed_api.h
+	"typedef.h"
+	"app_modules.h"
+	"lib_speed_api.h"
+	"sound_mge.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\vo_pitch_api.c
+	"app_modules.h"
+	"decoder_api.h"
+	"vo_pitch_api.h"
+	"midi_file0_h.h"
+	"audio_adc.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\vo_pitch_api.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_effect_list\midi_file0_h.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sound_effect_list\voicechanger_api.c
+	"app_modules.h"
+	"voicechanger_api.h"
+	"sound_mge.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_effect_list\voicechanger_api.h
+	"app_modules.h"
+	"voiceChanger_av_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\liba\arch\pi32_lto\header\voicechanger_av_api.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\speaker\speak_api.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"circular_buf.h"
+	"audio.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"audio_dac_api.h"
+	"audio_dac.h"
+	"sound_mge.h"
+	"errno-base.h"
+	"app_modules.h"
+	"app_config.h"
+	"stream_frame.h"
+	"src_api.h"
+	"src.h"
+	"speed_api.h"
+	"echo_api.h"
+	"vo_pitch_api.h"
+	"notch_howling_api.h"
+	"howling_pitchshifter_api.h"
+	"audio_eq.h"
+	"pcm_eq_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\sound_mge\stream_frame.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\sys_memory\sys_memory.c
+	"sys_memory.h"
+	"app_config.h"
+	"cpu.h"
+	"log.h"
+	"new_vm.h"
+	"vm.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\new_vm.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\tab_read.c
+	"tab_read.h"
+	"string.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\common\custom_cfg.c
+	"custom_cfg.h"
+	"vfs.h"
+	"app_config.h"
+	"rcsp_bluetooth.h"
+	"crc16.h"
+	"ioctl_cmds.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\gatt_common\le_gatt_client.c
+	"includes.h"
+	"bt_include/btstack_task.h"
+	"bt_include/bluetooth.h"
+	"vm.h"
+	"btcontroller_modules.h"
+	"bt_ble.h"
+	"le_gatt_common.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\gatt_common\le_gatt_common.c
+	"includes.h"
+	"bt_ble.h"
+	"bt_include/btstack_task.h"
+	"bt_include/bluetooth.h"
+	"user_cfg.h"
+	"vm.h"
+	"app_modules.h"
+	"btcontroller_modules.h"
+	"bt_include/btstack_event.h"
+	"le_gatt_common.h"
+	"rcsp_bluetooth.h"
+	"JL_rcsp_api.h"
+	"app_main.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\gatt_common\le_gatt_server.c
+	"includes.h"
+	"bt_include/btstack_task.h"
+	"bt_include/bluetooth.h"
+	"vm.h"
+	"btcontroller_modules.h"
+	"bt_ble.h"
+	"app_modules.h"
+	"ll_config.h"
+	"rcsp_bluetooth.h"
+	"JL_rcsp_api.h"
+	"bt_include/btstack_event.h"
+	"le_gatt_common.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_bluetooth.c
+	"rcsp_bluetooth.h"
+	"rcsp_user_update.h"
+	"rcsp_ch_loader_download.h"
+	"rcsp_msg.h"
+	"avctp_user.h"
+	"msg.h"
+	"third_party/rcsp/JL_rcsp_protocol.h"
+	"third_party/rcsp/attr.h"
+	"third_party/rcsp/JL_rcsp_api.h"
+	"third_party/rcsp/rcsp_auth.h"
+	"third_party/rcsp/rcsp_auth.h"
+	"custom_cfg.h"
+	"rcsp_hid_inter.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_update\rcsp_user_update.h
+	"typedef.h"
+	"rcsp_msg.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_msg.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_update\rcsp_ch_loader_download.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\rcsp\jl_rcsp_protocol.h
+	"typedef.h"
+	"JL_rcsp_packet.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\rcsp\jl_rcsp_packet.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\rcsp\attr.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\bt_include\third_party\rcsp\rcsp_auth.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_hid\rcsp_hid_inter.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_hid\rcsp_hid_inter.c
+	"rcsp_hid_inter.h"
+	"rcsp_bluetooth.h"
+	"JL_rcsp_api.h"
+	"usb/device/custom_hid.h"
+	"spple_app_config.h"
+	"app_config.h"
+	"custom_cfg.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\custom_hid.h
+	"typedef.h"
+	"usb.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_msg.c
+	"rcsp_msg.h"
+	"rcsp_bluetooth.h"
+	"common/circular_buf.h"
+	"rcsp_user_update.h"
+	"msg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_update\rcsp_ch_loader_download.c
+	"rcsp_ch_loader_download.h"
+	"rcsp_user_update.h"
+	"code_v2/update_loader_download.h"
+	"code_v2/update.h"
+	"rcsp_bluetooth.h"
+	"tick_timer_driver.h"
+	"third_party/rcsp/JL_rcsp_protocol.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v2\update.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\third_party_profile\jieli\jl_rcsp\rcsp_update\rcsp_user_update.c
+	"rcsp_bluetooth.h"
+	"rcsp_user_update.h"
+	"rcsp_ch_loader_download.h"
+	"code_v2/update.h"
+	"third_party/rcsp/JL_rcsp_protocol.h"
+	"msg/msg.h"
+	"custom_cfg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\update\dev_update.c
+	"code_v2/update.h"
+	"code_v2/update_loader_download.h"
+	"code_v2/dev_update.h"
+	"vfs.h"
+	"app_config.h"
+	"btcontroller_modules.h"
+	"device.h"
+	"sd.h"
+	"gpio.h"
+	"fat/fat_io_new.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v2\dev_update.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\sdmmc\sd.h
+	"typedef.h"
+	"device.h"
+	"sd_port.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\sd_port.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\update\testbox_uart_update.c
+	"app_modules.h"
+	"cpu.h"
+	"testbox_uart_update.h"
+	"uart_v2.h"
+	"msg/msg.h"
+	"code_v2/update_loader_download.h"
+	"sys_timer.h"
+	"code_v2/update.h"
+	"code_v2/update_loader_download.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v2\testbox_uart_update.h
+	"typedef.h"
+	"gpio.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\uart_v2.h
+	"typedef.h"
+	"jiffies.h"
+	"uart_types.h"
+	"circular_buf.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\uart_types.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\update\testbox_update.c
+	"code_v2/update.h"
+	"code_v2/update_loader_download.h"
+	"btctrler_task.h"
+	"app_config.h"
+	"clock.h"
+	"msg/msg.h"
+	"lib_profile_cfg.h"
+	"bt_profile_cfg.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\bt_common\hid\include\lib_profile_cfg.h
+	"hid_app_config.h"
+	"btcontroller_modules.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\update\update.c
+	"code_v2/update.h"
+	"code_v2/update_loader_download.h"
+	"crc16.h"
+	"wdt.h"
+	"app_config.h"
+	"cpu.h"
+	"btcontroller_modules.h"
+	"code_v2/uart_update.h"
+	"code_v2/dual_bank_updata_api.h"
+	"testbox_uart_update.h"
+	"rcsp_bluetooth.h"
+	"vm.h"
+	"clock.h"
+	"app_tone.h"
+	"audio_config.h"
+	"asm/pwm_led_hw.h"
+	"log.h"
+	"app_modules.h"
+	"bt_ble.h"
+	"test_app_config.h"
+	"msg.h"
+	"rcsp_user_update.h"
+	"testbox_uart_update.h"
+	"audio.h"
+	"adc_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v2\uart_update.h
+	"typedef.h"
+	"gpio.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v2\dual_bank_updata_api.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\cdc.c
+	"usb/device/usb_stack.h"
+	"usb/device/cdc.h"
+	"cdc_defs.h"
+	"usb_config.h"
+	"usb.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\cdc_defs.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\custom_hid.c
+	"usb/device/usb_stack.h"
+	"usb/device/hid.h"
+	"usb_config.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\descriptor.c
+	"usb/device/usb_stack.h"
+	"usb/device/descriptor.h"
+	"usb/device/uac_audio.h"
+	"usb/device/usb_suspend_resume.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\descriptor.h
+	"usb.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\uac_audio.h
+	"usb.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\usb_suspend_resume.h
+	"typedef.h"
+	"usb.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\hid.c
+	"usb/device/usb_stack.h"
+	"usb/device/hid.h"
+	"usb_config.h"
+	"usb.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\msd.c
+	"typedef.h"
+	"app_config.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"usb/device/msd.h"
+	"usb/usb_config.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\device\msd.h
+	"usb.h"
+	"usb_stack.h"
+	"usb/scsi.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\scsi.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\task_pc.c
+	"app_config.h"
+	"msg.h"
+	"otg.h"
+	"usb/usb_config.h"
+	"usb/device/usb_stack.h"
+	"usb/device/msd.h"
+	"usb/device/hid.h"
+	"usb/device/custom_hid.h"
+	"usb/device/uac_audio.h"
+	"usb/usr/usb_mic_interface.h"
+	"usb/usr/auadc_2_usbmic.h"
+	"cfg_tools.h"
+	"usb/device/cdc.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\auadc_2_usbmic.h
+	"typedef.h"
+	"sound_mge.h"
+	"usb/usr/usb_mic_interface.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\config\cfg_tools.h
+	"typedef.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\uac1.c
+	"usb_config.h"
+	"usb/device/usb_stack.h"
+	"usb/device/uac_audio.h"
+	"app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\uac_stream.c
+	"app_config.h"
+	"printf.h"
+	"usb/usb_config.h"
+	"usb/device/usb_stack.h"
+	"usb/device/uac_audio.h"
+	"usb/usr/usb_audio_interface.h"
+	"usb/usr/usb_mic_interface.h"
+	"uac_stream.h"
+	"usb_config.h"
+	"circular_buf.h"
+	"sound_mge.h"
+	"audio_dac_api.h"
+	"log.h"
+	"uart.h"
+	"msg.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\usb_audio_interface.h
+	"typedef.h"
+	"src.h"
+	"src_api.h"
+	"audio_dac_api.h"
+	"sound_mge.h"
+	"circular_buf.h"
+	"app_config.h"
+	"usb_common_def.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\uac_stream.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\usb_device.c
+	"app_config.h"
+	"usb/device/usb_stack.h"
+	"usb/usb_config.h"
+	"usb/device/msd.h"
+	"usb/scsi.h"
+	"usb/device/hid.h"
+	"usb/device/custom_hid.h"
+	"usb/device/cdc.h"
+	"usb/usb_config.h"
+	"usb/device/uac_audio.h"
+	"irq.h"
+	"gpio.h"
+	"usb_common_def.h"
+	"hwi.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\usb_device_config.c
+	"app_config.h"
+	"cpu.h"
+	"usb_config.h"
+	"usb/device/descriptor.h"
+	"usb/device/usb_stack.h"
+	"usb/device/usb_suspend_resume.h"
+	"irq.h"
+	"gpio.h"
+	"clock.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\usb_suspend_resume.c
+	"usb/device/usb_suspend_resume.h"
+	"usb/device/usb_stack.h"
+	"asm/power_interface.h"
+	"gpio.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\device\user_setup.c
+	"app_config.h"
+	"usb/device/usb_stack.h"
+	"usb_config.h"
+	"usb/device/msd.h"
+	"usb/scsi.h"
+	"usb/device/hid.h"
+	"usb/device/uac_audio.h"
+	"irq.h"
+	"gpio.h"
+	"apple_dock/iAP.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\apple_dock\iap.h
+	"config.h"
+	"printf.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\host\usb_bulk_transfer.c
+	"usb_config.h"
+	"usb_bulk_transfer.h"
+	"usb_ctrl_transfer.h"
+	"usb_storage.h"
+	"usb/host/usb_host.h"
+	"usb/usb_phy.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\host\usb_bulk_transfer.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\host\usb_ctrl_transfer.h
+	"usb/ch9.h"
+	"usb/usb_phy.h"
+	"usb_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\device\usb\host\usb_storage.h
+	"dev_mg/device.h"
+	"usb/scsi.h"
+	"usb/host/usb_host.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\host\usb_ctrl_transfer.c
+	"usb/host/usb_host.h"
+	"usb_ctrl_transfer.h"
+	"device_drive.h"
+	"gpio.h"
+	"usb/scsi.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\host\usb_host.c
+	"app_config.h"
+	"includes.h"
+	"bd49/bt_includes.h"
+	"jiffies.h"
+	"tick_timer_driver.h"
+	"device_drive.h"
+	"usb_config.h"
+	"usb/usb_phy.h"
+	"usb.h"
+	"usb/host/usb_host.h"
+	"usb/host/usb_ctrl_transfer.h"
+	"usb/host/usb_storage.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\host\usb_host_config.c
+	"app_config.h"
+	"usb_config.h"
+	"usb/scsi.h"
+	"irq.h"
+	"gpio.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\host\usb_storage.c
+	"app_config.h"
+	"usb/host/usb_host.h"
+	"usb_ctrl_transfer.h"
+	"usb_bulk_transfer.h"
+	"device_drive.h"
+	"usb_storage.h"
+	"usb_config.h"
+	"app_config.h"
+	"msg/msg.h"
+	"power_interface.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usb_test.c
+	"app_config.h"
+	"usb/host/usb_host.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"usb/device/msd.h"
+	"sound_mge.h"
+	"circular_buf.h"
+	"log.h"
+	"usb/device/hid.h"
+	"sound_mge.h"
+	"circular_buf.h"
+	"crc16.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\auadc_2_usbmic.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"audio_adc.h"
+	"stream_frame.h"
+	"usb/usr/usb_mic_interface.h"
+	"usb/usr/auadc_2_usbmic.h"
+	"usb/usr/uac_sync.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\source_pcm.c
+	"usb/usr/usb_mic_interface.h"
+	"decoder_mge.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\uac_sync.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"usb/device/uac_audio.h"
+	"usb/usr/usb_audio_interface.h"
+	"usb/usr/usb_mic_interface.h"
+	"usb/usr/uac_sync.h"
+	"iir.h"
+	"log.h"
+	"uart.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\usb_audio_interface.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"usb/device/msd.h"
+	"usb/device/usb_stack.h"
+	"usb/device/uac_audio.h"
+	"usb/usr/usb_audio_interface.h"
+	"usb/usr/uac_sync.h"
+	"audio_eq.h"
+	"log.h"
+	"uart.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\usb\usr\usb_mic_interface.c
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"audio_adc.h"
+	"stream_frame.h"
+	"usb/device/msd.h"
+	"usb/device/usb_stack.h"
+	"usb/device/uac_audio.h"
+	"usb/usr/usb_mic_interface.h"
+	"usb/usr/auadc_2_usbmic.h"
+	"usb/usr/uac_sync.h"
+	"sound_kick.h"
+	"log.h"
+	"uart.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\vm\nvm_api.c
+	"typedef.h"
+	"errno-base.h"
+	"new_vm.h"
+	"device.h"
+	"log.h"
+	"common.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\common\vm\vm_api.c
+	"vm.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\adc_api.c
+	"typedef.h"
+	"clock.h"
+	"adc_api.h"
+	"gpio.h"
+	"init.h"
+	"irq.h"
+	"power_interface.h"
+	"jiffies.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\init.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\apa_cpu.c
+	"audio_dac.h"
+	"audio_dac_api.h"
+	"audio.h"
+	"audio_analog.h"
+	"app_config.h"
+	"log.h"
+	"clock.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audio_analog.h
+	"config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_adc_cpu.c
+	"uart.h"
+	"config.h"
+	"audio.h"
+	"audio_adc.h"
+	"audio_adc_api.h"
+	"audio_dac.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_dac_api.c
+	"app_modules.h"
+	"audio_dac_api.h"
+	"audac_basic.h"
+	"string.h"
+	"uart.h"
+	"config.h"
+	"audio.h"
+	"audio_analog.h"
+	"clock.h"
+	"audio_energy_detect.h"
+	"circular_buf.h"
+	"audio_dac_fade.h"
+	"app_config.h"
+	"audio_link/audio_link_sync.h"
+	"sound_mge.h"
+	"src.h"
+	"mio_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\audio\audio_energy_detect.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_dac_cpu.c
+	"audio_dac.h"
+	"audac.h"
+	"audio_dac_api.h"
+	"audio.h"
+	"audio_analog.h"
+	"app_config.h"
+	"log.h"
+	"audio_dac_api.h"
+	"app_config.h"
+	"clock.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_link\audio_link.c
+	"audio_link.h"
+	"iis.h"
+	"gpio.h"
+	"gpio_hw.h"
+	"audio.h"
+	"audio_link_api.h"
+	"app_config.h"
+	"app_modules.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\iis.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_link\audio_link_api.c
+	"app_modules.h"
+	"app_config.h"
+	"audio_link.h"
+	"audio_link_sync.h"
+	"iis.h"
+	"gpio.h"
+	"circular_buf.h"
+	"sound_kick.h"
+	"audio_adc.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_link\audio_link_cpu.c
+	"app_modules.h"
+	"app_config.h"
+	"audio_link.h"
+	"audio_link_api.h"
+	"audio_dac_api.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"audio_dac.h"
+	"gpio.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\audio_link\audio_link_sync.c
+	"audio_link_api.h"
+	"audio_link_sync.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"audio_dac.h"
+	"sound_mge.h"
+	"uac_sync.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\device.c
+	"config.h"
+	"common.h"
+	"app_config.h"
+	"device.h"
+	"msg.h"
+	"usb/host/usb_storage.h"
+	"usb/otg.h"
+	"usb/usb_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\gpcnt.c
+	"gpcnt.h"
+	"gpio.h"
+	"clock.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\gpcnt.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\hw_timer.c
+	"hw_timer.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\hw_timer.h
+	"cpu.h"
+	"config.h"
+	"gpio.h"
+	"clock.h"
+	"hwi.h"
+	"dma.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\dma.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\hw_timer_capture.c
+	"hw_timer.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\hw_timer_pwm.c
+	"hw_timer.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\iic_api.c
+	"iic_api.h"
+	"wdt.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\iic_api.h
+	"typedef.h"
+	"gpio.h"
+	"iic_soft.h"
+	"iic_hw_v2.h"
+	"iic_hw.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\iic_soft.h
+	"typedef.h"
+	"gpio.h"
+	"iic_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\iic_hw_v2.h
+	"includes.h"
+	"gpio.h"
+	"iic_api.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\iic_soft.c
+	"iic_soft.h"
+	"clock.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\led\led_api.c
+	"led_api.h"
+	"pwm_led.h"
+	"gpio.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\led_api.h
+	"typedef.h"
+	"gpio.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\pwm_led.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\led\led_api_test.c
+	"led_api.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\led\pwm_led.c
+	"pwm_led.h"
+	"gpio.h"
+	"asm/power_interface.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\lpctmu.c
+	"lpctmu.h"
+	"gpio.h"
+	"dma.h"
+	"adc_api.h"
+	"power_interface.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\mcpwm.c
+	"mcpwm.h"
+	"clock.h"
+	"gpio.h"
+	"malloc.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\mcpwm.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\my_print.c
+	"config.h"
+	"uart.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\pl_cnt.c
+	"pl_cnt.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\power\gpio_config.c
+	"asm/power_interface.h"
+	"uart.h"
+	"gpio.h"
+	"adc_api.h"
+	"app_config.h"
+	"testbox_uart_update.h"
+	"audio.h"
+	"usb/otg.h"
+	"usb/host/usb_host.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\power\power_app.c
+	"asm/power_interface.h"
+	"gpio.h"
+	"uart.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\power\power_config.c
+	"asm/power_interface.h"
+	"app_config.h"
+	"gpio.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\power_api.c
+	"asm/power_interface.h"
+	"sys_memory.h"
+	"adc_api.h"
+	"audio.h"
+	"gpio.h"
+	"app_config.h"
+	"tick_timer_driver.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\rtc_app.c
+	"rtc.h"
+	"cpu.h"
+	"gpio.h"
+	"irq.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\rtc.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\sd.c
+	"sd.h"
+	"gpio.h"
+	"clock.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\spi.c
+	"gpio.h"
+	"clock.h"
+	"spi.h"
+	"app_config.h"
+	"errno-base.h"
+	"log.h"
+
+1731119860 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\tick_timer_sys.c
+	"tick_timer_driver.h"
+	"clock.h"
+	"printf.h"
+	"jiffies.h"
+	"msg.h"
+	"key.h"
+	"app_config.h"
+	"audio_dac_fade.h"
+	"ir_decoder.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\cpu\bd49\uart.c
+	"config.h"
+	"uart.h"
+	"uart_v2.h"
+	"app_config.h"
+	"gpio.h"
+	"clock.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\device\device_app.c
+	"config.h"
+	"common.h"
+	"app_config.h"
+	"device.h"
+	"device_app.h"
+	"errno-base.h"
+	"update/code_v1/update_v1.h"
+	"dev_update.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\device\device_app.h
+	"typedef.h"
+	"app_config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\update\code_v1\update_v1.h
+	"typedef.h"
+	"csfr.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\device\device_list.c
+	"config.h"
+	"common.h"
+	"app_config.h"
+	"device.h"
+	"msg.h"
+	"usb/host/usb_storage.h"
+	"usb/otg.h"
+	"usb/usb_config.h"
+	"log.h"
+	"norflash.h"
+	"gpio.h"
+	"sd.h"
+	"gpio.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\rf\rf_soft.c
+	"common.h"
+	"typedef.h"
+	"hwi.h"
+	"log.h"
+
+1731120170 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\bd49\main.c
+	"config.h"
+	"common.h"
+	"clock.h"
+	"maskrom.h"
+	"app_config.h"
+	"init.h"
+	"app.h"
+	"device.h"
+	"wdt.h"
+	"efuse.h"
+	"power_interface.h"
+	"my_malloc.h"
+	"sys_timer.h"
+	"icache.h"
+	"log.h"
+	"msg.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\maskrom.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\efuse.h
+	"cpu.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\icache.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\bsp_loop.c
+	"bsp_loop.h"
+	"msg.h"
+	"errno-base.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\bsp_loop.h
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\flash_init.c
+	"flash_wp.h"
+	"flash_init.h"
+	"tick_timer_driver.h"
+	"device.h"
+	"vfs.h"
+	"msg.h"
+	"sys_memory.h"
+	"vm_sfc.h"
+	"my_malloc.h"
+	"init_app.h"
+	"audio.h"
+	"boot.h"
+	"nor_fs.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\flash_wp.h
+	"dev_mg/device.h"
+	"boot.h"
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\flash_init.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\common\vm_sfc.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\init_app.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\bsp\start\init.c
+	"init.h"
+	"tick_timer_driver.h"
+	"device.h"
+	"vfs.h"
+	"msg.h"
+	"my_malloc.h"
+	"init_app.h"
+	"audio.h"
+	"sys_timer.h"
+	"app_modules.h"
+	"flash_init.h"
+	"update.h"
+	"code_v2/update.h"
+	"log.h"
+
+1731154714 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\app.c
+	"app_modules.h"
+	"app_config.h"
+	"config.h"
+	"common.h"
+	"app.h"
+	"msg.h"
+	"sys_memory.h"
+	"vm_sfc.h"
+	"music_play.h"
+	"usb_slave_mode.h"
+	"linein_mode.h"
+	"record_mode.h"
+	"simple_decode.h"
+	"midi_dec_mode.h"
+	"midi_keyboard_mode.h"
+	"loudspk_mode.h"
+	"rtc_mode.h"
+	"rf_radio_app.h"
+	"rc_app.h"
+	"softoff_mode.h"
+	"jiffies.h"
+	"ui_api.h"
+	"key.h"
+	"audio_dac_api.h"
+	"usb_audio_interface.h"
+	"audio.h"
+	"audio_adc.h"
+	"device.h"
+	"otg.h"
+	"charge.h"
+	"pa_mute.h"
+	"device_app.h"
+	"adc_api.h"
+	"usb/host/usb_host.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"wdt.h"
+	"bsp_loop.h"
+	"app_power_mg.h"
+	"sine_play.h"
+	"init_app.h"
+	"bt_ble.h"
+	"sys_timer.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\music_play.h
+	"typedef.h"
+	"decoder_api.h"
+	"key.h"
+	"app.h"
+	"simple_play_file.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\simple_play_file.h
+	"decoder_api.h"
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\usb_slave\usb_slave_mode.h
+	"typedef.h"
+	"app.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\linein\linein_mode.h
+	"typedef.h"
+	"app.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\record\record_mode.h
+	"typedef.h"
+	"key.h"
+	"decoder_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\simple_decode\simple_decode.h
+	"typedef.h"
+	"key.h"
+	"simple_play_file.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_dec\midi_dec_mode.h
+	"typedef.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_keyboard\midi_keyboard_mode.h
+	"typedef.h"
+	"key.h"
+	"decoder_api.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\loudspeaker\loudspk_mode.h
+	"typedef.h"
+	"app.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rtc\rtc_mode.h
+	"typedef.h"
+	"app.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\rf_radio_app.h
+	"typedef.h"
+	"app.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\remotecontrol\rc_app.h
+	"typedef.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\softoff_app\softoff_mode.h
+	"typedef.h"
+	"key.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\ui\ui_api.h
+	"typedef.h"
+	"app_config.h"
+	"led5x7_driver.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\ui\led5x7_driver.h
+	"config.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\pa_mute.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\app_config.c
+	"includes.h"
+	"app_config.h"
+	"audio_adc.h"
+	"audio_dac.h"
+	"gpio.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\bd49\cpu_config.c
+	"includes.h"
+	"app_config.h"
+	"audio_adc.h"
+	"audio_dac.h"
+	"app_modules.h"
+	"code_v2/update_loader_download.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\hot_msg.c
+	"hot_msg.h"
+	"audio_dac_api.h"
+	"audio.h"
+	"msg.h"
+	"app.h"
+	"wdt.h"
+	"adc_api.h"
+	"charge.h"
+	"power_api.h"
+	"ui_api.h"
+	"tick_timer_driver.h"
+	"sys_memory.h"
+	"app_power_mg.h"
+	"device_app.h"
+	"usb/usb_config.h"
+	"usb/device/hid.h"
+	"usb/device/msd.h"
+	"update.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\hot_msg.h
+	"typedef.h"
+	"bsp_loop.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\cpu\bd49\power_api.h
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\idle_check.c
+	"msg.h"
+	"common.h"
+	"string.h"
+	"circular_buf.h"
+	<stdarg.h>
+	"config.h"
+	"power_api.h"
+	"ui_api.h"
+	"audio_dac.h"
+	"pa_mute.h"
+	"usb/host/usb_host.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"charge.h"
+	"audio.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\pa_mute.c
+	"pa_mute.h"
+	"cpu.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\simple_play_file.c
+	"simple_play_file.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"errno-base.h"
+	"sound_mge.h"
+	"sys_memory.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\ui\led5x7_driver.c
+	"ui_api.h"
+	"led5x7_driver.h"
+	"music_play.h"
+	"play_file.h"
+	"break_point.h"
+	"msg.h"
+	"ui_common.h"
+	"music_play.h"
+	"audio_dac_api.h"
+	"device_app.h"
+	"audio_eq.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\play_file.h
+	"typedef.h"
+	"decoder_api.h"
+	"music_play.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\break_point.h
+	"typedef.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\ui\ui_common.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\ui\ui_api.c
+	"ui_api.h"
+	"ui_common.h"
+	"led5x7_driver.h"
+	"music_play.h"
+	"play_file.h"
+	"msg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\common\ui\ui_common.c
+	"config.h"
+	"ui_api.h"
+	"log.h"
+
+1731120095 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\init_app.c
+	"init.h"
+	"device.h"
+	"vfs.h"
+	"msg.h"
+	"clock.h"
+	"key.h"
+	"ui_api.h"
+	"charge.h"
+	"audio.h"
+	"audio_dac_api.h"
+	"adc_api.h"
+	"pa_mute.h"
+	"src_api.h"
+	"app_config.h"
+	"flash_init.h"
+	"sine_play.h"
+	"app_power_mg.h"
+	"gpio.h"
+	"power_interface.h"
+	"power_api.h"
+	"audio_adc.h"
+	"nor_fs.h"
+	"effects_adj.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\linein\linein_mode.c
+	"linein_mode.h"
+	"common.h"
+	"msg.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"circular_buf.h"
+	"jiffies.h"
+	"pa_mute.h"
+	"sys_memory.h"
+	"sound_mge.h"
+	"audio_dac_api.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\linein\linein_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\loudspeaker\loudspk_mode.c
+	"loudspk_mode.h"
+	"common.h"
+	"msg.h"
+	"hot_msg.h"
+	"ui_api.h"
+	"circular_buf.h"
+	"jiffies.h"
+	"pa_mute.h"
+	"sys_memory.h"
+	"sound_mge.h"
+	"audio_dac_api.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\loudspeaker\loudspk_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_dec\midi_dec_mode.c
+	"midi_dec_mode.h"
+	"midi_api.h"
+	"common.h"
+	"msg.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"circular_buf.h"
+	"jiffies.h"
+	"pa_mute.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"simple_play_file.h"
+	"sys_memory.h"
+	"app.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_dec\midi_dec_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_keyboard\midi_keyboard_mode.c
+	"midi_keyboard_mode.h"
+	"midi_ctrl.h"
+	"midi_prog.h"
+	"common.h"
+	"msg.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"circular_buf.h"
+	"jiffies.h"
+	"pa_mute.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"music_play.h"
+	"play_file.h"
+	"music_device.h"
+	"MIDI_DEC_API.h"
+	"sys_memory.h"
+	"app.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_keyboard\midi_prog.h
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\music_device.h
+	"typedef.h"
+	"device_app.h"
+	"music_play.h"
+	"vfs.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\midi_keyboard\midi_keyboard_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\break_point.c
+	"break_point.h"
+	"music_play.h"
+	"device_app.h"
+	"sys_memory.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\music_device.c
+	"music_device.h"
+	"music_play.h"
+	"play_file.h"
+	"break_point.h"
+	"device.h"
+	"ui_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\music_key_table.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\music_play.c
+	"music_play.h"
+	"music_device.h"
+	"play_file.h"
+	"device_app.h"
+	"vfs.h"
+	"sys_memory.h"
+	"msg.h"
+	"jiffies.h"
+	"tick_timer_driver.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"power_api.h"
+	"charge.h"
+	"pa_mute.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"audio_dac_fade.h"
+	"audio_dac_api.h"
+	"dev_update.h"
+	"usb/host/usb_host.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"audio_eq.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\music\play_file.c
+	"play_file.h"
+	"music_play.h"
+	"music_device.h"
+	"break_point.h"
+	"device_app.h"
+	"vfs.h"
+	"ui_api.h"
+	"app.h"
+	"msg.h"
+	"sys_memory.h"
+	"audio_dac_fade.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\record\enc_in_fatfs.c
+	"record_mode.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"msg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\record\enc_in_norfs.c
+	"record_mode.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"msg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\record\record_mode.c
+	"record_mode.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"msg.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"encoder_mge.h"
+	"encoder_file.h"
+	"music_play.h"
+	"play_file.h"
+	"app.h"
+	"jiffies.h"
+	"sys_memory.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"audio.h"
+	"audio_dac_api.h"
+	"audio_adc_api.h"
+	"audio_adc.h"
+	"ump3_encoder.h"
+	"mp3_encoder.h"
+	"a_encoder.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\record\record_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\remotecontrol\dongle.c
+	"audio2rf_send.h"
+	"rf_send_queue.h"
+	"rf2audio_recv.h"
+	"trans_unpacket.h"
+	"rc_app.h"
+	"app_modules.h"
+	"app.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"vfs.h"
+	"msg.h"
+	"custom_event.h"
+	"crc16.h"
+	"circular_buf.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"encoder_mge.h"
+	"sound_mge.h"
+	"audio.h"
+	"audio_dac_api.h"
+	"audio_adc_api.h"
+	"audio_dac.h"
+	"audio_adc.h"
+	"usb_stack.h"
+	"usb_common_def.h"
+	"uac_audio.h"
+	"hid.h"
+	"custom_hid.h"
+	"auadc_2_usbmic.h"
+	"third_party/common/ble_user.h"
+	"clock.h"
+	"ump3_encoder.h"
+	"bt_ble.h"
+	"vble_complete.h"
+	"update.h"
+	"trans_unpacket.h"
+	"spple_app_config.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\remotecontrol\rc_app.c
+	"audio_rf_mge.h"
+	"audio2rf_send.h"
+	"trans_packet.h"
+	"trans_unpacket.h"
+	"rf2audio_recv.h"
+	"rc_app.h"
+	"app_modules.h"
+	"app.h"
+	"cpu.h"
+	"config.h"
+	"typedef.h"
+	"vfs.h"
+	"hot_msg.h"
+	"msg.h"
+	"custom_event.h"
+	"crc16.h"
+	"circular_buf.h"
+	"decoder_api.h"
+	"decoder_mge.h"
+	"decoder_msg_tab.h"
+	"encoder_mge.h"
+	"sound_mge.h"
+	"audio.h"
+	"audio_dac_api.h"
+	"audio_adc_api.h"
+	"audio_dac.h"
+	"audio_adc.h"
+	"ir_encoder.h"
+	"gpio.h"
+	"clock.h"
+	"bt_ble.h"
+	"vble_complete.h"
+	"usb/device/hid.h"
+	"hot_msg.h"
+	"power_api.h"
+	"tick_timer_driver.h"
+	"update.h"
+	"encoder_stream.h"
+	"ump3_encoder.h"
+	"ump3_encoder.h"
+	"ima_encoder.h"
+	"ima_api.h"
+	"sbc_encoder.h"
+	"speex_encoder.h"
+	"sbc_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\encoder_stream.h
+	"typedef.h"
+	"encoder_mge.h"
+	"audio_codec_format.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\include_lib\encoder\list\ima_encoder.h
+	"typedef.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\remotecontrol\rc_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+	"rc_app.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\full_duplex\rf_radio_full_duplex.c
+	"rf_radio_app.h"
+	"rf_radio_rs.h"
+	"trans_packet.h"
+	"key.h"
+	"audio.h"
+	"power_api.h"
+	"rf_pa_port.h"
+	"hot_msg.h"
+	"audio_adc_api.h"
+	"log.h"
+
+1731117034 e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\rf_radio_rs.h
+	"typedef.h"
+	"msg.h"
+	"circular_buf.h"
+	"tick_timer_driver.h"
+	"audio_dac_api.h"
+	"encoder_mge.h"
+	"decoder_api.h"
+	"audio_rf_mge.h"
+	"audio2rf_send.h"
+	"rf2audio_recv.h"
+	"rf_send_queue.h"
+	"trans_unpacket.h"
+	"bt_ble.h"
+	"vble_complete.h"
+	"vble_simple.h"
+	"vble_adv.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\half_duplex\rf_radio_receive.c
+	"rf_radio_app.h"
+	"rf_radio_rs.h"
+	"hot_msg.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\half_duplex\rf_radio_send.c
+	"rf_radio_app.h"
+	"rf_radio_rs.h"
+	"audio_adc_api.h"
+	"encoder_stream.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\padv\padv_radio.c
+	"trans_packet.h"
+	"key.h"
+	"audio.h"
+	"power_api.h"
+	"rf_pa_port.h"
+	"hot_msg.h"
+	"audio_adc_api.h"
+	"audio_dac_api.h"
+	"msg.h"
+	"clock.h"
+	"vble_adv.h"
+	"rf_radio_app.h"
+	"rf_radio_rs.h"
+	"third_party/padvb_intercom/padvb.h"
+	"encoder_stream.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\rf_radio_app.c
+	"rf_radio_app.h"
+	"rf_radio_rs.h"
+	"trans_packet.h"
+	"key.h"
+	"audio.h"
+	"power_api.h"
+	"rf_pa_port.h"
+	"hot_msg.h"
+	"audio_adc_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rf_radio\rf_radio_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rtc\rtc_mode.c
+	"rtc_mode.h"
+	"hot_msg.h"
+	"sys_memory.h"
+	"rtc.h"
+	"cpu.h"
+	"common.h"
+	"msg.h"
+	"audio.h"
+	"ui_api.h"
+	"rtc.h"
+	"power_api.h"
+	"audio_dac.h"
+	"usb/host/usb_host.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"log.h"
+	"lcd_seg4x8_driver.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\rtc\rtc_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\simple_decode\simple_decode.c
+	"simple_decode.h"
+	"common.h"
+	"msg.h"
+	"app.h"
+	"vfs.h"
+	"hot_msg.h"
+	"sys_memory.h"
+	"circular_buf.h"
+	"jiffies.h"
+	"tick_timer_driver.h"
+	"device_app.h"
+	"ui_api.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"audio_dac_api.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\simple_decode\simple_decode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\softoff_app\softoff_mode.c
+	"softoff_mode.h"
+	"common.h"
+	"msg.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"circular_buf.h"
+	"jiffies.h"
+	"pa_mute.h"
+	"device.h"
+	"device_app.h"
+	"vfs.h"
+	"simple_play_file.h"
+	"device.h"
+	"device_app.h"
+	"sys_memory.h"
+	"app.h"
+	"power_api.h"
+	"decoder_api.h"
+	"decoder_msg_tab.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\usb_slave\usb_slave_mode.c
+	"usb_slave_mode.h"
+	"common.h"
+	"msg.h"
+	"ui_api.h"
+	"hot_msg.h"
+	"usb/usb_config.h"
+	"usb/device/hid.h"
+	"usb/device/msd.h"
+	"audio_dac_api.h"
+	"app_config.h"
+	"stream_frame.h"
+	"clock.h"
+	"cfg_tools.h"
+	"audio_eq.h"
+	"effects_adj.h"
+	"usb_audio_interface.h"
+	"log.h"
+
+1731117034 source:e:\ble_mppt\project\ble_mppt\platform\aw30sdk\apps\app\src\mbox_flash\usb_slave\usb_slave_mode_key.c
+	"typedef.h"
+	"key.h"
+	"msg.h"
+	"app_config.h"
+
+1731154614 source:e:\ble_mppt\project\ble_mppt\application\app_main.c
+	"app_modules.h"
+	"app_config.h"
+	"config.h"
+	"common.h"
+	"app.h"
+	"msg.h"
+	"sys_memory.h"
+	"vm_sfc.h"
+	"music_play.h"
+	"usb_slave_mode.h"
+	"linein_mode.h"
+	"record_mode.h"
+	"simple_decode.h"
+	"midi_dec_mode.h"
+	"midi_keyboard_mode.h"
+	"loudspk_mode.h"
+	"rtc_mode.h"
+	"rf_radio_app.h"
+	"rc_app.h"
+	"softoff_mode.h"
+	"jiffies.h"
+	"ui_api.h"
+	"key.h"
+	"audio_dac_api.h"
+	"usb_audio_interface.h"
+	"audio.h"
+	"audio_adc.h"
+	"device.h"
+	"otg.h"
+	"charge.h"
+	"pa_mute.h"
+	"device_app.h"
+	"adc_api.h"
+	"usb/host/usb_host.h"
+	"usb/device/usb_stack.h"
+	"usb/otg.h"
+	"wdt.h"
+	"bsp_loop.h"
+	"app_power_mg.h"
+	"sine_play.h"
+	"init_app.h"
+	"bt_ble.h"
+	"sys_timer.h"
+	"log.h"
+
