@@ -89,6 +89,8 @@ u32 opus_encode_api(void *p_file, void *input_func, void *output_func)
     }
     /******************************************/
     memset(&enc_opus_hdl, 0, sizeof(enc_obj));
+    memset(&obuf_enc_opus_o[0], 0x00, sizeof(obuf_enc_opus_o));
+    memset(&opus_encode_buff[0], 0x00, sizeof(opus_encode_buff));
     cbuf_init(&cbuf_enc_opus_o, &obuf_enc_opus_o[0], sizeof(obuf_enc_opus_o));
     log_info("A\n");
     // log_info("B\n");

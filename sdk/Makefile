@@ -90,6 +90,7 @@ CFLAGS := \
 	-Wundef \
 	-nostrictpi32 \
 	-fprefer-gnu-section \
+	-Werror \
 	-Werror=implicit-function-declaration \
 	-Werror=return-type \
 	-Werror=undef \
@@ -134,6 +135,7 @@ DEFINES := \
 	-DHAS_IMA_ENCODER \
 	-DHAS_SBC_ENCODER \
 	-DHAS_JLA_LW_ENCODER \
+	-DHAS_ANS_EN \
 	-DHAS_SPEED_EFFECT \
 	-DHAS_SONG_SPEED_EFFECT \
 	-DHAS_HOWLING_EFFECT \
@@ -181,6 +183,7 @@ INCLUDES := \
 	-Iapps/app/bsp/common/decoder/mio \
 	-Iapps/include_lib/encoder \
 	-Iapps/include_lib/encoder/list \
+	-Iapps/include_lib/ans \
 	-Iapps/app/src \
 	-Iapps/app/post_build/bd49 \
 	-Iapps/app/bsp \
@@ -221,6 +224,7 @@ INCLUDES := \
 	-Iapps/include_lib/config \
 	-Iapps/include_lib/sound_effect_list \
 	-Iapps/include_lib/pcm_eq \
+	-Iapps/include_lib/remain_output \
 	-Iapps/app/src/mbox_flash/common \
 	-Iapps/app/src/mbox_flash/common/ui \
 	-Iapps/app/src/mbox_flash/music \
@@ -234,6 +238,10 @@ INCLUDES := \
 	-Iapps/app/src/mbox_flash/rtc \
 	-Iapps/app/src/mbox_flash/softoff_app \
 	-Iapps/app/src/mbox_flash/rf_radio \
+	-Iapps/app/src/mbox_flash/rf_radio/connect_radio \
+	-Iapps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex \
+	-Iapps/app/src/mbox_flash/rf_radio/connect_radio/full_duplex \
+	-Iapps/app/src/mbox_flash/rf_radio/padv \
 	-Iapps/app/src/mbox_flash/remotecontrol \
 	-Iapps/include_lib/liba/ARCH/pi32_lto/header \
 	-Iapps/app/bsp/common/bt_common \
@@ -255,6 +263,7 @@ INCLUDES := \
 	-Iapps/app/bsp/common/third_party_profile/common \
 	-Iapps/include_lib/bt_include/third_party/rcsp \
 	-Iapps/app/bsp/common/third_party_profile/jieli/gatt_common \
+	-Iapps/include_lib/bt_config_tool \
 	-Iapps/app/bsp/common/bt_user/vble_adv \
 	-Iapps/app/bsp/common/bt_user/vble_gatt \
 	-Iapps/app/bsp/common/bt_common/ble_test \
@@ -285,6 +294,7 @@ c_SRC_FILES := \
 	apps/app/bsp/common/audio_rf_trans/trans_unpacket.c \
 	apps/app/bsp/common/bt_common/ble_test/ble_master.c \
 	apps/app/bsp/common/bt_common/ble_test/ble_slave.c \
+	apps/app/bsp/common/bt_common/ble_test/ble_test_api.c \
 	apps/app/bsp/common/bt_common/ble_test/bt_ble.c \
 	apps/app/bsp/common/bt_common/ble_test/lib_btctrler_config.c \
 	apps/app/bsp/common/bt_common/ble_test/lib_btstack_config.c \
@@ -327,6 +337,7 @@ c_SRC_FILES := \
 	apps/app/bsp/common/bt_common/spp_and_le/modules/bt/app_comm_ble.c \
 	apps/app/bsp/common/bt_common/spp_and_le/modules/user_cfg.c \
 	apps/app/bsp/common/bt_common/spp_and_le/version.c \
+	apps/app/bsp/common/bt_config_tool/bt_config_tool.c \
 	apps/app/bsp/common/bt_user/vble_adv/vble_adv.c \
 	apps/app/bsp/common/bt_user/vble_adv/vble_adv_trans.c \
 	apps/app/bsp/common/bt_user/vble_gatt/vble_complete.c \
@@ -383,6 +394,7 @@ c_SRC_FILES := \
 	apps/app/bsp/common/norflash/norflash.c \
 	apps/app/bsp/common/power_manage/app_power_mg.c \
 	apps/app/bsp/common/reserved_area/reserved_area.c \
+	apps/app/bsp/common/sound_effect_list/ans_api.c \
 	apps/app/bsp/common/sound_effect_list/echo_api.c \
 	apps/app/bsp/common/sound_effect_list/notch_howling_api.c \
 	apps/app/bsp/common/sound_effect_list/pcm_eq_api.c \
@@ -441,6 +453,7 @@ c_SRC_FILES := \
 	apps/app/bsp/cpu/bd49/audio_link/audio_link_api.c \
 	apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.c \
 	apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.c \
+	apps/app/bsp/cpu/bd49/cane.c \
 	apps/app/bsp/cpu/bd49/device.c \
 	apps/app/bsp/cpu/bd49/gpcnt.c \
 	apps/app/bsp/cpu/bd49/hw_timer.c \
@@ -502,11 +515,14 @@ c_SRC_FILES := \
 	apps/app/src/mbox_flash/remotecontrol/dongle.c \
 	apps/app/src/mbox_flash/remotecontrol/rc_app.c \
 	apps/app/src/mbox_flash/remotecontrol/rc_key.c \
-	apps/app/src/mbox_flash/rf_radio/full_duplex/rf_radio_full_duplex.c \
-	apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_receive.c \
-	apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_send.c \
+	apps/app/src/mbox_flash/rf_radio/connect_radio/connect_radio.c \
+	apps/app/src/mbox_flash/rf_radio/connect_radio/full_duplex/rf_full_duplex.c \
+	apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_duplex.c \
+	apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_receive.c \
+	apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_send.c \
 	apps/app/src/mbox_flash/rf_radio/padv/padv_radio.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_app.c \
+	apps/app/src/mbox_flash/rf_radio/rf_radio_comm.c \
 	apps/app/src/mbox_flash/rf_radio/rf_radio_key.c \
 	apps/app/src/mbox_flash/rtc/rtc_mode.c \
 	apps/app/src/mbox_flash/rtc/rtc_mode_key.c \
@@ -546,6 +562,7 @@ LFLAGS := \
 	--plugin-opt=-mattr=+no-constpool \
 	--sort-common \
 	--start-group \
+	apps/include_lib/liba/bd49/mbox_flash/busy_buffer_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_wav_decoder.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_f1a_decode.a \
@@ -568,6 +585,8 @@ LFLAGS := \
 	apps/include_lib/liba/ARCH/pi32_lto/sbc_stdenc_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_jla_lw_codec_pi32.a  \
 	apps/include_lib/liba/bd49/mbox_flash/audio_media_lib.a  \
+	apps/include_lib/liba/ARCH/pi32_lto/libNoiseSuppress_pi32_OnChip.a \
+	apps/include_lib/liba/ARCH/pi32_lto/lib_SW_FFT_pi32_OnChip.a \
 	apps/include_lib/liba/ARCH/pi32_lto/lib_speed_pitch.a \
 	apps/include_lib/liba/ARCH/pi32_lto/ps_song_lib.a \
 	apps/include_lib/liba/ARCH/pi32_lto/howling.a \

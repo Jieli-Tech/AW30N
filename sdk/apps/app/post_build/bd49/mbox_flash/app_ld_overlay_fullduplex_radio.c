@@ -36,12 +36,12 @@
             PROVIDE(ar_trans_data_start = .);
             *(.ar_trans_data);
             PROVIDE(ar_trans_data_end = .);
-            PROVIDE(rf_radio_data_start = .);
-            *(.rf_radio_data);
-            PROVIDE(rf_radio_data_end = .);
+            PROVIDE(full_radio_start = .);
+            *(.rf_radio_full);
+            PROVIDE(full_radio_end = .);
         }
         .d_rec {
-            . = rf_radio_data_end;
+            . = full_radio_end;
             rec_data_start = .;
             *(.rec_data)
             rec_data_end = .;

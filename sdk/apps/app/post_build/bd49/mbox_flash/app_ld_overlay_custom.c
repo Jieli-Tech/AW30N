@@ -33,10 +33,18 @@
             PROVIDE(ar_trans_data_start = .);
             *(.ar_trans_data);
             PROVIDE(ar_trans_data_end = .);
-            PROVIDE(rf_radio_data_start = .);
-            *(.rf_radio_data);
-            *(.padv_trans_data);
-            PROVIDE(rf_radio_data_end = .);
+        }
+        .half_radio {
+            . = ar_trans_data_end;
+            PROVIDE(half_radio_start = .);
+            *(.rf_radio_half);
+            PROVIDE(half_radio_end = .);
+        }
+        .padv_radio {
+            . = ar_trans_data_end;
+            PROVIDE(padv_radio_start = .);
+            *(.rf_radio_padv);
+            PROVIDE(padv_radio_end = .);
         }
 
     } > ram0
@@ -146,6 +154,7 @@
         .d_rec {
             rec_data_start = .;
             *(.rec_data)
+            *(.ans_data)
             rec_data_end = .;
         }
         .d_enc_a {

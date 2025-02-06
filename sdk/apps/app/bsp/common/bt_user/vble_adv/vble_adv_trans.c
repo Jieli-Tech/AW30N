@@ -4,16 +4,26 @@
 #define LOG_TAG             "[vble_adv_trans]"
 #include "log.h"
 
-padvb_user_param_t u_pa_rx AT(.padv_trans_data);
-padvb_user_param_t u_pa_tx AT(.padv_trans_data);
+padvb_user_param_t u_pa_rx AT(.rf_radio_padv);
+padvb_user_param_t u_pa_tx AT(.rf_radio_padv);
 
-u8 g_adv_data_buf[SEND_FRAME_LEN] AT(.padv_trans_data);
+u8 g_adv_data_buf[SEND_FRAME_LEN] AT(.rf_radio_padv);
 
 struct PADV_PACKET_HEADER {
     /* u8 id; */
     u16 index;
 };
-struct PADV_PACKET_HEADER padv_header AT(.padv_trans_data);
+struct PADV_PACKET_HEADER padv_header AT(.rf_radio_padv);
+
+queue2vble_tx_send_mge_ops *g_tx_ops;
+
+void queue2vble_tx_send_register(void *ops)
+{
+    local_irq_disable();
+    g_tx_ops = ops;
+    local_irq_enable();
+}
+
 
 void vble_padv_radio_tx_callback(const PADVB_EVENT event)
 {
@@ -35,18 +45,23 @@ void vble_padv_radio_tx_callback(const PADVB_EVENT event)
         /* log_info("tx id is %d\n", padv_header.id); */
         memset(g_adv_data_buf, 0, sizeof(g_adv_data_buf));
         break;
+    case PADVB_EVENT_PUSH_DATA_TIMEOUT:
+        log_info("PADVB_EVENT_PUSH_DATA_TIMEOUT\n");
+        break;
     case PADVB_EVENT_CLOSE:
         log_info("PADVB_EVENT_CLOSE\n");
         break;
     case PADVB_EVENT_PUSH_DATA:
         /* log_info("PADVB_EVENT_PUSH_DATA\n"); */
-        /* JL_PORTA->DIR &= ~BIT(13); */
-        /* JL_PORTA->OUT |= BIT(13); */
+        if (NULL == g_tx_ops) {
+            break;
+        }
         /* putchar('p'); */
         memcpy(&g_adv_data_buf[0], &padv_header, sizeof(struct PADV_PACKET_HEADER));
         u32 rlen = u_pa_tx.frame_len - sizeof(struct PADV_PACKET_HEADER);
         u8 *data = g_adv_data_buf + sizeof(struct PADV_PACKET_HEADER);
-        u32 send_data_len = read_data_from_queue(data, rlen);
+        queue_obj *obj = g_tx_ops->get_send_queue_obj();
+        u32 send_data_len = g_tx_ops->read_data(obj, data, rlen);
         if (send_data_len != 0) {
             /* log_info("ogdlen %d\n", send_data_len); */
             padv_header.index++;
@@ -66,7 +81,7 @@ typedef struct _vble_adv_rx_mge {
     void (*sync_lost_callback)(void);
     void (*pop_data_callback)(void *, u8 *, u16);
 } vble_adv_rx_mge;
-vble_adv_rx_mge vble_rx_cb_info AT(.padv_trans_data);
+vble_adv_rx_mge vble_rx_cb_info AT(.rf_radio_padv);
 /* int vble_adv_rx_cb_register(void *priv, void *sync_success_callback_fun, void *sync_lost_callback_fun, void *pop_data_callback_fun) */
 int vble_adv_rx_cb_register(void *priv, void *sync_lost_callback_fun, void *pop_data_callback_fun)
 {
@@ -160,8 +175,9 @@ void vble_padv_param_init(void)
     memcpy(u_pa_rx.adv_name, "jla_padva_aw30", 14);
     u_pa_rx.frame_len = SEND_FRAME_LEN; //130
     /* u_pa_rx.frame_interval = 20; //12.5ms */
-    u_pa_rx.frame_interval = 16; //10ms
-    u_pa_rx.retry_num = 10;
+    u_pa_rx.frame_interval = 32; //20ms
+    u_pa_rx.phy_mode = 0;
+    u_pa_rx.retry_num = 8;
     u_pa_rx.flow_mode = 0;
     /* u_pa_rx.retry_interval = 1250; */
     u_pa_rx.user_cb.event_cb = vble_padv_radio_rx_callback;
@@ -169,8 +185,9 @@ void vble_padv_param_init(void)
     memcpy(u_pa_tx.adv_name, "jla_padva_aw30", 14);
     u_pa_tx.frame_len = SEND_FRAME_LEN; //130
     /* u_pa_tx.frame_interval = 20; //12.5ms */
-    u_pa_tx.frame_interval = 16; //10ms
-    u_pa_tx.retry_num = 10;
+    u_pa_tx.frame_interval = 32; //20ms
+    u_pa_tx.phy_mode = 0;
+    u_pa_tx.retry_num = 8;
     u_pa_tx.flow_mode = 0;
     /* u_pa_tx.retry_interval = 1250; */
     u_pa_tx.user_cb.event_cb = vble_padv_radio_tx_callback;
@@ -179,6 +196,7 @@ void vble_padv_param_init(void)
     log_info("u_pa_rx.adv_name %s\n", &(u_pa_rx.adv_name));
     log_info("u_pa_rx.frame_len %d\n", u_pa_rx.frame_len);
     log_info("u_pa_rx.frame_interval %d\n", u_pa_rx.frame_interval);
+    log_info("u_pa_rx.phy_mode %d\n", u_pa_rx.phy_mode);
     log_info("u_pa_rx.retry_num %d\n", u_pa_rx.retry_num);
     log_info("u_pa_rx.flow_mode %d\n", u_pa_rx.flow_mode);
 
@@ -187,6 +205,7 @@ void vble_padv_param_init(void)
     log_info("u_pa_tx.adv_name %s\n", &(u_pa_tx.adv_name));
     log_info("u_pa_tx.frame_len %d\n", u_pa_tx.frame_len);
     log_info("u_pa_tx.frame_interval %d\n", u_pa_tx.frame_interval);
+    log_info("u_pa_tx.phy_mode %d\n", u_pa_tx.phy_mode);
     log_info("u_pa_tx.retry_num %d\n", u_pa_tx.retry_num);
     log_info("u_pa_tx.flow_mode %d\n", u_pa_tx.flow_mode);
 }

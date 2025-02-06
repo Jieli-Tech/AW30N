@@ -156,7 +156,7 @@ static void custom_hid_endpoint_init(struct usb_device_t *usb_device, u32 itf)
     const usb_dev usb_id = usb_device2id(usb_device);
     u8 *ep_buffer = custom_hid_var->ep_in_buffer;
     usb_g_ep_config(usb_id, CUSTOM_HID_EP_IN | USB_DIR_IN, USB_ENDPOINT_XFER_INT, 0, ep_buffer, MAXP_SIZE_CUSTOM_HIDIN);
-    *ep_buffer = custom_hid_var->ep_out_buffer;
+    *ep_buffer = *(u8 *)custom_hid_var->ep_out_buffer;
     usb_g_set_intr_hander(usb_id, CUSTOM_HID_EP_OUT, custom_hid_rx_data);
     usb_g_ep_config(usb_id, CUSTOM_HID_EP_OUT, USB_ENDPOINT_XFER_INT, 1, ep_buffer, MAXP_SIZE_CUSTOM_HIDOUT);
     usb_enable_ep(usb_id, CUSTOM_HID_EP_OUT);

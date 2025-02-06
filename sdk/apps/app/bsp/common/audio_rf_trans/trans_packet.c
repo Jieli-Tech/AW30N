@@ -14,9 +14,9 @@
 #define LOG_TAG             "[au2rf_pack]"
 #include "log.h"
 
-audio2rf_send_mge_ops *g_send_ops AT(.ar_trans_data);
+/* audio2rf_send_mge_ops *g_send_ops AT(.ar_trans_data); */
 extern volatile u32 rf_send_cnt;
-extern volatile u16 packet_type_cnt[2] AT(.ar_trans_data);
+static volatile u16 g_packet_type_index[NEED_INDEX_TYPE] AT(.ar_trans_data);
 static u8 g_pack_buf[SENDER_BUF_SIZE] AT(.ar_trans_data);
 
 /*----------------------------------------------------------------------------*/
@@ -27,12 +27,12 @@ static u8 g_pack_buf[SENDER_BUF_SIZE] AT(.ar_trans_data);
    @note    注册接口涉及发送、状态获取、可发送长度获取
 */
 /*----------------------------------------------------------------------------*/
-void audio2rf_send_register(void *ops)
-{
-    local_irq_disable();
-    g_send_ops = ops;
-    local_irq_enable();
-}
+/* void audio2rf_send_register(void *ops) */
+/* { */
+/* local_irq_disable(); */
+/* g_send_ops = ops; */
+/* local_irq_enable(); */
+/* } */
 
 /*----------------------------------------------------------------------------*/
 /**@brief   音频传输封包发送接口
@@ -57,8 +57,8 @@ u16 ar_trans_pack(RADIO_PACKET_TYPE type, u8 *data, u16 data_len, u8 *packet_buf
 #if PACKET_USE_TOTAL_INDEX
     packet.packet_index = rf_send_cnt++;
 #endif
-    if (type < ARRAY_SIZE(packet.packet_type_cnt)) {
-        packet.packet_type_cnt[type] = packet_type_cnt[type]++;
+    if (type < ARRAY_SIZE(g_packet_type_index)) {
+        packet.packet_type_cnt = g_packet_type_index[type]++;
     }
 
     crc16_tmp = CRC16_with_initval(&(packet.type), RADIO_PACKET_CRC_LEN, 0);
@@ -73,11 +73,11 @@ u16 ar_trans_pack(RADIO_PACKET_TYPE type, u8 *data, u16 data_len, u8 *packet_buf
         memcpy(&packet_buf[sizeof(packet)], data, data_len);
         slen += data_len;
     }
-    /* log_info("S cnt:%d type:%d len:%d crc:0x%x", packet.packet_index, packet.type, sizeof(RF_RADIO_PACKET) + packet.data_length, crc16_tmp); */
+    /* log_info("S cnt:%d type:%d len:%d crc:0x%x", packet.packet_type_cnt, packet.type, sizeof(RF_RADIO_PACKET) + packet.data_length, crc16_tmp); */
     return slen;
 }
 
-u32 audio2rf_send_packet(RADIO_PACKET_TYPE type, u8 *data, u16 data_len)
+u32 audio2rf_send_packet(void *p_queue, RADIO_PACKET_TYPE type, u8 *data, u16 data_len)
 {
     u32 res = 0;
     /* bool is_in_isr = cpu_in_irq() */
@@ -86,7 +86,7 @@ u32 audio2rf_send_packet(RADIO_PACKET_TYPE type, u8 *data, u16 data_len)
     local_irq_disable();
     u16 packet_len = ar_trans_pack(type, data, data_len, packet_data);
     //packet_data & packet_len
-    res = rf_send_push2queue(packet_data, packet_len);
+    res = rf_send_push2queue(p_queue, packet_data, packet_len);
     local_irq_enable();
     return res;
 }

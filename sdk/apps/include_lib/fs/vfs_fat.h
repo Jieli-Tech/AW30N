@@ -40,5 +40,7 @@ void __fscan_arg_handler(struct vfscan *fs, const char *arg);
 /* ----------------------------------------------------------------------------*/
 int vfs_format(void **ppvfs, const char *dev_name, const char *type, u32 clust_size, u8 create_new);
 
+int vfs_fget_path(void *pvfile, struct vfscan *fscan, u8 *name, int len, u8 is_relative_path);
+
 #endif
 

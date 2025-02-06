@@ -96,7 +96,8 @@ typedef struct __dongle_mge_struct {
     /* dec_obj *packet_recv.dec_obj; */
     cbuffer_t dec_icbuf;
     cbuffer_t ack_cbuf;
-    cbuffer_t cmd_cbuf;
+    /* cbuffer_t cmd_cbuf; */
+    queue_obj g_dongle_queue;
     /* volatile u32 dongle_event_status; */
 } dongle_mge_struct;
 static dongle_mge_struct dongle_mge;
@@ -150,7 +151,7 @@ const audio2rf_send_mge_ops dongle_ops = {
 u32 dongle_rf_loop(void)
 {
     rev_fsm_mge *p_recv_ops = &dongle_mge.packet_recv;
-    u32 len = packet_cmd_get(p_recv_ops->cmd_pool, &dongle_packet[0], sizeof(dongle_packet));
+    u32 len = packet_cmd_get(&p_recv_ops->cmd_cbuf, &dongle_packet[0], sizeof(dongle_packet));
     if (0 == len) {
         return 0;
     }
@@ -165,7 +166,7 @@ u32 dongle_rf_loop(void)
         u8 ack;
         if (RADIO_RECEIVING == rf_radio_status) {
             ack = 1;
-            audio2rf_ack_cmd(AUDIO2RF_START_PACKET, &ack, sizeof(ack));
+            audio2rf_ack_cmd(&dongle_mge.g_dongle_queue, AUDIO2RF_START_PACKET, &ack, sizeof(ack));
             break;
         }
         //准备数据源，相当于开文件
@@ -179,10 +180,10 @@ u32 dongle_rf_loop(void)
             set_usb_mic_info(dongle_mge.packet_recv.dec_obj);
             set_radio_status(RADIO_RECEIVING);
             ack = 1;
-            audio2rf_ack_cmd(AUDIO2RF_START_PACKET, &ack, sizeof(ack));
+            audio2rf_ack_cmd(&dongle_mge.g_dongle_queue, AUDIO2RF_START_PACKET, &ack, sizeof(ack));
         } else {
             ack = 0;
-            audio2rf_ack_cmd(AUDIO2RF_START_PACKET, &ack, sizeof(ack));
+            audio2rf_ack_cmd(&dongle_mge.g_dongle_queue, AUDIO2RF_START_PACKET, &ack, sizeof(ack));
         }
 
         break;
@@ -199,7 +200,6 @@ u32 dongle_rf_loop(void)
     }
     return 0;
 }
-
 
 
 void dongle_app()
@@ -219,16 +219,16 @@ void dongle_app()
 
     memset(&dongle_mge, 0, sizeof(dongle_mge));
 
-    cbuf_init(&dongle_mge.cmd_cbuf, &dongle_packet_cmd_buff[0], sizeof(dongle_packet_cmd_buff));
-    dongle_mge.packet_recv.cmd_pool = &dongle_mge.cmd_cbuf;
+    cbuf_init(&dongle_mge.packet_recv.cmd_cbuf, &dongle_packet_cmd_buff[0], sizeof(dongle_packet_cmd_buff));
     vble_master_recv_cb_register(ATT_SLV2MSTR_HID_IDX,      &dongle_mge.packet_recv, rf_dongle_hid_callback);
     vble_master_recv_cb_register(ATT_SLV2MSTR_RF_RADIO_IDX, &dongle_mge.packet_recv, unpack_data_deal);
 
     decoder_init();
 
     cbuf_init(&dongle_mge.ack_cbuf, &dongle_ack_buff[0], sizeof(dongle_ack_buff));
-    rf_send_soft_isr_init(&dongle_mge.ack_cbuf, 1);
-    audio2rf_send_register((void *)&dongle_ops);
+
+    dongle_mge.g_dongle_queue.p_send_ops = (void *)&dongle_ops;
+    rf_queue_init((void *)&dongle_mge.g_dongle_queue, (void *)&dongle_ops, &dongle_mge.ack_cbuf);
     u32 ble_status = 0;
     u32 app_event = 0;
     log_info("rf_receiver\n");

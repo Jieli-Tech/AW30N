@@ -8,7 +8,7 @@
 
 
 #if RF_PA_EN
-void rf_pa_io_sel(void)
+void rf_pa_io_open(void)
 {
     log_info("%s() %d\n", __func__, __LINE__);
 #if RF_PA_POWER_SUPPLY
@@ -20,6 +20,19 @@ void rf_pa_io_sel(void)
     SFR(JL_IOMC->OCH_CON0, 18, 5, 17);
     gpio_set_fun_output_port(RF_PA_POWER_TX_IO, FO_GP_OCH2, 1, 1);
     gpio_set_fun_output_port(RF_PA_POWER_RX_IO, FO_GP_OCH3, 1, 1);
+    gpio_hw_direction_output(IO_PORT_SPILT(RF_PA_POWER_TX_IO), 0);
+    gpio_hw_direction_output(IO_PORT_SPILT(RF_PA_POWER_RX_IO), 0);
+}
+void rf_pa_io_close(void)
+{
+    log_info("%s() %d\n", __func__, __LINE__);
+#if RF_PA_POWER_SUPPLY
+    gpio_set_mode(IO_PORT_SPILT(RF_PA_POWER_SUPPLY_IO), PORT_HIGHZ);
+#endif
+    SFR(JL_IOMC->OCH_CON0, 12, 5, 0x1f);
+    SFR(JL_IOMC->OCH_CON0, 18, 5, 0x1f);
+    gpio_set_fun_output_port(RF_PA_POWER_TX_IO, FO_GP_OCH2, 0, 0);
+    gpio_set_fun_output_port(RF_PA_POWER_RX_IO, FO_GP_OCH3, 0, 0);
     gpio_hw_direction_output(IO_PORT_SPILT(RF_PA_POWER_TX_IO), 0);
     gpio_hw_direction_output(IO_PORT_SPILT(RF_PA_POWER_RX_IO), 0);
 }

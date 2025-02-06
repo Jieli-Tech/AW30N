@@ -33,7 +33,7 @@ cd / d % ~dp0
 
 ::isd_download.exe -tonorflash -dev bd49 -boot 0x3f01400 -div8 -wait 300  -uboot uboot.boot -app app.bin 0x20000 -res dir_song dir_eng dir_poetry dir_story
 
-isd_download.exe -tonorflash -dev bd49 -boot 0x3f01400 -div8 -wait 300  -uboot uboot.boot -app app.bin 0x80000 -res dir_a dir_song dir_eng dir_poetry dir_story dir_midi midi_cfg dir_notice dir_bin_f1x
+isd_download.exe -tonorflash -dev bd49 -boot 0x3f01400 -div8 -wait 300  -uboot uboot.boot -app app.bin 0x80000 -res dir_a dir_song dir_eng dir_poetry dir_story dir_midi midi_cfg dir_notice dir_bin_f1x cfg_tool.bin
 ::-format all
 @REM 常用命令说明
 @rem - format vm        // 擦除VM 区域

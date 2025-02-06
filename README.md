@@ -50,7 +50,7 @@ AW30N 系列通用MCU SDK 固件程序
 
 * SDK 版本信息 : [SDK 历史版本](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.6.pdf)
+* SDK 介绍文档 : [SDK 快速开始简介](./doc/AW30N_SDK手册_V1.7.pdf)
 
 * 硬件设计指南 : [硬件设计指南](./doc/AW30N硬件设计指南V1.2.pdf)
 

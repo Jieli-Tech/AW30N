@@ -24,20 +24,14 @@ typedef struct _enc_obj {
     void (*wait_output_empty)(void *);
 } enc_obj;
 
-typedef enum  {//停止编码时，是否需要将ADC中剩余的样点消耗完
-    ENC_NO_WAIT = 0,
-    ENC_NEED_WAIT = 1,
-} ENC_STOP_WAIT;
-
-extern enc_obj *enc_hdl;
 void start_encode(void);
 
 
 u16 enc_input(void *priv, s16 *buf, u8 channel, u16 len);
 // u32 enc_output(void *priv, u8 *data, u16 len);
 
-void stop_encode(void *pfile, u32 dlen);
-void stop_encode_phy(ENC_STOP_WAIT wait);
+enc_obj *stop_encode_file(enc_obj *p_enc_obj, u32 dlen);
+bool stop_encode_phy(enc_obj *obj, IS_WAIT wait);
 enc_obj *encoder_io(u32(*fun)(void *, void *, void *), void *input_func, void *output_func, void *pfile);
 void wfil_soft2_isr_hook(enc_obj *hdl);
 
@@ -45,6 +39,9 @@ void kick_encode_api(void *obj);
 void enc_wfile_init(void);
 void rec_cbuf_init(void *cbuf_t);
 
+u32 regist_encode_channel(enc_obj *p_enc_obj);
+u32 unregist_encode_channel(enc_obj *p_enc_obj);
+bool is_encode_channel_empty(void);
 
 #define  kick_encode_isr()   bit_set_swi(1)
 #define  kick_wfile_isr()    bit_set_swi(2)
@@ -62,8 +59,9 @@ extern adc_obj adc_hdl;
 #define REC_ADC_CBUF  adc_hdl.p_adc_cbuf
 
 #else
-extern sound_out_obj rec_sound;
-#define REC_ADC_CBUF  rec_sound.p_obuf
+extern sound_out_obj *enc_in_sound;
+// #define REC_ADC_CBUF  rec_sound.p_obuf
+#define REC_ADC_CBUF  enc_in_sound->p_obuf
 #endif
 
 #endif

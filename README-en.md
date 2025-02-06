@@ -48,7 +48,7 @@ Documentation
 
 * SDK Version: [SDK History](doc/AW30N_SDK_发布版本信息.pdf)
 
-* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.6.pdf)
+* SDK introduction : [SDK quick start guide](./doc/AW30N_SDK手册_V1.7.pdf)
 
 * Hardware Design Guide : [Hardware Design Guide](./doc/AW30N硬件设计指南V1.2.pdf)
 

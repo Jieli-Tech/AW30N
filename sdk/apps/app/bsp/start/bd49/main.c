@@ -87,14 +87,36 @@ void change_icache(void)
 #endif
 }
 
+void reset2update()
+{
+    /* 详细请看下载器升级章节 */
+    /* 用户调用nvram_set_boot_state()函数后执行common_update_before_jump_reset_handle()可以直接复位进入maskrom进行 串口升级 或 USB升级 */
+#if 0
+    /* 该demo通过识别到PA9低电平后，复位进入maskrom进行 串口升级 或 USB升级  */
+    /* TIPS: */
+    /* 芯片开机后几乎所有IO会被锁住，直到board_power_init()执行后IO才解锁能够正常使用 */
+    /* 除了部分IO是在RAM中使用没有被锁可以正常使用，如：PA0,PA9,PA10,USBDP,USBDM */
+    gpio_set_mode(IO_PORT_SPILT(IO_PORTA_09), PORT_INPUT_FLOATING); //设置PA9为输入
+    if (!(gpio_read(IO_PORTA_09))) {
+        extern void nvram_set_boot_state(UPGRADE_TYPE up_type);
+        extern void chip_reset();
+        nvram_set_boot_state(UPGRADE_UART_SOFT_KEY);        //进入rom的串口升级
+        /* nvram_set_boot_state(UPGRADE_USB_SOFTKEY);       //进入rom的usb升级 */
+        common_update_before_jump_reset_handle();       //复位
+    }
+#endif
+
+}
+
 __attribute__((noreturn))
 void c_main(int cfg_addr)
 {
+    JL_UART0->CON0 = 0;     //关闭rom串口升级
     change_icache();
 
     log_init(TCFG_UART_BAUDRATE);
 
-    log_info("1 hello word bd49\n");
+    log_info("1 hello-word bd49\n");
 
     struct maskrom_argv mask_argv = {0};
     mask_argv.pchar = (void *)putchar;
@@ -135,7 +157,7 @@ void c_main(int cfg_addr)
     //port_init();
 
     log_info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    log_info("       bd49 setup %s-%s", __DATE__, __TIME__);
+    log_info("        bd49 setup %s-%s", __DATE__, __TIME__);
     log_info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     efuse_dump();
 

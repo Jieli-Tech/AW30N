@@ -52,7 +52,7 @@ void app_power_scan(void)
     if ((vol <= LOW_POWER_VOL) && (0 == CHARGE_IN_DET)) {
         //充电时不进入低功耗
         low_power_cnt++;
-        if (low_power_cnt == (TCFG_HID_AUTO_SHUTDOWN_TIME / 500)) {
+        if (low_power_cnt == (TCFG_SHUTDOWN_TIME / 500)) {
             log_error(LOW_POWER_LOG);
             post_msg(1, MSG_POWER_OFF);
         }

@@ -81,6 +81,8 @@ u32 sbc_encode_api(void *p_file, void *input_func, void *output_func)
     }
 
     memset(&enc_sbc_hdl, 0, sizeof(enc_obj));
+    memset(&obuf_esbc_o[0], 0x00, sizeof(obuf_esbc_o));
+    memset(&sbc_encode_buff[0], 0x00, sizeof(sbc_encode_buff));
     sbc_enc_io.priv        = &enc_sbc_hdl;
     sbc_enc_io.input_data  = input_func;
     sbc_enc_io.output_data = output_func;
@@ -119,6 +121,7 @@ u32 sbc_encode_api(void *p_file, void *input_func, void *output_func)
         /* msbc时计算码率br */
         enc_sbc_hdl.info.br = (8 * outdata_size * enc_sbc_hdl.info.sr) / (8 * 15 * 1000);
     }
+    enc_sbc_hdl.info.nch = 1;
 
     log_info("sbc encode info:");
     log_info("sr : %d\n", enc_sbc_hdl.info.sr);

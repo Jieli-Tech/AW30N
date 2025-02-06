@@ -322,5 +322,27 @@ int vfs_format(void **ppvfs, const char *dev_name, const char *type, u32 clust_s
     return err;
 }
 
+int vfs_fget_path(void *pvfile, struct vfscan *fscan, u8 *name, int len, u8 is_relative_path)
+{
+    int err = -1;
+    struct imount *p_vfile = pvfile;
+    if ((void *)NULL == p_vfile) {
+        return E_FS_PFILE;
+    }
+    struct vfs_operations *ops;
+    ops = p_vfile->ops;
+    int arg[4] = {0};
+    FIL *file = p_vfile->pfile;
+    arg[0] = (int)fscan;
+    arg[1] = (int)name;
+    arg[2] = (int)len;
+    arg[3] = (int)is_relative_path;
+    if (ops->ioctl) {
+        err = ops->ioctl(file, FS_IOCTL_GET_PATH, (int)arg);
+    }
+
+
+    return err;
+}
 
 

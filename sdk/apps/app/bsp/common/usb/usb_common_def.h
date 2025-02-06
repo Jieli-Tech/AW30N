@@ -14,15 +14,6 @@
                                    HID    AUDIO  SPEAKER   Mass Storage
 */
 /**************************************************************************/
-#define     MASSSTORAGE_CLASS   BIT(0)
-#define     SPEAKER_CLASS       BIT(1)
-#define     MIC_CLASS           BIT(2)
-#define     HID_CLASS           BIT(3)
-#define     IAP_CLASS           BIT(4)
-#define     CDC_CLASS           BIT(5)
-#define     CUSTOM_HID_CLASS    BIT(6)
-
-#define     AUDIO_CLASS         (SPEAKER_CLASS|MIC_CLASS)
 
 
 #define     USB_ROOT2   0
@@ -31,8 +22,8 @@
 #ifdef AUDIO_PCM_DEBUG
 #undef TCFG_PC_ENABLE
 #undef TCFG_UDISK_ENABLE
-#define TCFG_PC_ENABLE						DISABLE_THIS_MOUDLE//PC模块使能
-#define TCFG_UDISK_ENABLE					DISABLE_THIS_MOUDLE//U盘模块使能
+#define TCFG_PC_ENABLE                      DISABLE_THIS_MOUDLE//PC模块使能
+#define TCFG_UDISK_ENABLE                   DISABLE_THIS_MOUDLE//U盘模块使能
 #endif/*AUDIO_PCM_DEBUG*/
 
 #if TCFG_UDISK_ENABLE

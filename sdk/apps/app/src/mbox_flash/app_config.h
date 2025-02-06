@@ -71,12 +71,12 @@
 //*********************************************************************************//
 //                                  低功耗配置                                     //
 //*********************************************************************************//
-#define TCFG_LOWPOWER_LOWPOWER_SEL          ENABLE
+#define TCFG_CONFIG_LOWPOWER_SEL          ENABLE
 
 //*********************************************************************************//
 //                                  软关机配置                                     //
 //*********************************************************************************//
-#define TCFG_HID_AUTO_SHUTDOWN_TIME         5000 //uint:ms
+#define TCFG_SHUTDOWN_TIME         5000 //uint:ms
 
 /*---------charge Configuration-------------*/
 #define TCFG_CHARGE_ENABLE		            0//ENABLE
@@ -237,21 +237,20 @@
 #define	USB_DISK_EN        //是否可以读U盘
 #endif
 
-#include "usb_std_class_def.h"
-#include "usb_common_def.h"
 
-#if TCFG_PC_ENABLE || TCFG_UDISK_ENABLE
-#undef USB_DEVICE_CLASS_CONFIG
+#include "usb_std_class_def.h"
+
 #if TCFG_CFG_TOOL_ENABLE
-#define  USB_DEVICE_CLASS_CONFIG            (CDC_CLASS|AUDIO_CLASS|HID_CLASS)  //配置usb从机模式支持的class
+#define  USB_DEVICE_CLASS_CONFIG            (CDC_CLASS|AUDIO_CLASS|HID_CLASS)  //在线EQ调试助手
+
+#elif defined(CONFIG_APP_OTA_EN) && (CONFIG_APP_OTA_EN == 1)
+#define  USB_DEVICE_CLASS_CONFIG            (AUDIO_CLASS|HID_CLASS|CUSTOM_HID_CLASS)  //ota升级
+
 #else
-#if defined(CONFIG_APP_OTA_EN) && (CONFIG_APP_OTA_EN)
-#define  USB_DEVICE_CLASS_CONFIG            (AUDIO_CLASS|HID_CLASS|CUSTOM_HID_CLASS)  //配置usb从机模式支持的class
-#else
-#define  USB_DEVICE_CLASS_CONFIG            (AUDIO_CLASS|HID_CLASS|MASSSTORAGE_CLASS)  //配置usb从机模式支持的class
+#define  USB_DEVICE_CLASS_CONFIG            (AUDIO_CLASS|HID_CLASS|MASSSTORAGE_CLASS)  //默认配置usb从机模式支持的class
 #endif
-#endif
-#endif
+
+
 
 /*---------ICACHE RAM 相关配置-----------------*/
 #define ICACHE_RAM_TO_RAM_ENABLE			DISABLE//1//ICACHE RAM用作普通RAM使能位

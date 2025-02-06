@@ -184,7 +184,7 @@ static SEL_FILE_MODE mbox_select_logic_file(MBOX_MUSIC_CMD file_cmd, u32 findex,
 
 #ifdef FOLDER_PLAY_EN
     if ((play_mode == REPEAT_FOLDER) && (file_cmd == FILE_CMD_PLAY_BY_INDEX)) {
-        /* log_info("clear play mode!\n"); */
+        /* log_info("clear play dec_stop_wait!\n"); */
         play_mode = pctl[0].play_mode = REPEAT_ALL;
     }
 #endif
@@ -263,7 +263,7 @@ __sel_file_repeat_all:
     return 0;
 }
 
-bool music_play_control(MBOX_MUSIC_CMD cmd, u32 index, DEC_STOP_WAIT mode)
+bool music_play_control(MBOX_MUSIC_CMD cmd, u32 index, IS_WAIT dec_stop_wait)
 {
     u32 err, dev_cmd, file_cmd, dindex, findex;
     u8 err_flag = 0;
@@ -299,7 +299,7 @@ __mpc_device_control_part:
         goto __mpc_no_effetive_dev_deal;
     }
 
-    decoder_stop(pctl[0].p_dec_obj, mode, pctl[0].pdp);
+    decoder_stop(pctl[0].p_dec_obj, dec_stop_wait, pctl[0].pdp);
     dac_fade_out_api();
     fs_dev_close(&pctl[0]);
     if (err_device > MAX_DEVICE) {
@@ -366,7 +366,7 @@ __mpc_pick_one:
 
     /*--------------- 文件选择操作 ---------------*/
 __mpc_file_control_part:
-    decoder_stop(pctl[0].p_dec_obj, mode, pctl[0].pdp);
+    decoder_stop(pctl[0].p_dec_obj, dec_stop_wait, pctl[0].pdp);
     dac_fade_out_api();
 
     err = device_status(pctl[0].dev_index, 0);
@@ -408,7 +408,7 @@ __mpc_play_file:
     if (NULL != pctl[0].p_dec_obj) {
         if (pctl[0].p_dec_obj->eq != NULL) {
             err = pctl[0].p_dec_obj->eq(dec_eq_mode);
-            log_info("cur dec_eq mode:%d \n", err);
+            log_info("cur dec_eq dec_stop_wait:%d \n", err);
         }
         /* log_info("DEOCDE SUCCC\n"); */
         err_device = 0;

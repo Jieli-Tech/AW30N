@@ -320,6 +320,9 @@ enum gpio_function {
     PORT_FUNC_IIC0_SCL,
     PORT_FUNC_IIC0_SDA,
 
+    PORT_FUNC_CAN0_TX,
+    PORT_FUNC_CAN0_RX,
+
     PORT_FUNC_SD0_CLK,//out
     PORT_FUNC_SD0_CMD,
     PORT_FUNC_SD0_DA0,

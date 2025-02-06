@@ -68,6 +68,17 @@ SECTIONS
 
     } > ram0
 
+    .ans_data_sec ALIGN(4):
+    {
+        ans_data_start = .;
+        *(.aec_data)
+        *(.ns_data)
+        *(.nlp_data)
+        *(.fft_data)
+        *(.noisegate_data)
+        ans_data_end = .;
+    } > ram0
+
 	.debug_data ALIGN(4):
 	{
         PROVIDE(debug_buf_start = .);
@@ -109,6 +120,17 @@ SECTIONS
         #include "bt_controller_include/btctler_lib_bss.ld"
 
         _system_data_end = .;
+    } > ram0
+
+    .ans_bss_sec ALIGN(4):
+    {
+        ans_bss_start = .;
+        . = ALIGN(32);
+        *(.aec_bss)
+        *(.ns_bss)
+        *(.nlp_bss)
+        *(.fft_bss)
+        ans_bss_end = .;
     } > ram0
 
     .nv_ram_malloc ALIGN(4)://for bt
@@ -156,6 +178,9 @@ SECTIONS
         *(.*.text)
         *(.version)
         *(.debug)
+        *(.fft_const)
+        *(.fft_code)
+        *(.text.*)
         *(.debug.text.const)
         *(.debug.text)
         *(.debug.string)

@@ -172,7 +172,7 @@ void encode_file_fs_close(Encode_Control *obj)
 static void encode_stop(Encode_Control *obj)
 {
     if (ENC_ING == obj->enc_status) {
-        stop_encode(obj->pfile, 0);
+        obj->enc_obj = stop_encode_file(obj->enc_obj, 0);
         encode_file_fs_close(obj);
         obj->enc_status = ENC_NULL;
     }
@@ -221,7 +221,7 @@ static int encode_start(Encode_Control *obj)
         log_info("%s create 0x%x!\n", p_fs_name, err);
         return err;
     }
-    encoder_file(ENCODER_API, obj->pfile);
+    record_obj.enc_obj = encoder_file(ENCODER_API, obj->pfile);
 #else
     log_info("no format encoder!\n");
     return E_ENC_FORMAT;

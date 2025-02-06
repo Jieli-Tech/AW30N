@@ -18,10 +18,10 @@
 
 #define JLA_LW_DEC_OUTPUT_MAX_SIZE  (320 * 2)
 #define JLA_LW_OBUF_SIZE (DAC_DECODER_BUF_SIZE * 4)
-#define JLA_LW_KICK_SIZE (JLA_LW_OBUF_SIZE - (JLA_LW_DEC_OUTPUT_MAX_SIZE * 2))
+#define JLA_LW_KICK_SIZE (JLA_LW_OBUF_SIZE - (JLA_LW_DEC_OUTPUT_MAX_SIZE * 4))
 
 /* PLC 和 淡入淡出参数 */
-const int JLA_LW_PLC_EN = 0;    //0.
+const int JLA_LW_PLC_EN = 1;    //0.
 const int JLA_LW_PLC_FADE_OUT_START_POINT = 1200;  // 20; // 1200;
 const int JLA_LW_PLC_FADE_OUT_POINTS = 120 * 2;
 const int JLA_LW_PLC_FADE_IN_POINTS = 120 * 2;
@@ -55,6 +55,7 @@ u32 jla_lw_decode_api(void *strm, void **p_dec, void *p_dp_buf)
     decoder_ops_t *ops;
     ops = &jla_lw_ops;
 
+    memset(&jla_lw_decode_buff[0], 0x00, sizeof(jla_lw_decode_buff));
     memset(&dec_jla_lw_hld, 0, sizeof(dec_obj));
     cbuf_init(&cbuf_dec_jla_lw_st, &obuf_dec_jla_lw[0], sizeof(obuf_dec_jla_lw));
     dec_jla_lw_hld.type = D_TYPE_JLA_LW;

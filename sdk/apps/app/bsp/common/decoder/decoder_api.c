@@ -486,7 +486,7 @@ void irq_decoder_ret(dec_obj *obj, u32 ret)
     }
 #if 1
     switch (ret) {
-    /* case MAD_ERROR_NODATA: */
+    case MAD_ERROR_NODATA:
     case MAD_ERROR_FILE_END:
     case MAD_ERROR_SYNC_LIMIT:
     case MAD_ERROR_F1X_START_ADDR:
@@ -534,7 +534,7 @@ void decoder_soft_hook(void)
 #endif
 }
 
-bool decoder_stop_phy(dec_obj *obj, DEC_STOP_WAIT wait, void *p_dp, bool fade, bool(*unregist_func)(void *))
+bool decoder_stop_phy(dec_obj *obj, IS_WAIT dec_stop_wait, void *p_dp, bool fade, bool(*unregist_func)(void *))
 {
     if (NULL == obj) {
         return 0;
@@ -548,16 +548,16 @@ bool decoder_stop_phy(dec_obj *obj, DEC_STOP_WAIT wait, void *p_dp, bool fade, b
     obj->sound.enable &= ~B_DEC_RUN_EN;
     get_dp(obj, p_dp);
     /* dac_fade_out_api(200); */
-    if (NO_WAIT != wait) {
-        /* log_info("decode stop wait!\n"); */
+    if (NO_WAIT != dec_stop_wait) {
+        /* log_info("decode stop dec_stop_wait!\n"); */
         while (obj->sound.enable & B_DEC_OBUF_EN) {
             if (false == dac_cbuff_active(&obj->sound)) {
                 break;
             }
         }
-        /* log_info("decode stop wait ok!\n"); */
+        /* log_info("decode stop dec_stop_wait ok!\n"); */
     } else {
-        /* log_info("decode stop no wait!\n"); */
+        /* log_info("decode stop no dec_stop_wait!\n"); */
     }
 
     /* #if defined(AUDIO_HW_EQ_EN) && (AUDIO_HW_EQ_EN) */
@@ -591,16 +591,16 @@ bool decoder_stop_phy(dec_obj *obj, DEC_STOP_WAIT wait, void *p_dp, bool fade, b
 /*
   @brief    decoder_stop
   @param    *obj:解码器句柄
-            wait:是否等待解码器消耗完剩余样点
+            dec_stop_wait:是否等待解码器消耗完剩余样点
             *p_dp:解码器断点buf
   @return   0:解码器已停止工作或句柄为NULL
             1:解码器停止成功
   @note     解码器停止成功后会保存断点信号到p_dp中
  */
 /*----------------------------------------------------------------------------*/
-bool decoder_stop(dec_obj *obj, DEC_STOP_WAIT wait, void *p_dp)
+bool decoder_stop(dec_obj *obj, IS_WAIT dec_stop_wait, void *p_dp)
 {
-    return decoder_stop_phy(obj, wait, p_dp, 1, unregist_dac_channel);
+    return decoder_stop_phy(obj, dec_stop_wait, p_dp, 1, unregist_dac_channel);
 }
 
 /*----------------------------------------------------------------------------*/

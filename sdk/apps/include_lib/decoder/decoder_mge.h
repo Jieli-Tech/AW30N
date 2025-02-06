@@ -17,7 +17,7 @@ typedef enum {
     MAD_ERROR_FF_FR_END        = 0x45,              // NO USED
     MAD_ERROR_FF_FR_FILE_START = 0x46,              //快退到头
     MAD_ERROR_LIMIT            = 0x47,              // NO USED
-    MAD_ERROR_NODATA           = 0x48,              // NO USED
+    MAD_ERROR_NODATA           = 0x48,              // WAV格式文件结束
     MAD_ERROR_PLAY_END		   = 0x50,				//MIDI CTRL DATA OUTPUT END
     MAD_ERROR_F1X_START_ADDR   = 0x51,				//F1X起始位置错误
 

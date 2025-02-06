@@ -21,6 +21,11 @@
 #include "code_v2/update.h"
 #endif
 
+#if defined(BLE_EN) && (1 == BLE_EN)
+#include "bt_config_tool.h"
+#include "user_cfg.h"
+#endif
+
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[init]"
 #include "log.h"
@@ -36,6 +41,11 @@ void system_init(void)
     /* app_system_init(); */
     devices_init_api();
     flash_system_init();
+
+#if defined(BLE_EN) && (1 == BLE_EN)
+    cfg_bin_init();
+    cfg_file_parse(0);
+#endif
 
 #if defined(UPDATE_V2_EN) && (1 == UPDATE_V2_EN)
     //升级初始化

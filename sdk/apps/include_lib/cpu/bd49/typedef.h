@@ -95,6 +95,11 @@ typedef unsigned long long u64;
 #define false    0
 #define true    1
 
+typedef enum  {
+    NO_WAIT = 0,
+    NEED_WAIT = 1,
+} IS_WAIT;
+
 #ifndef NULL
 #define NULL    0
 #endif // NULL

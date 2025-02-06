@@ -7,12 +7,28 @@
 
 #define RF_SENDER_USE_QUEUE   1
 
-void kick_rf_queue_isr(void);
+// QS is queue status
+#define D_QS_ENABLE   BIT(0)
+#define D_QS_CAN_IN   BIT(1)
+#define D_QS_CAN_OUT  BIT(2)
+#define D_QS_ISR      BIT(3)
+#include "trans_packet.h"
+typedef struct _queue_obj {
+    audio2rf_send_mge_ops *p_send_ops;
+    cbuffer_t *cbuf;
+    u8 qs_flag;
+    u8 index;
+} queue_obj;
 
-// bool rf_send_push2queue(RADIO_PACKET_TYPE type, u8 *data, u16 data_len, u8 *packet_buf);
-u32 rf_send_push2queue(u8 *packet_data, u16 packet_len);
-void rf_send_soft_isr_init(void *p_cbuf, u8 use_queue_isr);
-void rf_send_soft_isr_uninit(void);
-u32 read_data_from_queue(u8 *buf, u32 len);
-u32 get_queue_data_size();
+
+
+void kick_rf_queue_isr(queue_obj *obj);
+bool regist_rf_queue_isr(queue_obj *obj);
+bool unregist_rf_queue_isr(queue_obj *obj);
+u32 rf_send_push2queue(queue_obj *obj, u8 *packet_data, u16 packet_len);
+u32 rf_queue_init(queue_obj *obj, audio2rf_send_mge_ops *ops, void *p_cbuf);
+void rf_queue_uninit(queue_obj *obj, IS_WAIT need_wait);
+u32 read_data_from_queue(queue_obj *obj, u8 *buf, u32 len);
+
+
 #endif

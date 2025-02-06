@@ -150,7 +150,7 @@ void audio_adc_speaker_start(u32 sr)
         regist_dac_channel(NULL, p_curr_sound, (void *)NULL);//注册到DAC;
     } else {
         void *kick = NULL;
-        kick = regist_stream_channel(&aa_speaker.sound);
+        kick = regist_stream_channel(&aa_speaker.sound, NULL);
         regist_audio_adc_channel(&aa_speaker.sound, p_curr_sound, (void *) kick);
         regist_dac_channel(&aa_speaker.sound, p_curr_sound, (void *)NULL);//注册到DAC;
     }

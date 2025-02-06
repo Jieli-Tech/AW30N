@@ -22,6 +22,7 @@
 <Add option="-Wundef" />
 <Add option="-nostrictpi32" />
 <Add option="-fprefer-gnu-section" />
+<Add option="-Werror" />
 <Add option="-D__FPGA=0" />
 <Add option="-Werror=implicit-function-declaration" />
 <Add option="-Werror=return-type" />
@@ -57,6 +58,7 @@
 <Add option="-DHAS_IMA_ENCODER" />
 <Add option="-DHAS_SBC_ENCODER" />
 <Add option="-DHAS_JLA_LW_ENCODER" />
+<Add option="-DHAS_ANS_EN" />
 <Add option="-DHAS_SPEED_EFFECT" />
 <Add option="-DHAS_SONG_SPEED_EFFECT" />
 <Add option="-DHAS_HOWLING_EFFECT" />
@@ -99,6 +101,7 @@
 <Add directory="apps/app/bsp/common/decoder/mio" />
 <Add directory="apps/include_lib/encoder" />
 <Add directory="apps/include_lib/encoder/list" />
+<Add directory="apps/include_lib/ans" />
 <Add directory="apps/app/src" />
 <Add directory="apps/app/post_build/bd49" />
 <Add directory="apps/app/bsp" />
@@ -139,6 +142,7 @@
 <Add directory="apps/include_lib/config" />
 <Add directory="apps/include_lib/sound_effect_list" />
 <Add directory="apps/include_lib/pcm_eq" />
+<Add directory="apps/include_lib/remain_output" />
 <Add directory="apps/app/src/mbox_flash/common" />
 <Add directory="apps/app/src/mbox_flash/common/ui" />
 <Add directory="apps/app/src/mbox_flash/music" />
@@ -152,6 +156,10 @@
 <Add directory="apps/app/src/mbox_flash/rtc" />
 <Add directory="apps/app/src/mbox_flash/softoff_app" />
 <Add directory="apps/app/src/mbox_flash/rf_radio" />
+<Add directory="apps/app/src/mbox_flash/rf_radio/connect_radio" />
+<Add directory="apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex" />
+<Add directory="apps/app/src/mbox_flash/rf_radio/connect_radio/full_duplex" />
+<Add directory="apps/app/src/mbox_flash/rf_radio/padv" />
 <Add directory="apps/app/src/mbox_flash/remotecontrol" />
 <Add directory="apps/include_lib/liba/ARCH/pi32_lto/header" />
 <Add directory="apps/app/bsp/common/bt_common" />
@@ -173,6 +181,7 @@
 <Add directory="apps/app/bsp/common/third_party_profile/common" />
 <Add directory="apps/include_lib/bt_include/third_party/rcsp" />
 <Add directory="apps/app/bsp/common/third_party_profile/jieli/gatt_common" />
+<Add directory="apps/include_lib/bt_config_tool" />
 <Add directory="apps/app/bsp/common/bt_user/vble_adv" />
 <Add directory="apps/app/bsp/common/bt_user/vble_gatt" />
 <Add directory="apps/app/bsp/common/bt_common/ble_test" />
@@ -194,6 +203,7 @@
 <Add option="--plugin-opt=-mattr=+no-constpool" />
 <Add option="--sort-common" />
 <Add option="--start-group" />
+<Add option="apps/include_lib/liba/bd49/mbox_flash/busy_buffer_lib.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/mp3_dec_lib.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/lib_wav_decoder.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/lib_f1a_decode.a" />
@@ -216,6 +226,8 @@
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/sbc_stdenc_lib.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/lib_jla_lw_codec_pi32.a " />
 <Add option="apps/include_lib/liba/bd49/mbox_flash/audio_media_lib.a " />
+<Add option="apps/include_lib/liba/ARCH/pi32_lto/libNoiseSuppress_pi32_OnChip.a" />
+<Add option="apps/include_lib/liba/ARCH/pi32_lto/lib_SW_FFT_pi32_OnChip.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/lib_speed_pitch.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/ps_song_lib.a" />
 <Add option="apps/include_lib/liba/ARCH/pi32_lto/howling.a" />
@@ -282,11 +294,13 @@
 <Unit filename="apps/app/bsp/common/bt_common/app_action.h" />
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/ble_master.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/ble_slave.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/common/bt_common/ble_test/ble_test_api.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/bt_ble.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/lib_btctrler_config.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/lib_btstack_config.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/lib_profile_config.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/ble_test/test_app_config.h" />
+<Unit filename="apps/app/bsp/common/bt_common/ble_test_api.h" />
 <Unit filename="apps/app/bsp/common/bt_common/bt_ble.h" />
 <Unit filename="apps/app/bsp/common/bt_common/bt_profile_cfg.h" />
 <Unit filename="apps/app/bsp/common/bt_common/hid/app_main.c"><Option compilerVer="CC"/></Unit>
@@ -338,6 +352,7 @@
 <Unit filename="apps/app/bsp/common/bt_common/spp_and_le/modules/bt/app_comm_ble.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/spp_and_le/modules/user_cfg.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_common/spp_and_le/version.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/common/bt_config_tool/bt_config_tool.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_user/vble_adv/vble_adv.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/bt_user/vble_adv/vble_adv.h" />
 <Unit filename="apps/app/bsp/common/bt_user/vble_adv/vble_adv_trans.c"><Option compilerVer="CC"/></Unit>
@@ -406,6 +421,7 @@
 <Unit filename="apps/app/bsp/common/power_manage/app_power_mg.h" />
 <Unit filename="apps/app/bsp/common/reserved_area/reserved_area.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/reserved_area/reserved_area.h" />
+<Unit filename="apps/app/bsp/common/sound_effect_list/ans_api.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/sound_effect_list/echo_api.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/sound_effect_list/notch_howling_api.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/common/sound_effect_list/pcm_eq_api.c"><Option compilerVer="CC"/></Unit>
@@ -482,6 +498,8 @@
 <Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link_api.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link_cpu.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/audio_link/audio_link_sync.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/bsp/cpu/bd49/can.h" />
+<Unit filename="apps/app/bsp/cpu/bd49/cane.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/device.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/gpcnt.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/bsp/cpu/bd49/hw_timer.c"><Option compilerVer="CC"/></Unit>
@@ -570,14 +588,21 @@
 <Unit filename="apps/app/src/mbox_flash/remotecontrol/rc_app.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/remotecontrol/rc_app.h" />
 <Unit filename="apps/app/src/mbox_flash/remotecontrol/rc_key.c"><Option compilerVer="CC"/></Unit>
-<Unit filename="apps/app/src/mbox_flash/rf_radio/full_duplex/rf_radio_full_duplex.c"><Option compilerVer="CC"/></Unit>
-<Unit filename="apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_receive.c"><Option compilerVer="CC"/></Unit>
-<Unit filename="apps/app/src/mbox_flash/rf_radio/half_duplex/rf_radio_send.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/connect_radio.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/connect_radio.h" />
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/full_duplex/rf_full_duplex.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/full_duplex/rf_full_duplex.h" />
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_duplex.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_duplex.h" />
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_receive.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/connect_radio/half_duplex/rf_half_send.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/padv/padv_radio.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/padv/padv_radio.h" />
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_app.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_app.h" />
+<Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_comm.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_comm.h" />
 <Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_key.c"><Option compilerVer="CC"/></Unit>
-<Unit filename="apps/app/src/mbox_flash/rf_radio/rf_radio_rs.h" />
 <Unit filename="apps/app/src/mbox_flash/rtc/rtc_mode.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/rtc/rtc_mode.h" />
 <Unit filename="apps/app/src/mbox_flash/rtc/rtc_mode_key.c"><Option compilerVer="CC"/></Unit>
@@ -589,6 +614,7 @@
 <Unit filename="apps/app/src/mbox_flash/usb_slave/usb_slave_mode.c"><Option compilerVer="CC"/></Unit>
 <Unit filename="apps/app/src/mbox_flash/usb_slave/usb_slave_mode.h" />
 <Unit filename="apps/app/src/mbox_flash/usb_slave/usb_slave_mode_key.c"><Option compilerVer="CC"/></Unit>
+<Unit filename="apps/include_lib/ans/NoiseSuppressLib.h" />
 <Unit filename="apps/include_lib/asm_type.h" />
 <Unit filename="apps/include_lib/audio/audac_basic.h" />
 <Unit filename="apps/include_lib/audio/audio.h" />
@@ -600,6 +626,7 @@
 <Unit filename="apps/include_lib/audio/sound_kick.h" />
 <Unit filename="apps/include_lib/audio_eq/audio_eq.h" />
 <Unit filename="apps/include_lib/audio_eq/hw_eq.h" />
+<Unit filename="apps/include_lib/bt_config_tool/bt_config_tool.h" />
 <Unit filename="apps/include_lib/bt_controller_include/adapter/include/common/cbuf.h" />
 <Unit filename="apps/include_lib/bt_controller_include/ble/hci_ll.h" />
 <Unit filename="apps/include_lib/bt_controller_include/ble/ll_config.h" />
@@ -813,6 +840,7 @@
 <Unit filename="apps/include_lib/msg/custom_event.h" />
 <Unit filename="apps/include_lib/msg/msg.h" />
 <Unit filename="apps/include_lib/pcm_eq/pcm_eq_api.h" />
+<Unit filename="apps/include_lib/remain_output/remain_output.h" />
 <Unit filename="apps/include_lib/sound_effect_list/echo_api.h" />
 <Unit filename="apps/include_lib/sound_effect_list/howling_api.h" />
 <Unit filename="apps/include_lib/sound_effect_list/midi_file0_h.h" />

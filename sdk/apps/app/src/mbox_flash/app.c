@@ -319,7 +319,13 @@ void app(void)
 #if (RUN_APP_RC)
     app_ble_rc_ctrl();
 #elif (RUN_APP_DONGLE)
+
+#if (RF_REMOTECONTROL_MODE_EN)
+#if (TRANS_DATA_SPPLE_EN)
     app_ble_dongle();
+#endif
+#endif
+
 #elif (RUN_APP_CUSTOM)
     app_custom();
 #else

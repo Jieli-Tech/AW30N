@@ -39,7 +39,7 @@
 #define DEC_RUN_LIMIT   1
 
 #define LOG_TAG_CONST       NORM
-#define LOG_TAG             "[rf_recv]"
+#define LOG_TAG             "[rf_rf2au_recv]"
 #include "log.h"
 
 u32 rf2audio_dec_null_func(void *priv)

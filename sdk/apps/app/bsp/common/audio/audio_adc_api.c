@@ -24,7 +24,7 @@
 
 
 #define LOG_TAG_CONST       NORM
-#define LOG_TAG             "[normal]"
+#define LOG_TAG             "[audio_adc_api]"
 #include "log.h"
 
 
@@ -144,6 +144,15 @@ void fill_audio_adc_fill(u8 *buf, u32 len)
 bool regist_audio_adc_channel(void *psound_pre, void *psound_later, void *kick)
 {
     u8 i;
+    for (i = 0; i < AUDIO_ADC_CHANNEL_TOTAL; i++) {
+        if (audio_adc_mge.ch & BIT(i)) {
+            if (audio_adc_mge.sound_pre[i] == psound_pre) {
+                log_error("current sound have been regist the same %d\n", i);
+            }
+            continue;
+        }
+    }
+    ///--------------------------
     for (i = 0; i < AUDIO_ADC_CHANNEL_TOTAL; i++) {
         if (audio_adc_mge.ch & BIT(i)) {
             continue;

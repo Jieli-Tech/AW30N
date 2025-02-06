@@ -4,6 +4,7 @@
 #include "config.h"
 #include "typedef.h"
 #include "hwi.h"
+#include "app_modules.h"
 /* #include "dev_manage.h" */
 /* #include "fs_io.h" */
 #include "vfs.h"
@@ -11,12 +12,18 @@
 #include "a_encoder.h"
 #include "mp3_encoder.h"
 #include "clock.h"
+#include "stream_frame.h"
 
 
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[normal]"
 #include "log.h"
 
+#if (defined(ANS_EN) && (ANS_EN))
+#include "ans_api.h"
+cbuffer_t cbuf_ans AT(.ans_data);
+u32 ans_buff[512 / 4] AT(.ans_data);
+#endif
 
 cbuffer_t cbuf_adc AT(.rec_data);
 static u8 adc_buff[7680] AT(.rec_data);//norfs擦写时间最长不超过80ms,最小缓存不小于sr*2*80ms
@@ -24,6 +31,7 @@ static u8 adc_buff[7680] AT(.rec_data);//norfs擦写时间最长不超过80ms,�
 /* #if (0 == FPGA) */
 #ifndef FPGA
 sound_out_obj rec_sound;
+sound_out_obj *enc_in_sound;
 
 #define START_ADC_RUN  rec_sound.enable |= (B_DEC_RUN_EN | B_REC_RUN)
 #define STOP_ADC_RUN  rec_sound.enable &= ~(B_DEC_RUN_EN | B_REC_RUN)
@@ -37,13 +45,34 @@ void rec_cbuf_init(void *cbuf_t)
 void rec_phy_init(void)
 {
     memset(&rec_sound, 0, sizeof(rec_sound));
-    rec_cbuf_init(&cbuf_adc);
-    /* cbuf_init(&cbuf_adc, &adc_buff[0], sizeof(adc_buff)); */
-    rec_sound.p_obuf = &cbuf_adc;
-    regist_audio_adc_channel(&rec_sound, NULL, (void *) kick_encode_api); //注册到DAC;
+
+    stream_frame_init(IRQ_SPEAKER_IP);
+
+    cbuf_init(&cbuf_adc, &adc_buff[0], sizeof(adc_buff));
+    rec_sound.p_obuf = &cbuf_adc;        //cbuf_adc为audio_adc的数据
+
+    sound_out_obj *p_curr_sound = &rec_sound;
+#if (defined(ANS_EN) && (ANS_EN))
+    cbuf_init(&cbuf_ans, &ans_buff[0], sizeof(ans_buff));   //cbuf_ans 为link
+    p_curr_sound = link_ans_sound(p_curr_sound, &cbuf_ans, read_audio_adc_sr());
+#endif
+
+    if (p_curr_sound != &rec_sound) {
+        void *kick = NULL;
+        kick = regist_stream_channel(&rec_sound, kick_encode_api);
+        regist_audio_adc_channel(&rec_sound, NULL, (void *)kick);
+    } else {
+        regist_audio_adc_channel(&rec_sound, NULL, (void *)kick_encode_api);
+    }
+
+    enc_in_sound = p_curr_sound;
+    rec_sound.enable |= B_DEC_RUN_EN | B_DEC_FIRST;
+
 }
 void rec_phy_suspend(void)
 {
+    stream_frame_uninit();
+    unregist_stream_channel(&rec_sound);
     unregist_audio_adc_channel(&rec_sound);
 }
 
@@ -56,7 +85,6 @@ void kick_encode_api(void *obj)
 
 
 
-enc_obj *enc_hdl;
 
 void start_encode(void)
 {
@@ -64,20 +92,19 @@ void start_encode(void)
     mdelay(10);
     START_ADC_RUN;
 }
-void stop_encode_phy(ENC_STOP_WAIT wait)
+bool stop_encode_phy(enc_obj *obj, IS_WAIT wait)
 {
-    enc_obj *obj = enc_hdl;
-    u32 err;
+    u32 res;
     audio_adc_disable();
     STOP_ADC_RUN;
     log_info("stop encode\n");
-    if (NULL == enc_hdl) {
+    if (NULL == obj) {
         rec_phy_suspend();
-        return;
+        return false;
     }
     obj->enable |= B_ENC_STOP;
 
-    if (ENC_NEED_WAIT == wait) {
+    if (NEED_WAIT == wait) {
         log_info("stop encode A\n");
         u32 i = 0x10000;
         while (0 != cbuf_get_data_size(obj->p_ibuf) && (0 != i)) {
@@ -89,39 +116,54 @@ void stop_encode_phy(ENC_STOP_WAIT wait)
             i--;
         }
         obj->enable &= ~B_ENC_ENABLE;
-        HWI_Uninstall(IRQ_SOFT1_IDX);
         if (NULL != obj->wait_output_empty) {
             obj->wait_output_empty(obj);
         }
     }
 
+    res = unregist_encode_channel(obj);
+    if (0 != res) {
+        log_error("unregist_encode_channel err 0x%x\n", res);
+    }
+    if (is_encode_channel_empty()) {
+        HWI_Uninstall(IRQ_SOFT1_IDX);
+    }
     rec_phy_suspend();
-    enc_hdl = 0;
+    return true;
 }
-void stop_encode(void *pfile, u32 dlen)
+
+enc_obj *stop_encode_file(enc_obj *p_enc_obj, u32 dlen)
 {
-    stop_encode_phy(ENC_NEED_WAIT);
+    bool flag = stop_encode_phy(p_enc_obj, NEED_WAIT);
     u32 flen = dlen;
-    vfs_ioctl(pfile, FS_IOCTL_FILE_SYNC, (int)&flen);
+    vfs_ioctl(p_enc_obj->p_file, FS_IOCTL_FILE_SYNC, (int)&flen);
+    if (flag) {
+        p_enc_obj = NULL;
+    }
+    return p_enc_obj;
 }
 
 extern void enc_soft1_isr(void);
 enc_obj *encoder_io(u32(*fun)(void *, void *, void *), void *input_func, void *output_func, void *pfile)
 {
-    s32 err;
+    u32 res;
     rec_phy_init();
     if (NULL == fun) {
         return NULL;
     }
-    enc_hdl = (void *)fun(pfile, input_func, output_func);
+    enc_obj *enc_hdl = (void *)fun(pfile, input_func, output_func);
     if (0 != enc_hdl) {
-        HWI_Install(IRQ_SOFT1_IDX, (u32)enc_soft1_isr,  IRQ_ENCODER_IP) ;
-        /* enc_hdl->enable = B_ENC_ENABLE; */
-        /* start_encode();//adc_enable(); */
-        log_info("encode succ: \n");
+        res = regist_encode_channel(enc_hdl);
+        if (0 != res) {
+            log_error("regist_encode_channel err 0x%x\n", res);
+        } else {
+            log_info("regist_encode_channel succ\n");
+            HWI_Install(IRQ_SOFT1_IDX, (u32)enc_soft1_isr,  IRQ_ENCODER_IP) ;
+        }
+        log_info("encode_io succ: \n");
         return enc_hdl;
     } else {
-        log_info("encode fail \n");
+        log_info("encode_io fail \n");
         return NULL;
     }
     //while(1)clear_wdt();

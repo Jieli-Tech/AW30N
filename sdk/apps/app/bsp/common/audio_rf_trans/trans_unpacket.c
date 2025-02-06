@@ -13,10 +13,9 @@
 #define LOG_TAG_CONST       NORM
 #define LOG_TAG             "[au2rf_upack]"
 #include "log.h"
-
 /*----------------------------------------------------------------------------*/
 /**@brief   音频传输接收拆包
-   @param   ops     :状态机管理句柄
+   @param   p_fsm     :状态机管理句柄
             buff    :接收数据buff
             len     :接收数据长度
             pcnt    :有效数据偏移指针
@@ -25,25 +24,25 @@
    @note    状态机解析封包的数据头，并分发给下一级
 */
 /*----------------------------------------------------------------------------*/
-static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
+static u32 ar_trans_unpack_fsm(ar_unpacket_fsm *p_fsm, u8 *buff, u16 len, u32 *pcnt)
 {
     u32 res = TUR_HEAD_RECVING;
     u32 stream_index = *pcnt;
     while (stream_index < len) {
-        switch (ops->status) {
+        switch (p_fsm->status) {
         case REV_HEADER_0x55:
             /* log_info("REV_HEADER_0x55:0x%x\n", buff[stream_index]); */
-            /* memset((u8 *)ops, 0, sizeof(rev_fsm_mge)); */
-            ops->type = 0;
+            /* memset((u8 *)p_fsm, 0, sizeof(rev_fsm_mge)); */
+            p_fsm->type = 0;
 #if PACKET_USE_TOTAL_INDEX
-            ops->packet_index = 0;
+            p_fsm->packet_index = 0;
 #endif
-            ops->got_length = 0;
-            ops->length = 0;
-            ops->crc_bk = 0;
-            ops->crc = 0;
+            p_fsm->got_length = 0;
+            p_fsm->length = 0;
+            p_fsm->crc_bk = 0;
+            p_fsm->crc = 0;
             if (0x55 == buff[stream_index]) {
-                ops->status = REV_HEADER_0xaa;
+                p_fsm->status = REV_HEADER_0xaa;
             }
             stream_index++;
             /* 未收得到数据头，等待数据头中 */
@@ -51,39 +50,40 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
         case REV_HEADER_0xaa:
             /* log_info("REV_HEADER_0xaa:0x%x\n", buff[stream_index]); */
             if (0xaa == buff[stream_index]) {
-                ops->status = REV_CRC;
+                p_fsm->status = REV_CRC;
             } else if (0x55 == buff[stream_index]) {
                 stream_index++;
                 break;
             } else {
-                ops->status = REV_HEADER_0x55;
+                p_fsm->status = REV_HEADER_0x55;
             }
             stream_index++;
             break;
         case REV_CRC:
             /* log_info("REV_CRC:0x%x\n", buff[stream_index]); */
-            ops->crc = buff[stream_index];
-            ops->status = REV_TYPE;
+            p_fsm->crc = buff[stream_index];
+            p_fsm->status = REV_TYPE;
             stream_index++;
             break;
         case REV_TYPE:
             /* log_info("REV_TYPE:0x%x\n", buff[stream_index]); */
-            ops->type = buff[stream_index];
-            ops->status = REV_LEN_L;
-            ops->crc_bk = CRC16_with_initval(&buff[stream_index], 1, 0);
+            p_fsm->type = buff[stream_index];
+            p_fsm->status = REV_LEN_L;
+            p_fsm->crc_bk = CRC16_with_initval(&buff[stream_index], 1, 0);
             stream_index++;
             break;
         case REV_LEN_L:
         case REV_LEN_H: {
             /* log_info("REV_LEN_L:0x%x\n", buff[stream_index]); */
-            u8 len_num = ops->status - REV_LEN_L;
-            u8 *plen = (u8 *)&ops->length;
+            u8 len_num = p_fsm->status - REV_LEN_L;
+            u8 *plen = (u8 *)&p_fsm->length;
             plen[len_num] = buff[stream_index];
-            ops->status += 1;
-            ops->crc_bk = CRC16_with_initval(&buff[stream_index], 1, ops->crc_bk);
+            p_fsm->status += 1;
+            p_fsm->crc_bk = CRC16_with_initval(&buff[stream_index], 1, p_fsm->crc_bk);
             stream_index++;
-            /* if ((REV_LEN_H + 1) ==  ops->status) { */
-            /*     log_debug("recv data len:%d\n", ops->length); */
+
+            /* if ((REV_LEN_H + 1) ==  p_fsm->status) { */
+            /*     log_debug("recv data len:%d\n", p_fsm->length); */
             /* } */
         }
         break;
@@ -92,18 +92,18 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
         case REV_PINDEX_1:
         case REV_PINDEX_2:
         case REV_PINDEX_3: {
-            u8 pindex_num = ops->status - REV_PINDEX_0;
+            u8 pindex_num = p_fsm->status - REV_PINDEX_0;
             /* log_info("REV_PINDEX_%d:0x%x\n", pindex_num, buff[stream_index]); */
-            u8 *pindex = (u8 *)&ops->packet_index;
+            u8 *pindex = (u8 *)&p_fsm->packet_index;
             pindex[pindex_num] = buff[stream_index];
-            ops->status++;
-            ops->crc_bk = CRC16_with_initval(&buff[stream_index], 1, ops->crc_bk);
-            /* if ((REV_PINDEX_3 + 1) == ops->status) { */
-            /*     log_debug("ridx:%d t:%d s:%d l:%d crc:0x%x 0x%x\n", ops->packet_index, ops->type, ops->status, ops->length, ops->crc_bk, ops->crc); */
+            p_fsm->status++;
+            p_fsm->crc_bk = CRC16_with_initval(&buff[stream_index], 1, p_fsm->crc_bk);
+            /* if ((REV_PINDEX_3 + 1) == p_fsm->status) { */
+            /*     log_debug("ridx:%d t:%d s:%d l:%d crc:0x%x 0x%x\n", p_fsm->packet_index, p_fsm->type, p_fsm->status, p_fsm->length, p_fsm->crc_bk, p_fsm->crc); */
             /*     log_debug("b:0x%x %d %d", buff, len, stream_index); */
             /* } */
-            if ((ops->length == 0) && ((ops->crc_bk & 0xff) == ops->crc)) {
-                ops->status = REV_HEADER_0x55;
+            if ((p_fsm->length == 0) && ((p_fsm->crc_bk & 0xff) == p_fsm->crc)) {
+                p_fsm->status = REV_HEADER_0x55;
                 stream_index++;
                 res = TUR_DATA_CORRECT;
                 goto __recv_data_exit;
@@ -112,17 +112,15 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
         }
         break;
 #endif
-        case REV_PTCNT_0:
-        case REV_PTCNT_1:
-        case REV_PTCNT_2:
-        case REV_PTCNT_3: {
-            u8 ptcnt_num = ops->status - REV_PTCNT_0;
-            u8 *ptcnt = (u8 *)&ops->packet_type_cnt;
+        case REV_SELF_PTCNT_0:
+        case REV_SELF_PTCNT_1: {
+            u8 ptcnt_num = p_fsm->status - REV_SELF_PTCNT_0;
+            u8 *ptcnt = (u8 *)&p_fsm->packet_type_cnt;
             ptcnt[ptcnt_num] = buff[stream_index];
-            ops->status++;
-            ops->crc_bk = CRC16_with_initval(&buff[stream_index], 1, ops->crc_bk);
-            if ((ops->length == 0) && ((ops->crc_bk & 0xff) == ops->crc)) {
-                ops->status = REV_HEADER_0x55;
+            p_fsm->status++;
+            p_fsm->crc_bk = CRC16_with_initval(&buff[stream_index], 1, p_fsm->crc_bk);
+            if ((p_fsm->length == 0) && ((p_fsm->crc_bk & 0xff) == p_fsm->crc)) {
+                p_fsm->status = REV_HEADER_0x55;
                 stream_index++;
                 res = TUR_DATA_CORRECT;
                 goto __recv_data_exit;
@@ -132,25 +130,25 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
         break;
         case REV_DATA: {
             /* 已收得到数据头，收取数据中 */
-            u16 remain_len = ops->length - ops->got_length;//数据帧还没取的数据长度
+            u16 remain_len = p_fsm->length - p_fsm->got_length;//数据帧还没取的数据长度
             u16 res_len = len - stream_index;//本次发送还剩余的数据长度
-            /* log_info("REV_DATA:%d %d %d-%d\n", ops->length, ops->got_length, remain_len, res_len); */
+            /* log_info("REV_DATA:%d %d %d-%d\n", p_fsm->length, p_fsm->got_length, remain_len, res_len); */
             u16 rlen;
-            if (0 == ops->got_length) {
+            if (0 == p_fsm->got_length) {
                 /* 第一次拿数 */
-                rlen = (ops->length > res_len) ? res_len : ops->length;
+                rlen = (p_fsm->length > res_len) ? res_len : p_fsm->length;
             } else {
                 /* 非第一次拿数 */
                 rlen = (remain_len > res_len) ? res_len : remain_len;
             }
-            ops->crc_bk = CRC16_with_initval(&buff[stream_index], rlen, ops->crc_bk);
-            ops->got_length += rlen;
+            p_fsm->crc_bk = CRC16_with_initval(&buff[stream_index], rlen, p_fsm->crc_bk);
+            p_fsm->got_length += rlen;
             stream_index += rlen;
 
-            if (ops->got_length >= ops->length) {
-                ops->status = REV_HEADER_0x55;
-                /* log_debug("ops->crc_bk:0x%x 0x%x\n", ops->crc_bk, ops->crc); */
-                if ((ops->crc_bk & 0xff) == ops->crc) {
+            if (p_fsm->got_length >= p_fsm->length) {
+                p_fsm->status = REV_HEADER_0x55;
+                /* log_debug("p_fsm->crc_bk:0x%x 0x%x\n", p_fsm->crc_bk, p_fsm->crc); */
+                if ((p_fsm->crc_bk & 0xff) == p_fsm->crc) {
                     /* log_debug("recv packet succ!\n"); */
                     res = TUR_DATA_CORRECT;
                     goto __recv_data_exit;
@@ -168,7 +166,7 @@ static u32 ar_trans_unpack_fsm(rev_fsm_mge *ops, u8 *buff, u16 len, u32 *pcnt)
     }
 
 __recv_data_exit:
-    /* log_debug("index:%d status:%d\n", stream_index, ops->status); */
+    /* log_debug("index:%d status:%d\n", stream_index, p_fsm->status); */
     *pcnt = stream_index;
     return res;
 }
@@ -176,7 +174,6 @@ __recv_data_exit:
 bool ar_trans_unpack(rev_fsm_mge *ops, void *input, u16 inlen,  u16 *offset)
 {
     data_cache_mge *cache = &ops->cache;
-
     u32 len, rev_status, strm_offset;
     bool res = false;
     u32 need_offset, new_offset;
@@ -184,17 +181,16 @@ bool ar_trans_unpack(rev_fsm_mge *ops, void *input, u16 inlen,  u16 *offset)
     strm_offset = 0;
 
 __ar_trans_unpack:
-    rev_status = ar_trans_unpack_fsm(ops, input, inlen, &strm_offset);
+    rev_status = ar_trans_unpack_fsm(&ops->fsm, input, inlen, &strm_offset);
     *offset = strm_offset;
-    if (ops->length > DATA_CACHE_BUF_SIZE) {
+    if (ops->fsm.length > DATA_CACHE_BUF_SIZE) {
         /* log_error("cache_buf < data_length! %d %d\n", ops->length, DATA_CACHE_BUF_SIZE); */
-        need_offset = ops->got_length + (ops->status - 2);
+        need_offset = ops->fsm.got_length + (ops->fsm.status - 2);
         new_offset = strm_offset > need_offset ? need_offset : strm_offset;
         strm_offset -= new_offset;
-        ops->status = REV_HEADER_0x55;
+        ops->fsm.status = REV_HEADER_0x55;
         retry++;
         if (retry > inlen) {
-			/* 此处失败退出，因为cache没有被使用所以不用清。但是cache一旦被使用了，就需要在此处清空 */
             return false;
         }
         goto __ar_trans_unpack;
@@ -204,7 +200,7 @@ __ar_trans_unpack:
     case TUR_DATA_CORRECT:
         res = true;
     case TUR_DATA_RECVING:
-        len = ops->got_length - cache->offset;
+        len = ops->fsm.got_length - cache->offset;
         memcpy(&cache->buf[cache->offset], &input[strm_offset - len], len);
         cache->offset += len;
         break;
@@ -224,10 +220,11 @@ static void fill_empty_frames(rev_fsm_mge *ops, u8 *data, u16 len)
 {
     dec_obj *p_obj = ops->dec_obj;
     u8 dec_type = p_obj->type;
-    u16 lost_packet_num = ops->packet_type_cnt[ops->type] - rfp_last_index - 1; //实际丢包数
+    u16 lost_packet_num = ops->fsm.packet_type_cnt - rfp_last_index - 1; //实际丢包数
     /* if (lost_packet_num != 0) { */
     /* log_error("%d\n", lost_packet_num); */
     /* } */
+
     lost_packet_num = lost_packet_num > 5 ? 5 : lost_packet_num;//空包写入限制
     if ((lost_packet_num != 0) && (dec_type == D_TYPE_JLA_LW)) {
         /* log_error("%d, %d, %d\n", lost_packet_num, rfp_last_index, ops->packet_type_cnt[ops->type]); */
@@ -257,21 +254,21 @@ packet_len  :本次接收数据长度
 /*----------------------------------------------------------------------------*/
 static void packet_2_app(rev_fsm_mge *ops, RADIO_PACKET_TYPE type, u8 *data, u16 len)
 {
+
     dec_obj *p_obj = ops->dec_obj;
     switch (type) {
     case AUDIO2RF_DATA_PACKET:
         if (NULL == p_obj) {
-            rfp_last_index = ops->packet_type_cnt[ops->type];
+            rfp_last_index = ops->fsm.packet_type_cnt;
             /* 防止解码刚启动时，因为记录的序号不连续，填入大量空包 */
             break;
         }
-        /* putchar('j'); */
         fill_empty_frames(ops, data, len);
         rf2audio_receiver_write_data(ops->dec_obj, data, len);
-        rfp_last_index = ops->packet_type_cnt[ops->type];
+        rfp_last_index = ops->fsm.packet_type_cnt;
         break;
     default:
-        packet_cmd_post(ops->cmd_pool, type, data, len);
+        packet_cmd_post(&ops->cmd_cbuf, type, data, len);
         break;
     }
 }
@@ -293,10 +290,9 @@ int unpack_data_deal(rev_fsm_mge *ops, u8 *buff, u16 packet_len)
         }
 
         u8 *pdata = &cache->buf[0];
-        u16 data_len = ops->length;
-        /* log_info("R cnt:%d type:%d len:%d crc:0x%x", ops->packet_index, ops->type, sizeof(RF_RADIO_PACKET) + data_len, ops->crc); */
-
-        packet_2_app(ops, ops->type, pdata, data_len);
+        u16 data_len = ops->fsm.length;
+        /* log_info("R cnt:%d type:%d len:%d crc:0x%x", ops->packet_type_cnt, ops->type, sizeof(RF_RADIO_PACKET) + data_len, ops->crc); */
+        packet_2_app(ops, ops->fsm.type, pdata, data_len);
         memset((void *)cache, 0, sizeof(data_cache_mge));
         unpack_cnt++;
         if (unpack_cnt >= 5) {

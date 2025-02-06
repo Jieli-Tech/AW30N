@@ -36,7 +36,7 @@
   CrcDecode = ABSOLUTE(0x3f43f3c);
   mask_init = ABSOLUTE(0x3f43f40);
   wdt_clear = ABSOLUTE(0x3f43f44);
-  nvram_set_boot_state = ABSOLUTE(0x3f43f48);
+  nvram_set_boot_state_rom = ABSOLUTE(0x3f43f48);
   chip_reset = ABSOLUTE(0x3f43f4c);
   flash_poweron = ABSOLUTE(0x3f43f50);
   flash_poweron_base = ABSOLUTE(0x3f43f54);

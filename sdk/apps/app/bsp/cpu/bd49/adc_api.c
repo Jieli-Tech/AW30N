@@ -7,6 +7,7 @@
 /* #include "efuse.h" */
 #include "irq.h"
 #include "power_interface.h"
+#include "power/power_manage.h"
 #include "jiffies.h"
 /* #include "hw_timer.h" */
 

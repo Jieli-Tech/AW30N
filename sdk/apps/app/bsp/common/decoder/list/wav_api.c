@@ -1,6 +1,6 @@
 
-#pragma bss_seg(".wav_data")
-#pragma data_seg(".wav_data")
+#pragma bss_seg(".wav_data.data.bss")
+#pragma data_seg(".wav_data.data")
 #pragma const_seg(".wav_api.text.const")
 #pragma code_seg(".wav_api.text")
 #pragma str_literal_override(".wav_api.text.const")

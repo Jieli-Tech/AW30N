@@ -3,11 +3,20 @@
 
 #include "usb_common_def.h"
 
+#define     MASSSTORAGE_CLASS   BIT(0)
+#define     SPEAKER_CLASS       BIT(1)
+#define     MIC_CLASS           BIT(2)
+#define     HID_CLASS           BIT(3)
+#define     IAP_CLASS           BIT(4)
+#define     CDC_CLASS           BIT(5)
+#define     CUSTOM_HID_CLASS    BIT(6)
+
+#define     AUDIO_CLASS         (SPEAKER_CLASS|MIC_CLASS)
+
 #define     USB_MALLOC_ENABLE           0
 #define     USB_HOST_ASYNC              0
 #define     USB_H_MALLOC_ENABLE         0
 
-#define     USB_DEVICE_CLASS_CONFIG (SPEAKER_CLASS|MIC_CLASS|HID_CLASS|MASSSTORAGE_CLASS)
 
 ///////////MassStorage Class
 

@@ -56,7 +56,7 @@ sound_out_obj *auadc_mic_open(uac_mic_read *p_uac_read)
 
     if (&mic_out_sound != p_curr_sound) {
         log_info("usmo ---- 003");
-        kick = regist_stream_channel(&mic_out_sound);
+        kick = regist_stream_channel(&mic_out_sound, NULL);
 
     }
     /* p_curr_sound = &uac_read.mic_out_sound; */

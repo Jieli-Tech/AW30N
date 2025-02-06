@@ -34,7 +34,7 @@ typedef enum {
     HID2RF_KEY_PACKET    	= 3,
     AUDIO2RF_ACK            = 0x80,
 } RADIO_PACKET_TYPE;
-
+#define NEED_INDEX_TYPE     AUDIO2RF_DATA_PACKET + 1
 #define PACKET_USE_TOTAL_INDEX 0 //是否统计总包数
 #define PACKET_HEAD (0xaa55)
 
@@ -46,7 +46,7 @@ typedef struct _RF_RADIO_PACK {
 #if PACKET_USE_TOTAL_INDEX
     u32 packet_index;
 #endif
-    u16 packet_type_cnt[2];
+    u16 packet_type_cnt;
     u8 data[0];
 } _GNU_PACKED_ RF_RADIO_PACKET;
 
@@ -72,10 +72,10 @@ typedef enum {
     REV_PINDEX_2,
     REV_PINDEX_3,
 #endif
-    REV_PTCNT_0,
-    REV_PTCNT_1,
-    REV_PTCNT_2,
-    REV_PTCNT_3,
+    REV_SELF_PTCNT_0,
+    REV_SELF_PTCNT_1,
+    // REV_PTCNT_2,
+    // REV_PTCNT_3,
     REV_DATA,
 } rev_status;
 
@@ -84,20 +84,24 @@ typedef struct _data_cache_mge {
     u8  buf[sizeof(ENC_STREAM_INPUT_MAX_SIZE)];
 } data_cache_mge;
 
-typedef struct __rev_fsm_mge {
-    data_cache_mge cache;
-    cbuffer_t *cmd_pool;
-    void *dec_obj;
+typedef struct __ar_unpacket_fsm {
 #if PACKET_USE_TOTAL_INDEX
     u32 packet_index;
 #endif
-    u16 packet_type_cnt[2];
+    u16 packet_type_cnt;
     rev_status status;
     u16 crc_bk;
     u16 length;
     u16 got_length;
     u8 crc;
     u8 type;
+} ar_unpacket_fsm;
+
+typedef struct __rev_fsm_mge {
+    data_cache_mge cache;
+    cbuffer_t cmd_cbuf;
+    void *dec_obj;
+    ar_unpacket_fsm fsm;
 } rev_fsm_mge;
 
 #define DATA_CACHE_BUF_SIZE (sizeof(((data_cache_mge *)0)->buf))

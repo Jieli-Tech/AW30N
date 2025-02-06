@@ -23,6 +23,7 @@
 #include "crc16.h"
 #include "circular_buf.h"
 
+#include "rf_send_queue.h"
 #include "decoder_api.h"
 #include "decoder_mge.h"
 #include "decoder_msg_tab.h"
@@ -33,6 +34,7 @@
 #include "audio_adc_api.h"
 #include "audio_dac.h"
 #include "audio_adc.h"
+#include "adc_api.h"
 #include "ir_encoder.h"
 #include "gpio.h"
 #include "clock.h"
@@ -83,9 +85,12 @@
 extern void bt_init_api(void);
 extern void ble_module_enable(u8 en);
 
-#define RC_ENC_SR      16000
-#define RC_ENC_FUNC    ima_encode_api
-#define RC_ENC_TYPE    FORMAT_IMA
+#define RC_ENC_SR      32000
+#define RC_ENC_FUNC    jla_lw_encode_api
+#define RC_ENC_TYPE    FORMAT_JLA_LW
+/* #define RC_ENC_SR      16000 */
+/* #define RC_ENC_FUNC    ima_encode_api */
+/* #define RC_ENC_TYPE    FORMAT_IMA */
 /* #define RC_ENC_SR      16000 */
 /* #define RC_ENC_FUNC    opus_encode_api */
 /* #define RC_ENC_TYPE    FORMAT_OPUS */
@@ -107,6 +112,7 @@ extern void ble_module_enable(u8 en);
 volatile u32 rc_event_status;
 volatile u8 speaker_status = SPEAKER_STOP;
 enc_obj *gp_rc_enc_obj;
+queue_obj g_remote_rf_queue;
 static void set_speaker_status(u8 status)
 {
     local_irq_disable();
@@ -149,14 +155,18 @@ const audio2rf_send_mge_ops remote_ops = {
     .get_valid_len = rc_get_valid_len_api,
 };
 
+bool rc_rf_encoder_stop(IS_WAIT enc_wait, IS_WAIT que_wait)
+{
+    gp_rc_enc_obj = audio2rf_encoder_stop(gp_rc_enc_obj, enc_wait, que_wait);
+    return true;
+}
 static rev_fsm_mge rc_recv_ops;
 u8 rc_packet[16] ALIGNED(2);
-cbuffer_t packet_cmd_cbuf;
 u8 packet_cmd_buff[6 * 10];
 u32 rc_rf_loop(void)
 {
     rev_fsm_mge *p_recv_ops = &rc_recv_ops;
-    u32 len = packet_cmd_get(p_recv_ops->cmd_pool, &rc_packet[0], sizeof(rc_packet));
+    u32 len = packet_cmd_get(&p_recv_ops->cmd_cbuf, &rc_packet[0], sizeof(rc_packet));
     if (0 == len) {
         return 0;
     }
@@ -171,7 +181,7 @@ u32 rc_rf_loop(void)
             speaker_status = SPEAKER_START;
         } else {
             log_info("no ack enc stop\n");
-            audio2rf_encoder_stop(ENC_NO_WAIT);
+            rc_rf_encoder_stop(NO_WAIT, NEED_WAIT);
             audio_adc_off_api();
             audio_off();
             speaker_status = SPEAKER_STOP;
@@ -227,7 +237,7 @@ void rec_cbuf_init(void *cbuf_t)
 void rf_controller_uninit()
 {
     if (SPEAKER_START == speaker_status) {
-        audio2rf_encoder_stop(ENC_NO_WAIT);
+        rc_rf_encoder_stop(NO_WAIT, NO_WAIT);
         set_speaker_status(SPEAKER_STOP);
         log_info("SPEAKER_STOP\n");
     }
@@ -235,7 +245,8 @@ void rf_controller_uninit()
 #if BLE_EN
     ble_module_enable(0);
 #endif
-    audio2rf_send_register(NULL);
+    /* audio2rf_send_register(NULL); */
+    /* rf_queue_uninit(&g_remote_rf_queue, 0); */
     audio_adc_off_api();
     key_table_sel(NULL);
 
@@ -297,6 +308,15 @@ u32 get_softoff_countdown()
 {
     return softoff_count_down;
 }
+void rc_app_update_cb(void)
+{
+    audio_off();
+    adc_hw_uninit();
+    int connect_handle = get_ble_connect_handle();
+    if (connect_handle) {
+        ble_op_latency_close(connect_handle);
+    }
+}
 void rf_rc_app()
 {
     int msg[2];
@@ -311,15 +331,14 @@ void rf_rc_app()
     /* ir_encoder_init(IO_PORTB_03, 38000, 5000); */
     /* 蓝牙BLE初始化 */
     memset(&rc_recv_ops, 0, sizeof(rc_recv_ops));
-    cbuf_init(&packet_cmd_cbuf, &packet_cmd_buff[0], sizeof(packet_cmd_buff));
-    rc_recv_ops.cmd_pool = &packet_cmd_cbuf;
+    cbuf_init(&rc_recv_ops.cmd_cbuf, &packet_cmd_buff[0], sizeof(packet_cmd_buff));
 #if BLE_EN
     /* bt_init_api(); */
     vble_slave_init_api();
-    audio2rf_send_register((void *)&remote_ops);
+    /* audio2rf_send_register((void *)&remote_ops); */
     vble_slave_recv_cb_register(ATT_MSTR2SLV_RF_RADUI_IDX, &rc_recv_ops, (int (*)(void *, u8 *, u16))unpack_data_deal);
 #endif
-
+    update_enter_cb_register(rc_app_update_cb);
     audio_off();
     log_info("rf_controller\n");
 
@@ -334,7 +353,7 @@ void rf_rc_app()
         /* vble_ioctl(VBLE_IOCTL_GET_SLAVE_STATUS, (int)&ble_status); */
         ble_status = rc_check_status_api();
         if ((!ble_status) && (SPEAKER_START == speaker_status)) {
-            audio2rf_encoder_stop(ENC_NO_WAIT);
+            rc_rf_encoder_stop(NO_WAIT, NO_WAIT);
             audio_adc_off_api();
             audio_off();
             clk_set("sys", IDLE_SYS_CLK);
@@ -347,11 +366,11 @@ void rf_rc_app()
         } else if (SPEAKER_WAIT_START_ACK == speaker_status) {
             if (time_after(maskrom_get_jiffies(), target_jiff)) {
                 log_info("resending start packet!\n");
-                audio2rf_start_cmd(gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
+                audio2rf_start_cmd(&g_remote_rf_queue, gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
                 target_jiff = maskrom_get_jiffies() + 5;
                 if (0 == retry--) {
                     log_info("no ack enc stop\n");
-                    audio2rf_encoder_stop(ENC_NO_WAIT);
+                    rc_rf_encoder_stop(NO_WAIT, NO_WAIT);
                     audio_adc_off_api();
                     audio_off();
                     speaker_status = SPEAKER_STOP;
@@ -411,16 +430,18 @@ void rf_rc_app()
                     log_error("audio_adc_init err 0x%x\n", ret);
                     break;
                 }
-                gp_rc_enc_obj = audio2rf_encoder_io(RC_ENC_FUNC, RC_ENC_TYPE);
+                /* g_remote_rf_queue.p_send_ops = (void *)&remote_ops; */
+
+                gp_rc_enc_obj = audio2rf_encoder_io(RC_ENC_FUNC, &g_remote_rf_queue, (void *)&remote_ops);
                 if (NULL != gp_rc_enc_obj) {
-                    audio2rf_start_cmd(gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
+                    audio2rf_start_cmd(&g_remote_rf_queue, gp_rc_enc_obj->info.sr, gp_rc_enc_obj->info.br, RC_ENC_TYPE);
                     target_jiff = maskrom_get_jiffies() + 5;
                     retry = 3;
                     speaker_status = SPEAKER_WAIT_START_ACK;
                 }
             } else {
                 //send_audio_data
-                audio2rf_encoder_stop(ENC_NEED_WAIT);
+                rc_rf_encoder_stop(NEED_WAIT, NO_WAIT);
                 audio_adc_off_api();
                 audio_off();
                 clk_set("sys", IDLE_SYS_CLK);

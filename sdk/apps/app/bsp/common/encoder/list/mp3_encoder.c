@@ -76,6 +76,7 @@ u32 mp3_encode_api(void *p_file, void *input_func, void *output_func)
     }
 
     memset(&enc_mp3_hdl, 0, sizeof(enc_obj));
+    memset(&obuf_emp3_o[0], 0x00, sizeof(obuf_emp3_o));
     memset(&mp3_encode_buff[0], 0x00, sizeof(mp3_encode_buff));
     /******************************************/
     cbuf_init(&cbuf_emp3_o, &obuf_emp3_o[0], sizeof(obuf_emp3_o));
@@ -93,6 +94,7 @@ u32 mp3_encode_api(void *p_file, void *input_func, void *output_func)
     /*br取值表：{8,16,24,32,40,48,56,64,80,96,112,128,144,160}*/
     enc_mp3_hdl.info.br = 80;
     enc_mp3_hdl.info.nch = mp2_encode_channel;
+    enc_mp3_hdl.info.nch = 1;
 
     log_info("encoder sr %d\n", enc_mp3_hdl.info.sr);
     /******************************************/

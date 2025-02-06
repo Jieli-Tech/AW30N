@@ -80,13 +80,6 @@ u32 mp_output(void *priv, void *data, int len);
 void decoder_init(void);
 u32 decoder_set_sr(dec_obj *d_obj);
 
-typedef enum  {//停止解码时，是否需要将DAC中剩余的样点消耗完
-    NO_WAIT = 0,
-    NEED_WAIT = 1,
-} DEC_STOP_WAIT;
-
-
-
 
 extern u32 dec_hld_tab[];
 extern const u32 decoder_tab[];
@@ -104,8 +97,8 @@ void decoder_channel_set(u8 dc);
 
 u32 if_decoder_is_run(dec_obj *obj);
 bool decoder_pause(dec_obj *obj);
-bool decoder_stop(dec_obj *obj, DEC_STOP_WAIT wait, void *p_dp);
-bool decoder_stop_phy(dec_obj *obj, DEC_STOP_WAIT wait, void *p_dp, bool fade, bool(*unregist_func)(void *));
+bool decoder_stop(dec_obj *obj, IS_WAIT dec_stop_wait, void *p_dp);
+bool decoder_stop_phy(dec_obj *obj, IS_WAIT DEC_STOP_WAIT, void *p_dp, bool fade, bool(*unregist_func)(void *));
 int decoder_fun(void *pfile, u32 dec_ctl, s32 *dec_index);
 // dec_obj *decoder_io(void *pfile, u32 dec_ctl, dp_buff * dbuff);
 dec_obj *decoder_io(void *pfile, u32 dec_ctl, dp_buff *dbuff, u8 loop);

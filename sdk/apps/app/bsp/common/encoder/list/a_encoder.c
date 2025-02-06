@@ -36,8 +36,8 @@ const u16 a_enc_sr_tab[] = {
 };
 
 
-cbuffer_t cbuf_ima_o AT(.enc_a_data);
-u8 obuf_ima_o[1024] AT(.enc_a_data) ;
+cbuffer_t cbuf_ima_o    AT(.enc_a_data);
+u8 obuf_ima_o[1024]     AT(.enc_a_data);
 u32 a_encode_buff[A_EBUF_SIZE / 4] AT(.enc_a_data) ;
 
 enc_obj enc_a_hdl;
@@ -64,6 +64,8 @@ u32 a_encode_api(void *p_file, void *input_func, void *output_func)
     /******************************************/
 
     memset(&enc_a_hdl, 0, sizeof(enc_obj));
+    memset(&obuf_ima_o[0], 0x00, sizeof(obuf_ima_o));
+    memset(&a_encode_buff[0], 0x00, sizeof(a_encode_buff));
     cbuf_init(&cbuf_ima_o, &obuf_ima_o[0], sizeof(obuf_ima_o));
     /* debug_puts("A\n"); */
     // debug_puts("B\n");

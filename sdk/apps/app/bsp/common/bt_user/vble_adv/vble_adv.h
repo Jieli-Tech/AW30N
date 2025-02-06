@@ -30,9 +30,14 @@ void vble_padv_param_init(void);
 int vble_adv_rx_cb_register(void *priv, void *sync_lost_callback_fun, void *pop_data_callback_fun);
 // int vble_adv_rx_cb_register(void *priv, void *sync_success_callback_fun, void *sync_lost_callback_fun, void *pop_data_callback_fun);
 
+typedef struct _queue2vbletx_send_mge_ops {
+    queue_obj *(*get_send_queue_obj)(void);
+    u32(*read_data)(queue_obj *obj, u8 *buf, u32 len);
+} queue2vble_tx_send_mge_ops;
+void queue2vble_tx_send_register(void *ops);
 
-#define SEND_FRAME_LEN 160 //周期广播发送包长，最大配置不可超过160
+#define SEND_FRAME_LEN 114 //周期广播发送包长，最大配置不可超过160
 
-extern padvb_user_param_t u_pa_rx AT(.padv_trans_data);
-extern padvb_user_param_t u_pa_tx AT(.padv_trans_data);
+extern padvb_user_param_t u_pa_rx AT(.rf_radio_padv);
+extern padvb_user_param_t u_pa_tx AT(.rf_radio_padv);
 #endif

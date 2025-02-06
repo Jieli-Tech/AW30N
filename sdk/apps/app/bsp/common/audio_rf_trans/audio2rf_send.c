@@ -29,14 +29,12 @@
 #endif
 
 #define LOG_TAG_CONST       NORM
-#define LOG_TAG             "[rf_send]"
+#define LOG_TAG             "[rf_au2rf_s]"
 #include "log.h"
 
 /* 内部变量定义 */
 volatile u32 rf_send_cnt AT(.ar_trans_data);
-volatile u16 packet_type_cnt[2] AT(.ar_trans_data);
-/* 外部变量/函数声明 */
-extern enc_obj *enc_hdl;
+/* volatile u16 packet_type_index[2] AT(.ar_trans_data); */
 
 /*----------------------------------------------------------------------------*/
 /**@brief   发送编码头信息包给远端
@@ -48,7 +46,7 @@ extern enc_obj *enc_hdl;
    @note    远端接收编码信息包后启动解码
 */
 /*----------------------------------------------------------------------------*/
-u32 audio2rf_start_cmd(u32 sr, u32 br, AUDIO_FORMAT enc_type)
+u32 audio2rf_start_cmd(queue_obj *p_queue, u32 sr, u32 br, AUDIO_FORMAT enc_type)
 {
     /* rf_send_cnt = 0; */
 
@@ -59,7 +57,7 @@ u32 audio2rf_start_cmd(u32 sr, u32 br, AUDIO_FORMAT enc_type)
     enc_head.reserved = 0xff;
     enc_head.sr = sr;
     enc_head.br = br;
-    return audio2rf_send_packet(AUDIO2RF_START_PACKET, (u8 *)&enc_head, sizeof(enc_head));
+    return audio2rf_send_packet(p_queue, AUDIO2RF_START_PACKET, (u8 *)&enc_head, sizeof(enc_head));
 }
 
 /*----------------------------------------------------------------------------*/
@@ -70,10 +68,14 @@ u32 audio2rf_start_cmd(u32 sr, u32 br, AUDIO_FORMAT enc_type)
    @note    远端接收停止包后停止解码
 */
 /*----------------------------------------------------------------------------*/
-u32 audio2rf_stop_cmd(void)
+u32 audio2rf_stop_cmd(queue_obj *p_queue)
 {
     log_info("********* SEND STOP *********\n");
-    return audio2rf_send_packet(AUDIO2RF_STOP_PACKET, NULL, 0);
+    u32 res = audio2rf_send_packet(p_queue, AUDIO2RF_STOP_PACKET, NULL, 0);
+    if (0 != res) {
+        log_error("stop cmd push fail 0x%x", res);
+    }
+    return res;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -86,9 +88,9 @@ u32 audio2rf_stop_cmd(void)
    @note    回复指定cmd命令的ack包，ack包的type会置上AUDIO2RF_ACK
 */
 /*----------------------------------------------------------------------------*/
-u32 audio2rf_ack_cmd(u8 ack_cmd, u8 *data, u16 len)
+u32 audio2rf_ack_cmd(queue_obj *p_queue, u8 ack_cmd, u8 *data, u16 len)
 {
     log_info("********* PACKET_TYPE %d, SEND ACK:%d *********\n", ack_cmd, data[0]);
-    return audio2rf_send_packet(ack_cmd | AUDIO2RF_ACK, data, len);
+    return audio2rf_send_packet(p_queue, ack_cmd | AUDIO2RF_ACK, data, len);
 }
 

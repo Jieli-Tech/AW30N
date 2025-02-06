@@ -106,6 +106,9 @@
 //  MIO功能使能
 #define HAS_MIO_EN 0
 
+//  ANS功能使能
+#define ANS_EN 0
+
 //  实时SPEED功能(用于扩音)使能
 #define HAS_SPEED_EN 1
 

@@ -27,12 +27,12 @@ RESERVED_OPT=0;//入口地址为0x1E00120需要定义该配置项
 //DOWNLOAD_MODEL=SERIAL;
 DOWNLOAD_MODEL=usb;
 SERIAL_DEVICE_NAME=JlVirtualJtagSerial;
-SERIAL_BARD_RATE=100000;
+SERIAL_BARD_RATE=1000000;
 SERIAL_CMD_OPT=10;
-SERIAL_CMD_RATE=10; [n*10000]
+SERIAL_CMD_RATE=100; [n*10000]
 SERIAL_CMD_RES=0;
 SERIAL_INIT_BAUD_RATE=9600;
-LOADER_BAUD_RATE=100000;
+LOADER_BAUD_RATE=1000000;
 LOADER_ASK_BAUD_RATE=1000000;
 SERIAL_SEND_KEY=YES;
 BEFORE_LOADER_WAIT_TIME=150;
@@ -81,6 +81,9 @@ EX_FLASH_IO=CAT5(0,TFG_SPI_CLK_PORT,TFG_SPI_DO_PORT,TFG_SPI_DI_PORT,NULL_NULL); 
 EX_FLASH_IO=CAT5(2,TFG_SPI_CLK_PORT,TFG_SPI_DO_PORT,TFG_SPI_DI_PORT,NULL_NULL);  //#data_width,clk,do,di,d2,d3
 #endif
 #endif
+
+//########sd卡升级时需要配置对应的IO口###############################################
+LATCH_IO = PA01&0_PA02&0_PA03&0;    //格式为 PA01&0_PA02&0_PA03&0, &0/1表示输出低或输出高
 //#############################################################################################################################################
 
 [FW_ADDITIONAL]

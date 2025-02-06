@@ -47,10 +47,11 @@ const u8 config_audio_adc_enable = 1;
 
 #if (DECODER_MIDI_EN || DECODER_MIDI_KEYBOARD_EN)
 //midi主轨选择方式
-const int MAINTRACK_USE_CHN = 0;    //0:用track号来区分  1:用channel号来区分。
-const int MAX_DEC_PLAYER_CNT = 8;   //midi乐谱解码最大同时发声的key数,范围[1,31]
-const int MAX_CTR_PLAYER_CNT = 15;  //midi琴最大同时发声的key数,范围[1,31]
-const int NOTE_OFF_TRIGGER = 0;     //midi琴note_off time传0时，是否产生回调音符结束 1：不回调 0：回调
+const int MAINTRACK_USE_CHN  = 0;    //0:用track号来区分  1:用channel号来区分。
+const int MAX_DEC_PLAYER_CNT = 8;    //midi乐谱解码最大同时发声的key数,范围[1,31]
+const int MAX_CTR_PLAYER_CNT = 8;    //midi琴最大同时发声的key数,范围[1,31]
+const int NOTE_OFF_TRIGGER   = 0;    //midi琴note_off回调 1：time传0时，不会回调 0：time传0时，回调
+const int MIDI_MAX_MARK_CNT  = 0;    //midi解码最大支持的mark数
 #endif
 
 #if RTC_EN
@@ -80,6 +81,15 @@ const u8 config_no_osc_enable = 0;//bd49//ini:PLL=LRC;
 /////////////////////////////////////////////////////////////////////////////////////
 #if ((defined(DECODER_JLA_LW_EN) && (DECODER_JLA_LW_EN)) || (defined(ENCODER_JLA_LW_EN) && (ENCODER_JLA_LW_EN)))
 const int JLA_LW_BITSTREAM_WEIGHT_TAB[8] = { -2, 0, 0, 0, 0, 0, 0, 1 };
+/*----------------------------------------------------------------------------*/
+/**@note    jla_lw_br_level
+   @brief   码率压缩档位:0 ~ 1
+   @note1   0档位：适用于32k采样率(10ms)、16k采样率(20ms)
+   @note2   1档位：适用于16k采样率(10ms)
+   @note3   编解码需要采用同样的档位
+*/
+/*----------------------------------------------------------------------------*/
+const u8 jla_lw_br_level = 0;
 #endif
 
 /**

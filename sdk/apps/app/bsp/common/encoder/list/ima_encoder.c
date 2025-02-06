@@ -52,6 +52,7 @@ u32 ima_encode_api(void *p_file, void *input_func, void *output_func)
     enc_ima_hdl.enc_ops = ops;
     enc_ima_hdl.info.sr = read_audio_adc_sr();
     enc_ima_hdl.info.br = enc_ima_hdl.info.sr * 16 / 4 / 1000;
+    enc_ima_hdl.info.nch = 1;
     log_info("ima encode info:");
     log_info("ima sr:%d br:%d\n", enc_ima_hdl.info.sr, enc_ima_hdl.info.br);
 

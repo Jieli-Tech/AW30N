@@ -55,12 +55,12 @@
 #define IRQ_SYNC_IDX            54
 
 
-#define IRQ_SOFT0_IDX           56
-#define IRQ_SOFT1_IDX           57
-#define IRQ_SOFT2_IDX           58
+#define IRQ_SOFT0_IDX           56 //解码
+#define IRQ_SOFT1_IDX           57 //编码
+#define IRQ_SOFT2_IDX           58 //录音写数据 / 队列
 #define IRQ_SOFT3_IDX           59 //bt_stack
-#define IRQ_SOFT4_IDX           60
-#define IRQ_SOFT5_IDX           61
+#define IRQ_SOFT4_IDX           60 //rcsp协议
+#define IRQ_SOFT5_IDX           61 //stream_frame使用
 #define IRQ_SOFT6_IDX           62
 #define IRQ_SOFT7_IDX           63
 

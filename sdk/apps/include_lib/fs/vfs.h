@@ -57,6 +57,7 @@ enum {
     FS_IOCTL_RESET_VFSCAN,
     FS_IOCTL_GET_PARTITION_INFO,  //获取分区信息，簇大小，容量
     FS_IOCTL_GET_FREE_SPACE, //获取剩余空间
+    FS_IOCTL_GET_PATH,  //获取相对路径和绝对路径
 };
 
 
