@@ -60,6 +60,8 @@ Documentation
 
 * FAE support document: [FAE support](https://gitee.com/jieli-tech_fae/fw-jl)
 
+* MIDI Application Development Manual : [MIDI Application Development Manual](https://doc.zh-jieli.com/MIDI/zh-cn/master/index.html)
+
 Build
 -------------
 Select a project to build. The following folders contains buildable projects:
